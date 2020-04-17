@@ -1,0 +1,1 @@
+<%response.sendRedirect(String.format("%d.json", request.getAttribute("id")));%>
