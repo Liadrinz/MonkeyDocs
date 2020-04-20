@@ -1,6 +1,14 @@
 package com.monkey.pdu;
 
+import com.google.gson.Gson;
+
 public class Packet extends PDU {
+    private static final Gson gson = new Gson();
+
+    public static Packet getInstance(String message) {
+        return gson.fromJson(message, Packet.class);
+    }
+
     private long wsId;
     private long timestamp;
     private int docId;
