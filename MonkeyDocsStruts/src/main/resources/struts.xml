@@ -11,7 +11,7 @@
 <!--    <constant name="struts.mapper.class" value="rest" />-->
 
     <!-- REST和非REST风格一起用， 就配置这个-->
-     <constant name="struts.action.extension" value="xhtml,,xml,json,action"/>
+    <constant name="struts.action.extension" value="xhtml,,xml,json,action"/>
 
     <!-- 以上可以不设，不论哪种，都要设定以下项目 -->
     <!-- XXXAction类后缀，可以是Controller，那么所有控制器后缀都设为Controller-->
