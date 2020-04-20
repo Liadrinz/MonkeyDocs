@@ -53,7 +53,6 @@
             <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
             <version>${log4jdbc.log4j2.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -64,6 +63,10 @@
             <artifactId>rest-assured</artifactId>
             <version>${rest.assured.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
         </dependency>
     </dependencies>
     <build>
