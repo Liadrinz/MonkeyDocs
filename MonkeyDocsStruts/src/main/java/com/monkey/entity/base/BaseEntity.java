@@ -1,8 +1,9 @@
 package com.monkey.entity.base;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
-public class BaseEntity<T> {
+public class BaseEntity<T> implements Serializable {
     public void updateFrom(T model) {
         Class clazz = model.getClass();
         Field[] fields = clazz.getDeclaredFields();

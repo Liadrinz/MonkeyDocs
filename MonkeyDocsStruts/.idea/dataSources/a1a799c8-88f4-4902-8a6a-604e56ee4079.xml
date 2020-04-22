@@ -983,35 +983,41 @@ userId</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="282" parent="238" name="userId_UNIQUE">
+    <column id="282" parent="238" name="password">
+      <Position>5</Position>
+      <DataType>varchar(45)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="283" parent="238" name="userId_UNIQUE">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="283" parent="238" name="tel_UNIQUE">
+    <index id="284" parent="238" name="tel_UNIQUE">
       <ColNames>tel</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="284" parent="238" name="email_UNIQUE">
+    <index id="285" parent="238" name="email_UNIQUE">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="285" parent="238" name="PRIMARY">
+    <key id="286" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="286" parent="238" name="userId_UNIQUE">
+    <key id="287" parent="238" name="userId_UNIQUE">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>userId_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="287" parent="238" name="tel_UNIQUE">
+    <key id="288" parent="238" name="tel_UNIQUE">
       <ColNames>tel</ColNames>
       <UnderlyingIndexName>tel_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="288" parent="238" name="email_UNIQUE">
+    <key id="289" parent="238" name="email_UNIQUE">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>email_UNIQUE</UnderlyingIndexName>
     </key>

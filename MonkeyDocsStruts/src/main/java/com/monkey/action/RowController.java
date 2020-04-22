@@ -10,7 +10,10 @@ import javax.annotation.Resource;
 
 @Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/row", "actionName", "${id}"}))
 public class RowController extends StrutsRestController<Row> {
-    public RowController() { model = new Row(); }
+    public RowController() {
+        name = "row";
+        model = new Row();
+    }
     @Resource(name = "rowService")
     public void setSuperService(RowService rowService) { super.service = rowService; }
 }

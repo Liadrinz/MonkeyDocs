@@ -6,6 +6,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "DocumentRowNode", schema = "MonkeyDocDB")
 open class Row : BaseEntity<Row>() {
+    @get:GeneratedValue
     @get:Id
     @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
     var id: Int? = null
@@ -18,10 +19,10 @@ open class Row : BaseEntity<Row>() {
     @get:Column(name = "nextRow", nullable = true)
     var nextRow: Int? = null
 
-    @get:OneToMany(mappedBy = "refRow")
+    @get:OneToMany(mappedBy = "refRow", fetch = FetchType.EAGER)
     var refMetas: Set<Meta>? = null
 
-    @get:OneToMany(mappedBy = "refRow")
+    @get:OneToMany(mappedBy = "refRow", fetch = FetchType.EAGER)
     var refFragments: Set<Fragment>? = null
 
     override fun toString(): String =
