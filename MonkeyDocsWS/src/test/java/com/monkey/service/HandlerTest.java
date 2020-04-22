@@ -1,6 +1,6 @@
 package com.monkey.service; 
 
-import com.monkey.pdu.ConnectionItem;
+import com.monkey.manager.ConnectionItem;
 import com.monkey.pdu.PDUTest;
 import org.junit.Test;
 import org.junit.Before; 

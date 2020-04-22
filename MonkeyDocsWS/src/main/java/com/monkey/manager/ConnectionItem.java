@@ -1,4 +1,4 @@
-package com.monkey.pdu;
+package com.monkey.manager;
 
 public class ConnectionItem {
     private long wsId;
