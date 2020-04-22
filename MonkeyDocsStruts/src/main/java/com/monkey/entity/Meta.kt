@@ -3,6 +3,7 @@ package com.monkey.entity
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
 import java.sql.Timestamp
+import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -19,15 +20,15 @@ open class Meta : BaseEntity<Meta>() {
 
     @get:Basic
     @get:Column(name = "isRecycled", nullable = false)
-    var isRecycled: Boolean = false
+    var recycled: Boolean? = false
 
     @get:Basic
     @get:Column(name = "createTime", nullable = false)
-    var createTime: Timestamp? = null
+    var createTime: Date? = null
 
     @get:Basic
     @get:Column(name = "updateTime", nullable = false)
-    var updateTime: Timestamp? = null
+    var updateTime: Date? = null
 
     @get:Basic
     @get:Column(name = "firstRowId", nullable = false, insertable = false, updatable = false)
@@ -45,7 +46,7 @@ open class Meta : BaseEntity<Meta>() {
             "Entity of type: ${javaClass.name} ( " +
                     "id = $id " +
                     "mdName = $mdName " +
-                    "isRecycled = $isRecycled " +
+                    "isRecycled = $recycled " +
                     "createTime = $createTime " +
                     "updateTime = $updateTime " +
                     "firstRowId = $firstRowId " +
@@ -61,7 +62,7 @@ open class Meta : BaseEntity<Meta>() {
 
         if (id != other.id) return false
         if (mdName != other.mdName) return false
-        if (isRecycled != other.isRecycled) return false
+        if (recycled != other.recycled) return false
         if (createTime != other.createTime) return false
         if (updateTime != other.updateTime) return false
         if (firstRowId != other.firstRowId) return false
