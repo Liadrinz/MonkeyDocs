@@ -1,0 +1,181 @@
+<html>
+
+<head>
+    <title>ss</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<style>
+    body {
+        margin: 0px;
+    }
+
+    .top {
+        height: 100%;
+        width: 100%;
+        background-color: #ECEBF3;
+        /* box-shadow: 2px 30px 10px #888888; */
+        border-bottom: 1px solid #cdcdcd;
+    }
+
+    .left {
+        background-color: #f0eff5;
+        height: 100%;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .main {
+        background-color: #F5F5F5;
+        height: 100%;
+        box-shadow: -30px 5px 10px #888888;
+        border-left: 1px solid #cdcdcd;
+    }
+
+    .el-header {
+        padding: 0px;
+        margin-bottom: 1px;
+    }
+
+    .el-main {
+        padding: 0px;
+    }
+
+    .el-col {
+        height: 100%;
+        margin: 0px;
+    }
+
+    .pjname {
+        color: #6D7275;
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+        margin-top: 10px;
+        margin-left: 30px;
+        font-size: 30px;
+        font-weight: 300;
+    }
+
+    .top-search {
+        height: 100%;
+        width: 100%;
+        padding-top: 10px;
+    }
+
+    .headimg-min {
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+        padding-left: 50px;
+    }
+
+    .leftitem {
+
+        height:40px;
+        
+        padding-left:30px;
+        border:1px solid #f0eff5;
+    }
+
+    .leftitem p {
+        margin-block-start: 10px;
+        margin-block-end: 10px;
+        font-size:15px;
+        color:#6D7275;
+        
+        
+
+    }
+
+    .liftul {
+        list-style-type: none;
+        padding-left:0px;
+    }
+    .dd{
+       
+        height:100%;
+        border:1px solid #f0eff5;
+    }
+</style>
+
+<body>
+    <div id="managerpage_root">
+        <el-container>
+            <el-header>
+                <div class="top">
+                    <el-row>
+                        <el-col :span="8">
+                            <h1 class="pjname">MonkeyDoc</h1>
+                        </el-col>
+                        <el-col :span="8">
+
+                        </el-col>
+                        <el-col :span="8">
+                            <el-col :span="12">
+                                <div class="top-search">
+                                    <el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="docsearchtext">
+                                    </el-input>
+                                </div>
+                            </el-col>
+                            <el-col span="12">
+                                <div class="headimg-min">
+                                    <el-image style="height: 40px;width:40px;border:1px solid #cdcdcd;"></el-image>
+                                </div>
+                            </el-col>
+
+                        </el-col>
+                    </el-row>
+                </div>
+            </el-header>
+            <el-container>
+                <el-aside width="200px">
+                    <div class="left">
+                        <ul class="liftul">
+                            <li v-for="item in leftName" class="leftitem">
+
+
+                                <p>
+                                    <i :class="item.iconclass"></i>
+
+                                    {{item.text}}</p>
+
+                            </li>
+                        </ul>
+                    </div>
+                </el-aside>
+                <el-main>
+                    <div class="main">
+                    </div>
+                </el-main>
+            </el-container>
+        </el-container>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    var app = new Vue({
+        el: '#managerpage_root',
+        data: {
+            message: 'Hello Vue!',
+            visible: false,
+            docsearchtext: '',
+            leftName: [
+                {
+                    iconclass:'el-icon-tickets',
+                    text: '我的文档'
+                },
+                {
+                    iconclass:'el-icon-bell',
+                    text: '通知'
+                },
+                {
+                    iconclass:'el-icon-delete',
+                    text: '回收站'
+                }
+                
+            ]
+        }
+    })
+</script>
+
+</html>
