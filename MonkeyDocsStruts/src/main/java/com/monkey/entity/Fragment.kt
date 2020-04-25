@@ -27,7 +27,7 @@ open class Fragment : BaseEntity<Fragment>() {
 
     @get:Basic
     @get:Column(name = "fType", nullable = false)
-    var fType: Byte? = null
+    var fType: Boolean? = null
 
     @get:Id
     @get:Column(name = "rowId", nullable = false, insertable = false, updatable = false)

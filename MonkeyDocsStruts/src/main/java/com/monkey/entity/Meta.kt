@@ -30,15 +30,6 @@ open class Meta : BaseEntity<Meta>() {
     @get:Column(name = "updateTime", nullable = false)
     var updateTime: Date? = null
 
-    @get:Basic
-    @get:Column(name = "firstRowId", nullable = false, insertable = false, updatable = false)
-    var firstRowId: Int? = null
-
-    @get:JsonBackReference
-    @get:ManyToOne(fetch = FetchType.EAGER)
-    @get:JoinColumn(name = "firstRowId", referencedColumnName = "id")
-    var refRow: Row? = null
-
     @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
     var refMetaToUsers: Set<MetaToUser>? = null
 
@@ -49,7 +40,6 @@ open class Meta : BaseEntity<Meta>() {
                     "isRecycled = $recycled " +
                     "createTime = $createTime " +
                     "updateTime = $updateTime " +
-                    "firstRowId = $firstRowId " +
                     ")"
 
     // constant value returned to avoid entity inequality to itself before and after it's update/merge
@@ -65,7 +55,6 @@ open class Meta : BaseEntity<Meta>() {
         if (recycled != other.recycled) return false
         if (createTime != other.createTime) return false
         if (updateTime != other.updateTime) return false
-        if (firstRowId != other.firstRowId) return false
 
         return true
     }

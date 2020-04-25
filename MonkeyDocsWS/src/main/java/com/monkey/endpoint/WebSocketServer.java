@@ -1,53 +1,55 @@
-package com.monkey.server;
+package com.monkey.endpoint;
 
-import com.monkey.service.ServiceUnit;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
 @ServerEndpoint("/collaborate/{docId}")
 @Component
 public class WebSocketServer {
-    @Autowired
-    private ServiceUnit serviceUnit;
     private Session session;
-    private String docId;
+    private Integer docId;
     private static int onlineCount = 0;
-    private static ConcurrentHashMap<String, WebSocketServer> serverMap = new ConcurrentHashMap<>();
+
+    private static final ConcurrentHashMap<Integer, WebSocketServer> userServerMap = new ConcurrentHashMap<Integer, WebSocketServer>();
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("docId") String docId) {
+    public void onOpen(Session session, @PathParam("docId") Integer userId) {
         this.session = session;
-        this.docId = docId;
-        if (serverMap.containsKey(docId)) {
-            serverMap.remove(docId);
-            serverMap.put(docId, this);
+        this.docId = userId;
+        if (userServerMap.containsKey(userId)) {
+            userServerMap.remove(userId);
+            userServerMap.put(userId, this);
         } else {
-            serverMap.put(docId, this);
+            userServerMap.put(userId, this);
             addOnlineCount();
         }
     }
 
     @OnClose
     public void onClose() {
-        if (serverMap.containsKey(docId)) {
-            serverMap.remove(docId);
+        if (userServerMap.containsKey(docId)) {
+            userServerMap.remove(docId);
             subOnlineCount();
         }
     }
 
     @OnMessage
     public void onMessage(String message, Session session) {
-        serviceUnit.handle(message);
+
     }
 
     @OnError
     public void onError(Session session, Throwable error) {
         error.printStackTrace();
+    }
+
+    public void sendMessage(String message) throws IOException {
+        this.session.getBasicRemote().sendText(message);
     }
 
     private static void addOnlineCount() { onlineCount++; }
