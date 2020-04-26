@@ -1,11 +1,15 @@
 package com.monkey.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
+import java.sql.Timestamp
+import java.util.*
 import javax.persistence.*
 
 @Entity
 @Table(name = "DocumentMeta", schema = "MonkeyDocDB")
 open class Meta : BaseEntity<Meta>() {
+    @get:GeneratedValue
     @get:Id
     @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
     var id: Int? = null
@@ -16,35 +20,26 @@ open class Meta : BaseEntity<Meta>() {
 
     @get:Basic
     @get:Column(name = "isRecycled", nullable = false)
-    var isRecycled: Boolean = false
+    var recycled: Boolean? = false
 
     @get:Basic
     @get:Column(name = "createTime", nullable = false)
-    var createTime: java.sql.Timestamp? = null
+    var createTime: Date? = null
 
     @get:Basic
     @get:Column(name = "updateTime", nullable = false)
-    var updateTime: java.sql.Timestamp? = null
+    var updateTime: Date? = null
 
-    @get:Basic
-    @get:Column(name = "firstRowId", nullable = false, insertable = false, updatable = false)
-    var firstRowId: Int? = null
-
-    @get:ManyToOne(fetch = FetchType.LAZY)
-    @get:JoinColumn(name = "firstRowId", referencedColumnName = "id")
-    var refRow: Row? = null
-
-    @get:OneToMany(mappedBy = "refMeta")
+    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
     var refMetaToUsers: Set<MetaToUser>? = null
 
     override fun toString(): String =
             "Entity of type: ${javaClass.name} ( " +
                     "id = $id " +
                     "mdName = $mdName " +
-                    "isRecycled = $isRecycled " +
+                    "isRecycled = $recycled " +
                     "createTime = $createTime " +
                     "updateTime = $updateTime " +
-                    "firstRowId = $firstRowId " +
                     ")"
 
     // constant value returned to avoid entity inequality to itself before and after it's update/merge
@@ -57,10 +52,9 @@ open class Meta : BaseEntity<Meta>() {
 
         if (id != other.id) return false
         if (mdName != other.mdName) return false
-        if (isRecycled != other.isRecycled) return false
+        if (recycled != other.recycled) return false
         if (createTime != other.createTime) return false
         if (updateTime != other.updateTime) return false
-        if (firstRowId != other.firstRowId) return false
 
         return true
     }

@@ -1,6 +1,7 @@
 package com.monkey.entity
 
 import com.monkey.entity.base.BaseEntity
+import com.monkey.util.Security
 import javax.persistence.*
 
 @Entity
@@ -22,6 +23,10 @@ open class User : BaseEntity<User>() {
     @get:Basic
     @get:Column(name = "userName", nullable = false)
     var userName: String? = null
+
+    @get:Basic
+    @get:Column(name = "password", nullable = false)
+    var password: String? = null
 
     @get:OneToMany(mappedBy = "refUser", fetch = FetchType.EAGER)
     var refMetaToUsers: Set<MetaToUser>? = null
@@ -53,5 +58,8 @@ open class User : BaseEntity<User>() {
         return true
     }
 
+    fun checkPassword(plain: String): Boolean {
+        return Security.encryptPwd(plain).equals(this.password);
+    }
 }
 

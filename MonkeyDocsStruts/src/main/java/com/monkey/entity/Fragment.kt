@@ -1,5 +1,6 @@
 package com.monkey.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
 import javax.persistence.*
 
@@ -7,6 +8,7 @@ import javax.persistence.*
 @Table(name = "Fragment", schema = "MonkeyDocDB")
 @IdClass(FragmentEntityPK::class)
 open class Fragment : BaseEntity<Fragment>() {
+    @get:GeneratedValue
     @get:Id
     @get:Column(name = "id", nullable = false)
     var id: Int? = null
@@ -25,7 +27,7 @@ open class Fragment : BaseEntity<Fragment>() {
 
     @get:Basic
     @get:Column(name = "fType", nullable = false)
-    var fType: Byte? = null
+    var fType: Boolean? = null
 
     @get:Id
     @get:Column(name = "rowId", nullable = false, insertable = false, updatable = false)
@@ -35,11 +37,13 @@ open class Fragment : BaseEntity<Fragment>() {
     @get:Column(name = "userId", nullable = false, insertable = false, updatable = false)
     var userId: Int? = null
 
-    @get:ManyToOne(fetch = FetchType.LAZY)
+    @get:JsonBackReference
+    @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "rowId", referencedColumnName = "id")
     var refRow: Row? = null
 
-    @get:ManyToOne(fetch = FetchType.LAZY)
+    @get:JsonBackReference
+    @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "userId", referencedColumnName = "id")
     var refUser: User? = null
 

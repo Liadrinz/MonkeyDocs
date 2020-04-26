@@ -10,10 +10,14 @@ import org.apache.struts2.rest.HttpHeaders;
 import java.util.List;
 
 public abstract class StrutsRestController<T extends BaseEntity<T>> extends ActionSupport implements ModelDriven<Object> {
+    protected String name;
     protected RestService<T> service;
     private int id;
     protected T model;
     private List<T> list;
+    public String getName() {
+        return name;
+    }
     public int getId() {
         return id;
     }
@@ -50,5 +54,9 @@ public abstract class StrutsRestController<T extends BaseEntity<T>> extends Acti
     public Object getModel()
     {
         return (list != null ? list : model);
+    }
+
+    public void setModel(T model) {
+        this.model = model;
     }
 }
