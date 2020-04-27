@@ -22,9 +22,4 @@ public class MetaController extends StrutsRestController<Meta> {
     public void setSuperService(MetaService metaService) {
         super.service = metaService;
     }
-    @Override
-    public HttpHeaders create() {
-        model.setRefRow(rowDAO.findOne(model.getFirstRowId()));
-        return super.create();
-    }
 }

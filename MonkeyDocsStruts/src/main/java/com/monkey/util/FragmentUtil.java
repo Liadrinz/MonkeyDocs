@@ -2,9 +2,6 @@ package com.monkey.util;
 
 import com.monkey.entity.Fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FragmentUtil {
     public static String concat(Iterable<Fragment> fragments) {
         StringBuilder builder = new StringBuilder();

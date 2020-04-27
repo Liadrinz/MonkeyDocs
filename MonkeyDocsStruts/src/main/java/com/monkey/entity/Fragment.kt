@@ -1,13 +1,11 @@
 package com.monkey.entity
 
-import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
 import javax.persistence.*
 
 @Entity
 @Table(name = "Fragment", schema = "MonkeyDocDB")
-@IdClass(FragmentEntityPK::class)
-open class Fragment : BaseEntity<Fragment>() {
+open class Fragment: BaseEntity<Fragment>() {
     @get:GeneratedValue
     @get:Id
     @get:Column(name = "id", nullable = false)
@@ -29,21 +27,19 @@ open class Fragment : BaseEntity<Fragment>() {
     @get:Column(name = "fType", nullable = false)
     var fType: Boolean? = null
 
-    @get:Id
+    @get:Basic
     @get:Column(name = "rowId", nullable = false, insertable = false, updatable = false)
     var rowId: Int? = null
 
-    @get:Id
+    @get:Basic
     @get:Column(name = "userId", nullable = false, insertable = false, updatable = false)
     var userId: Int? = null
 
-    @get:JsonBackReference
-    @get:ManyToOne(fetch = FetchType.EAGER)
+    @get:ManyToOne(fetch = FetchType.LAZY)
     @get:JoinColumn(name = "rowId", referencedColumnName = "id")
     var refRow: Row? = null
 
-    @get:JsonBackReference
-    @get:ManyToOne(fetch = FetchType.EAGER)
+    @get:ManyToOne(fetch = FetchType.LAZY)
     @get:JoinColumn(name = "userId", referencedColumnName = "id")
     var refUser: User? = null
 
@@ -79,32 +75,3 @@ open class Fragment : BaseEntity<Fragment>() {
 
 }
 
-class FragmentEntityPK : java.io.Serializable {
-    @get:Id
-    @get:Column(name = "id", nullable = false)
-    var id: Int? = null
-
-    @get:Id
-    @get:Column(name = "rowId", nullable = false, insertable = false, updatable = false)
-    var rowId: Int? = null
-
-    @get:Id
-    @get:Column(name = "userId", nullable = false, insertable = false, updatable = false)
-    var userId: Int? = null
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-        other as FragmentEntityPK
-
-        if (id != other.id) return false
-        if (rowId != other.rowId) return false
-        if (userId != other.userId) return false
-
-        return true
-    }
-
-    // constant value returned to avoid entity inequality to itself before and after it's update/merge
-    override fun hashCode(): Int = 42
-
-}

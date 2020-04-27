@@ -25,45 +25,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/MetaToUserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/base/CrdDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/data/UpdateInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/DocumentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/MetaToUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/base/CrdService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/util/FragmentUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/data/Packet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/routing/ClientManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/routing/Dispatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/routing/Handler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/ModService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/ReqService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/base/IncomingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/base/OutgoingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/com/monkey/dao/DocumentServiceDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a1a799c8-88f4-4902-8a6a-604e56ee4079.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a1a799c8-88f4-4902-8a6a-604e56ee4079.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MonkeyDocsStruts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MonkeyDocsStruts.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/FragmentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/FragmentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/base/CrudDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/base/CrudDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/action/FragmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/action/FragmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/action/MetaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/action/MetaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/MetaToUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/MetaToUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/base/CrdDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/base/ManyToManyDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/data/UpdateInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dpo/UpdateInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Fragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Fragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Meta.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Meta.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/MetaToUser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/MetaToUser.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Row.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Row.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/MonkeyDocsWS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/MonkeyDocsWS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/dao/RedisDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/manager/ClientManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/manager/ConnectionItem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/pdu/PDU.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/pdu/Packet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/server/WebSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/endpoint/WebSocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/Dispatcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/Handler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/ServiceUnit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/protocol/Protocol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/test/java/com/monkey/HelloControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/test/java/com/monkey/pdu/PDUTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/test/java/com/monkey/pdu/PacketTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/test/java/com/monkey/service/HandlerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/DocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/DocumentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/MetaToUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/MetaToUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/base/CrdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/base/CrdService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/util/FragmentUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/util/FragmentUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,20 +93,23 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../BUPT/course/大三下/人工智能/project/fifteen" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.32837528" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="DestinationChooserDialog.Package.RECENTS_KEY">
+      <recent name="com.monkey.entity" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp\WEB-INF" />
       <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp" />
       <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp\WEB-INF\content" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat">
+  <component name="RunManager" selected="JUnit.DocumentServiceDAOTest.createEmptyDocument">
     <configuration name="Security" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.monkey.util.Security" />
       <module name="MonkeyDocsStruts" />
@@ -137,6 +119,69 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentDAOTest.createEmptyDocument (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonkeyDocsStruts" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.monkey.test.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.monkey.test.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.monkey.test.dao.DocumentDAOTest" />
+      <option name="METHOD_NAME" value="createEmptyDocument" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentDAOTest.createEmptyDocument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonkeyDocsStruts" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="java.com.monkey.test.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="java.com.monkey.test.dao" />
+      <option name="MAIN_CLASS_NAME" value="java.com.monkey.test.dao.DocumentDAOTest" />
+      <option name="METHOD_NAME" value="createEmptyDocument" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentServiceDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonkeyDocsStruts" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.monkey.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.monkey.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.monkey.dao.DocumentServiceDAOTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentServiceDAOTest.createEmptyDocument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonkeyDocsStruts" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.monkey.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.monkey.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.monkey.dao.DocumentServiceDAOTest" />
+      <option name="METHOD_NAME" value="createEmptyDocument" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -215,6 +260,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DocumentServiceDAOTest.createEmptyDocument" />
+        <item itemvalue="JUnit.DocumentServiceDAOTest" />
+        <item itemvalue="JUnit.DocumentDAOTest.createEmptyDocument (1)" />
+        <item itemvalue="JUnit.DocumentDAOTest.createEmptyDocument" />
         <item itemvalue="Application.Security" />
       </list>
     </recent_temporary>
@@ -238,7 +287,11 @@
       <workItem from="1587570173732" duration="3082000" />
       <workItem from="1587737234603" duration="1255000" />
       <workItem from="1587784483599" duration="636000" />
-      <workItem from="1587809151707" duration="11824000" />
+      <workItem from="1587809151707" duration="12257000" />
+      <workItem from="1587909021521" duration="350000" />
+      <workItem from="1587968493506" duration="736000" />
+      <workItem from="1587972111467" duration="8577000" />
+      <workItem from="1587993927833" duration="11441000" />
     </task>
     <servers />
   </component>
@@ -277,6 +330,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587810153193" />
+    <state x="499" y="187" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1587978522056">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="187" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1587978522056" />
     <state x="490" y="50" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1587266379578">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -285,70 +342,70 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="544" y="305" width="448" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1587389275839" />
-    <state x="363" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587375510168">
+    <state x="363" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588005932925">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="363" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1587375510168" />
-    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587399027387">
+    <state x="363" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1588005932925" />
+    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587996776961">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1587399027387" />
+    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1587996776961" />
     <state x="499" y="158" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1587543040201">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="158" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1587543040201" />
-    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1587785238861">
+    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1587977373278">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587785238861" />
-    <state width="1024" height="317" key="GridCell.Tab.0.bottom" timestamp="1587573263405">
+    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587977373278" />
+    <state width="1493" height="329" key="GridCell.Tab.0.bottom" timestamp="1588006545605">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587573263405" />
-    <state width="1024" height="317" key="GridCell.Tab.0.center" timestamp="1587573263405">
+    <state width="1493" height="329" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588006545605" />
+    <state width="1493" height="329" key="GridCell.Tab.0.center" timestamp="1588006545604">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587573263405" />
-    <state width="1024" height="317" key="GridCell.Tab.0.left" timestamp="1587573263405">
+    <state width="1493" height="329" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588006545604" />
+    <state width="1493" height="329" key="GridCell.Tab.0.left" timestamp="1588006545604">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587573263405" />
-    <state width="1024" height="317" key="GridCell.Tab.0.right" timestamp="1587573263405">
+    <state width="1493" height="329" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588006545604" />
+    <state width="1493" height="329" key="GridCell.Tab.0.right" timestamp="1588006545605">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587573263405" />
-    <state width="1024" height="317" key="GridCell.Tab.1.bottom" timestamp="1587573263406">
+    <state width="1493" height="329" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588006545605" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1588004647642">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587573263406" />
-    <state width="1024" height="317" key="GridCell.Tab.1.center" timestamp="1587573263406">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588004647642" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1588004647641">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587573263406" />
-    <state width="1024" height="317" key="GridCell.Tab.1.left" timestamp="1587573263406">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588004647641" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1588004647641">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587573263406" />
-    <state width="1024" height="317" key="GridCell.Tab.1.right" timestamp="1587573263406">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588004647641" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1588004647642">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587573263406" />
-    <state width="1024" height="317" key="GridCell.Tab.2.bottom" timestamp="1587573263406">
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588004647642" />
+    <state width="1024" height="279" key="GridCell.Tab.2.bottom" timestamp="1587997824798">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587573263406" />
-    <state width="1024" height="317" key="GridCell.Tab.2.center" timestamp="1587573263406">
+    <state width="1024" height="279" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587997824798" />
+    <state width="1024" height="279" key="GridCell.Tab.2.center" timestamp="1587997824798">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1587573263406" />
-    <state width="1024" height="317" key="GridCell.Tab.2.left" timestamp="1587573263406">
+    <state width="1024" height="279" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1587997824798" />
+    <state width="1024" height="279" key="GridCell.Tab.2.left" timestamp="1587997824798">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1587573263406" />
-    <state width="1024" height="317" key="GridCell.Tab.2.right" timestamp="1587573263406">
+    <state width="1024" height="279" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1587997824798" />
+    <state width="1024" height="279" key="GridCell.Tab.2.right" timestamp="1587997824798">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1587573263406" />
+    <state width="1024" height="279" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1587997824798" />
     <state width="1024" height="327" key="GridCell.Tab.3.bottom" timestamp="1587372688447">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -369,10 +426,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1587566855331" />
-    <state x="178" y="72" key="new project wizard" timestamp="1587266731207">
+    <state x="178" y="72" key="new project wizard" timestamp="1587909380974">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="178" y="72" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1587266731207" />
+    <state x="178" y="72" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1587909380974" />
+    <state x="814" y="145" key="search.everywhere.popup" timestamp="1587975807087">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="814" y="145" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587975807087" />
     <state x="449" y="95" key="spring file set editor" timestamp="1587399227035">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -386,6 +447,12 @@
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="model.getEmail()" language="JAVA" />
+      </configuration>
+      <configuration name="JUnit">
+        <watch expression="meta.getRefMetaToUsers().size()" language="JAVA" />
+        <watch expression="metaDAO.findAll().size()" language="JAVA" />
+        <watch expression="metaDAO.findAll().get(12).getRefMetaToUsers()" language="JAVA" />
+        <watch expression="metaToUserDAO.findAll()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

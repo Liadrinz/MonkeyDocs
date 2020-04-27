@@ -1,14 +1,12 @@
 package com.monkey.entity
 
-import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
-import java.sql.Timestamp
 import java.util.*
 import javax.persistence.*
 
 @Entity
 @Table(name = "DocumentMeta", schema = "MonkeyDocDB")
-open class Meta : BaseEntity<Meta>() {
+open class Meta: BaseEntity<Meta>() {
     @get:GeneratedValue
     @get:Id
     @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
@@ -20,7 +18,7 @@ open class Meta : BaseEntity<Meta>() {
 
     @get:Basic
     @get:Column(name = "isRecycled", nullable = false)
-    var recycled: Boolean? = false
+    var recycled: Boolean = false
 
     @get:Basic
     @get:Column(name = "createTime", nullable = false)
@@ -32,6 +30,9 @@ open class Meta : BaseEntity<Meta>() {
 
     @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
     var refMetaToUsers: Set<MetaToUser>? = null
+
+    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
+    var refRows: Set<Row>? = null
 
     override fun toString(): String =
             "Entity of type: ${javaClass.name} ( " +

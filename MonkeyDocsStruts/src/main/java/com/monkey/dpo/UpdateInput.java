@@ -1,4 +1,4 @@
-package com.monkey.data;
+package com.monkey.dpo;
 
 public class UpdateInput {
     private Boolean type;
