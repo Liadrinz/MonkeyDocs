@@ -811,6 +811,7 @@
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;default&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="250" parent="235" name="fk_DocumentMeta_has_User_DocumentMeta1_idx">

@@ -1,5 +1,6 @@
 package com.monkey.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
 import java.util.*
 import javax.persistence.*
@@ -28,11 +29,16 @@ open class Meta: BaseEntity<Meta>() {
     @get:Column(name = "updateTime", nullable = false)
     var updateTime: Date? = null
 
+    @get:JsonBackReference
     @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
     var refMetaToUsers: Set<MetaToUser>? = null
 
+    @get:JsonBackReference
     @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
     var refRows: Set<Row>? = null
+
+    @get:ManyToMany(fetch = FetchType.EAGER, mappedBy = "refMetas")
+    var refUsers: Set<User>? = null
 
     override fun toString(): String =
             "Entity of type: ${javaClass.name} ( " +

@@ -35,11 +35,11 @@ open class Fragment: BaseEntity<Fragment>() {
     @get:Column(name = "userId", nullable = false, insertable = false, updatable = false)
     var userId: Int? = null
 
-    @get:ManyToOne(fetch = FetchType.LAZY)
+    @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "rowId", referencedColumnName = "id")
     var refRow: Row? = null
 
-    @get:ManyToOne(fetch = FetchType.LAZY)
+    @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "userId", referencedColumnName = "id")
     var refUser: User? = null
 

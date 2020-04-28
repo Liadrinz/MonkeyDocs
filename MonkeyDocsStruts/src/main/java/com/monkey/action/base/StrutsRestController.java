@@ -55,7 +55,6 @@ public abstract class StrutsRestController<T extends BaseEntity<T>> extends Acti
     {
         return (list != null ? list : model);
     }
-
     public void setModel(T model) {
         this.model = model;
     }

@@ -2,6 +2,7 @@ package com.monkey.dao;
 
 import com.monkey.service.DocumentService;
 import com.monkey.entity.*;
+import com.monkey.service.MetaService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +33,8 @@ public class DocumentServiceDAOTest {
     private UserDAO userDAO;
     @Resource
     private DocumentService docService;
+    @Resource
+    private MetaService metaService;
 
     @Before
     public void before() {
@@ -45,6 +48,7 @@ public class DocumentServiceDAOTest {
     public void createEmptyDocument() {
         // Select a lucky creator
         User creator = userDAO.findAll().get(0);
+
         // Create Meta
         Meta meta = new Meta();
         meta.setMdName("测试文档");
@@ -54,20 +58,11 @@ public class DocumentServiceDAOTest {
         docService.createDocument(creator, meta);
 
         // Validation
-        Set<MetaToUser> userMTU = userDAO.findOne(creator.getId()).getRefMetaToUsers();
-        assert userMTU != null;
-        Set<Meta> metas = new HashSet<>();
-        for (MetaToUser item : userMTU) {
-            metas.add(item.getRefMeta());
-        }
-        assert metas.contains(meta);
-        Set<MetaToUser> metaMTU = metaDAO.findOne(meta.getId()).getRefMetaToUsers();
-        assert metaMTU != null;
-        Set<User> users = new HashSet<>();
-        for (MetaToUser item : metaMTU) {
-            users.add(item.getRefUser());
-        }
-        assert users.contains(creator);
+        checkMetaInUser(creator, meta);
+        checkUserInMeta(creator, meta);
+        assert userDAO.findOne(creator.getId()).getRefMetas().contains(meta);
+        assert metaDAO.findOne(meta.getId()).getRefUsers().contains(creator);
+        assert metaToUserDAO.findAll().size() > 0;
     }
     @Test
     public void createSecondLine() {
@@ -92,5 +87,23 @@ public class DocumentServiceDAOTest {
     @Test
     public void insertBeforeFragment() {
 
+    }
+    private void checkMetaInUser(User user, Meta meta) {
+        Set<MetaToUser> metaMTU = metaDAO.findOne(meta.getId()).getRefMetaToUsers();
+        assert metaMTU != null;
+        Set<User> users = new HashSet<>();
+        for (MetaToUser item : metaMTU) {
+            users.add(item.getRefUser());
+        }
+        assert users.contains(user);
+    }
+    private void checkUserInMeta(User user, Meta meta) {
+        Set<MetaToUser> userMTU = userDAO.findOne(user.getId()).getRefMetaToUsers();
+        assert userMTU != null;
+        Set<Meta> metas = new HashSet<>();
+        for (MetaToUser item : userMTU) {
+            metas.add(item.getRefMeta());
+        }
+        assert metas.contains(meta);
     }
 }

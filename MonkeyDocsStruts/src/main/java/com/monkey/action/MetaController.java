@@ -12,8 +12,6 @@ import javax.annotation.Resource;
 
 @Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/meta", "actionName", "${id}"}))
 public class MetaController extends StrutsRestController<Meta> {
-    @Resource
-    private RowDAO rowDAO;
     public MetaController() {
         name = "meta";
         model = new Meta();

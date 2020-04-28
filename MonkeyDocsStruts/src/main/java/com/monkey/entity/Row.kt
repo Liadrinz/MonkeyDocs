@@ -1,5 +1,6 @@
 package com.monkey.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
 import javax.persistence.*
 
@@ -23,10 +24,11 @@ open class Row: BaseEntity<Row>() {
     @get:Column(name = "docId", nullable = false, insertable = false, updatable = false)
     var docId: Int? = null
 
-    @get:ManyToOne(fetch = FetchType.LAZY)
+    @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "docId", referencedColumnName = "id")
     var refMeta: Meta? = null
 
+    @get:JsonBackReference
     @get:OneToMany(mappedBy = "refRow", fetch = FetchType.EAGER)
     var refFragments: Set<Fragment>? = null
 

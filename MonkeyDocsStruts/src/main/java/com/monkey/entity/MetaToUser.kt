@@ -17,13 +17,13 @@ open class MetaToUser: BaseEntity<MetaToUser>() {
 
     @get:Basic
     @get:Column(name = "role", nullable = false)
-    var role: String? = null
+    var role: String? = "default"
 
-    @get:ManyToOne(fetch = FetchType.LAZY)
+    @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "mdId", referencedColumnName = "id")
     var refMeta: Meta? = null
 
-    @get:ManyToOne(fetch = FetchType.LAZY)
+    @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "userId", referencedColumnName = "id")
     var refUser: User? = null
 
