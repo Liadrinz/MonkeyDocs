@@ -1,6 +1,6 @@
-package com.monkey.action;
+package com.monkey.controller.action;
 
-import com.monkey.action.base.StrutsRestController;
+import com.monkey.controller.action.base.StrutsRestController;
 import com.monkey.entity.Row;
 import com.monkey.service.RowService;
 import org.apache.struts2.convention.annotation.Result;

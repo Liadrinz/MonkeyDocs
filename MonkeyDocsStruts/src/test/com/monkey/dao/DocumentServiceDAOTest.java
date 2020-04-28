@@ -33,8 +33,6 @@ public class DocumentServiceDAOTest {
     private UserDAO userDAO;
     @Resource
     private DocumentService docService;
-    @Resource
-    private MetaService metaService;
 
     @Before
     public void before() {

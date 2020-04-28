@@ -1,10 +1,7 @@
-package com.monkey.action;
+package com.monkey.controller.action;
 
-import com.monkey.dao.MetaDAO;
-import com.monkey.dao.UserDAO;
 import com.monkey.entity.MetaToUser;
 import com.monkey.service.MetaToUserService;
-import com.monkey.service.base.CrdService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.struts2.convention.annotation.Action;

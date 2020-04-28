@@ -17,7 +17,8 @@
     <!-- XXXAction类后缀，可以是Controller，那么所有控制器后缀都设为Controller-->
     <constant name="struts.convention.action.suffix" value="Controller" />
     <constant name="struts.convention.action.mapAllMatches" value="true" />
-    <constant name="struts.convention.default.parent.package" value="rest-default" />
+    <constant name="struts.convention.default.parent.package" value="monkey-rest" />
     <!-- Action类所在包名 -->
     <constant name="struts.convention.package.locators" value="action"/>
+    <package name="monkey-rest" extends="rest-default" namespace="/rest"/>
 </struts>

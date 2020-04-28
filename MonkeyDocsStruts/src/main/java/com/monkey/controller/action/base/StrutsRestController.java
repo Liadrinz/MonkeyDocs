@@ -1,4 +1,4 @@
-package com.monkey.action.base;
+package com.monkey.controller.action.base;
 
 import com.monkey.entity.base.BaseEntity;
 import com.monkey.service.base.RestService;
