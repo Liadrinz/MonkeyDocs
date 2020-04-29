@@ -13,6 +13,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,12 @@ public class DocumentServiceDAOTest {
     @Resource
     private UserDAO userDAO;
     @Resource
+    private RowDAO rowDAO;
+    @Resource
+    private FragmentDAO fragmentDAO;
+    @Resource
     private DocumentService docService;
+
 
     @Before
     public void before() {
@@ -45,12 +51,29 @@ public class DocumentServiceDAOTest {
     @Test
     public void createEmptyDocument() {
         User creator = userDAO.findAll().get(0);
-        docService.createMeta(creator.getId(), "Test Doc");
+        Meta meta = docService.createMeta(creator.getId(), "Test Doc");
     }
 
     @Test
     public void createEmptyRowAndFragment() {
+        User creator = userDAO.findAll().get(0);
+        Meta testDoc = docService.createMeta(creator.getId(), "Test Doc for first row");
 
+        assert testDoc.getRefRows() == null;
+
+        Row firstRow = new Row();
+        firstRow.setRefMeta(testDoc);
+        rowDAO.create(firstRow);
+
+        Fragment firstFragment = new Fragment();
+        firstFragment.setRefRow(firstRow);
+        firstFragment.setFType(true);
+        firstFragment.setFContent("");
+        firstFragment.setRefUser(creator);
+        fragmentDAO.create(firstFragment);
+
+        //assert testDoc.getRefRows() != null;
+        assert firstRow.getRefMeta() != null;
     }
     @Test
     public void createSecondLine() {
