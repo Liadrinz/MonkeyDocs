@@ -38,6 +38,8 @@ public class DocumentServiceDAOTest {
     private FragmentDAO fragmentDAO;
     @Resource
     private DocumentService docService;
+    @Resource
+    private DocumentController documentController;
 
 
     @Before
@@ -51,7 +53,11 @@ public class DocumentServiceDAOTest {
     @Test
     public void createEmptyDocument() {
         User creator = userDAO.findAll().get(0);
-        Meta meta = docService.createMeta(creator.getId(), "Test Doc");
+        DocumentController.Input.DocCreation param = new DocumentController.Input.DocCreation();
+        param.userId = creator.getId();
+        param.mdName = "Test Doc";
+        Meta meta = documentController.createDocument(param);
+        assert metaDAO.findOne(meta.getId()).getRefUsers().contains(creator);
     }
 
     @Test

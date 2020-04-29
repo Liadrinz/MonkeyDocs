@@ -7,7 +7,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "User", schema = "MonkeyDocDB")
 open class User: BaseEntity<User>() {
-    @get:GeneratedValue
+    @get:GeneratedValue(strategy = GenerationType.IDENTITY)
     @get:Id
     @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
     var id: Int? = null
