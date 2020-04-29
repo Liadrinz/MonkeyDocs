@@ -15,7 +15,7 @@
 
     <properties>
         <struts2.version>2.5.14.1</struts2.version>
-        <spring.version>4.1.4.RELEASE</spring.version>
+        <spring.version>5.2.6.RELEASE</spring.version>
         <hibernate.version>4.3.8.Final</hibernate.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
