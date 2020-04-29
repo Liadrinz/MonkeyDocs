@@ -8,15 +8,15 @@ import javax.persistence.*
 open class Fragment: BaseEntity<Fragment>() {
     @get:GeneratedValue
     @get:Id
-    @get:Column(name = "id", nullable = false)
+    @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
     var id: Int? = null
 
     @get:Basic
-    @get:Column(name = "begin", nullable = false)
+    @get:Column(name = "begin", nullable = true)
     var begin: Int? = null
 
     @get:Basic
-    @get:Column(name = "end", nullable = false)
+    @get:Column(name = "end", nullable = true)
     var end: Int? = null
 
     @get:Basic

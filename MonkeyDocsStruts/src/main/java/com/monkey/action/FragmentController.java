@@ -1,6 +1,6 @@
-package com.monkey.controller.action;
+package com.monkey.action;
 
-import com.monkey.controller.action.base.StrutsRestController;
+import com.monkey.action.base.StrutsRestController;
 import com.monkey.entity.Fragment;
 import com.monkey.service.FragmentService;
 import org.apache.struts2.convention.annotation.Result;

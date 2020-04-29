@@ -1,16 +1,23 @@
 package com.monkey.dao;
 
 import com.monkey.entity.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import javax.management.relation.Role;
 import javax.transaction.Transactional;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.HashSet;
 
 @Repository("documentDAO")
 @Transactional
 public class DocumentDAO {
+    @Resource
+    private SessionFactory sessionFactory;
     @Resource
     private FragmentDAO fragmentDAO;
     @Resource
@@ -19,40 +26,25 @@ public class DocumentDAO {
     private RowDAO rowDAO;
     @Resource
     private UserDAO userDAO;
+    @Resource
+    private MetaToUserDAO metaToUserDAO;
 
-    public Meta create(User creator, Meta meta) {
+    public Meta createEmptyDoc(User creator, Meta meta) {
+        String mdName = meta.getMdName();
+        meta = new Meta();
+        meta.setMdName(mdName);
         meta.setCreateTime(new Date());
         meta.setUpdateTime(new Date());
         meta = metaDAO.create(meta);
-        // Create Many-to-Many record
         MetaToUser record = new MetaToUser();
         record.setRole("creator");
-        record.setRefUser(creator);
-        record.setRefMeta(meta);
-        if (meta.getRefMetaToUsers() == null)
-            meta.setRefMetaToUsers(new HashSet<MetaToUser>());
-        meta.getRefMetaToUsers().add(record);
-        if (creator.getRefMetaToUsers() == null)
-            creator.setRefMetaToUsers(new HashSet<MetaToUser>());
-        creator.getRefMetas().add(meta);
-        if (meta.getRefUsers() == null)
-            meta.setRefUsers(new HashSet<User>());
-        meta.getRefUsers().add(creator);
-        if (creator.getRefMetas() == null)
-            meta.setRefUsers(new HashSet<User>());
-        creator.getRefMetaToUsers().add(record);
-        meta = metaDAO.updateOne(meta.getId(), meta);
-        userDAO.updateOne(creator.getId(), creator);
-        // Create empty row
+        record.setUserId(creator.getId());
+        record.setMdId(meta.getId());
+        metaToUserDAO.create(record);
         Row emptyRow = new Row();
-        emptyRow.setPreRow(0);
-        emptyRow.setNextRow(0);
         emptyRow.setRefMeta(meta);
-        rowDAO.create(emptyRow);
-        // Create empty fragment
+        emptyRow = rowDAO.create(emptyRow);
         Fragment emptyFragment = new Fragment();
-        emptyFragment.setBegin(0);
-        emptyFragment.setEnd(0);
         emptyFragment.setRefRow(emptyRow);
         emptyFragment.setFType(true);
         emptyFragment.setFContent("");

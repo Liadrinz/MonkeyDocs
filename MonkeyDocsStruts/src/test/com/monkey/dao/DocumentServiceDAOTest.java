@@ -1,8 +1,8 @@
 package com.monkey.dao;
 
+import com.monkey.mvc.DocumentController;
 import com.monkey.service.DocumentService;
 import com.monkey.entity.*;
-import com.monkey.service.MetaService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +13,8 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 // Unit Test at DAO Level
@@ -44,31 +44,21 @@ public class DocumentServiceDAOTest {
     }
     @Test
     public void createEmptyDocument() {
-        // Select a lucky creator
         User creator = userDAO.findAll().get(0);
+        docService.createMeta(creator.getId(), "Test Doc");
+    }
 
-        // Create Meta
-        Meta meta = new Meta();
-        meta.setMdName("测试文档");
-        meta.setCreateTime(new Date());
-        meta.setUpdateTime(new Date());
+    @Test
+    public void createEmptyRowAndFragment() {
 
-        docService.createDocument(creator, meta);
-
-        // Validation
-        checkMetaInUser(creator, meta);
-        checkUserInMeta(creator, meta);
-        assert userDAO.findOne(creator.getId()).getRefMetas().contains(meta);
-        assert metaDAO.findOne(meta.getId()).getRefUsers().contains(creator);
-        assert metaToUserDAO.findAll().size() > 0;
     }
     @Test
     public void createSecondLine() {
-        // TODO: to create the second line
+
     }
     @Test
     public void createFragmentToFirstLine() {
-        // TODO: write things to the first line
+
     }
     @Test
     public void insertToFragment() {

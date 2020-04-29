@@ -1,4 +1,4 @@
-package com.monkey.controller.action.base;
+package com.monkey.action.base;
 
 import com.monkey.entity.base.BaseEntity;
 import com.monkey.service.base.RestService;
@@ -14,7 +14,7 @@ public abstract class StrutsRestController<T extends BaseEntity<T>> extends Acti
     protected RestService<T> service;
     private int id;
     protected T model;
-    private List<T> list;
+    protected List<T> list;
     public String getName() {
         return name;
     }

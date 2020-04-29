@@ -2,19 +2,27 @@ package com.monkey.service;
 
 import com.monkey.dao.*;
 import com.monkey.entity.*;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.HashSet;
 
 @Service("documentService")
 public class DocumentService {
     @Resource
     private DocumentDAO documentDAO;
-    public Meta createDocument(User creator, Meta meta) {
-        return documentDAO.create(creator, meta);
+    @Resource
+    private UserDAO userDAO;
+    @Resource
+    private MetaDAO metaDAO;
+    @Resource
+    private RowDAO rowDAO;
+
+    public Meta createMeta(Integer userId, String mdName) {
+        User creator = userDAO.findOne(userId);
+        Meta meta = new Meta();
+        meta.setMdName(mdName);
+        meta = documentDAO.createEmptyDoc(creator, meta);
+        return metaDAO.findOne(meta.getId());
     }
 
     public void addParticipant(User user) {

@@ -795,228 +795,234 @@
       <ColNames>id</ColNames>
       <UnderlyingIndexName>mdId_UNIQUE</UnderlyingIndexName>
     </key>
-    <column id="247" parent="235" name="mdId">
+    <column id="247" parent="235" name="id">
       <Position>1</Position>
-      <DataType>int(10) unsigned|0s</DataType>
+      <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="235" name="userId">
+    <column id="248" parent="235" name="mdId">
       <Position>2</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="235" name="role">
+    <column id="249" parent="235" name="userId">
       <Position>3</Position>
+      <DataType>int(10) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="235" name="role">
+      <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;default&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="250" parent="235" name="fk_DocumentMeta_has_User_DocumentMeta1_idx">
+    <index id="251" parent="235" name="fk_DocumentMeta_has_User_DocumentMeta1_idx">
       <ColNames>mdId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="251" parent="235" name="fk_DocumentMeta_has_User_User1_idx">
+    <index id="252" parent="235" name="fk_DocumentMeta_has_User_User1_idx">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="252" parent="235" name="PRIMARY">
+    <key id="253" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>mdId
-userId</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="253" parent="235" name="fk_DocumentMeta_has_User_DocumentMeta1">
+    <foreign-key id="254" parent="235" name="fk_DocumentMeta_has_User_DocumentMeta1">
       <ColNames>mdId</ColNames>
       <RefTableName>DocumentMeta</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="254" parent="235" name="fk_DocumentMeta_has_User_User1">
+    <foreign-key id="255" parent="235" name="fk_DocumentMeta_has_User_User1">
       <ColNames>userId</ColNames>
       <RefTableName>User</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="255" parent="236" name="id">
+    <column id="256" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="236" name="preRow">
+    <column id="257" parent="236" name="preRow">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="236" name="nextRow">
+    <column id="258" parent="236" name="nextRow">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="236" name="docId">
+    <column id="259" parent="236" name="docId">
       <Position>4</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="259" parent="236" name="rowId_UNIQUE">
+    <index id="260" parent="236" name="rowId_UNIQUE">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="260" parent="236" name="fk_DocumentRowNode_DocumentMeta_idx">
+    <index id="261" parent="236" name="fk_DocumentRowNode_DocumentMeta_idx">
       <ColNames>docId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="261" parent="236" name="PRIMARY">
+    <key id="262" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="262" parent="236" name="rowId_UNIQUE">
+    <key id="263" parent="236" name="rowId_UNIQUE">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>rowId_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="263" parent="236" name="docId">
+    <foreign-key id="264" parent="236" name="docId">
       <ColNames>docId</ColNames>
       <RefTableName>DocumentMeta</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="264" parent="237" name="id">
+    <column id="265" parent="237" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="237" name="begin">
+    <column id="266" parent="237" name="begin">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="237" name="end">
+    <column id="267" parent="237" name="end">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="237" name="fContent">
+    <column id="268" parent="237" name="fContent">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="237" name="fType">
+    <column id="269" parent="237" name="fType">
       <Position>5</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="237" name="rowId">
+    <column id="270" parent="237" name="rowId">
       <Position>6</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="237" name="userId">
+    <column id="271" parent="237" name="userId">
       <Position>7</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="271" parent="237" name="fId_UNIQUE">
+    <index id="272" parent="237" name="fId_UNIQUE">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="272" parent="237" name="fk_Fragment_DocumentRowNode1_idx">
+    <index id="273" parent="237" name="fk_Fragment_DocumentRowNode1_idx">
       <ColNames>rowId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="273" parent="237" name="fk_Fragment_User1_idx">
+    <index id="274" parent="237" name="fk_Fragment_User1_idx">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="274" parent="237" name="PRIMARY">
+    <key id="275" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="275" parent="237" name="fId_UNIQUE">
+    <key id="276" parent="237" name="fId_UNIQUE">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>fId_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="276" parent="237" name="fk_Fragment_DocumentRowNode1">
+    <foreign-key id="277" parent="237" name="fk_Fragment_DocumentRowNode1">
       <ColNames>rowId</ColNames>
       <RefTableName>DocumentRowNode</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="277" parent="237" name="fk_Fragment_User1">
+    <foreign-key id="278" parent="237" name="fk_Fragment_User1">
       <ColNames>userId</ColNames>
       <RefTableName>User</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="278" parent="238" name="id">
+    <column id="279" parent="238" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="238" name="tel">
+    <column id="280" parent="238" name="tel">
       <Position>2</Position>
       <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="238" name="email">
+    <column id="281" parent="238" name="email">
       <Position>3</Position>
       <DataType>varchar(256)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="238" name="userName">
+    <column id="282" parent="238" name="userName">
       <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="238" name="password">
+    <column id="283" parent="238" name="password">
       <Position>5</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="283" parent="238" name="userId_UNIQUE">
+    <index id="284" parent="238" name="userId_UNIQUE">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="284" parent="238" name="tel_UNIQUE">
+    <index id="285" parent="238" name="tel_UNIQUE">
       <ColNames>tel</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="285" parent="238" name="email_UNIQUE">
+    <index id="286" parent="238" name="email_UNIQUE">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="286" parent="238" name="PRIMARY">
+    <key id="287" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="287" parent="238" name="userId_UNIQUE">
+    <key id="288" parent="238" name="userId_UNIQUE">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>userId_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="288" parent="238" name="tel_UNIQUE">
+    <key id="289" parent="238" name="tel_UNIQUE">
       <ColNames>tel</ColNames>
       <UnderlyingIndexName>tel_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="289" parent="238" name="email_UNIQUE">
+    <key id="290" parent="238" name="email_UNIQUE">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>email_UNIQUE</UnderlyingIndexName>
     </key>
