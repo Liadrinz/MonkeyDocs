@@ -1,11 +1,13 @@
 package com.monkey.routing;
 
 import com.monkey.endpoint.WebSocketServer;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Component
 public class ClientManager {
     private final ConcurrentHashMap<Integer, List<Item>> docItemMap = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, List<Item>> userItemMap = new ConcurrentHashMap<>();
@@ -44,14 +46,22 @@ public class ClientManager {
     public synchronized void clearClient(int userId, int docId) {
         List<Item> userItems = userItemMap.get(userId);
         List<Item> docItems = docItemMap.get(docId);
-        Item target = get(userId, docId);
+        Item target = getItem(userId, docId);
         userItems.remove(target);
         docItems.remove(target);
     }
-    public synchronized Item get(int userId, int docId) {
+    public synchronized List<Item> getItemsByDocId(int docId) {
+        return docItemMap.get(docId);
+    }
+    public synchronized List<Item> getItemsByUserId(int userId) {
+        return userItemMap.get(userId);
+    }
+    public synchronized Item getItem(int userId, int docId) {
         List<Item> userItems = userItemMap.get(userId);
         List<Item> docItems = docItemMap.get(docId);
+        if (userItems == null || docItems == null) return null;
         userItems.retainAll(docItems);
+        if (userItems.size() == 0) return null;
         return userItems.get(0);
     }
 }
