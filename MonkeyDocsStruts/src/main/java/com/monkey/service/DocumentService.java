@@ -44,7 +44,6 @@ public class DocumentService {
         return results.get(0).getRefUser();
     }
 
-
     public Meta createEmptyRoW(Meta meta)
     {
         Row firstRow = new Row();
@@ -62,8 +61,22 @@ public class DocumentService {
             List<User> userList = new ArrayList<User>(meta.getRefUsers());
             User user = userList.get(0);
         }
-
         fragmentDAO.create(firstFragment);
         return metaDAO.findOne(meta.getId());
+    }
+
+    public Meta createSecondRow(Meta meta)
+    {
+        Row row = new Row();
+        row.setDocId(meta.getId());
+        List<Row> rows = rowDAO.findByExample(row);
+        Row firstRow = rows.get(rows.size()-1);
+
+        Row secondRow = new Row();
+        secondRow.setRefMeta(meta);
+        secondRow.setPreRow(firstRow.getId());
+        secondRow = rowDAO.create(secondRow);
+        firstRow.setNextRow(secondRow.getId());
+        return meta;
     }
 }

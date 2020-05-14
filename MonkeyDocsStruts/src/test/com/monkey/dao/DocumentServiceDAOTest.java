@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.w3c.dom.ls.LSException;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -71,6 +72,12 @@ public class DocumentServiceDAOTest {
         firstRow.setRefMeta(testDoc);
         rowDAO.create(firstRow);
 
+        MetaToUser metaToUser = new MetaToUser();
+        metaToUser.setMdId(testDoc.getId());
+        metaToUser.setRole("creator");
+        List<MetaToUser> results = metaToUserDAO.findByExample(metaToUser);
+        assert results.get(0).getRefUser().getId() == creator.getId();
+
         Fragment firstFragment = new Fragment();
         firstFragment.setRefRow(firstRow);
         firstFragment.setFType(true);
@@ -78,15 +85,55 @@ public class DocumentServiceDAOTest {
         firstFragment.setRefUser(creator);
         fragmentDAO.create(firstFragment);
 
-        //assert testDoc.getRefRows() != null;
-        assert firstRow.getRefMeta() != null;
+        assert firstRow.getRefMeta().getId() == testDoc.getId();
     }
     @Test
-    public void createSecondLine() {
+    public void createSecondLine()
+    {
+        User creator = userDAO.findAll().get(0);
+        Meta testDoc = docService.createMeta(creator.getId(), "Test Doc for second rows");
+        //testDoc = docService.createSecondRow(testDoc);
+
+        Row row = new Row();
+        row.setDocId(testDoc.getId());
+        List<Row> rows = rowDAO.findByExample(row);
+
+        assert rows.get(0).getRefMeta().getId() == testDoc.getId();
+        assert rows.size() == 1;
+        assert rows.get(0).getNextRow() == null;
+        Row firstRow = rows.get(0);
+
+        Row secondRow = new Row();
+        secondRow.setRefMeta(testDoc);
+        secondRow.setPreRow(firstRow.getId());
+        secondRow = rowDAO.create(secondRow);
+        firstRow.setNextRow(secondRow.getId());
+
+        row.setNextRow(secondRow.getId());
+        rows = rowDAO.findByExample(row);
+        assert rows.size() == 2;
+        assert rows.get(0).getPreRow() == null;
+        assert rows.get(0).getNextRow() == secondRow.getId();
+        assert rows.get(1).getPreRow() == firstRow.getId();
+        assert rows.get(1).getNextRow() == null;
 
     }
     @Test
-    public void createFragmentToFirstLine() {
+    public void createFragmentToLine()
+    {
+        User creator = userDAO.findAll().get(0);
+        Meta testDoc = docService.createMeta(creator.getId(), "Test Doc for second rows");
+
+        Row row = new Row();
+        row.setDocId(testDoc.getId());
+        List<Row> rows = rowDAO.findByExample(row);
+
+        Fragment newFragment = new Fragment();
+        newFragment.setRefRow(rows.get(0));
+        newFragment.setFType(true);
+        newFragment.setFContent("");
+        newFragment.setRefUser(creator);
+        newFragment = fragmentDAO.create(newFragment);
 
     }
     @Test
@@ -97,6 +144,12 @@ public class DocumentServiceDAOTest {
     public void deleteFromFragment() {
 
     }
+
+    @Test
+    public void insertBetweenFragment()
+    {
+    }
+
     @Test
     public void insertAfterFragment() {
 
