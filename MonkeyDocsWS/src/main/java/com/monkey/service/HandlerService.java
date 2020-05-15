@@ -30,18 +30,18 @@ public class HandlerService {
     }
     
     private Packet handleSave(Packet packet) {
-        List<String> deltaContents = historyDAO.list(packet.getDocId());
-        List<Delta> deltas = new ArrayList<>();
-        for (String content : deltaContents) {
-            Packet eachPacket = gson.fromJson(content, Packet.class);
-            Delta delta = new Delta();
-            delta.setUserid(eachPacket.getUserId());
-            delta.setContent(eachPacket.getPayload());
-            delta.setDocid(eachPacket.getDocId());
-            deltas.add(delta);
-        }
-        deltaDAO.persistAll(deltas);
-        return new Packet("ack", null, null, "");
+//        List<String> deltaContents = historyDAO.list(packet.getDocId());
+//        List<Delta> deltas = new ArrayList<>();
+//        for (String content : deltaContents) {
+//            Packet eachPacket = gson.fromJson(content, Packet.class);
+//            Delta delta = new Delta();
+//            delta.setUserid(eachPacket.getUserId());
+//            delta.setContent(eachPacket.getPayload());
+//            delta.setDocid(eachPacket.getDocId());
+//            deltas.add(delta);
+//        }
+//        deltaDAO.persistAll(deltas);
+//        return new Packet("ack", null, null, "");
     }
 
     public Packet handle(Packet packet) {
