@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+@Deprecated
 @Service("metaService")
 public class MetaService extends RestService<Meta> {
     @Resource(name = "metaDAO")
-    public void setSuperDAO(MetaDAO metaDAO) { super.dao = metaDAO; }
+    public void setSuperDAO(MetaDAO metaDAO) {
+        super.dao = metaDAO;
+    }
 }

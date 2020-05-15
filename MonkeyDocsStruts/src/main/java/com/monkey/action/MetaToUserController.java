@@ -1,6 +1,8 @@
 package com.monkey.action;
 
 import com.monkey.action.base.StrutsRestController;
+import com.monkey.dao.MetaDAO;
+import com.monkey.dao.MetaToUserDAO;
 import com.monkey.entity.MetaToUser;
 import com.monkey.service.MetaToUserService;
 import org.apache.struts2.convention.annotation.Action;
@@ -18,14 +20,8 @@ public class MetaToUserController extends StrutsRestController<MetaToUser> {
         name = "metaToUser";
         model = new MetaToUser();
     }
-    @Resource(name = "metaToUserService")
-    public void setSuperService(MetaToUserService metaToUserService) {
-        super.service = metaToUserService;
-    }
-
-    @Override
-    public HttpHeaders index() {
-        list = service.getAll();
-        return new DefaultHttpHeaders("index").disableCaching();
+    @Resource(name = "metaToUserDAO")
+    public void setSuperDAO(MetaToUserDAO dao) {
+        super.dao = dao;
     }
 }

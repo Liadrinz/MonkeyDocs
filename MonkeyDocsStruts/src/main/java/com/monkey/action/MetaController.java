@@ -1,6 +1,7 @@
 package com.monkey.action;
 
 import com.monkey.action.base.StrutsRestController;
+import com.monkey.dao.MetaDAO;
 import com.monkey.entity.Meta;
 import com.monkey.service.MetaService;
 import org.apache.struts2.convention.annotation.Result;
@@ -14,8 +15,8 @@ public class MetaController extends StrutsRestController<Meta> {
         name = "meta";
         model = new Meta();
     }
-    @Resource(name = "metaService")
-    public void setSuperService(MetaService metaService) {
-        super.service = metaService;
+    @Resource(name = "metaDAO")
+    public void setSuperDAO(MetaDAO dao) {
+        super.dao = dao;
     }
 }
