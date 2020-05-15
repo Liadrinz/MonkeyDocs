@@ -1,6 +1,8 @@
 package com.monkey.action;
 
 import com.monkey.action.base.StrutsRestController;
+import com.monkey.dao.MetaDAO;
+import com.monkey.dao.UserDAO;
 import com.monkey.entity.User;
 import com.monkey.service.UserService;
 import com.monkey.util.Security;
@@ -15,9 +17,9 @@ public class UserController extends StrutsRestController<User> {
         name = "user";
         model = new User();
     }
-    @Resource(name = "userService")
-    public void setSuperService(UserService userService) {
-        super.service = userService;
+    @Resource(name = "userDAO")
+    public void setSuperDAO(UserDAO dao) {
+        super.dao = dao;
     }
     @Override
     public HttpHeaders create() {
