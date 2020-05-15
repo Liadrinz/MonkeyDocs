@@ -1,13 +1,13 @@
 package com.monkey.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
-import com.monkey.util.Security
 import javax.persistence.*
 
 @Entity
 @Table(name = "User", schema = "MonkeyDocDB")
-open class User : BaseEntity<User>() {
-    @get:GeneratedValue
+open class User: BaseEntity<User>() {
+    @get:GeneratedValue(strategy = GenerationType.IDENTITY)
     @get:Id
     @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
     var id: Int? = null
@@ -28,9 +28,18 @@ open class User : BaseEntity<User>() {
     @get:Column(name = "password", nullable = false)
     var password: String? = null
 
+    @get:JsonBackReference
     @get:OneToMany(mappedBy = "refUser", fetch = FetchType.EAGER)
     var refMetaToUsers: Set<MetaToUser>? = null
 
+    @get:JsonBackReference
+    @get:ManyToMany(cascade = [CascadeType.PERSIST], fetch = FetchType.EAGER)
+    @get:JoinTable(name = "DocumentMeta_has_User",
+            joinColumns = [JoinColumn(name = "userId", referencedColumnName = "id")],
+            inverseJoinColumns = [JoinColumn(name = "mdId", referencedColumnName = "id")])
+    var refMetas: Set<Meta>? = null
+
+    @get:JsonBackReference
     @get:OneToMany(mappedBy = "refUser", fetch = FetchType.EAGER)
     var refFragments: Set<Fragment>? = null
 
@@ -40,6 +49,7 @@ open class User : BaseEntity<User>() {
                     "tel = $tel " +
                     "email = $email " +
                     "userName = $userName " +
+                    "password = $password " +
                     ")"
 
     // constant value returned to avoid entity inequality to itself before and after it's update/merge
@@ -54,12 +64,10 @@ open class User : BaseEntity<User>() {
         if (tel != other.tel) return false
         if (email != other.email) return false
         if (userName != other.userName) return false
+        if (password != other.password) return false
 
         return true
     }
 
-    fun checkPassword(plain: String): Boolean {
-        return Security.encryptPwd(plain).equals(this.password);
-    }
 }
 

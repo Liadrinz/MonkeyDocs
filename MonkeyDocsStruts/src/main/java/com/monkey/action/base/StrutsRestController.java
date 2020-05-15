@@ -14,7 +14,7 @@ public abstract class StrutsRestController<T extends BaseEntity<T>> extends Acti
     protected RestService<T> service;
     private int id;
     protected T model;
-    private List<T> list;
+    protected List<T> list;
     public String getName() {
         return name;
     }
@@ -55,7 +55,6 @@ public abstract class StrutsRestController<T extends BaseEntity<T>> extends Acti
     {
         return (list != null ? list : model);
     }
-
     public void setModel(T model) {
         this.model = model;
     }

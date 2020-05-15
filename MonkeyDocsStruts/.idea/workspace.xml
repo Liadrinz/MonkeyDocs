@@ -25,8 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Meta.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Meta.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +38,8 @@
       <list>
         <option value="Kotlin Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -77,28 +77,103 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../BUPT/course/大三下/人工智能/project/fifteen" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.32837528" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="spring" />
   </component>
   <component name="RecentsManager">
+    <key name="DestinationChooserDialog.Package.RECENTS_KEY">
+      <recent name="com.monkey.entity" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.monkey.dao" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\test\com\monkey\dao" />
+      <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\test\java\com\monkey\service" />
       <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp\WEB-INF" />
       <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp" />
       <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp\WEB-INF\content" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat">
-    <configuration name="Security" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.monkey.util.Security" />
+    <configuration name="DocumentServiceDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MonkeyDocsStruts" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.monkey.util.*" />
+          <option name="PATTERN" value="com.monkey.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.monkey.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.monkey.dao.DocumentServiceDAOTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentServiceDAOTest.createEmptyDocument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonkeyDocsStruts" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.monkey.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.monkey.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.monkey.dao.DocumentServiceDAOTest" />
+      <option name="METHOD_NAME" value="createEmptyDocument" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentServiceDAOTest.createEmptyRowAndFragment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonkeyDocsStruts" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.monkey.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.monkey.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.monkey.dao.DocumentServiceDAOTest" />
+      <option name="METHOD_NAME" value="createEmptyRowAndFragment" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MetaToUserDAOTest.c" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonkeyDocsStruts" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.monkey.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.monkey.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.monkey.dao.MetaToUserDAOTest" />
+      <option name="METHOD_NAME" value="c" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MetaToUserDAOTest.createEmptyRow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonkeyDocsStruts" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.monkey.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.monkey.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.monkey.dao.MetaToUserDAOTest" />
+      <option name="METHOD_NAME" value="createEmptyRow" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,7 +252,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Security" />
+        <item itemvalue="JUnit.DocumentServiceDAOTest.createEmptyDocument" />
+        <item itemvalue="JUnit.DocumentServiceDAOTest" />
+        <item itemvalue="JUnit.DocumentServiceDAOTest.createEmptyRowAndFragment" />
+        <item itemvalue="JUnit.MetaToUserDAOTest.c" />
+        <item itemvalue="JUnit.MetaToUserDAOTest.createEmptyRow" />
       </list>
     </recent_temporary>
   </component>
@@ -197,7 +276,19 @@
       <workItem from="1587435262414" duration="772000" />
       <workItem from="1587520584591" duration="2645000" />
       <workItem from="1587536385272" duration="28380000" />
-      <workItem from="1587570173732" duration="2827000" />
+      <workItem from="1587570173732" duration="3082000" />
+      <workItem from="1587737234603" duration="1255000" />
+      <workItem from="1587784483599" duration="636000" />
+      <workItem from="1587809151707" duration="12257000" />
+      <workItem from="1587909021521" duration="350000" />
+      <workItem from="1587968493506" duration="736000" />
+      <workItem from="1587972111467" duration="8577000" />
+      <workItem from="1587993927833" duration="11743000" />
+      <workItem from="1588041925626" duration="33336000" />
+      <workItem from="1588118795146" duration="2376000" />
+      <workItem from="1588121189592" duration="7208000" />
+      <workItem from="1588130631055" duration="589000" />
+      <workItem from="1588152538391" duration="1976000" />
     </task>
     <servers />
   </component>
@@ -220,10 +311,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="662" y="301" key="#Assign_Data_Sources" timestamp="1587537372144">
+    <state x="662" y="301" key="#Assign_Data_Sources" timestamp="1588087543091">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="662" y="301" key="#Assign_Data_Sources/0.0.1536.824@0.0.1536.824" timestamp="1587537372144" />
+    <state x="662" y="301" key="#Assign_Data_Sources/0.0.1536.824@0.0.1536.824" timestamp="1588087543091" />
     <state x="249" y="0" key="#Project_Structure" timestamp="1587266915085">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -232,106 +323,118 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1587356931535" />
-    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" timestamp="1587560938469">
+    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" timestamp="1588061988918">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587560938469" />
+    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1588061988918" />
+    <state x="499" y="187" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1587978522056">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="187" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1587978522056" />
     <state x="490" y="50" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1587266379578">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="490" y="50" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1536.824@0.0.1536.824" timestamp="1587266379578" />
-    <state x="544" y="305" width="448" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1587389275839">
+    <state x="573" y="335" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1588093590973">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="544" y="305" width="448" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1587389275839" />
-    <state x="363" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587375510168">
+    <state x="573" y="335" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1588093590973" />
+    <state x="544" y="305" width="448" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1588088249186">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="363" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1587375510168" />
-    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587399027387">
+    <state x="544" y="305" width="448" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1588088249186" />
+    <state x="363" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588005932925">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1587399027387" />
+    <state x="363" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1588005932925" />
+    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588053943854">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1588053943854" />
     <state x="499" y="158" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1587543040201">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="158" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1587543040201" />
-    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1587266397085">
+    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1587977373278">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587266397085" />
-    <state width="1024" height="317" key="GridCell.Tab.0.bottom" timestamp="1587572494778">
+    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587977373278" />
+    <state width="1024" height="275" key="GridCell.Tab.0.bottom" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587572494778" />
-    <state width="1024" height="317" key="GridCell.Tab.0.center" timestamp="1587572494778">
+    <state width="1024" height="275" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.0.center" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587572494778" />
-    <state width="1024" height="317" key="GridCell.Tab.0.left" timestamp="1587572494778">
+    <state width="1024" height="275" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.0.left" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587572494778" />
-    <state width="1024" height="317" key="GridCell.Tab.0.right" timestamp="1587572494778">
+    <state width="1024" height="275" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.0.right" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587572494778" />
-    <state width="1024" height="317" key="GridCell.Tab.1.bottom" timestamp="1587572494669">
+    <state width="1024" height="275" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.1.bottom" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587572494669" />
-    <state width="1024" height="317" key="GridCell.Tab.1.center" timestamp="1587572494669">
+    <state width="1024" height="275" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.1.center" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587572494669" />
-    <state width="1024" height="317" key="GridCell.Tab.1.left" timestamp="1587572494669">
+    <state width="1024" height="275" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.1.left" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587572494669" />
-    <state width="1024" height="317" key="GridCell.Tab.1.right" timestamp="1587572494669">
+    <state width="1024" height="275" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.1.right" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587572494669" />
-    <state width="1024" height="317" key="GridCell.Tab.2.bottom" timestamp="1587572494670">
+    <state width="1024" height="275" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.2.bottom" timestamp="1588153802433">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587572494670" />
-    <state width="1024" height="317" key="GridCell.Tab.2.center" timestamp="1587572494670">
+    <state width="1024" height="275" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588153802433" />
+    <state width="1024" height="275" key="GridCell.Tab.2.center" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1587572494670" />
-    <state width="1024" height="317" key="GridCell.Tab.2.left" timestamp="1587572494669">
+    <state width="1024" height="275" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.2.left" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1587572494669" />
-    <state width="1024" height="317" key="GridCell.Tab.2.right" timestamp="1587572494670">
+    <state width="1024" height="275" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.2.right" timestamp="1588153802432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="317" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1587572494670" />
-    <state width="1024" height="327" key="GridCell.Tab.3.bottom" timestamp="1587372688447">
+    <state width="1024" height="275" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1588153802432" />
+    <state width="1024" height="275" key="GridCell.Tab.3.bottom" timestamp="1588153802433">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="327" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587372688447" />
-    <state width="1024" height="327" key="GridCell.Tab.3.center" timestamp="1587372688447">
+    <state width="1024" height="275" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588153802433" />
+    <state width="1024" height="275" key="GridCell.Tab.3.center" timestamp="1588153802433">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="327" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1587372688447" />
-    <state width="1024" height="327" key="GridCell.Tab.3.left" timestamp="1587372688447">
+    <state width="1024" height="275" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1588153802433" />
+    <state width="1024" height="275" key="GridCell.Tab.3.left" timestamp="1588153802433">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="327" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1587372688447" />
-    <state width="1024" height="327" key="GridCell.Tab.3.right" timestamp="1587372688447">
+    <state width="1024" height="275" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1588153802433" />
+    <state width="1024" height="275" key="GridCell.Tab.3.right" timestamp="1588153802433">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="327" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1587372688447" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1587566855331">
+    <state width="1024" height="275" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1588153802433" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1588126745047">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1587566855331" />
-    <state x="178" y="72" key="new project wizard" timestamp="1587266731207">
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1588126745047" />
+    <state x="178" y="72" key="new project wizard" timestamp="1587909380974">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="178" y="72" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1587266731207" />
+    <state x="178" y="72" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1587909380974" />
+    <state x="814" y="145" key="search.everywhere.popup" timestamp="1587975807087">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="814" y="145" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587975807087" />
     <state x="449" y="95" key="spring file set editor" timestamp="1587399227035">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -345,6 +448,13 @@
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="model.getEmail()" language="JAVA" />
+      </configuration>
+      <configuration name="JUnit">
+        <watch expression="meta.getRefMetaToUsers().size()" language="JAVA" />
+        <watch expression="metaDAO.findAll().size()" language="JAVA" />
+        <watch expression="metaDAO.findAll().get(12).getRefMetaToUsers()" language="JAVA" />
+        <watch expression="metaToUserDAO.findAll()" language="JAVA" />
+        <watch expression="metaDAO.findOne(mdId)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

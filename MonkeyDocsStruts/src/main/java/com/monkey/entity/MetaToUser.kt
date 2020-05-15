@@ -6,7 +6,12 @@ import javax.persistence.*
 @Entity
 @Table(name = "DocumentMeta_has_User", schema = "MonkeyDocDB")
 @IdClass(DocumentMetaHasUserEntityPK::class)
-open class MetaToUser : BaseEntity<MetaToUser>() {
+open class MetaToUser: BaseEntity<MetaToUser>() {
+    @get:GeneratedValue(strategy = GenerationType.IDENTITY)
+    @get:Id
+    @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
+    var id: Int? = null
+
     @get:Id
     @get:Column(name = "mdId", nullable = false, insertable = false, updatable = false)
     var mdId: Int? = null
@@ -17,13 +22,13 @@ open class MetaToUser : BaseEntity<MetaToUser>() {
 
     @get:Basic
     @get:Column(name = "role", nullable = false)
-    var role: String? = null
+    var role: String? = "default"
 
-    @get:ManyToOne(fetch = FetchType.LAZY)
+    @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "mdId", referencedColumnName = "id")
     var refMeta: Meta? = null
 
-    @get:ManyToOne(fetch = FetchType.LAZY)
+    @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "userId", referencedColumnName = "id")
     var refUser: User? = null
 

@@ -1,6 +1,5 @@
 package com.monkey.dao.base;
 
-import com.monkey.entity.User;
 import com.monkey.entity.base.BaseEntity;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -31,7 +30,7 @@ public abstract class CrudDAO<K extends Serializable, V extends BaseEntity<V>> {
     public List<V> findAll() {
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(clazz);
-        return criteria.list();
+        return criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
     }
     public V findOne(K id) {
         Session session = sessionFactory.getCurrentSession();
@@ -40,7 +39,7 @@ public abstract class CrudDAO<K extends Serializable, V extends BaseEntity<V>> {
     public List<V> findByExample(V entity) {
         Example example = Example.create(entity).ignoreCase();
         Session session = sessionFactory.getCurrentSession();
-        return session.createCriteria(entity.getClass()).add(example).list();
+        return session.createCriteria(entity.getClass()).add(example).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
     }
     // Update
     public V updateOne(K id, V model) {

@@ -2,13 +2,12 @@ package com.monkey.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
-import java.sql.Timestamp
 import java.util.*
 import javax.persistence.*
 
 @Entity
 @Table(name = "DocumentMeta", schema = "MonkeyDocDB")
-open class Meta : BaseEntity<Meta>() {
+open class Meta: BaseEntity<Meta>() {
     @get:GeneratedValue
     @get:Id
     @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
@@ -20,7 +19,7 @@ open class Meta : BaseEntity<Meta>() {
 
     @get:Basic
     @get:Column(name = "isRecycled", nullable = false)
-    var recycled: Boolean? = false
+    var recycled: Boolean = false
 
     @get:Basic
     @get:Column(name = "createTime", nullable = false)
@@ -30,17 +29,16 @@ open class Meta : BaseEntity<Meta>() {
     @get:Column(name = "updateTime", nullable = false)
     var updateTime: Date? = null
 
-    @get:Basic
-    @get:Column(name = "firstRowId", nullable = false, insertable = false, updatable = false)
-    var firstRowId: Int? = null
-
     @get:JsonBackReference
-    @get:ManyToOne(fetch = FetchType.EAGER)
-    @get:JoinColumn(name = "firstRowId", referencedColumnName = "id")
-    var refRow: Row? = null
-
     @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
     var refMetaToUsers: Set<MetaToUser>? = null
+
+    @get:JsonBackReference
+    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
+    var refRows: Set<Row>? = null
+
+    @get:ManyToMany(fetch = FetchType.EAGER, mappedBy = "refMetas")
+    var refUsers: Set<User>? = null
 
     override fun toString(): String =
             "Entity of type: ${javaClass.name} ( " +
@@ -49,7 +47,6 @@ open class Meta : BaseEntity<Meta>() {
                     "isRecycled = $recycled " +
                     "createTime = $createTime " +
                     "updateTime = $updateTime " +
-                    "firstRowId = $firstRowId " +
                     ")"
 
     // constant value returned to avoid entity inequality to itself before and after it's update/merge
@@ -65,7 +62,6 @@ open class Meta : BaseEntity<Meta>() {
         if (recycled != other.recycled) return false
         if (createTime != other.createTime) return false
         if (updateTime != other.updateTime) return false
-        if (firstRowId != other.firstRowId) return false
 
         return true
     }
