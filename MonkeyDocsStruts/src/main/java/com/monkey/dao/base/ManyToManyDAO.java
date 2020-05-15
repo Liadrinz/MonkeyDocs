@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Transactional
-public abstract class ManyToManyDAO<M extends BaseEntity<M>, T extends Serializable> {
+public abstract class ManyToManyDAO<M extends BaseEntity, T extends Serializable> {
     @Autowired
     protected SessionFactory sessionFactory;
     private Class clazz;

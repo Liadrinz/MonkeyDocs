@@ -5,10 +5,10 @@ import com.monkey.entity.base.BaseEntity
 import javax.persistence.*
 
 @Entity
-@Table(name = "User", schema = "MonkeyDocDB")
-open class User: BaseEntity<User>() {
-    @get:GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name = "User", schema = "MonkeyDocDB", catalog = "")
+open class User : BaseEntity() {
     @get:Id
+    @get:GeneratedValue(strategy = GenerationType.IDENTITY)
     @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
     var id: Int? = null
 
@@ -29,19 +29,12 @@ open class User: BaseEntity<User>() {
     var password: String? = null
 
     @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refUser", fetch = FetchType.EAGER)
+    @get:OneToMany(mappedBy = "refUser")
+    var refDeltas: Set<Delta>? = null
+
+    @get:JsonBackReference
+    @get:OneToMany(mappedBy = "refUser")
     var refMetaToUsers: Set<MetaToUser>? = null
-
-    @get:JsonBackReference
-    @get:ManyToMany(cascade = [CascadeType.PERSIST], fetch = FetchType.EAGER)
-    @get:JoinTable(name = "DocumentMeta_has_User",
-            joinColumns = [JoinColumn(name = "userId", referencedColumnName = "id")],
-            inverseJoinColumns = [JoinColumn(name = "mdId", referencedColumnName = "id")])
-    var refMetas: Set<Meta>? = null
-
-    @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refUser", fetch = FetchType.EAGER)
-    var refFragments: Set<Fragment>? = null
 
     override fun toString(): String =
             "Entity of type: ${javaClass.name} ( " +

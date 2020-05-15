@@ -81,10 +81,6 @@ public class WebSocketServer {
         error.printStackTrace();
     }
 
-    public void sendMessage(String message) throws IOException {
-        this.session.getBasicRemote().sendText(message);
-    }
-
     private static void addOnlineCount() { onlineCount++; }
     private static void subOnlineCount() { onlineCount--; }
 }

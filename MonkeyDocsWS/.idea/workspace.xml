@@ -20,7 +20,69 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3174d03c-7e22-4847-9760-41f104670d7a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/CheckpointController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/DeltaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/CheckpointDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/DeltaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/Checkpoint.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/Delta.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/CheckpointService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/DeltaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/test/com/monkey/dao/DAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/dataSources/a1a799c8-88f4-4902-8a6a-604e56ee4079.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/dataSources/a1a799c8-88f4-4902-8a6a-604e56ee4079.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/MonkeyDocsStruts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/MonkeyDocsStruts.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/FragmentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/MetaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/MetaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/MetaToUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/MetaToUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/RowController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/base/StrutsRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/action/base/StrutsRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/DocumentDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/FragmentDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/MetaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/MetaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/MetaToUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/MetaToUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/RowDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/base/CrudDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/base/CrudDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/base/ManyToManyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dao/base/ManyToManyDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/dpo/UpdateInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/Fragment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/Meta.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/Meta.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/MetaToUser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/MetaToUser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/Row.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/base/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/entity/base/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/mvc/DocumentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/DocumentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/FragmentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/MetaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/MetaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/MetaToUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/MetaToUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/RowService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/base/CrdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/base/CrdService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/base/RestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/service/base/RestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/java/com/monkey/util/FragmentUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/main/resources/hibernate.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/test/com/monkey/dao/DocumentServiceDAOTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/test/com/monkey/dao/MetaToUserDAOTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonkeyDocsWS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MonkeyDocsWS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/HistoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/HistoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/endpoint/WebSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/endpoint/WebSocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/HandlerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/HandlerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborate/client.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborate/css/quill.snow.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborate/js/quill.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborateTest/client.html" beforeDir="false" afterPath="$PROJECT_DIR$/../collaborateTest/client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborateTest/css/quill.snow.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborateTest/js/quill.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../quill.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +114,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MonkeyDocsStruts/target/MonkeyDocsStruts-1.0.jar!/" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.32837528" />
   </component>
   <component name="RunManager">
     <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -75,6 +140,8 @@
       <updated>1587197956613</updated>
       <workItem from="1587197958108" duration="156000" />
       <workItem from="1587391038377" duration="39000" />
+      <workItem from="1589439650415" duration="5192000" />
+      <workItem from="1589512369236" duration="607000" />
     </task>
     <servers />
   </component>
@@ -97,10 +164,14 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1587391076727">
+    <state x="573" y="335" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1589440350998">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587391076727" />
+    <state x="573" y="335" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1589440350998" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1589440219181">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589440219181" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1587198113348">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -117,5 +188,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587198113348" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1589440228615">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589440228615" />
   </component>
 </project>

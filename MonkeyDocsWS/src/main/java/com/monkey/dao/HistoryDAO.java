@@ -19,6 +19,9 @@ public class HistoryDAO {
     public synchronized void push(Packet packet) {
         jedis.lpush(prefix + packet.getDocId(), gson.toJson(packet));
     }
+    public synchronized List<String> list(int docId) {
+        return jedis.lrange(prefix + docId, 0, -1);
+    }
     public synchronized String range(int docId) {
         List<String> results = jedis.lrange(prefix + docId, 0, -1);
         return wrapResults(results);
