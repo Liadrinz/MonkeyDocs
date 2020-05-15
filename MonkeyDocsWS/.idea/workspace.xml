@@ -22,7 +22,6 @@
     <list default="true" id="3174d03c-7e22-4847-9760-41f104670d7a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/HandlerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/HandlerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../collaborate/client.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../collaborate/css/quill.snow.css" beforeDir="false" />
@@ -89,7 +88,7 @@
       <workItem from="1587197958108" duration="156000" />
       <workItem from="1587391038377" duration="39000" />
       <workItem from="1589439650415" duration="5192000" />
-      <workItem from="1589512369236" duration="976000" />
+      <workItem from="1589512369236" duration="1035000" />
     </task>
     <servers />
   </component>

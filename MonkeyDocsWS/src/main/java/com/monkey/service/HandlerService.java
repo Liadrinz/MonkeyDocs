@@ -42,6 +42,7 @@ public class HandlerService {
 //        }
 //        deltaDAO.persistAll(deltas);
 //        return new Packet("ack", null, null, "");
+        return null;
     }
 
     public Packet handle(Packet packet) {
