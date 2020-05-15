@@ -2,7 +2,7 @@ package com.monkey.endpoint;
 
 import com.google.gson.Gson;
 import com.monkey.entity.Packet;
-import com.monkey.routing.ClientManager;
+import com.monkey.manager.ClientManager;
 import com.monkey.service.DispatcherService;
 import com.monkey.service.HandlerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-import java.io.IOException;
 
 @ServerEndpoint("/collaborate/{docId}/{userId}")
 @Component
