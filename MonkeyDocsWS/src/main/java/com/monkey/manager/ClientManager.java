@@ -1,4 +1,4 @@
-package com.monkey.routing;
+package com.monkey.manager;
 
 import com.monkey.endpoint.WebSocketServer;
 import org.springframework.stereotype.Component;

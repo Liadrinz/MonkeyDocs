@@ -1,9 +1,7 @@
 package com.monkey.service;
 
 import com.google.gson.Gson;
-import com.monkey.dao.DeltaDAO;
 import com.monkey.dao.HistoryDAO;
-import com.monkey.entity.Delta;
 import com.monkey.entity.Packet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,8 +11,6 @@ import java.util.List;
 
 @Component
 public class HandlerService {
-    @Autowired
-    private DeltaDAO deltaDAO;
     @Autowired
     private HistoryDAO historyDAO;
     private static final Gson gson = new Gson();
