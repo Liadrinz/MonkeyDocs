@@ -10,6 +10,8 @@ import javax.transaction.Transactional;
 @Repository("userDAO")
 @Transactional
 public class UserDAO extends CrudDAO<Integer, User> {
-    public UserDAO() { super(User.class); }
+    public UserDAO() {
+        super(User.class);
+    }
 }
 

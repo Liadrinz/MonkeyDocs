@@ -6,10 +6,10 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name = "DocumentMeta", schema = "MonkeyDocDB")
-open class Meta: BaseEntity<Meta>() {
-    @get:GeneratedValue
+@Table(name = "DocumentMeta", schema = "MonkeyDocDB", catalog = "")
+open class Meta : BaseEntity() {
     @get:Id
+    @get:GeneratedValue(strategy = GenerationType.IDENTITY)
     @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
     var id: Int? = null
 
@@ -19,26 +19,27 @@ open class Meta: BaseEntity<Meta>() {
 
     @get:Basic
     @get:Column(name = "isRecycled", nullable = false)
-    var recycled: Boolean = false
+    var recycled: Boolean? = false
 
     @get:Basic
     @get:Column(name = "createTime", nullable = false)
-    var createTime: Date? = null
+    var createTime: Date? = Date()
 
     @get:Basic
     @get:Column(name = "updateTime", nullable = false)
     var updateTime: Date? = null
 
     @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
-    var refMetaToUsers: Set<MetaToUser>? = null
+    @get:OneToMany(mappedBy = "refMeta")
+    var refCheckpoints: Set<Checkpoint>? = null
 
     @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
-    var refRows: Set<Row>? = null
+    @get:OneToMany(mappedBy = "refMeta")
+    var refDeltas: Set<Delta>? = null
 
-    @get:ManyToMany(fetch = FetchType.EAGER, mappedBy = "refMetas")
-    var refUsers: Set<User>? = null
+    @get:JsonBackReference
+    @get:OneToMany(mappedBy = "refMeta")
+    var refMetaToUsers: Set<MetaToUser>? = null
 
     override fun toString(): String =
             "Entity of type: ${javaClass.name} ( " +

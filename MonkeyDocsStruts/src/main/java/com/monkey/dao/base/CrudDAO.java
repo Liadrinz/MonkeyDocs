@@ -13,7 +13,7 @@ import java.util.List;
 
 // CRUD Generic
 @Transactional
-public abstract class CrudDAO<K extends Serializable, V extends BaseEntity<V>> {
+public abstract class CrudDAO<K extends Serializable, V extends BaseEntity> {
     @Autowired
     protected SessionFactory sessionFactory;
     private Class clazz;

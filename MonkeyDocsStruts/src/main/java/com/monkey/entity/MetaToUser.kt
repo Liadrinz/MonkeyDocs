@@ -4,25 +4,23 @@ import com.monkey.entity.base.BaseEntity
 import javax.persistence.*
 
 @Entity
-@Table(name = "DocumentMeta_has_User", schema = "MonkeyDocDB")
-@IdClass(DocumentMetaHasUserEntityPK::class)
-open class MetaToUser: BaseEntity<MetaToUser>() {
-    @get:GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name = "DocumentMeta_has_User", schema = "MonkeyDocDB", catalog = "")
+open class MetaToUser : BaseEntity() {
     @get:Id
-    @get:Column(name = "id", nullable = false, insertable = false, updatable = false)
+    @get:Column(name = "id", nullable = false)
     var id: Int? = null
 
-    @get:Id
+    @get:Basic
     @get:Column(name = "mdId", nullable = false, insertable = false, updatable = false)
     var mdId: Int? = null
 
-    @get:Id
+    @get:Basic
     @get:Column(name = "userId", nullable = false, insertable = false, updatable = false)
     var userId: Int? = null
 
     @get:Basic
     @get:Column(name = "role", nullable = false)
-    var role: String? = "default"
+    var role: String? = null
 
     @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "mdId", referencedColumnName = "id")
@@ -34,6 +32,7 @@ open class MetaToUser: BaseEntity<MetaToUser>() {
 
     override fun toString(): String =
             "Entity of type: ${javaClass.name} ( " +
+                    "id = $id " +
                     "mdId = $mdId " +
                     "userId = $userId " +
                     "role = $role " +
@@ -47,6 +46,7 @@ open class MetaToUser: BaseEntity<MetaToUser>() {
         if (javaClass != other?.javaClass) return false
         other as MetaToUser
 
+        if (id != other.id) return false
         if (mdId != other.mdId) return false
         if (userId != other.userId) return false
         if (role != other.role) return false
@@ -56,27 +56,3 @@ open class MetaToUser: BaseEntity<MetaToUser>() {
 
 }
 
-class DocumentMetaHasUserEntityPK : java.io.Serializable {
-    @get:Id
-    @get:Column(name = "mdId", nullable = false, insertable = false, updatable = false)
-    var mdId: Int? = null
-
-    @get:Id
-    @get:Column(name = "userId", nullable = false, insertable = false, updatable = false)
-    var userId: Int? = null
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-        other as DocumentMetaHasUserEntityPK
-
-        if (mdId != other.mdId) return false
-        if (userId != other.userId) return false
-
-        return true
-    }
-
-    // constant value returned to avoid entity inequality to itself before and after it's update/merge
-    override fun hashCode(): Int = 42
-
-}

@@ -20,12 +20,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3174d03c-7e22-4847-9760-41f104670d7a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/action/CheckpointController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/action/DeltaController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/action/MetaController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/action/MetaToUserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/action/UserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/action/base/StrutsRestController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/dao/CheckpointDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/dao/DeltaDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/dao/MetaDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/dao/MetaToUserDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/dao/UserDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/dao/base/CrudDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/dao/base/ManyToManyDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/entity/Checkpoint.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/entity/Delta.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/entity/Meta.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/entity/MetaToUser.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/entity/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/entity/base/BaseEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/mvc/HelloController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/service/CheckpointService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/service/DeltaService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/service/MetaService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/service/MetaToUserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/service/UserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/service/base/CrdService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/service/base/RestService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/util/FormField.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/out/artifacts/DAO/com/monkey/util/Security.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/junitgenerator-prj-settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/config/BusinessConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/DeltaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/strategy/MySQLUpperCaseStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonkeyDocsWS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MonkeyDocsWS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/endpoint/WebSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/endpoint/WebSocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/routing/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/manager/ClientManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/DispatcherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/DispatcherService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/HandlerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/HandlerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborate/client.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborate/css/quill.snow.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborate/js/quill.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborateTest/client.html" beforeDir="false" afterPath="$PROJECT_DIR$/../collaborateTest/client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborateTest/css/quill.snow.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collaborateTest/js/quill.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../quill.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -48,13 +109,47 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.32837528" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.monkey.App" />
+      <module name="MonkeyDocsWS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.monkey.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HandlerServiceTest.testHandleSave" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonkeyDocsWS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.monkey.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.monkey.service" />
+      <option name="MAIN_CLASS_NAME" value="com.monkey.service.HandlerServiceTest" />
+      <option name="METHOD_NAME" value="testHandleSave" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="MonkeyDocsWS" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.monkey.App" />
@@ -62,6 +157,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.HandlerServiceTest.testHandleSave" />
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -75,6 +176,11 @@
       <updated>1587197956613</updated>
       <workItem from="1587197958108" duration="156000" />
       <workItem from="1587391038377" duration="39000" />
+      <workItem from="1589439650415" duration="5192000" />
+      <workItem from="1589512369236" duration="10812000" />
+      <workItem from="1589541183010" duration="3566000" />
+      <workItem from="1589553835364" duration="2763000" />
+      <workItem from="1589556643845" duration="625000" />
     </task>
     <servers />
   </component>
@@ -97,25 +203,69 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1587391076727">
+    <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589552669390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587391076727" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1587198113348">
+    <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589552669390" />
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1589529300341">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587198113348" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1587198113348">
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1589529300341" />
+    <state x="573" y="335" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1589440350998">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587198113348" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1587198113347">
+    <state x="573" y="335" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1589440350998" />
+    <state x="493" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1589525094400">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587198113347" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1587198113348">
+    <state x="493" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1589525094400" />
+    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589530764268">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587198113348" />
+    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1589530764268" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1589554139834">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589554139834" />
+    <state width="1493" height="344" key="GridCell.Tab.0.bottom" timestamp="1589557215110">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="344" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589557215110" />
+    <state width="1493" height="344" key="GridCell.Tab.0.center" timestamp="1589557215109">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="344" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589557215109" />
+    <state width="1493" height="344" key="GridCell.Tab.0.left" timestamp="1589557215109">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="344" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589557215109" />
+    <state width="1493" height="344" key="GridCell.Tab.0.right" timestamp="1589557215110">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="344" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589557215110" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1589556602517">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589556602517" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1589556602517">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1589556602517" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1589556602517">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1589556602517" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1589556602517">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1589556602517" />
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1589556118402">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1589556118402" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1589556584317">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589556584317" />
   </component>
 </project>

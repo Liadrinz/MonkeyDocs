@@ -6,7 +6,8 @@ import com.monkey.entity.base.BaseEntity;
 import java.io.Serializable;
 import java.util.List;
 
-public class CrdService<M extends BaseEntity<M>, T extends Serializable> {
+@Deprecated
+public class CrdService<M extends BaseEntity, T extends Serializable> {
     protected ManyToManyDAO<M, T> dao;
     public List<M> getAll() { return dao.findAll(); }
     public List<M> getByModel(M model) { return dao.findByExample(model); }
