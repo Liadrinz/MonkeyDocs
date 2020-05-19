@@ -2,10 +2,9 @@ package com.monkey.service;
 
 import com.google.gson.Gson;
 import com.monkey.entity.Packet;
-import com.monkey.routing.ClientManager;
+import com.monkey.manager.ClientManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.websocket.Session;
 import java.io.IOException;
