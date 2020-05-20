@@ -15,9 +15,17 @@ import java.util.List;
 public class HistoryDAO {
     private final Jedis jedis = new JedisFactory().getJedis();
     private final Gson gson = new Gson();
-    private static final String prefix = "history-";
+    public static final String prefix = "history-";
+    public synchronized void pushAll(List<Packet> packets) {
+        for (Packet packet : packets) {
+            push(packet);
+        }
+    }
     public synchronized void push(Packet packet) {
         jedis.lpush(prefix + packet.getDocId(), gson.toJson(packet));
+    }
+    public synchronized void del(int docId) {
+        jedis.del(prefix + docId);
     }
     public synchronized List<String> list(int docId) {
         return jedis.lrange(prefix + docId, 0, -1);

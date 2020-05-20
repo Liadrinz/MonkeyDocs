@@ -3,16 +3,18 @@ package com.monkey.service;
 import com.google.gson.Gson;
 import com.monkey.dao.HistoryDAO;
 import com.monkey.entity.Packet;
+import com.monkey.manager.ClientManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class HandlerService {
     @Autowired
+    private ClientManager clientManager;
+    @Autowired
     private HistoryDAO historyDAO;
+    @Autowired
+    private HistoryService historyService;
     private static final Gson gson = new Gson();
 
     private Packet handleDelta(Packet packet) {
@@ -26,22 +28,14 @@ public class HandlerService {
     }
     
     private Packet handleSave(Packet packet) {
-//        List<String> deltaContents = historyDAO.list(packet.getDocId());
-//        List<Delta> deltas = new ArrayList<>();
-//        for (String content : deltaContents) {
-//            Packet eachPacket = gson.fromJson(content, Packet.class);
-//            Delta delta = new Delta();
-//            delta.setUserid(eachPacket.getUserId());
-//            delta.setContent(eachPacket.getPayload());
-//            delta.setDocid(eachPacket.getDocId());
-//            deltas.add(delta);
-//        }
-//        deltaDAO.persistAll(deltas);
-//        return new Packet("ack", null, null, "");
-        return null;
+        historyService.persist(packet.getDocId());
+        return new Packet("ack", null, null, "");
     }
 
     public Packet handle(Packet packet) {
+        if (clientManager.getItem(packet.getUserId(), packet.getDocId()).isNew()) {
+            historyService.load(packet.getDocId());
+        }
         switch (packet.getKind()) {
             case "delta":
                 return handleDelta(packet);

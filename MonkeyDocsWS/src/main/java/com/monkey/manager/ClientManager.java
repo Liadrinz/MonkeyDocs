@@ -48,13 +48,19 @@ public class ClientManager {
         List<Item> docItems = docItemMap.get(docId);
         Item target = getItem(userId, docId);
         userItems.remove(target);
+        if (userItems.size() == 0) userItemMap.remove(userId);
         docItems.remove(target);
+        if (docItems.size() == 0) docItemMap.remove(docId);
     }
     public synchronized List<Item> getItemsByDocId(int docId) {
-        return docItemMap.get(docId);
+        if (docItemMap.containsKey(docId))
+            return docItemMap.get(docId);
+        return null;
     }
     public synchronized List<Item> getItemsByUserId(int userId) {
-        return userItemMap.get(userId);
+        if (userItemMap.containsKey(userId))
+            return userItemMap.get(userId);
+        return null;
     }
     public synchronized Item getItem(int userId, int docId) {
         List<Item> userItems = userItemMap.get(userId);

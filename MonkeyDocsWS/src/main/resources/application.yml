@@ -3,3 +3,10 @@ spring:
     cache: false
   main:
     show-banner: false
+  datasource:
+    url: jdbc:mysql://106.54.101.125:3306/MonkeyDocDB
+    username: root
+    password: monkeydoc123
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect

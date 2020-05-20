@@ -5,6 +5,7 @@ import com.monkey.entity.Packet;
 import com.monkey.manager.ClientManager;
 import com.monkey.service.DispatcherService;
 import com.monkey.service.HandlerService;
+import com.monkey.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ public class WebSocketServer {
     private static ClientManager clientManager;
     private static HandlerService handlerService;
     private static DispatcherService dispatcherService;
+    private static HistoryService historyService;
     @Autowired
     public void setClientManager(ClientManager clientManager) {
         WebSocketServer.clientManager = clientManager;
@@ -29,6 +31,10 @@ public class WebSocketServer {
     @Autowired
     public void setDispatcherService(DispatcherService dispatcherService) {
         WebSocketServer.dispatcherService = dispatcherService;
+    }
+    @Autowired
+    public void setHistoryService(HistoryService historyService) {
+        WebSocketServer.historyService = historyService;
     }
 
     private static final Gson gson = new Gson();
@@ -43,18 +49,26 @@ public class WebSocketServer {
         this.session = session;
         this.docId = docId;
         this.userId = userId;
+        boolean firstUserOfThisDoc = false;
+        if (clientManager.getItemsByDocId(docId) == null) {
+            firstUserOfThisDoc = true;
+        }
         if (clientManager.getItem(userId, docId) != null) {
             clientManager.clearClient(userId, docId);
         } else {
             addOnlineCount();
         }
         clientManager.newClient(userId, docId, this);
+        clientManager.getItem(userId, docId).setNew(firstUserOfThisDoc);
     }
 
     @OnClose
     public void onClose() {
         if (clientManager.getItem(userId, docId) != null) {
             clientManager.clearClient(userId, docId);
+            if (clientManager.getItemsByDocId(docId) == null) {
+                historyService.persist(docId);
+            }
             subOnlineCount();
         }
     }
