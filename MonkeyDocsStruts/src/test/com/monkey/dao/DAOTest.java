@@ -1,10 +1,12 @@
 package com.monkey.dao;
 
 import com.monkey.entity.*;
+import com.monkey.mvc.DocumentController;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -87,5 +89,16 @@ public class DAOTest {
     @Test
     public void testCheckpointDAO() {
 
+    }
+    @Autowired
+    private DocumentController documentController;
+    @Test
+    public void testDocumentController() {
+        DocumentController.CreateParam param = new DocumentController.CreateParam();
+        param.mdName = "hhh";
+        param.userId = 9;
+        Meta meta = documentController.createDoc(param);
+        assert metaDAO.findOne(meta.getId()) != null;
+        System.out.println(meta);
     }
 } 

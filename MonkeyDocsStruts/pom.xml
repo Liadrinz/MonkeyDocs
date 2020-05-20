@@ -7,7 +7,7 @@
     <groupId>com.monkey</groupId>
     <artifactId>MonkeyDocsStruts</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>MonkeyDocsStruts Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
