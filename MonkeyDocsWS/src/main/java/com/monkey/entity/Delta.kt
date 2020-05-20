@@ -28,11 +28,11 @@ open class Delta : BaseEntity() {
     @get:OneToMany(mappedBy = "refDelta")
     var refCheckpoints: Set<Checkpoint>? = null
 
-    @get:ManyToOne(fetch = FetchType.EAGER)
+    @get:ManyToOne(fetch = FetchType.LAZY)
     @get:JoinColumn(name = "docid", referencedColumnName = "id")
     var refMeta: Meta? = null
 
-    @get:ManyToOne(fetch = FetchType.EAGER)
+    @get:ManyToOne(fetch = FetchType.LAZY)
     @get:JoinColumn(name = "userid", referencedColumnName = "id")
     var refUser: User? = null
 

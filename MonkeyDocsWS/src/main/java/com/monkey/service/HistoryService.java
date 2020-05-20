@@ -6,7 +6,9 @@ import com.monkey.dao.HistoryDAO;
 import com.monkey.dao.MetaDAO;
 import com.monkey.dao.UserDAO;
 import com.monkey.entity.Delta;
+import com.monkey.entity.Meta;
 import com.monkey.entity.Packet;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,10 +27,15 @@ public class HistoryService {
     @Autowired
     private DeltaDAO deltaDAO;
     @Autowired
+    private DeltaService deltaService;
+    @Autowired
     private MetaDAO metaDAO;
     public synchronized void load(int docId) {
         this.unload(docId);
-        Set<Delta> deltas = metaDAO.findOne(docId).getRefDeltas();
+        Meta meta = metaDAO.findOne(docId);
+        Delta example = new Delta();
+        example.setDocid(meta.getId());
+        List<Delta> deltas = deltaDAO.findByExample(example);
         assert deltas != null;
         for (Delta delta : deltas) {
             Packet packet = new Packet();
@@ -44,7 +51,10 @@ public class HistoryService {
         historyDAO.del(docId);
     }
     public synchronized void persist(int docId) {
-        deltaDAO.deleteAll(metaDAO.findOne(docId).getRefDeltas());
+        Meta meta = metaDAO.findOne(docId);
+        Delta example = new Delta();
+        example.setDocid(meta.getId());
+        deltaService.deleteAll(deltaDAO.findByExample(example));
         List<String> deltas = historyDAO.list(docId);
         List<Delta> resultsToSave = new ArrayList<>();
         for (String delta : deltas) {
@@ -55,6 +65,6 @@ public class HistoryService {
             deltaEntity.setRefUser(userDAO.findOne(packet.getUserId()));
             resultsToSave.add(deltaEntity);
         }
-        deltaDAO.createAll(resultsToSave);
+        deltaService.createAll(resultsToSave);
     }
 }

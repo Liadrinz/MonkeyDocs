@@ -35,6 +35,7 @@ public class HandlerService {
     public Packet handle(Packet packet) {
         if (clientManager.getItem(packet.getUserId(), packet.getDocId()).isNew()) {
             historyService.load(packet.getDocId());
+            clientManager.getItem(packet.getUserId(), packet.getDocId()).setNew(false);
         }
         switch (packet.getKind()) {
             case "delta":

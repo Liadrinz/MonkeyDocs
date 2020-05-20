@@ -9,5 +9,7 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">monkeydoc123</property>
         <property name="format_sql">true</property>
+        <property name="connection.autocommit">true</property>
+        <property name="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</property>
     </session-factory>
 </hibernate-configuration>

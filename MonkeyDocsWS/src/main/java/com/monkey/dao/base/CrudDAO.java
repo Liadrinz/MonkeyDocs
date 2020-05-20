@@ -1,10 +1,7 @@
 package com.monkey.dao.base;
 
 import com.monkey.entity.base.BaseEntity;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,38 +21,54 @@ public abstract class CrudDAO<K extends Serializable, V extends BaseEntity> {
     }
     // Create
     public V create(V entity) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
+//        Transaction tx = session.beginTransaction();
         session.save(entity);
-        return findOne((K)session.save(entity));
+        V result = findOne((K)session.save(entity));
+//        tx.commit();
+        return result;
     }
     // Read
     public List<V> findAll() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
+//        Transaction tx = session.beginTransaction();
         Criteria criteria = session.createCriteria(clazz);
-        return criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+        List<V> result = criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+//        tx.commit();
+        return result;
     }
     public V findOne(K id) {
-        Session session = sessionFactory.openSession();
-        return (V)session.get(clazz, id);
+        Session session = sessionFactory.getCurrentSession();
+//        Transaction tx = session.beginTransaction();
+        V result = (V)session.get(clazz, id);
+//        tx.commit();
+        return result;
     }
     public List<V> findByExample(V entity) {
+        Session session = sessionFactory.getCurrentSession();
+//        Transaction tx = session.beginTransaction();
         Example example = Example.create(entity).ignoreCase();
-        Session session = sessionFactory.openSession();
-        return session.createCriteria(entity.getClass()).add(example).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+        List<V> result = session.createCriteria(entity.getClass()).add(example).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+//        tx.commit();
+        return result;
     }
     // Update
     public V updateOne(K id, V model) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
+//        Transaction tx = session.beginTransaction();
         V entity = findOne(id);
         entity.updateFrom(model);
         session.update(entity);
+//        tx.commit();
         return entity;
     }
     // Delete
     public V deleteOne(K id) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
+//        Transaction tx = session.beginTransaction();
         Object entity = findOne(id);
         session.delete(entity);
+//        tx.commit();
         return (V)entity;
     }
 }

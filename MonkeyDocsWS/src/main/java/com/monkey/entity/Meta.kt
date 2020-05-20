@@ -30,15 +30,15 @@ open class Meta : BaseEntity() {
     var updateTime: Date? = null
 
     @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refMeta")
+    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.LAZY)
     var refCheckpoints: Set<Checkpoint>? = null
 
     @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refMeta")
+    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.LAZY)
     var refDeltas: Set<Delta>? = null
 
     @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refMeta")
+    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.LAZY)
     var refMetaToUsers: Set<MetaToUser>? = null
 
     override fun toString(): String =
