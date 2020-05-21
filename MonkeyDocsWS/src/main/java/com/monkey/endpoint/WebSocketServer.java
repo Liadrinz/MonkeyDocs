@@ -1,7 +1,7 @@
 package com.monkey.endpoint;
 
-import com.google.gson.Gson;
-import com.monkey.entity.Packet;
+import com.alibaba.fastjson.JSON;
+import com.monkey.entity.Message;
 import com.monkey.manager.ClientManager;
 import com.monkey.service.DispatcherService;
 import com.monkey.service.HandlerService;
@@ -37,8 +37,6 @@ public class WebSocketServer {
         WebSocketServer.historyService = historyService;
     }
 
-    private static final Gson gson = new Gson();
-
     public Session session;
     private Integer docId;
     private Integer userId;
@@ -68,6 +66,8 @@ public class WebSocketServer {
             clientManager.clearClient(userId, docId);
             if (clientManager.getItemsByDocId(docId) == null) {
                 historyService.persist(docId);
+                historyService.unload(docId);
+                clientManager.setDocStatus(docId, ClientManager.DocStatus.PERSIST);
             }
             subOnlineCount();
         }
@@ -76,13 +76,21 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(String message, Session session) {
         try {
-            Packet packet = gson.fromJson(message, Packet.class);
-            Packet response = handlerService.handle(packet);
-            if (response == null) return;
-            if (response.getKind().equals("mod")) {
-                dispatcherService.broadcast(response, docId);
-            } else if (response.getKind().equals("res")) {
-                dispatcherService.respond(response, session);
+            Message msg = JSON.parseObject(message, Message.class);
+            if (msg.type.equals("delta")) {
+                msg.payload = handlerService.handleDelta(msg.payload);
+                msg.type = "mod";
+                dispatcherService.broadcast(msg, docId);
+            } else if (msg.type.equals("req")) {
+                msg.optional = handlerService.handleReq(msg.payload.getDocid());
+                msg.payload = null;
+                msg.type = "res";
+                dispatcherService.respond(msg, session);
+            } else if (msg.type.equals("save")) {
+                handlerService.handleSave(msg.payload.getDocid());
+                msg.type = "ack";
+                msg.payload = null;
+                dispatcherService.respond(msg, session);
             }
         } catch (Exception e) {
             e.printStackTrace();

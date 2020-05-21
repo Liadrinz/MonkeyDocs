@@ -11,7 +11,8 @@ public class DeltaService {
     private DeltaDAO deltaDAO;
     public void createAll(Iterable<Delta> deltas) {
         for (Delta delta : deltas) {
-            deltaDAO.create(delta);
+            if (delta.getId() == null)
+                deltaDAO.create(delta);
         }
     }
     public void deleteAll(Iterable<Delta> deltas) {

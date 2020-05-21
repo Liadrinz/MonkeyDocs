@@ -1,5 +1,6 @@
 package com.monkey.entity
 
+import com.alibaba.fastjson.annotation.JSONField
 import com.monkey.entity.base.BaseEntity
 import javax.persistence.*
 
@@ -22,10 +23,12 @@ open class MetaToUser : BaseEntity() {
     @get:Column(name = "role", nullable = false)
     var role: String? = null
 
+    @get:JSONField(serialize = false)
     @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "mdId", referencedColumnName = "id")
     var refMeta: Meta? = null
 
+    @get:JSONField(serialize = false)
     @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "userId", referencedColumnName = "id")
     var refUser: User? = null

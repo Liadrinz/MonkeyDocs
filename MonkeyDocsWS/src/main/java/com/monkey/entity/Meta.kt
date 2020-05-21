@@ -1,5 +1,6 @@
 package com.monkey.entity
 
+import com.alibaba.fastjson.annotation.JSONField
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
 import java.util.*
@@ -29,16 +30,16 @@ open class Meta : BaseEntity() {
     @get:Column(name = "updateTime", nullable = false)
     var updateTime: Date? = null
 
-    @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.LAZY)
+    @get:JSONField(serialize = false)
+    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
     var refCheckpoints: Set<Checkpoint>? = null
 
-    @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.LAZY)
+    @get:JSONField(serialize = false)
+    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
     var refDeltas: Set<Delta>? = null
 
-    @get:JsonBackReference
-    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.LAZY)
+    @get:JSONField(serialize = false)
+    @get:OneToMany(mappedBy = "refMeta", fetch = FetchType.EAGER)
     var refMetaToUsers: Set<MetaToUser>? = null
 
     override fun toString(): String =

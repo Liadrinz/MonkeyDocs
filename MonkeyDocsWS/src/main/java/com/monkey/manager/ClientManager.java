@@ -3,12 +3,17 @@ package com.monkey.manager;
 import com.monkey.endpoint.WebSocketServer;
 import org.springframework.stereotype.Component;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class ClientManager {
+    public enum DocStatus {
+        PERSIST, LOADING, READY
+    }
+    private final ConcurrentHashMap<Integer, DocStatus> docStatus = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, List<Item>> docItemMap = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, List<Item>> userItemMap = new ConcurrentHashMap<>();
     public class Item {
@@ -69,5 +74,13 @@ public class ClientManager {
         userItems.retainAll(docItems);
         if (userItems.size() == 0) return null;
         return userItems.get(0);
+    }
+    public synchronized DocStatus getDocStatus(int docId) {
+        if (!docStatus.containsKey(docId)) return DocStatus.PERSIST;
+        return docStatus.get(docId);
+    }
+    public synchronized void setDocStatus(int docId, DocStatus value) {
+        if (value == DocStatus.PERSIST) docStatus.remove(docId);
+        else docStatus.put(docId, value);
     }
 }

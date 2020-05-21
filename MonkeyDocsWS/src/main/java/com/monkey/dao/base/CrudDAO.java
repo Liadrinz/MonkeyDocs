@@ -46,10 +46,10 @@ public abstract class CrudDAO<K extends Serializable, V extends BaseEntity> {
     }
     public List<V> findByExample(V entity) {
         Session session = sessionFactory.getCurrentSession();
-//        Transaction tx = session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         Example example = Example.create(entity).ignoreCase();
         List<V> result = session.createCriteria(entity.getClass()).add(example).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-//        tx.commit();
+        tx.commit();
         return result;
     }
     // Update

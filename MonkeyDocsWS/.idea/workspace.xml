@@ -20,22 +20,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3174d03c-7e22-4847-9760-41f104670d7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/DeltaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MonkeyDocsStruts/src/test/com/monkey/dao/DAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsStruts/src/test/com/monkey/dao/DAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/AppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/config/HibernateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/config/DBConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/DeltaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/DeltaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/HistoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/HistoryDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/base/CrudDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/base/CrudDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/endpoint/WebSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/endpoint/WebSocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Checkpoint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Checkpoint.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Delta.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Delta.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Meta.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Meta.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/MetaToUser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/MetaToUser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Packet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/factory/JedisFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/factory/JedisFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/manager/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/manager/ClientManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/DeltaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/DeltaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/DispatcherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/DispatcherService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/HandlerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/HandlerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/service/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/service/HistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/redis.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/redis.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/monkey/dao/DeltaDAOTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../collaborate/client.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../collaborate/css/quill.snow.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../collaborate/js/quill.js" beforeDir="false" />
@@ -188,7 +199,8 @@
       <workItem from="1589694493994" duration="1251000" />
       <workItem from="1589789709233" duration="29000" />
       <workItem from="1589903071879" duration="1391000" />
-      <workItem from="1589967874369" duration="24890000" />
+      <workItem from="1589967874369" duration="25050000" />
+      <workItem from="1590033173293" duration="20676000" />
     </task>
     <servers />
   </component>
@@ -219,10 +231,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589977312745" />
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1589529300341">
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1590037379205">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1589529300341" />
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1590037379205" />
     <state x="499" y="187" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1589977403246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -244,77 +256,94 @@
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589554139834" />
     <state x="728" y="238" key="FileChooserDialogImpl/65.24.1855.1056@65.24.1855.1056" timestamp="1589694517062" />
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1589998009841">
+    <state width="1493" height="310" key="GridCell.Tab.0.bottom" timestamp="1590052574650">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589998009841" />
-    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1589998009841">
+    <state width="1493" height="310" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590052574650" />
+    <state width="1493" height="310" key="GridCell.Tab.0.center" timestamp="1590052574650">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589998009841" />
-    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1589998009841">
+    <state width="1493" height="310" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590052574650" />
+    <state width="1493" height="310" key="GridCell.Tab.0.left" timestamp="1590052574650">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589998009841" />
-    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1589998009841">
+    <state width="1493" height="310" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590052574650" />
+    <state width="1493" height="310" key="GridCell.Tab.0.right" timestamp="1590052574650">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589998009841" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1589998004913">
+    <state width="1493" height="310" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590052574650" />
+    <state width="1493" height="310" key="GridCell.Tab.1.bottom" timestamp="1590052574651">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589998004913" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1589998004913">
+    <state width="1493" height="310" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590052574651" />
+    <state width="1493" height="310" key="GridCell.Tab.1.center" timestamp="1590052574650">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1589998004913" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1589998004913">
+    <state width="1493" height="310" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590052574650" />
+    <state width="1493" height="310" key="GridCell.Tab.1.left" timestamp="1590052574650">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1589998004913" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1589998004913">
+    <state width="1493" height="310" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590052574650" />
+    <state width="1493" height="310" key="GridCell.Tab.1.right" timestamp="1590052574650">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1589998004913" />
-    <state width="1493" height="261" key="GridCell.Tab.2.bottom" timestamp="1589998010332">
+    <state width="1493" height="310" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590052574650" />
+    <state width="1493" height="261" key="GridCell.Tab.2.bottom" timestamp="1590047518694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589998010332" />
-    <state width="1493" height="261" key="GridCell.Tab.2.center" timestamp="1589998010332">
+    <state width="1493" height="261" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590047518694" />
+    <state width="1493" height="261" key="GridCell.Tab.2.center" timestamp="1590047518694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1589998010332" />
-    <state width="1493" height="261" key="GridCell.Tab.2.left" timestamp="1589998010332">
+    <state width="1493" height="261" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1590047518694" />
+    <state width="1493" height="261" key="GridCell.Tab.2.left" timestamp="1590047518694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1589998010332" />
-    <state width="1493" height="261" key="GridCell.Tab.2.right" timestamp="1589998010332">
+    <state width="1493" height="261" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1590047518694" />
+    <state width="1493" height="261" key="GridCell.Tab.2.right" timestamp="1590047518694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1589998010332" />
-    <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1589979791010">
+    <state width="1493" height="261" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1590047518694" />
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1590042534822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1589979791010" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1589556584317">
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1590042534822" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1590051233290">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589556584317" />
-    <state width="498" height="488" key="SwitcherDM" timestamp="1589995076864">
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1590051233290" />
+    <state width="498" height="488" key="SwitcherDM" timestamp="1590038122027">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="498" height="488" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1589995076864" />
+    <state width="498" height="488" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1590038122027" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1589984053409">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1589984053409" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/monkey/endpoint/WebSocketServer.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/monkey/service/HandlerService.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="SpringBootApplicationConfigurationType">
         <watch expression="this.findOne(22)" language="JAVA" />
         <watch expression="this.findAll()" language="JAVA" />
         <watch expression="deltaDAO.findAll()" language="JAVA" />
+        <watch expression="delta" language="JAVA" />
+        <watch expression="gson.toJson(delta)" language="JAVA" />
+        <watch expression="clientManager.getDocStatus(docId)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

@@ -22,7 +22,7 @@ public class JedisFactory {
     static {
         try {
             redisProperties = new Properties();
-            redisProperties.load(new InputStreamReader(Object.class.getResourceAsStream("/redis.properties"), StandardCharsets.UTF_8));
+            redisProperties.load(new InputStreamReader(JedisFactory.class.getClassLoader().getResourceAsStream("redis.properties"), StandardCharsets.UTF_8));
             JedisPoolConfig config = new JedisPoolConfig();
             config.setMaxTotal(Integer.parseInt(redisProperties.getProperty("max_active")));
             config.setMaxIdle(Integer.parseInt(redisProperties.getProperty("max_idle")));

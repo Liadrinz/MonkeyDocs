@@ -1,6 +1,8 @@
 package com.monkey.entity
 
+import com.alibaba.fastjson.annotation.JSONField
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.monkey.entity.base.BaseEntity
 import javax.persistence.*
 
@@ -28,11 +30,11 @@ open class User : BaseEntity() {
     @get:Column(name = "password", nullable = false)
     var password: String? = null
 
-    @get:JsonBackReference
+    @get:JSONField(serialize = false)
     @get:OneToMany(mappedBy = "refUser")
     var refDeltas: Set<Delta>? = null
 
-    @get:JsonBackReference
+    @get:JSONField(serialize = false)
     @get:OneToMany(mappedBy = "refUser")
     var refMetaToUsers: Set<MetaToUser>? = null
 

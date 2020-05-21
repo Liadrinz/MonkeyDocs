@@ -2,6 +2,7 @@ package com.monkey.entity;
 
 import java.util.Date;
 
+@Deprecated
 public class Packet {
     private String kind;
     private Date time;

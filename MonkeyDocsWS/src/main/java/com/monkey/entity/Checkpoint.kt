@@ -1,5 +1,7 @@
 package com.monkey.entity
 
+import com.alibaba.fastjson.annotation.JSONField
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.monkey.entity.base.BaseEntity
 import javax.persistence.*
 
@@ -19,10 +21,12 @@ open class Checkpoint : BaseEntity() {
     @get:Column(name = "lastDelta", nullable = false, insertable = false, updatable = false)
     var lastDelta: Int? = null
 
+    @get:JSONField(serialize = false)
     @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "docid", referencedColumnName = "id")
     var refMeta: Meta? = null
 
+    @get:JSONField(serialize = false)
     @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "lastDelta", referencedColumnName = "id")
     var refDelta: Delta? = null
