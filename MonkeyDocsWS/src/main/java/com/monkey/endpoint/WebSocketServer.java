@@ -47,9 +47,12 @@ public class WebSocketServer {
         this.session = session;
         this.docId = docId;
         this.userId = userId;
-        boolean firstUserOfThisDoc = false;
         if (clientManager.getItemsByDocId(docId) == null) {
-            firstUserOfThisDoc = true;
+            historyService.load(docId);
+        }
+        if (!clientManager.isMigrating(docId)) {
+            clientManager.createMigration(docId);
+            clientManager.startMigration(docId);
         }
         if (clientManager.getItem(userId, docId) != null) {
             clientManager.clearClient(userId, docId);
@@ -57,7 +60,6 @@ public class WebSocketServer {
             addOnlineCount();
         }
         clientManager.newClient(userId, docId, this);
-        clientManager.getItem(userId, docId).setNew(firstUserOfThisDoc);
     }
 
     @OnClose
@@ -65,9 +67,9 @@ public class WebSocketServer {
         if (clientManager.getItem(userId, docId) != null) {
             clientManager.clearClient(userId, docId);
             if (clientManager.getItemsByDocId(docId) == null) {
-                historyService.persist(docId);
-                historyService.unload(docId);
-                clientManager.setDocStatus(docId, ClientManager.DocStatus.PERSIST);
+                clientManager.stopMigration(docId, userId);
+            } else {
+                clientManager.clearClient(userId, docId);
             }
             subOnlineCount();
         }
