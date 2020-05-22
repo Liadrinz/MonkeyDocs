@@ -1,10 +1,11 @@
 package com.monkey.endpoint;
 
-import com.google.gson.Gson;
-import com.monkey.entity.Packet;
+import com.alibaba.fastjson.JSON;
+import com.monkey.entity.Message;
 import com.monkey.manager.ClientManager;
 import com.monkey.service.DispatcherService;
 import com.monkey.service.HandlerService;
+import com.monkey.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ public class WebSocketServer {
     private static ClientManager clientManager;
     private static HandlerService handlerService;
     private static DispatcherService dispatcherService;
+    private static HistoryService historyService;
     @Autowired
     public void setClientManager(ClientManager clientManager) {
         WebSocketServer.clientManager = clientManager;
@@ -30,8 +32,10 @@ public class WebSocketServer {
     public void setDispatcherService(DispatcherService dispatcherService) {
         WebSocketServer.dispatcherService = dispatcherService;
     }
-
-    private static final Gson gson = new Gson();
+    @Autowired
+    public void setHistoryService(HistoryService historyService) {
+        WebSocketServer.historyService = historyService;
+    }
 
     public Session session;
     private Integer docId;
@@ -43,6 +47,13 @@ public class WebSocketServer {
         this.session = session;
         this.docId = docId;
         this.userId = userId;
+        if (clientManager.getItemsByDocId(docId) == null) {
+            historyService.load(docId);
+        }
+        if (!clientManager.isMigrating(docId)) {
+            clientManager.createMigration(docId);
+            clientManager.startMigration(docId);
+        }
         if (clientManager.getItem(userId, docId) != null) {
             clientManager.clearClient(userId, docId);
         } else {
@@ -55,6 +66,11 @@ public class WebSocketServer {
     public void onClose() {
         if (clientManager.getItem(userId, docId) != null) {
             clientManager.clearClient(userId, docId);
+            if (clientManager.getItemsByDocId(docId) == null) {
+                clientManager.stopMigration(docId);
+            } else {
+                clientManager.clearClient(userId, docId);
+            }
             subOnlineCount();
         }
     }
@@ -62,13 +78,21 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(String message, Session session) {
         try {
-            Packet packet = gson.fromJson(message, Packet.class);
-            Packet response = handlerService.handle(packet);
-            if (response == null) return;
-            if (response.getKind().equals("mod")) {
-                dispatcherService.broadcast(response, docId);
-            } else if (response.getKind().equals("res")) {
-                dispatcherService.respond(response, session);
+            Message msg = JSON.parseObject(message, Message.class);
+            if (msg.type.equals("delta")) {
+                msg.payload = handlerService.handleDelta(msg.payload);
+                msg.type = "mod";
+                dispatcherService.broadcast(msg, docId);
+            } else if (msg.type.equals("req")) {
+                msg.optional = handlerService.handleReq(msg.payload.getDocid());
+                msg.payload = null;
+                msg.type = "res";
+                dispatcherService.respond(msg, session);
+            } else if (msg.type.equals("save")) {
+                handlerService.handleSave(msg.payload.getDocid());
+                msg.type = "ack";
+                msg.payload = null;
+                dispatcherService.respond(msg, session);
             }
         } catch (Exception e) {
             e.printStackTrace();
