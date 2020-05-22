@@ -1,7 +1,7 @@
 package com.monkey.service;
 
-import com.google.gson.Gson;
-import com.monkey.entity.Packet;
+import com.alibaba.fastjson.JSON;
+import com.monkey.entity.Message;
 import com.monkey.manager.ClientManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,10 +13,9 @@ import java.io.IOException;
 public class DispatcherService {
     @Autowired
     private ClientManager clientManager;
-    private static final Gson gson = new Gson();
 
-    public void broadcast(Packet packet, Integer docId) {
-        String content = gson.toJson(packet);
+    public void broadcast(Message msg, Integer docId) {
+        String content = JSON.toJSONString(msg);
         try {
             for (ClientManager.Item item : clientManager.getItemsByDocId(docId)) {
                 item.getServer().session.getBasicRemote().sendText(content);
@@ -26,9 +25,9 @@ public class DispatcherService {
         }
     }
 
-    public void respond(Packet packet, Session session) {
+    public void respond(Message msg, Session session) {
         try {
-            String content = gson.toJson(packet);
+            String content = JSON.toJSONString(msg);
             session.getBasicRemote().sendText(content);
         } catch (IOException e) {
             e.printStackTrace();;

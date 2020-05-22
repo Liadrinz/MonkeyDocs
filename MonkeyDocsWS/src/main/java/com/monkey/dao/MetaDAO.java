@@ -2,11 +2,9 @@ package com.monkey.dao;
 
 import com.monkey.dao.base.CrudDAO;
 import com.monkey.entity.Meta;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.Date;
 
 @Repository("metaDAO")
 @Transactional

@@ -33,10 +33,12 @@
     quill.on('text-change', (delta, oldDelta, source) => {
         if (source === 'user') {
             var dataToSend = {
-                kind: 'delta',
-                userId: vue.specifier.userId,
-                docId: vue.specifier.docId,
-                payload: JSON.stringify(delta)
+                type: 'delta',
+                payload: {
+                    userid: vue.specifier.userid,
+                    docid: vue.specifier.docid,
+                    content: JSON.stringify(delta)
+                }
             }
             if (ws !== null && ws.readyState != ws.CLOSED)
                 ws.send(JSON.stringify(dataToSend));
@@ -49,23 +51,23 @@
                 schema: {
                     host: '主机名',
                     port: '端口号',
-                    userId: '用户ID',
-                    docId: '文档ID'
+                    userid: '用户ID',
+                    docid: '文档ID'
                 },
                 specifier: {
-                    host: '',
-                    port: '',
-                    userId: '',
-                    docId: ''
+                    host: 'www.liadrinz.cn',
+                    port: '8080',
+                    userid: '',
+                    docid: ''
                 },
                 connected: false,
                 failed: false
             }
         },
         methods: {
-            connect: function () {
+            connect: function() {
                 try {
-                    ws = new WebSocket(`ws://${this.specifier.host}:${this.specifier.port}/collaborate/${this.specifier.docId}/${this.specifier.userId}`);
+                    ws = new WebSocket(`ws://${this.specifier.host}:${this.specifier.port}/collaborate/${this.specifier.docid}/${this.specifier.userid}`);
                 } catch (e) {
                     this.$message({
                         message: '请填写主机名和端口号',
@@ -79,7 +81,13 @@
                         message: '连接成功',
                         type: 'success'
                     })
-                    ws.send(JSON.stringify({ kind: 'req', docId: vue.specifier.docId, userId: vue.specifier.userId }));
+                    ws.send(JSON.stringify({
+                        type: 'req',
+                        payload: {
+                            docid: vue.specifier.docid,
+                            userid: vue.specifier.userid
+                        }
+                    }));
                 }
                 ws.onclose = () => {
                     this.connected = false;
@@ -90,20 +98,20 @@
                 }
                 ws.onmessage = (resp) => {
                     var packet = JSON.parse(resp.data);
-                    if (packet.kind === 'res') {
+                    if (packet.type === 'res') {
                         quill.setText('', source = 'server');
-                        for (let subPacket of JSON.parse(packet.payload)) {
-                            quill.updateContents(JSON.parse(subPacket.payload), source = 'server');
+                        for (let delta of JSON.parse(packet.optional)) {
+                            quill.updateContents(JSON.parse(delta.content).ops, source = 'server');
                         }
-                    } else if (packet.kind === 'mod') {
-                        if (packet.userId != vue.specifier.userId) {
-                            var delta = JSON.parse(packet.payload);
+                    } else if (packet.type === 'mod') {
+                        if (packet.payload.userid != vue.specifier.userid) {
+                            var delta = JSON.parse(packet.payload.content);
                             quill.updateContents(delta, source = 'server');
                         }
                     }
                 }
             },
-            disconnect: function () {
+            disconnect: function() {
                 ws.close();
             }
         }

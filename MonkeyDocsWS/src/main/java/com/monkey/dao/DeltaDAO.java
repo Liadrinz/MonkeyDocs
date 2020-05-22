@@ -1,22 +1,29 @@
 package com.monkey.dao;
 
+import com.monkey.dao.base.CrudDAO;
+import com.monkey.entity.Delta;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import javax.transaction.Transactional;
+import java.util.List;
 
-@Repository
-public class DeltaDAO {
-    private static final URL url;
-    static {
-        URL url1;
-        try {
-            url1 = new URL("http://localhost:8089/MonkeDocs/rest/delta");
-        } catch (MalformedURLException e) {
-            url1 = null;
-            e.printStackTrace();
-        }
-        url = url1;
+@Repository("deltaDAO")
+@Transactional
+public class DeltaDAO extends CrudDAO<Integer, Delta> {
+    public DeltaDAO() {
+        super(Delta.class);
+    }
+
+    @Autowired
+    private UserDAO userDAO;
+    @Autowired
+    private MetaDAO metaDAO;
+
+    @Override
+    public Delta create(Delta entity) {
+        entity.setRefUser(userDAO.findOne(entity.getUserid()));
+        entity.setRefMeta(metaDAO.findOne(entity.getDocid()));
+        return super.create(entity);
     }
 }
