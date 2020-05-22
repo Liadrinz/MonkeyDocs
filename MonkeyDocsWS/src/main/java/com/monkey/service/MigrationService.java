@@ -23,7 +23,6 @@ public class MigrationService {
     }
     public class MigrationThread extends Thread {
         private final int docId;
-        private int userId = 0;
         private boolean running = true;
         private final Queue<Delta> buffer = new ConcurrentLinkedQueue<>();
         public MigrationThread(int docId) {
@@ -34,10 +33,6 @@ public class MigrationService {
         }
         public void readyToClose() {
             running = false;
-        }
-        public void readyToClose(int userId) {
-            running = false;
-            this.userId = userId;
         }
         @Override
         public void run() {

@@ -34,10 +34,7 @@ public class HistoryService {
         }
         @Override
         public void run() {
-        }
-    }
-    public void load(int docId) {
-        if (!clientManager.getDocLoaded(docId)) {
+            clientManager.setDocStatus(docId, ClientManager.DocStatus.LOADING);
             List<String> buffer = historyDAO.list(docId);
             HistoryService.this.unload(docId);
             Meta meta = metaDAO.findOne(docId);
@@ -48,13 +45,16 @@ public class HistoryService {
             historyDAO.push(docId, deltas);
             historyDAO.pushes(docId, buffer);
             clientManager.setDocStatus(docId, ClientManager.DocStatus.READY);
-            clientManager.setDocLoaded(docId, true);
+        }
+    }
+    public void load(int docId) {
+        if (clientManager.getDocStatus(docId) == ClientManager.DocStatus.PERSIST) {
+            new Thread(new LoadHistory(docId)).start();
         }
     }
     public void unload(int docId) {
-        historyDAO.del(docId);
-        clientManager.setDocStatus(docId, ClientManager.DocStatus.PERSIST);
-        clientManager.setDocLoaded(docId, false);
+//        historyDAO.del(docId);
+//        clientManager.setDocStatus(docId, ClientManager.DocStatus.PERSIST);
     }
     @Deprecated
     public void persist(int docId) {

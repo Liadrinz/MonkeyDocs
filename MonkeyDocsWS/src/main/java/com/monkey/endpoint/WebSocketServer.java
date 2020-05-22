@@ -67,7 +67,7 @@ public class WebSocketServer {
         if (clientManager.getItem(userId, docId) != null) {
             clientManager.clearClient(userId, docId);
             if (clientManager.getItemsByDocId(docId) == null) {
-                clientManager.stopMigration(docId, userId);
+                clientManager.stopMigration(docId);
             } else {
                 clientManager.clearClient(userId, docId);
             }

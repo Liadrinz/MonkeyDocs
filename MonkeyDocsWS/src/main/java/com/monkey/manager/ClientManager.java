@@ -103,9 +103,6 @@ public class ClientManager {
     public void stopMigration(int docId) {
         docMigration.get(docId).readyToClose();
     }
-    public void stopMigration(int docId, int userId) {
-        docMigration.get(docId).readyToClose(userId);
-    }
     public boolean isMigrating(int docId) {
         return docMigration.containsKey(docId);
     }
