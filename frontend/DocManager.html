@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta charset='utf-8'>
     <title>DocManager</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
@@ -345,7 +346,7 @@
                                 <el-row class="main-col">
                                     <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
                                         v-for="(docitem,index) in doclist">
-                                        <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
+                                        <el-card class="docitem-card" :body-style="cardstyle" shadow="hover" @click.native="goEditpage(docitem.id)">
 
                                             <el-col :span="4" style="height:auto">
                                                 <el-image class="docimg">
@@ -365,7 +366,9 @@
                                                     @command="docmanage">
                                                     <i class="el-icon-more el-dropdown-link"></i>
                                                     <el-dropdown-menu slot="dropdown">
-                                                        <el-dropdown-item @click.native="dialogrenameVisible = true;renameDialogdata.docid=doclist[index].id">重命名</el-dropdown-item>
+                                                        <el-dropdown-item
+                                                            @click.native="dialogrenameVisible = true;renameDialogdata.docid=doclist[index].id">
+                                                            重命名</el-dropdown-item>
                                                         <el-dropdown-item @click.native="openMemberList(index)">权限管理
                                                         </el-dropdown-item>
                                                         <el-dropdown-item>导出</el-dropdown-item>
@@ -556,9 +559,9 @@
 
         </el-dialog>
         <el-dialog title="文档重命名" :visible.sync="dialogrenameVisible" width="30%">
-           
-                
-            <el-input v-model="renameDialogdata.newDocname" placeholder="请输入新的用户名" autocomplete="off"></el-input>
+
+
+            <el-input v-model="renameDialogdata.newDocname" placeholder="请输入新的文档名" autocomplete="off"></el-input>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="reNamedoc">取 消</el-button>
                 <el-button type="primary" @click="reNamedoc">确 定</el-button>
@@ -573,6 +576,7 @@
     var app = new Vue({
         el: '#managerpage_root',
         data: {
+            rooturl: 'http://monkeydoc.liadrinz.cn/',
             message: 'Hello Vue!',
             visible: false,
             docsearchtext: '',
@@ -610,16 +614,29 @@
             ifaddmember: false,
             searchmember: [],
             searchinput: '',
-            dialogrenameVisible:false,
-            renameDialogdata:{
-                docid:'',
-                newDocname:''
+            dialogrenameVisible: false,
+            renameDialogdata: {
+                docid: '',
+                newDocname: ''
             }
         },
         created: function () {
-            axios.get('http://www.liadrinz.cn:8080/MonkeyDocs/rest/meta.json?')
+            axios.get(this.rooturl + 'rest/meta.json?')
                 .then(res => {
                     var meta = res.data
+                    for (var i = 0;i<meta.length-1;i++) {
+                        var key = i
+                        for (var j = Number(i + 1); j < meta.length; j++) {
+                            if (meta[j].updateTime >= meta[key].updateTime) {
+                                key = j
+                            }
+                        }
+                        if (key != i) {
+                            var x = meta[i]
+                            meta[i] = meta[key]
+                            meta[key] = x
+                        }
+                    }
                     for (var i in meta) {
                         if (!meta[i].recycled) {
                             var crtime = new Date(meta[i].createTime)
@@ -627,7 +644,7 @@
                             meta[i].createTime = crtime.toLocaleString()
                             meta[i].updateTime = uptime.toLocaleString()
                             this.doclist.push(meta[i])
-                        } else {
+                        } else if(meta[i].recycled) {
                             var crtime = new Date(meta[i].createTime)
                             var uptime = new Date(meta[i].updateTime)
                             meta[i].createTime = crtime.toLocaleString()
@@ -636,6 +653,7 @@
                         }
 
                     }
+                    
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -678,9 +696,9 @@
             async searchMember(e) {
                 this.$forceUpdate()
                 this.searchmember = []
-                var res1 = await axios.get('http://www.liadrinz.cn:8080/MonkeyDocs/rest/user.json?tel=' + this.searchinput)
-                var res2 = await axios.get('http://www.liadrinz.cn:8080/MonkeyDocs/rest/user.json?email=' + this.searchinput)
-                var res3 = await axios.get('http://www.liadrinz.cn:8080/MonkeyDocs/rest/user.json?userName=' + this.searchinput)
+                var res1 = await axios.get(this.rooturl + 'rest/user.json?tel=' + this.searchinput)
+                var res2 = await axios.get(this.rooturl + 'rest/user.json?email=' + this.searchinput)
+                var res3 = await axios.get(this.rooturl + 'rest/user.json?userName=' + this.searchinput)
                 var userlist = [].concat(res1.data, res2.data, res3.data)
                 if (userlist.length != 0) {
                     for (var i in userlist) {
@@ -700,9 +718,9 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    axios.get('http://www.liadrinz.cn:8080/MonkeyDocs/rest/meta/' + this.doclist[index].id + '?recycled=true')
+                    axios.put(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=true')
                         .then(res => {
-                            console.log('http://www.liadrinz.cn:8080/MonkeyDocs/rest/meta/' + this.doclist[index].id + '?recycled=true');
+                            console.log(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=true');
                             location.reload();
                         })
                         .catch(function (error) {
@@ -721,9 +739,9 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    axios.get('http://www.liadrinz.cn:8080/MonkeyDocs/rest/meta/' + this.doclist[index].id + '?recycled=false')
+                    axios.put(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=false')
                         .then(res => {
-                            console.log('http://www.liadrinz.cn:8080/MonkeyDocs/rest/meta/' + this.doclist[index].id + '?recycled=false');
+                            console.log(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=false');
                             location.reload();
                         })
                         .catch(function (error) {
@@ -736,32 +754,35 @@
                     })
                 })
             },
-            reNamedoc(){
-                axios.get('http://www.liadrinz.cn:8080/MonkeyDocs/rest/meta/' + this.renameDialogdata.docid + '?mdName='+this.renameDialogdata.newDocname)
-                        .then(res => {
-                            console.log('http://www.liadrinz.cn:8080/MonkeyDocs/rest/meta/' + this.renameDialogdata.docid + '?mdName='+this.renameDialogdata.newDocname);
-                            location.reload();
-                        })
-                        .catch(function (error) {
-                            console.log(error)
-                        })
-                this.dialogrenameVisible=false
-            },
-            createDoc(){
-                var requestbody={
-                    "userId":9,
-                    "mdName":"新建文档"
-                }
-                axios.post('http://www.liadrinz.cn:8080/MonkeyDocs/mvc/document/createDoc',requestbody)
-                .then(res=>{
-                    console.log(res)
-                    location.reload();
-                })
-                .catch(
-                    function (error) {
+            reNamedoc() {
+                axios.put(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' +this.renameDialogdata.newDocname)
+                    .then(res => {
+                        console.log(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' + this.renameDialogdata.newDocname);
+                        location.reload();
+                    })
+                    .catch(function (error) {
                         console.log(error)
-                    }
-                )
+                    })
+                this.dialogrenameVisible = false
+            },
+            goEditpage(index){
+                window.location.href='DocEditPage.html?docid='+index;
+            },
+            createDoc() {
+                var requestbody = {
+                    "userId": 9,
+                    "mdName": "新建文档"
+                }
+                axios.post(this.rooturl + 'mvc/document/createDoc', requestbody)
+                    .then(res => {
+                        console.log(res)
+                        location.reload();
+                    })
+                    .catch(
+                        function (error) {
+                            console.log(error)
+                        }
+                    )
             }
         }
     })
