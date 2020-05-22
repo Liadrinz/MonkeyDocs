@@ -24,21 +24,22 @@ public class HandlerService {
 
     public Delta handleDelta(Delta delta) {
         historyDAO.push(delta);
-        clientManager.toMigration(delta.getDocid(), delta);
+//        clientManager.toMigration(delta.getDocid(), delta);
+        deltaDAO.create(delta);
         return delta;
     }
 
     public String handleReq(int docId) {
-        return historyDAO.range(docId);
-//        if (clientManager.getDocStatus(docId) == ClientManager.DocStatus.READY) {
-//            return historyDAO.range(docId);
-//        } else if (clientManager.getDocStatus(docId) == ClientManager.DocStatus.PERSIST) {
-//            clientManager.setDocStatus(docId, ClientManager.DocStatus.LOADING);
-//            historyService.load(docId);
-//        }
-//        Delta ex = new Delta();
-//        ex.setDocid(docId);
-//        return JSONArray.toJSONString(deltaDAO.findByExample(ex));
+//        return historyDAO.range(docId);
+        if (clientManager.getDocStatus(docId) == ClientManager.DocStatus.READY) {
+            return historyDAO.range(docId);
+        } else if (clientManager.getDocStatus(docId) == ClientManager.DocStatus.PERSIST) {
+            clientManager.setDocStatus(docId, ClientManager.DocStatus.LOADING);
+            historyService.load(docId);
+        }
+        Delta ex = new Delta();
+        ex.setDocid(docId);
+        return JSONArray.toJSONString(deltaDAO.findByExample(ex));
     }
     
     public void handleSave(int docId) {

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+@Deprecated
 @Component
 public class MigrationService {
     @Autowired
@@ -44,7 +45,7 @@ public class MigrationService {
                 }
             }
             // Unload data from redis when the migration thread finished
-            clientManager.unregisterMigration(docId);
+//            clientManager.unregisterMigration(docId);
             historyService.unload(docId);
         }
     }

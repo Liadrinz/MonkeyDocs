@@ -12,13 +12,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class ClientManager {
-    @Autowired
-    private MigrationService migrationService;
+//    @Autowired
+//    private MigrationService migrationService;
     public enum DocStatus {
         PERSIST, LOADING, READY
     }
     private final ConcurrentHashMap<Integer, Boolean> docLoaded = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<Integer, MigrationService.MigrationThread> docMigration = new ConcurrentHashMap<>();
+//    private final ConcurrentHashMap<Integer, MigrationService.MigrationThread> docMigration = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, DocStatus> docStatus = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, List<Item>> docItemMap = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, List<Item>> userItemMap = new ConcurrentHashMap<>();
@@ -90,25 +90,25 @@ public class ClientManager {
         if (value == DocStatus.PERSIST) docStatus.remove(docId);
         else docStatus.put(docId, value);
     }
-    public void createMigration(int docId) {
-        MigrationService.MigrationThread thread = migrationService.createThread(docId);
-        docMigration.put(docId, thread);
-    }
-    public void startMigration(int docId) {
-        docMigration.get(docId).start();
-    }
-    public void toMigration(int docId, Delta data) {
-        docMigration.get(docId).consume(data);
-    }
-    public void stopMigration(int docId) {
-        docMigration.get(docId).readyToClose();
-    }
-    public boolean isMigrating(int docId) {
-        return docMigration.containsKey(docId);
-    }
-    public void unregisterMigration(int docId) {
-        docMigration.remove(docId);
-    }
+//    public void createMigration(int docId) {
+//        MigrationService.MigrationThread thread = migrationService.createThread(docId);
+//        docMigration.put(docId, thread);
+//    }
+//    public void startMigration(int docId) {
+//        docMigration.get(docId).start();
+//    }
+//    public void toMigration(int docId, Delta data) {
+//        docMigration.get(docId).consume(data);
+//    }
+//    public void stopMigration(int docId) {
+//        docMigration.get(docId).readyToClose();
+//    }
+//    public boolean isMigrating(int docId) {
+//        return docMigration.containsKey(docId);
+//    }
+//    public void unregisterMigration(int docId) {
+//        docMigration.remove(docId);
+//    }
     public void setDocLoaded(int docId, boolean value) {
         docLoaded.put(docId, value);
     }

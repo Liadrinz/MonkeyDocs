@@ -23,8 +23,4 @@ public class DBConfig {
         ServiceRegistry bulidServiceRegistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
         return cfg.buildSessionFactory(bulidServiceRegistry);
     }
-    @Bean
-    public Jedis getJedis() {
-        return new JedisFactory().getJedis();
-    }
 }

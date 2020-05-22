@@ -50,10 +50,10 @@ public class WebSocketServer {
         if (clientManager.getItemsByDocId(docId) == null) {
             historyService.load(docId);
         }
-        if (!clientManager.isMigrating(docId)) {
-            clientManager.createMigration(docId);
-            clientManager.startMigration(docId);
-        }
+//        if (!clientManager.isMigrating(docId)) {
+//            clientManager.createMigration(docId);
+//            clientManager.startMigration(docId);
+//        }
         if (clientManager.getItem(userId, docId) != null) {
             clientManager.clearClient(userId, docId);
         } else {
@@ -67,9 +67,7 @@ public class WebSocketServer {
         if (clientManager.getItem(userId, docId) != null) {
             clientManager.clearClient(userId, docId);
             if (clientManager.getItemsByDocId(docId) == null) {
-                clientManager.stopMigration(docId);
-            } else {
-                clientManager.clearClient(userId, docId);
+//                clientManager.stopMigration(docId);
             }
             subOnlineCount();
         }
