@@ -24,27 +24,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/MigrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/com/monkey/dao/DAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/monkey/dao/DAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/endpoint/WebSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/endpoint/WebSocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/manager/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/manager/ClientManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/DeltaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/DeltaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/HandlerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/HandlerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/src/main/java/com/monkey/service/HistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborate/client.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborate/css/quill.snow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborate/js/quill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborateTest/client.html" beforeDir="false" afterPath="$PROJECT_DIR$/../collaborateTest/client.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborateTest/css/quill.snow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborateTest/js/quill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../quill.js" beforeDir="false" />
-    </list>
+    <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +74,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/target/MonkeyDocsStruts-1.0-SNAPSHOT" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.32837528" />
@@ -331,6 +311,7 @@
       <workItem from="1589951149049" duration="3932000" />
       <workItem from="1589956531880" duration="13620000" />
       <workItem from="1590033177107" duration="5938000" />
+      <workItem from="1590140119630" duration="23000" />
     </task>
     <servers />
   </component>
@@ -521,7 +502,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/monkey/action/base/StrutsRestController.java</url>
-          <line>51</line>
+          <line>52</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
