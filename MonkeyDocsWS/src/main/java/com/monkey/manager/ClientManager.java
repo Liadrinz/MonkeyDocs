@@ -2,23 +2,27 @@ package com.monkey.manager;
 
 import com.monkey.endpoint.WebSocketServer;
 import com.monkey.entity.Delta;
+import com.monkey.service.HandlerService;
 import com.monkey.service.MigrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Component
 public class ClientManager {
-//    @Autowired
-//    private MigrationService migrationService;
+    @Autowired
+    HandlerService handlerService;
     public enum DocStatus {
         PERSIST, LOADING, READY
     }
+    private final Queue<Delta> broadcastBuffer = new ConcurrentLinkedQueue<>();
+    private final ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, ConcurrentLinkedQueue<Delta>>> broadcastMap = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Boolean> docLoaded = new ConcurrentHashMap<>();
-//    private final ConcurrentHashMap<Integer, MigrationService.MigrationThread> docMigration = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, DocStatus> docStatus = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, List<Item>> docItemMap = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, List<Item>> userItemMap = new ConcurrentHashMap<>();
@@ -90,30 +94,8 @@ public class ClientManager {
         if (value == DocStatus.PERSIST) docStatus.remove(docId);
         else docStatus.put(docId, value);
     }
-//    public void createMigration(int docId) {
-//        MigrationService.MigrationThread thread = migrationService.createThread(docId);
-//        docMigration.put(docId, thread);
-//    }
-//    public void startMigration(int docId) {
-//        docMigration.get(docId).start();
-//    }
-//    public void toMigration(int docId, Delta data) {
-//        docMigration.get(docId).consume(data);
-//    }
-//    public void stopMigration(int docId) {
-//        docMigration.get(docId).readyToClose();
-//    }
-//    public boolean isMigrating(int docId) {
-//        return docMigration.containsKey(docId);
-//    }
-//    public void unregisterMigration(int docId) {
-//        docMigration.remove(docId);
-//    }
-    public void setDocLoaded(int docId, boolean value) {
-        docLoaded.put(docId, value);
-    }
-    public boolean getDocLoaded(int docId) {
-        if (!docLoaded.containsKey(docId)) return false;
-        return docLoaded.get(docId);
+
+    public Queue<Delta> getBroadcastBuffer() {
+        return broadcastBuffer;
     }
 }

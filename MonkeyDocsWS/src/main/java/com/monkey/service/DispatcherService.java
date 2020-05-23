@@ -16,12 +16,8 @@ public class DispatcherService {
 
     public void broadcast(Message msg, Integer docId) {
         String content = JSON.toJSONString(msg);
-        try {
-            for (ClientManager.Item item : clientManager.getItemsByDocId(docId)) {
-                item.getServer().session.getBasicRemote().sendText(content);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (ClientManager.Item item : clientManager.getItemsByDocId(docId)) {
+            item.getServer().sendMessage(content);
         }
     }
 

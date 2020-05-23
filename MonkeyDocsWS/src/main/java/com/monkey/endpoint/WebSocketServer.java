@@ -6,12 +6,15 @@ import com.monkey.manager.ClientManager;
 import com.monkey.service.DispatcherService;
 import com.monkey.service.HandlerService;
 import com.monkey.service.HistoryService;
+import com.sun.xml.internal.ws.api.message.Packet;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/collaborate/{docId}/{userId}")
 @Component
@@ -48,7 +51,7 @@ public class WebSocketServer {
         this.docId = docId;
         this.userId = userId;
         if (clientManager.getItemsByDocId(docId) == null) {
-            historyService.load(docId);
+//            historyService.load(docId);
         }
 //        if (!clientManager.isMigrating(docId)) {
 //            clientManager.createMigration(docId);
@@ -78,9 +81,7 @@ public class WebSocketServer {
         try {
             Message msg = JSON.parseObject(message, Message.class);
             if (msg.type.equals("delta")) {
-                msg.payload = handlerService.handleDelta(msg.payload);
-                msg.type = "mod";
-                dispatcherService.broadcast(msg, docId);
+                handlerService.handleDelta(msg.payload);
             } else if (msg.type.equals("req")) {
                 msg.optional = handlerService.handleReq(msg.payload.getDocid());
                 msg.payload = null;
@@ -91,9 +92,24 @@ public class WebSocketServer {
                 msg.type = "ack";
                 msg.payload = null;
                 dispatcherService.respond(msg, session);
+            } else if (msg.type.equals("ack")) {
+                handlerService.handleAck(msg.payload.getDocid());
+                msg.type = "ack";
+                msg.payload = null;
+                dispatcherService.respond(msg, session);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void sendMessage(String content) {
+        synchronized (session) {
+            try {
+                session.getBasicRemote().sendText(content);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

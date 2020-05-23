@@ -15,33 +15,29 @@ import java.util.List;
 @Repository
 @Transactional
 public class HistoryDAO {
+    @Autowired
+    Jedis jedis;
     public static final String prefix = "history-";
     public void push(Delta delta) {
-        Jedis jedis = new JedisFactory().getJedis();
         jedis.lpush(prefix + delta.getDocid(), JSON.toJSONString(delta));
     }
     public synchronized void pushes(int docId, List<String> deltas) {
-        Jedis jedis = new JedisFactory().getJedis();
         for (String delta : deltas) {
             jedis.lpush(prefix + docId, delta);
         }
     }
     public synchronized void push(int docId, List<Delta> deltas) {
-        Jedis jedis = new JedisFactory().getJedis();
         for (Delta delta : deltas) {
             jedis.lpush(prefix + docId, JSON.toJSONString(delta));
         }
     }
     public void del(int docId) {
-        Jedis jedis = new JedisFactory().getJedis();
         jedis.del(prefix + docId);
     }
     public List<String> list(int docId) {
-        Jedis jedis = new JedisFactory().getJedis();
         return wrap(jedis.lrange(prefix + docId, 0, -1));
     }
     public String range(int docId) {
-        Jedis jedis = new JedisFactory().getJedis();
         List<String> results = jedis.lrange(prefix + docId, 0, -1);
         return wrapResults(results);
     }
