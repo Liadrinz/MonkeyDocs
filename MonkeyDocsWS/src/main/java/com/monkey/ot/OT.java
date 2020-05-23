@@ -1,4 +1,4 @@
 package com.monkey.ot;
 
-public class Operation {
+public class OT {
 }
