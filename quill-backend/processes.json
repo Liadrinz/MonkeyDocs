@@ -1,0 +1,14 @@
+{
+    "apps": [{
+        "name": "quill-backend",
+        "script": "manage.js",
+        "cwd": "./",
+        "watch": [
+            "src",
+            "dist"
+        ],
+        "error_file": "./logs/error.log",
+        "out_file": "./logs/app-out.log",
+        "log_date_format": "YYYY-MM-DD HH:mm Z"
+    }]
+}
