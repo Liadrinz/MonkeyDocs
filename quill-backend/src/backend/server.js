@@ -19,20 +19,27 @@ const createServer = () => {
                         break;
                     case 'save':
                         handler.handleSave(msg.delta.attributes.docId);
-                        msg.type = 'ack';
-                        msg.payload = null
-                        conn.send(msg);
+                        break;
+                    default:
                         break;
                 }
             } catch (e) {
-                console.log(e);
+                console.error(e);
             }
         })
         conn.on('close', function() {
-            clientManager.clearInfo(docId, userId);
+            try {
+                clientManager.clearInfo(docId, userId);
+            } catch (e) {
+                console.error(e);
+            }
         })
         conn.on('error', function() {
-            clientManager.clearInfo(docId, userId);
+            try {
+                clientManager.clearInfo(docId, userId);
+            } catch (e) {
+                console.error(e);
+            }
         })
     })
     return server

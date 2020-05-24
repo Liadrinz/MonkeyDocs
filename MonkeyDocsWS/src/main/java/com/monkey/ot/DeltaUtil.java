@@ -1,9 +1,8 @@
-package com.monkey.util;
+package com.monkey.ot;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.monkey.entity.Delta;
-import com.monkey.ot.Operation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +13,7 @@ public class DeltaUtil {
         String delContent = del.getContent();
         Delta result = new Delta();
         result.setContent(srcContent.substring(delContent.length()));
+        return result;
     }
     public static Delta merge(String queryResult) {
         return merge(JSONArray.parseArray(queryResult, Delta.class));

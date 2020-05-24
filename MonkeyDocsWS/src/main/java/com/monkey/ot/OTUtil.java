@@ -9,35 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Deprecated
 @Component
-public class OT {
-    @Autowired
-    private HistoryDAO historyDAO;
+public class OTUtil {
 
-    public void ot(final Delta delta, Delta oldDelta) {
-        Delta history = DeltaUtil.merge(historyDAO.range(delta.getDocid()));
-        if (oldDelta.getContent().equals(history.getContent()))
-            return;
-        Delta diff = DeltaUtil.sub(history, oldDelta);
-        int offset = offsetFor(diff);
-        Operation op = Operation.fromDelta(delta);
-        
-    }
-
-    public int offsetFor(Delta diff) {
-        int result = 0;
-        List<JSONObject> diffOps = (List<JSONObject>)JSON.parseObject(diff.getContent()).get("ops");
-        for (JSONObject op : diffOps) {
-            Integer valInt;
-            String valStr;
-            if ((valInt = op.getInteger("retain")) != null) {
-                result += valInt;
-            } else if ((valStr = op.getString("insert")) != null) {
-                result += valStr.length();
-            } else if ((valInt = op.getInteger("delete")) != null) {
-                result -= valInt;
-            }
-        }
-        return result;
-    }
 }

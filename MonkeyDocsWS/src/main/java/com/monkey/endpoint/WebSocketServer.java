@@ -81,7 +81,7 @@ public class WebSocketServer {
         try {
             Message msg = JSON.parseObject(message, Message.class);
             if (msg.type.equals("delta")) {
-                handlerService.handleDelta(msg.payload);
+                handlerService.handleDelta(msg.payload, msg.old);
             } else if (msg.type.equals("req")) {
                 msg.optional = handlerService.handleReq(msg.payload.getDocid());
                 msg.payload = null;
@@ -89,11 +89,6 @@ public class WebSocketServer {
                 dispatcherService.respond(msg, session);
             } else if (msg.type.equals("save")) {
                 handlerService.handleSave(msg.payload.getDocid());
-                msg.type = "ack";
-                msg.payload = null;
-                dispatcherService.respond(msg, session);
-            } else if (msg.type.equals("ack")) {
-                handlerService.handleAck(msg.payload.getDocid());
                 msg.type = "ack";
                 msg.payload = null;
                 dispatcherService.respond(msg, session);

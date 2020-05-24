@@ -32,13 +32,14 @@
     });
     quill.on('text-change', (delta, oldDelta, source) => {
         if (source === 'user') {
+            delta.attributes = {
+                userId: vue.specifier.userId,
+                docId: vue.specifier.docId
+            };
             var dataToSend = {
                 type: 'delta',
-                payload: {
-                    userid: vue.specifier.userid,
-                    docid: vue.specifier.docid,
-                    content: JSON.stringify(delta)
-                }
+                delta: delta,
+                oldDelta: oldDelta
             }
             if (ws !== null && ws.readyState != ws.CLOSED)
                 ws.send(JSON.stringify(dataToSend));
@@ -51,14 +52,14 @@
                 schema: {
                     host: '主机名',
                     port: '端口号',
-                    userid: '用户ID',
-                    docid: '文档ID'
+                    userId: '用户ID',
+                    docId: '文档ID'
                 },
                 specifier: {
                     host: 'www.liadrinz.cn',
                     port: '8080',
-                    userid: '',
-                    docid: ''
+                    userId: '',
+                    docId: ''
                 },
                 connected: false,
                 failed: false
@@ -67,7 +68,7 @@
         methods: {
             connect: function() {
                 try {
-                    ws = new WebSocket(`ws://${this.specifier.host}:${this.specifier.port}/collaborate/${this.specifier.docid}/${this.specifier.userid}`);
+                    ws = new WebSocket(`ws://${this.specifier.host}:${this.specifier.port}/${this.specifier.docId}/${this.specifier.userId}`);
                 } catch (e) {
                     this.$message({
                         message: '请填写主机名和端口号',
@@ -83,9 +84,12 @@
                     })
                     ws.send(JSON.stringify({
                         type: 'req',
-                        payload: {
-                            docid: vue.specifier.docid,
-                            userid: vue.specifier.userid
+                        delta: {
+                            ops: [],
+                            attributes: {
+                                docId: vue.specifier.docId,
+                                userId: vue.specifier.userId
+                            }
                         }
                     }));
                 }
@@ -100,13 +104,10 @@
                     var packet = JSON.parse(resp.data);
                     if (packet.type === 'res') {
                         quill.setText('', source = 'server');
-                        for (let delta of JSON.parse(packet.optional)) {
-                            quill.updateContents(JSON.parse(delta.content).ops, source = 'server');
-                        }
+                        quill.updateContents(packet.delta.ops, source = 'server');
                     } else if (packet.type === 'mod') {
-                        if (packet.payload.userid != vue.specifier.userid) {
-                            var delta = JSON.parse(packet.payload.content);
-                            quill.updateContents(delta, source = 'server');
+                        if (packet.delta.attributes.userId != vue.specifier.userId) {
+                            quill.updateContents(packet.delta.ops, source = 'server');
                         }
                     }
                 }

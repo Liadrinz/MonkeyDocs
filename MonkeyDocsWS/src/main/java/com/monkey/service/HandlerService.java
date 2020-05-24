@@ -1,20 +1,14 @@
 package com.monkey.service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.monkey.dao.DeltaDAO;
 import com.monkey.dao.HistoryDAO;
 import com.monkey.entity.Delta;
 import com.monkey.entity.Message;
 import com.monkey.manager.ClientManager;
-import com.monkey.ot.Operation;
+import com.monkey.ot.OT;
+import com.monkey.ot.OTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.websocket.Session;
-import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Component
 public class HandlerService {
@@ -28,13 +22,14 @@ public class HandlerService {
     private HistoryService historyService;
     @Autowired
     private DispatcherService dispatcherService;
+    @Autowired
+    private OT ot;
 
-    public void handleDelta(Delta delta) {
+    public synchronized void handleDelta(Delta delta, Delta oldDelta) {
         Message msg = new Message();
         msg.type = "mod";
         msg.payload = delta;
-        clientManager.getBroadcastBuffer().add(delta);
-        Operation.transform(clientManager.getBroadcastBuffer());
+        ot.apply(delta, oldDelta);
         dispatcherService.broadcast(msg, delta.getDocid());
         historyDAO.push(delta);
     }
@@ -52,7 +47,7 @@ public class HandlerService {
 //        return JSONArray.toJSONString(deltaDAO.findByExample(ex));
     }
 
-    public void handleAck(int docId) {
+    public synchronized void handleAck(int docId) {
 
     }
     
