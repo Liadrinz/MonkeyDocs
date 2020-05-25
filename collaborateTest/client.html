@@ -26,6 +26,7 @@
 </body>
 
 <script>
+    const Delta = Quill.import('delta');
     var ws = null;
     var quill = new Quill('#editor', {
         theme: 'snow'
@@ -106,8 +107,15 @@
                         quill.setText('', source = 'server');
                         quill.updateContents(packet.delta.ops, source = 'server');
                     } else if (packet.type === 'mod') {
-                        if (packet.delta.attributes.userId != vue.specifier.userId) {
-                            quill.updateContents(packet.delta.ops, source = 'server');
+                        let {
+                            delta,
+                            oldDelta
+                        } = packet;
+                        if (delta.attributes.userId != vue.specifier.userId) {
+                            // 收到广播时需要做OT
+                            let historyDelta = quill.getContents();
+                            Object.assign(delta, ot(historyDelta, new Delta(delta), new Delta(oldDelta)));
+                            quill.updateContents(delta.ops, source = 'server');
                         }
                     }
                 }
@@ -117,6 +125,24 @@
             }
         }
     })
+
+    // 前端OT
+    // history是前端历史记录, 从quill获取
+    // delta是收到的广播里的delta
+    // oldDelta是收到的广播里的oldDelta, 即服务器的历史记录
+    function ot(history, delta, oldDelta) {
+        try {
+            history = new Delta().insert('\n').compose(history);
+            let diff = oldDelta.diff(history);
+            console.log(diff);
+            if (diff.ops.length > 0)
+                return diff.transform(delta, false);
+            return delta;
+        } catch (e) {
+            console.error(e);
+            return delta;
+        }
+    }
 </script>
 
 </html>
