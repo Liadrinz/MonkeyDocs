@@ -17,7 +17,7 @@ const handler = {
                     }
                     Object.assign(delta, ot(historyDelta, new Delta(delta), new Delta(oldDelta)));
                     redisClient.lpush('history-' + delta.attributes.docId, JSON.stringify(delta));
-                    dispatcher.broadcast(new Message('mod', delta, null), delta.attributes.docId);
+                    dispatcher.broadcast(new Message('mod', delta, historyDelta), delta.attributes.docId);
                 } catch (e) {
                     console.error(e);
                 }

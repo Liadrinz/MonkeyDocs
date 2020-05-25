@@ -1,7 +1,6 @@
 const ws = require('nodejs-websocket');
 const clientManager = require('./clientManager');
 const handler = require('./handler');
-const dispatcher = require('./dispatcher');
 
 const createServer = () => {
     let server = ws.createServer(conn => {
