@@ -18,4 +18,5 @@ public class DeltaController extends StrutsRestController<Delta> {
     private void setSuperDAO(DeltaDAO dao) {
         super.dao = dao;
     }
+
 }
