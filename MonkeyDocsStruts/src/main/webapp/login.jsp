@@ -177,7 +177,7 @@
           tel:this.userinfo.tel,
           password:this.userinfo.password2,
         };
-        axios.get("rest/user.action",val).then(
+        axios.post("business/userLogin.action",val).then(
                 res=>{
           if(res.headers.responsemsg=="User_does_not_exists")
         this.userinfo.tishi='手机号格式有误或尚未注册';

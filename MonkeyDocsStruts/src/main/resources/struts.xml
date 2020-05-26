@@ -35,7 +35,7 @@
             <interceptor name="userLoginDetector" class="checkLogin"></interceptor>
             <interceptor name="requestInterceptor" class="requestaction"></interceptor>
         </interceptors>
-        <action name="userLogin" class="addressAction" method="execute">
+        <action name="userLogin" class="addressAction" >
             <result name="success">/index.jsp</result>
             <interceptor-ref name="userLoginDetector"></interceptor-ref>
         </action>
