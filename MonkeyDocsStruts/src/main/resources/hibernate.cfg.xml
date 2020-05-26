@@ -5,7 +5,6 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="format_sql">true</property>
     </session-factory>
 </hibernate-configuration>

@@ -23,7 +23,7 @@ open class Meta : BaseEntity() {
 
     @get:Basic
     @get:Column(name = "createTime", nullable = false)
-    var createTime: Date? = Date()
+    var createTime: Date? = null
 
     @get:Basic
     @get:Column(name = "updateTime", nullable = false)

@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
+@Deprecated
 @Transactional
 public abstract class ManyToManyDAO<M extends BaseEntity, T extends Serializable> {
     @Autowired

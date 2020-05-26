@@ -10,7 +10,8 @@ import org.apache.struts2.rest.HttpHeaders;
 
 import java.util.List;
 
-public abstract class StrutsRestController<T extends BaseEntity> extends ActionSupport implements ModelDriven<Object> {
+public abstract class StrutsRestController<T extends BaseEntity>
+        extends ActionSupport implements ModelDriven<Object> {
     protected String name;
     protected CrudDAO<Integer, T> dao;
     private int id;

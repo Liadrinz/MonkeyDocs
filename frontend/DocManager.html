@@ -1,12 +1,15 @@
 <html>
 
 <head>
+    <meta charset='utf-8'>
     <title>DocManager</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <style>
     body {
         margin: 0px;
+        overflow: hidden;
+        padding-right: 0px !important;
     }
 
     .top {
@@ -29,6 +32,7 @@
         height: 100%;
         border-left: 1px solid #cdcdcd;
         padding-top: 20px;
+        overflow: auto;
     }
 
     .el-header {
@@ -38,7 +42,6 @@
 
     .el-main {
         padding: 0px;
-        overflow: auto;
     }
 
     .el-col {
@@ -145,6 +148,11 @@
         border-radius: 0px;
     }
 
+    .memberaddbtn {
+        margin-left: 50px;
+        width: 100px;
+    }
+
     .creatbtn {
         background-color: #dddddd;
     }
@@ -174,12 +182,12 @@
 
     .card-docname {
         padding: 0 15px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         height: auto;
     }
 
     .card-docname span {
-        font-size: 20px;
+        font-size: 15px;
         color: #6D7275;
         font-weight: bold;
     }
@@ -190,15 +198,64 @@
 
     .card-docinfo span {
         padding: 0 15px;
-        font-size: 20px;
+        font-size: 10px;
         color: #cdcdcd;
+    }
+
+    .root {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        height: 100%;
+    }
+
+    .memberdialog {
+        padding-top: 30px;
+    }
+
+    .memberlist-title {
+        font-size: 15px;
+        color: #6D7275;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .memberlist {
+        border-top: 1px solid #cdcdcd;
+        padding: 10px;
+        height: 400px;
+        overflow: auto;
+    }
+
+    .memberlist-item {
+        padding: 10px;
+        border-bottom: 1px solid #f8f8f8;
+    }
+
+    .memberlist-item-name {
+        margin-top: 15px;
+        padding-left: 20px;
+    }
+
+    .memberlist-item-name span {
+        color: 6D7275;
+        font-size: 10px;
+        font: weight 500;
+        margin-left: 60px;
+    }
+
+    .memberlist-item-name span:first-child {
+        color: #000;
+        font-size: 20px;
+        font-weight: 800;
+        margin-left: 0px;
     }
 </style>
 
 <body>
     <div id="managerpage_root">
-        <el-container>
-            <el-header>
+        <el-container class="root">
+            <el-header class="head_root">
                 <div class="top">
                     <el-row>
                         <el-col :span="8">
@@ -216,20 +273,22 @@
                             </el-col>
                             <el-col span="8">
                                 <div class="headimg-min">
-                                    <el-popover placement="bottom" width="300" trigger="hover" v-model="visible" >
+                                    <el-popover placement="bottom" width="300" trigger="hover" v-model="visible">
                                         <el-row style="padding:10px; border-bottom:1px solid #cdcdcd">
                                             <el-col :span="8" style="height:auto">
-                                                <el-image style="height: 60px;width:60px;border:1px solid #cdcdcd;border-radius:30px;"></el-image>
-                                                
+                                                <el-image
+                                                    style="height: 60px;width:60px;border:1px solid #cdcdcd;border-radius:30px;">
+                                                </el-image>
+
                                             </el-col>
                                             <el-col :span="16" style="height:auto;padding-top:30px">
-                                    
+
                                                 <span style="font-size:20px;color:#6D7275;font-weight:bold;">用户</span>
                                             </el-col>
-                                           
-                                        </el-row >
+
+                                        </el-row>
                                         <el-row>
-                                            <el-col :span="24"  style="height:auto;">
+                                            <el-col :span="24" style="height:auto;">
                                                 <ul style="list-style-type: none;border:1px solid #cdcdcd;">
                                                     <li style="border:1px solid #cdcdcd;">dd</li>
                                                     <li style="border:1px solid #cdcdcd;">dd</li>
@@ -238,8 +297,9 @@
                                                 </ul>
                                             </el-col>
                                         </el-row>
-                                        <el-image slot="reference" @click="visible = !visible" style="height: 40px;width:40px;border:1px solid #cdcdcd;"></el-image>
-                                    
+                                        <el-image slot="reference" @click="visible = !visible"
+                                            style="height: 40px;width:40px;border:1px solid #cdcdcd;"></el-image>
+
                                     </el-popover>
                                 </div>
                             </el-col>
@@ -249,14 +309,14 @@
                 </div>
             </el-header>
             <el-container>
-                <el-aside width="200px">
+                <el-aside width="200px" class="left_root">
                     <div class="left">
                         <ul class="liftul">
                             <li v-for="item in leftName" class="leftitem" @click="{{leftchose = item.value}}">
 
 
                                 <p>
-                                    <i :class="item.iconclass" ></i>
+                                    <i :class="item.iconclass"></i>
 
                                     {{item.text}}
                                 </p>
@@ -265,7 +325,7 @@
                         </ul>
                     </div>
                 </el-aside>
-                <el-main>
+                <el-main class="main_root">
                     <transition mode="out-in">
                         <div v-if="leftchose == '1'">
                             <div class="main">
@@ -273,48 +333,55 @@
                                     <span>我的文档</span>
                                 </el-row>
                                 <el-row class="btn-col">
-        
-                                    <el-col :span="3" style="padding: 0 10px;">
-                                        <el-button class="topbtn creatbtn">新建文档</el-button>
-        
+
+                                    <el-col :xs="12" :sm="12" :md="8" :lg="3" :xl="3" style="padding: 0 10px;">
+                                        <el-button class="topbtn creatbtn" @click="createDoc">新建文档</el-button>
+
                                     </el-col>
-                                    <el-col :span="3" style="padding: 0 10px;">
+                                    <el-col :xs="12" :sm="12" :md="8" :lg="3" :xl="3" style="padding: 0 10px;">
                                         <el-button class="topbtn">导入文档</el-button>
                                     </el-col>
                                     <el-col :span="17"></el-col>
                                 </el-row>
                                 <el-row class="main-col">
                                     <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
-                                        v-for="docitem in doclist">
-                                        <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
-        
+                                        v-for="(docitem,index) in doclist">
+                                        <el-card class="docitem-card" :body-style="cardstyle" shadow="hover" @click.native="goEditpage(docitem.id)">
+
                                             <el-col :span="4" style="height:auto">
                                                 <el-image class="docimg">
                                                 </el-image>
                                             </el-col>
                                             <el-col :span="19" style="height:auto">
                                                 <el-col :span="24" class="card-docname">
-                                                    <span>{{docitem.docname}}</span>
+                                                    <span>{{docitem.mdName}}</span>
                                                 </el-col>
                                                 <el-col :span="24" class="card-docinfo">
-                                                    <span>{{docitem.docinfo}}</span>
+                                                    <span>上次更新时间：{{docitem.updateTime}}</span>
                                                 </el-col>
-        
+
                                             </el-col>
                                             <el-col :span="1" style="height:auto;">
-                                                <el-dropdown trigger="click" placement="bottom-end" size="medium">
+                                                <el-dropdown trigger="click" placement="bottom-end" size="medium"
+                                                    @command="docmanage">
                                                     <i class="el-icon-more el-dropdown-link"></i>
                                                     <el-dropdown-menu slot="dropdown">
-                                                        <el-dropdown-item>重命名</el-dropdown-item>
-                                                        <el-dropdown-item>权限管理</el-dropdown-item>
+                                                        <el-dropdown-item
+                                                            @click.native="dialogrenameVisible = true;renameDialogdata.docid=doclist[index].id">
+                                                            重命名</el-dropdown-item>
+                                                        <el-dropdown-item @click.native="openMemberList(index)">权限管理
+                                                        </el-dropdown-item>
                                                         <el-dropdown-item>导出</el-dropdown-item>
-                                                        <el-dropdown-item divided style="color: red;">删除</el-dropdown-item>
+                                                        <el-dropdown-item divided style="color: red;"
+                                                            @click.native="deleteDoc(index)">
+                                                            删除
+                                                        </el-dropdown-item>
                                                     </el-dropdown-menu>
                                                 </el-dropdown>
                                             </el-col>
-        
-        
-        
+
+
+
                                         </el-card>
                                     </el-col>
                                 </el-row>
@@ -329,7 +396,7 @@
                                     <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
                                         v-for="docitem in doclist">
                                         <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
-        
+
                                             <el-col :span="4" style="height:auto">
                                                 <el-image class="docimg">
                                                 </el-image>
@@ -341,22 +408,25 @@
                                                 <el-col :span="24" class="card-docinfo">
                                                     <span>{{docitem.docinfo}}</span>
                                                 </el-col>
-        
+
                                             </el-col>
                                             <el-col :span="1" style="height:auto;">
-                                                <el-dropdown trigger="click" placement="bottom-end" size="medium">
+                                                <el-dropdown trigger="click" placement="bottom-end" size="medium"
+                                                    @command="docmanage">
                                                     <i class="el-icon-more el-dropdown-link"></i>
                                                     <el-dropdown-menu slot="dropdown">
                                                         <el-dropdown-item>重命名</el-dropdown-item>
-                                                        <el-dropdown-item>权限管理</el-dropdown-item>
+                                                        <el-dropdown-item @click.native="openMemberList">权限管理
+                                                        </el-dropdown-item>
                                                         <el-dropdown-item>导出</el-dropdown-item>
-                                                        <el-dropdown-item divided style="color: red;">删除</el-dropdown-item>
+                                                        <el-dropdown-item divided style="color: red;">删除
+                                                        </el-dropdown-item>
                                                     </el-dropdown-menu>
                                                 </el-dropdown>
                                             </el-col>
-        
-        
-        
+
+
+
                                         </el-card>
                                     </el-col>
                                 </el-row>
@@ -368,43 +438,45 @@
                                     <span>回收站</span>
                                 </el-row>
                                 <el-row class="btn-col">
-        
+
                                     <el-col :span="3" style="padding: 0 10px;">
                                         <el-button class="topbtn creatbtn">清空回收站</el-button>
-        
+
                                     </el-col>
                                     <el-col :span="17"></el-col>
                                 </el-row>
                                 <el-row class="main-col">
                                     <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
-                                        v-for="docitem in doclist">
+                                        v-for="redocitem in recycleddoclist">
                                         <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
-        
+
                                             <el-col :span="4" style="height:auto">
                                                 <el-image class="docimg">
                                                 </el-image>
                                             </el-col>
                                             <el-col :span="19" style="height:auto">
                                                 <el-col :span="24" class="card-docname">
-                                                    <span>{{docitem.docname}}</span>
+                                                    <span>{{redocitem.mdName}}</span>
                                                 </el-col>
                                                 <el-col :span="24" class="card-docinfo">
-                                                    <span>{{docitem.docinfo}}</span>
+                                                    <span>{{redocitem.updateTime}}</span>
                                                 </el-col>
-        
+
                                             </el-col>
                                             <el-col :span="1" style="height:auto;">
                                                 <el-dropdown trigger="click" placement="bottom-end" size="medium">
                                                     <i class="el-icon-more el-dropdown-link"></i>
                                                     <el-dropdown-menu slot="dropdown">
-                                                        <el-dropdown-item>还原</el-dropdown-item>
-                                                        <el-dropdown-item divided style="color: red;">彻底删除</el-dropdown-item>
+                                                        <el-dropdown-item @click.native="reDoc(index)">还原
+                                                        </el-dropdown-item>
+                                                        <el-dropdown-item divided style="color: red;">彻底删除
+                                                        </el-dropdown-item>
                                                     </el-dropdown-menu>
                                                 </el-dropdown>
                                             </el-col>
-        
-        
-        
+
+
+
                                         </el-card>
                                     </el-col>
                                 </el-row>
@@ -414,14 +486,97 @@
                 </el-main>
             </el-container>
         </el-container>
+        <el-dialog :visible.sync="membercheckifshow" center top="10vh" width="40%" @closed="clearmemberDialogDate">
+            <h1 slot="title">{{nowShowMemberDialogdata.mdname}}</h1>
+            <el-row>
+                <el-col :span="24" style="height:auto">
+                    <el-input placeholder="请输入要查询的用户的手机号码/邮箱/用户名" v-model="searchinput" prefix-icon="el-icon-search"
+                        @input="searchMember" @focus="{{ifaddmember = true}}">
+                    </el-input>
+                </el-col>
+                <transition mode="out-in">
+
+
+                    <div v-if="ifaddmember == false">
+                        <el-col :span="24" style="height:auto" class="memberdialog">
+                            <span class="memberlist-title">协作人员</span>
+                            <div class="memberlist">
+                                <el-row class="memberlist-item" v-for="member in nowShowMemberDialogdata.mdmemberlist">
+                                    <el-col :span="2" style="height:auto">
+                                        <el-image
+                                            style="height: 50px;width:50px;border:1px solid #cdcdcd;border-radius:25px;">
+                                        </el-image>
+                                    </el-col>
+                                    <el-col :span="20" style="height:auto">
+                                        <div class="memberlist-item-name">
+                                            <span> {{member.name}}</span>
+                                            <span> {{member.tel}}</span>
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                            </div>
+                        </el-col>
+                        <el-col :span="24" style="height:auto;padding:0 200px;">
+                            <el-button class="topbtn creatbtn" style="line-height: 1;" @click="{{ifaddmember = true}}">
+                                添加协作人员
+                            </el-button>
+                        </el-col>
+                    </div>
+
+                    <div v-if="ifaddmember == true">
+
+                        <el-col :span="24" style="height:auto" class="memberdialog">
+                            <span class="memberlist-title">搜索结果</span>
+                            <div class="memberlist">
+                                <el-row class="memberlist-item" v-for="member in searchmember">
+                                    <el-col :span="2" style="height:auto">
+                                        <el-image
+                                            style="height: 50px;width:50px;border:1px solid #cdcdcd;border-radius:25px;">
+                                        </el-image>
+                                    </el-col>
+                                    <el-col :span="20" style="height:auto">
+                                        <div class="memberlist-item-name">
+                                            <span> {{member.name}}</span>
+                                            <span> {{member.tel}}</span>
+                                            <span>{{member.email}}</span>
+
+                                            <el-button class="topbtn memberaddbtn">邀请</el-button>
+
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                            </div>
+                        </el-col>
+                        <el-col :span="24" style="height:auto;padding:0 200px;">
+                            <el-button class="topbtn creatbtn" style="line-height: 1;" @click="{{ifaddmember = false}}">
+                                返回
+                            </el-button>
+                        </el-col>
+
+                    </div>
+                </transition>
+            </el-row>
+
+        </el-dialog>
+        <el-dialog title="文档重命名" :visible.sync="dialogrenameVisible" width="30%">
+
+
+            <el-input v-model="renameDialogdata.newDocname" placeholder="请输入新的文档名" autocomplete="off"></el-input>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="reNamedoc">取 消</el-button>
+                <el-button type="primary" @click="reNamedoc">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     var app = new Vue({
         el: '#managerpage_root',
         data: {
+            rooturl: 'http://monkeydoc.liadrinz.cn/',
             message: 'Hello Vue!',
             visible: false,
             docsearchtext: '',
@@ -429,42 +584,206 @@
                 {
                     iconclass: 'el-icon-tickets',
                     text: '我的文档',
-                    value:'1'
+                    value: '1'
                 },
                 {
                     iconclass: 'el-icon-bell',
                     text: '通知',
-                    value:'2'
+                    value: '2'
                 },
                 {
                     iconclass: 'el-icon-delete',
                     text: '回收站',
-                    value:'3'
+                    value: '3'
                 }
 
             ],
-            doclist: [
-                {
-                    docname: "文档",
-                    docinfo: "文档信息"
-                }, {
-                    docname: "文档",
-                    docinfo: "文档信息"
-                }, {
-                    docname: "文档",
-                    docinfo: "文档信息"
-                }, {
-                    docname: "文档",
-                    docinfo: "文档信息"
-                }, {
-                    docname: "文档",
-                    docinfo: "文档信息"
-                },
-            ],
+            doclist: [],
+            recycleddoclist: [],
             cardstyle: {
                 padding: '0px'
             },
-            leftchose:'1'
+            leftchose: '1',
+            testlist: '',
+            membercheckifshow: false,
+            nowShowMemberDialogdata: {
+                mdname: '',
+                mdmemberlist: [],
+                mdid: ''
+            },
+            ifaddmember: false,
+            searchmember: [],
+            searchinput: '',
+            dialogrenameVisible: false,
+            renameDialogdata: {
+                docid: '',
+                newDocname: ''
+            }
+        },
+        created: function () {
+            axios.get(this.rooturl + 'rest/meta.json?')
+                .then(res => {
+                    var meta = res.data
+                    for (var i = 0;i<meta.length-1;i++) {
+                        var key = i
+                        for (var j = Number(i + 1); j < meta.length; j++) {
+                            if (meta[j].updateTime >= meta[key].updateTime) {
+                                key = j
+                            }
+                        }
+                        if (key != i) {
+                            var x = meta[i]
+                            meta[i] = meta[key]
+                            meta[key] = x
+                        }
+                    }
+                    for (var i in meta) {
+                        if (!meta[i].recycled) {
+                            var crtime = new Date(meta[i].createTime)
+                            var uptime = new Date(meta[i].updateTime)
+                            meta[i].createTime = crtime.toLocaleString()
+                            meta[i].updateTime = uptime.toLocaleString()
+                            this.doclist.push(meta[i])
+                        } else if(meta[i].recycled) {
+                            var crtime = new Date(meta[i].createTime)
+                            var uptime = new Date(meta[i].updateTime)
+                            meta[i].createTime = crtime.toLocaleString()
+                            meta[i].updateTime = uptime.toLocaleString()
+                            this.recycleddoclist.push(meta[i])
+                        }
+
+                    }
+                    
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+        },
+        methods: {
+            getDoclist: function () {
+                console.log(this.doclist)
+                console.log(this.recycleddoclist)
+            },
+            docmanage(command) {
+                switch (command) {
+                    case 'memberm': {
+                        this.membercheckifshow = true
+                        break;
+                    }
+                }
+            },
+            openMemberList(index) {
+                this.nowShowMemberDialogdata.mdname = this.doclist[index].mdName
+                for (var i in this.doclist[index].refUsers) {
+                    var member = {
+                        id: this.doclist[index].refUsers[i].id,
+                        name: this.doclist[index].refUsers[i].userName,
+                        tel: this.doclist[index].refUsers[i].tel
+                    }
+                    this.nowShowMemberDialogdata.mdmemberlist.push(member)
+                }
+                this.membercheckifshow = true
+
+            },
+            clearmemberDialogDate() {
+                this.ifaddmember = false
+                this.searchinput = ''
+                this.nowShowMemberDialogdata.mdname = ''
+                this.nowShowMemberDialogdata.mdmemberlist = []
+                this.nowShowMemberDialogdata.mdid = ''
+                this.searchmember = []
+            },
+            async searchMember(e) {
+                this.$forceUpdate()
+                this.searchmember = []
+                var res1 = await axios.get(this.rooturl + 'rest/user.json?tel=' + this.searchinput)
+                var res2 = await axios.get(this.rooturl + 'rest/user.json?email=' + this.searchinput)
+                var res3 = await axios.get(this.rooturl + 'rest/user.json?userName=' + this.searchinput)
+                var userlist = [].concat(res1.data, res2.data, res3.data)
+                if (userlist.length != 0) {
+                    for (var i in userlist) {
+                        var member = {
+                            id: userlist[i].id,
+                            name: userlist[i].userName,
+                            tel: userlist[i].tel,
+                            email: userlist[i].email
+                        }
+                        this.searchmember.push(member)
+                    }
+                }
+            },
+            deleteDoc(index) {
+                this.$confirm('是否删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=true')
+                        .then(res => {
+                            console.log(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=true');
+                            location.reload();
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                        })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
+            },
+            reDoc(index) {
+                this.$confirm('是否还原该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=false')
+                        .then(res => {
+                            console.log(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=false');
+                            location.reload();
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                        })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消还原'
+                    })
+                })
+            },
+            reNamedoc() {
+                axios.put(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' +this.renameDialogdata.newDocname)
+                    .then(res => {
+                        console.log(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' + this.renameDialogdata.newDocname);
+                        location.reload();
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                this.dialogrenameVisible = false
+            },
+            goEditpage(index){
+                window.location.href='DocEditPage.html?docid='+index;
+            },
+            createDoc() {
+                var requestbody = {
+                    "userId": 9,
+                    "mdName": "新建文档"
+                }
+                axios.post(this.rooturl + 'mvc/document/createDoc', requestbody)
+                    .then(res => {
+                        console.log(res)
+                        location.reload();
+                    })
+                    .catch(
+                        function (error) {
+                            console.log(error)
+                        }
+                    )
+            }
         }
     })
 </script>
