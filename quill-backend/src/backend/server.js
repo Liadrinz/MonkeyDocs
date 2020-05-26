@@ -1,11 +1,13 @@
 const ws = require('nodejs-websocket');
 const clientManager = require('./clientManager');
 const handler = require('./handler');
+const DAO = require('./DAO');
 
 const createServer = () => {
     let server = ws.createServer(conn => {
         let [_, docId, userId] = conn.path.split('/');
         clientManager.putInfo(docId, userId, conn);
+        DAO.delta.syncDoc(docId, true);
         conn.on('text', function(msg) {
             try {
                 msg = JSON.parse(msg);

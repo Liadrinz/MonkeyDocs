@@ -4,6 +4,7 @@ const redisClient = require('./redisClient');
 const Message = require('./Message');
 const ot = require('./ot');
 const Delta = require('../../dist/Delta');
+const DAO = require('./DAO');
 
 const handler = {
     handleDelta(delta, oldDelta) {
@@ -18,6 +19,7 @@ const handler = {
                     Object.assign(delta, ot(historyDelta, new Delta(delta), new Delta(oldDelta)));
                     redisClient.lpush('history-' + delta.attributes.docId, JSON.stringify(delta));
                     dispatcher.broadcast(new Message('mod', delta, historyDelta), delta.attributes.docId);
+                    DAO.delta.syncDoc(delta.attributes.docId);
                 } catch (e) {
                     console.error(e);
                 }

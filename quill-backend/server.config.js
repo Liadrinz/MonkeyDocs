@@ -7,6 +7,9 @@ const serverConfig = {
         host: '',
         port: 6379,
         auth: '123456'
+    },
+    biz: {
+        host: 'localhost:8089/MonkeyDocs'
     }
 }
 
