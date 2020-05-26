@@ -256,15 +256,16 @@
     });
     quill.on('text-change', function (delta, oldDelta, source) {
         if (source === 'user') {
+            delta.attributes={
+                userId: vue.user_id,
+                docId: vue.doc_id
+            }
             var change = {
                 type: "delta",
-                payload: {
-                    docid: vue.doc_id,
-                    userid: vue.user_id,
-                    content: JSON.stringify(delta)
-                }
+                delta:delta,
+                oldDelta:oldDelta
             }
-            if (websock !== null)
+            if (websock !== null&&websock.readyState!=websock.CLOSED)
                 websock.send(JSON.stringify(change));
         }
 
@@ -309,9 +310,13 @@
                 console.log("连接成功")
                 let actions = {
                     type: "req",
-                    payload: {
-                        docid: vue.doc_id,
-                        userid: vue.user_id
+                    delta: {
+                        ops: [],
+                        attributes: {
+                            docId: vue.doc_id,
+                            userId: vue.user_id
+                        }
+
                     }
 
                 }
@@ -324,29 +329,46 @@
             websocketonmessage(e) {
                 var resp = JSON.parse(e.data);
                 if (resp.type === "res") {
-                    for (let delta of JSON.parse(resp.optional)) {
-                        var content = JSON.parse(delta.content).ops;
-                        quill.updateContents(content, source = 'server');
-                    }
+                    quill.setText('', source = 'server');
+                    quill.updateContents(resp.delta.ops, source = 'server');
                 }
                 else if (resp.type === "mod") {
-                    if (resp.payload.userid != vue.user_id) {
-                        var content = JSON.parse(resp.payload.content);
-                        quill.updateContents(content.ops, source = 'server');
+                    let {
+                        delta,
+                        oldDelta
+                    } = resp;
+                    if (resp.attributes.userId != vue.user_id) {
+                        let historyDelta = quill.getContents();
+                        Object.assign(delta, ot(historyDelta,new Delta(delta),new Delta(oldDelta)));
+                        quill.updateContents(delta.ops, source = 'server');
                     }
 
                 }
             },
             websocketclose(e) {
-
+                websock.close();
             },
 
             setUrl() {
-                this.url = "ws://106.54.101.125:8080/collaborate/" + this.doc_id + "/" + this.user_id;
+                this.url = "ws://www.liadrinz.cn:8088/" + this.doc_id + "/" + this.user_id;
             },
             setDocid() {
                 this.doc_id = this.getQueryVariable("docid");
+            },
+            ot(history, delta, oldDelta) {
+                try {
+                    history = new Delta().insert('\n').compose(history);
+                    let diff = oldDelta.diff(history);
+                    console.log(diff);
+                    if (diff.ops.length > 0)
+                        return diff.transform(delta, false);
+                    return delta;
+                } catch (e) {
+                    console.error(e);
+                    return delta;
+                }
             }
+
         },
 
         created() {
