@@ -5,21 +5,92 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
+    <constant name="struts.actionProxyFactory" value="rest" />
+    <constant name="struts.rest.defaultErrorResultName" value="default-error" />
+    <constant name="struts.mapper.idParameterName" value="id" />
+    <constant name="struts.convention.exclude.parentClassLoader"
+              value="true" />
+    <constant name="struts.mapper.alwaysSelectFullNamespace"
+              value="false" />
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
+    <constant name="struts.mapper.class" value="org.apache.struts2.dispatcher.mapper.PrefixBasedActionMapper" />
+    <constant name="struts.mapper.prefixMapping" value="/rest:rest,:struts"/>
     <!-- 只想用REST 就配置这个-->
-<!--    <constant name="struts.mapper.class" value="rest" />-->
+    <!--    <constant name="struts.mapper.class" value="rest" />-->
 
     <!-- REST和非REST风格一起用， 就配置这个-->
     <constant name="struts.action.extension" value="xhtml,,xml,json,action"/>
-
+    <constant name="struts.objectFactory" value="spring" />
     <!-- 以上可以不设，不论哪种，都要设定以下项目 -->
     <!-- XXXAction类后缀，可以是Controller，那么所有控制器后缀都设为Controller-->
     <constant name="struts.convention.action.suffix" value="Controller" />
     <constant name="struts.convention.action.mapAllMatches" value="true" />
-    <constant name="struts.convention.default.parent.package" value="rest-default" />
+    <constant name="struts.convention.default.parent.package" value="rest-package" />
     <constant name="struts.rest.namespace" value="/rest"/>
     <!-- Action类所在包名 -->
     <constant name="struts.convention.package.locators" value="action"/>
-    <package name="default" extends="rest-default" namespace="/rest"/>
+    <package name="business" namespace="/business" extends="struts-default">
+        <interceptors>
+            <interceptor name="userLoginDetector" class="checkLogin"></interceptor>
+            <interceptor name="requestInterceptor" class="requestaction"></interceptor>
+        </interceptors>
+        <action name="userLogin" class="addressAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <interceptor-ref name="userLoginDetector"></interceptor-ref>
+        </action>
+        <action name="userLogon" class="userlogonaction" method="execute">
+            <result></result>
+        </action>
+    </package>
+    <package name="rest-package" extends="rest-default" namespace="/rest">
+        <result-types>
+            <result-type name="redirect" class="org.apache.struts2.result.ServletRedirectResult">
+                <param name="statusCode">303</param>
+            </result-type>
+            <result-type name="redirectAction" class="org.apache.struts2.result.ServletActionRedirectResult">
+                <param name="statusCode">303</param>
+            </result-type>
+        </result-types>
+        <interceptors>
+            <interceptor name="requestInterceptor" class="requestaction"/>
+            <interceptor name="rest" class="rest"/>
+            <interceptor name="restWorkflow" class="restWorkflow"/>
+            <interceptor name="messages" class="messages" />
+            <interceptor-stack name="damnstruts">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="messages">
+                    <param name="operationMode">AUTOMATIC</param>
+                </interceptor-ref>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="profiling"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="scopedModelDriven"/>
+                <interceptor-ref name="modelDriven">
+                    <param name="refreshModelBeforeResult">true</param>
+                </interceptor-ref>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="rest" />
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse,index,show,edit,editNew</param>
+                </interceptor-ref>
+                <interceptor-ref name="restWorkflow">
+                    <param name="excludeMethods">input,back,cancel,browse,index,show,edit,editNew</param>
+                </interceptor-ref>
+                <interceptor-ref name="requestInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="damnstruts"/>
+        <default-class-ref class="org.apache.struts2.rest.RestActionSupport"/>
+        <global-allowed-methods>execute,input,back,cancel,browse,save,delete,list,index,show,create,update,destroy,edit,editNew</global-allowed-methods>
+</package>
 </struts>

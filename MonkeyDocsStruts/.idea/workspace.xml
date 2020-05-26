@@ -25,32 +25,61 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/mvc/DocumentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a1a799c8-88f4-4902-8a6a-604e56ee4079.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a1a799c8-88f4-4902-8a6a-604e56ee4079.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__ch_qos_logback_logback_core_1_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_classmate_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_google_code_gson_gson_2_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_h2database_h2_1_4_190.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_8_0_28.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_8_0_28.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_logging_juli_8_0_28.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_8_0_28.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_tomcat_tomcat_jdbc_8_0_28.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_tomcat_tomcat_juli_8_0_28.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_codehaus_groovy_groovy_2_4_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_codehaus_groovy_groovy_json_2_4_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_codehaus_groovy_groovy_xml_2_4_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_hibernate_hibernate_validator_5_1_3_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_boot_spring_boot_1_2_7_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_1_2_7_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_1_2_7_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_1_2_7_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_1_2_7_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_1_2_7_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_1_2_7_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_1_2_7_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_aop_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_beans_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_context_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_core_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_expression_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_jdbc_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_test_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_tx_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_web_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_springframework_spring_webmvc_4_1_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_yaml_snakeyaml_1_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a1a799c8-88f4-4902-8a6a-604e56ee4079.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/action/base/StrutsRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/action/base/StrutsRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/MetaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/MetaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/base/ManyToManyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/base/ManyToManyDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Meta.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Meta.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/com/monkey/dao/DAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/monkey/dao/DAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborate/client.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborate/css/quill.snow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborate/js/quill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborateTest/client.html" beforeDir="false" afterPath="$PROJECT_DIR$/../collaborateTest/client.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborateTest/css/quill.snow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collaborateTest/js/quill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../quill.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonkeyDocsStruts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MonkeyDocsStruts.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MonkeyDocsWS/MonkeyDocsWS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../MonkeyDocsWS/MonkeyDocsWS.iml" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,7 +129,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/target/MonkeyDocsStruts-1.0-SNAPSHOT" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Springboot/untitled11" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.32837528" />
@@ -120,6 +149,18 @@
       <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp" />
       <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp\WEB-INF\content" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat">
     <configuration name="DAOTest.testCheckpointDAO" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -336,23 +377,25 @@
       <workItem from="1589900205476" duration="2690000" />
       <workItem from="1589951149049" duration="3932000" />
       <workItem from="1589956531880" duration="5950000" />
+      <workItem from="1590041428072" duration="634000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
