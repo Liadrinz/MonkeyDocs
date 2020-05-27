@@ -566,13 +566,13 @@
                                                     <i class="el-icon-more el-dropdown-link"></i>
                                                     <el-dropdown-menu slot="dropdown">
                                                         <el-dropdown-item
-                                                            @click.native="dialogrenameVisible = true;renameDialogdata.docid=doclist[index].id">
+                                                            @click.native="dialogrenameVisible = true;renameDialogdata.docid=serchedDoc[index].id">
                                                             重命名</el-dropdown-item>
-                                                        <el-dropdown-item @click.native="openMemberList(index)">权限管理
+                                                        <el-dropdown-item @click.native="openMemberList(docitem.orginindex)">权限管理
                                                         </el-dropdown-item>
                                                         <el-dropdown-item>导出</el-dropdown-item>
                                                         <el-dropdown-item divided style="color: red;"
-                                                            @click.native="deleteDoc(index)">
+                                                            @click.native="deleteDoc(docitem.orginindex)">
                                                             删除
                                                         </el-dropdown-item>
                                                     </el-dropdown-menu>
@@ -752,7 +752,6 @@
         methods: {
             async init() {
                 var usrinfo = await axios.get(this.rooturl + 'rest/user/'+this.userinfo.userid)
-                console.log(usrinfo.data)
                 this.userinfo.username=usrinfo.data.userName
                 this.userinfo.usertel=usrinfo.data.tel
                 this.userinfo.useremail=usrinfo.data.email
@@ -833,7 +832,7 @@
             },
             logout(){
                 window.localStorage.removeItem("token");
-                location.reload();
+                window.location.href = 'login.jsp';
             },
             getDoclist: function () {
                 console.log(this.doclist)
@@ -893,12 +892,16 @@
                 this.$forceUpdate()
                 this.serchedDoc =[]
                 this.leftchose ='4'
+                var count =0;
                 for(var i in this.doclist){
                     if(this.doclist[i].mdName.search(this.searchDocinput) !=-1){
                         this.serchedDoc.push(this.doclist[i])
+                        this.serchedDoc[count].orginindex = i
+                        count++
                     }
                 }
-        
+                console.log(this.serchedDoc)
+
             },
             actuallydelete(index){
                 this.$confirm('是否彻底删除该文件, 是否继续?', '提示', {

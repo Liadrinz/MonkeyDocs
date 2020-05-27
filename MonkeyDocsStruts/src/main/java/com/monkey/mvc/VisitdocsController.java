@@ -25,7 +25,7 @@ public class VisitdocsController {
     @Resource(name ="metaDAO")
     private MetaDAO metaDAO;
     @RequestMapping("/readonly/{docid}")
-    public RedirectView readonly(@PathVariable String docid){
+    public ModelAndView readonly(@PathVariable String docid){
         Date date =new Date();
         String tokenstring =date+docid+"readonly";
         String token = Security.encryptPwd(tokenstring);
@@ -36,25 +36,18 @@ public class VisitdocsController {
         docvisittokenDAO.create(docvisittoken);
         RedirectView redirectView = new RedirectView();
         redirectView.setContextRelative(true);
-        redirectView.setExposeModelAttributes(false);
-        redirectView.setUrl("http://localhost:8083/md/test.html?"+"visittoken="+token);
-        return redirectView;
+        redirectView.setExposeModelAttributes(true);
+        redirectView.setUrl("/DocEditPage.html?docid="+docid);
+        ModelAndView modelAndView = new ModelAndView(redirectView);
+        modelAndView.addObject("visittoken",token);
+        return modelAndView;
     }
-    @RequestMapping("/write/{docid}/{iflogin}")
-    public RedirectView writedoc(@PathVariable String docid, @PathVariable String iflogin){
+    @RequestMapping("/write/{docid}")
+    public RedirectView writedoc(@PathVariable String docid){
 
         RedirectView redirectView = new RedirectView();
         redirectView.setContextRelative(true);
-        if(iflogin.equals("islogin")){
-            redirectView.setUrl("http://localhost:8083/md/test2.html");
-            MetaToUser metaToUser = new MetaToUser();
-            metaToUser.setMdId(Integer.parseInt(docid));
-            metaToUser.setUserId(9);
-            metaToUser.setRole("collaborator");
-            metaToUserDAO.create(metaToUser);
-        }else if(iflogin.equals("unlogin")){
-            redirectView.setUrl("http://localhost:8083/md/login.html");
-        }
+        redirectView.setUrl("/DocEditPage.html?docid="+docid+"&action=join");
         return redirectView;
     }
 
