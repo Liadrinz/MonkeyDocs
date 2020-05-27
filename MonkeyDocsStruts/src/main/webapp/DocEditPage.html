@@ -276,11 +276,13 @@
         data() {
             return {
                 rooturl: 'http://monkeydoc.liadrinz.cn/',
+                testurl:'http://localhost:8083/mdss/',
                 initial_data: null,
+                visittoken:'',
                 websock: null,
                 url: "",
                 doc_id: '1',
-                user_id: '1',
+                user_id: '23',
                 user_name: "",
                 doc_name: "吼猴的文档  ",
                 circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
@@ -359,6 +361,80 @@
             setUserid(){
                 this.user_id = JSON.parse(window.localStorage.getItem("userid"));
             },
+            async visitorjoin(){
+                var ifhavevisittoken =false;
+                var ifisjoin =false;
+                if(window.localStorage.getItem("visittoken") != null){
+                    this.visittoken = window.localStorage.getItem("visittoken")
+                    ifhavevisittoken = true
+                }else if( this.getQueryVariable("visittoken") != false){
+                    this.visittoken = this.getQueryVariable("visittoken")
+                    window.localStorage.setItem("visittoken",this.getQueryVariable("visittoken"))
+                    ifhavevisittoken = true
+                }
+                else {
+                    ifhavevisittoken =false
+                }
+                if(this.getQueryVariable("action") == 'join'){
+                    ifisjoin =true;
+                }else {
+                    ifisjoin =false;
+                }
+                if (window.localStorage.getItem("token") != null) {
+                    this.setUserid()
+                    var res =await axios.get(this.rooturl+"rest/metaToUser.json?mdId="+this.doc_id+"&userId="+this.user_id)
+                    if(res.data.length >0) {
+                        return
+                    }else {
+                        if(ifisjoin){
+                            var requestbody ={
+                                "mdId": this.doc_id,
+                                "userId": this.user_id
+                            }
+                            var res1 =await axios.post(this.rooturl+"mvc/visitdocs/joindoc",requestbody)
+                            quill.enable(true);
+                            this.$message("欢迎加入本文档的协作小组");
+                            return
+                        }
+                        if(ifhavevisittoken){
+                            var requestbody ={
+                                "mdId": this.doc_id,
+                                "visittoken": this.visittoken
+                            }
+                            var res2 =await axios.post(this.rooturl+"mvc/visitdocs/jugvisittoken",requestbody)
+                            if(res2){
+                                quill.enable(false);
+                                this.$message("你只能看着")
+                                return
+                            }
+                        }else {
+                            window.location.href = 'DocManager.html';
+                        }
+                    }
+                } else {
+                    if(ifhavevisittoken){
+                        var requestbody ={
+                            "mdId": this.doc_id,
+                            "visittoken": this.visittoken
+                        }
+                        var res3 =await axios.post(this.rooturl+"mvc/visitdocs/jugvisittoken",requestbody)
+                        if(res3){
+                            quill.enable(false);
+                            this.$message("你只能看着")
+                            return
+                        }
+                    }
+                    else {
+                        window.location.href = 'login.jsp';
+                    }
+                }
+
+
+
+
+
+
+            },
             ot(history, delta, oldDelta) {
                 try {
                     history = new Delta().insert('\n').compose(history);
@@ -381,7 +457,7 @@
         created() {
             let self = this;
             this.setDocid();
-            this.setUserid();
+            this.visitorjoin();
             this.setUrl();
             this.initWebSocket();
             console.log(this.doc_id);
