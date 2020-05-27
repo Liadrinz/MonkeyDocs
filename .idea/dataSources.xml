@@ -7,5 +7,25 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://106.54.101.125:3306/MonkeyDocDB</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="58bb50a5-8ee5-42f1-9005-6544280ccf3a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/tyf/Documents/GitHub/MonkeyDocs/MonkeyDocsWS/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://106.54.101.125:3306/MonkeyDocDB</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="dataSource" uuid="c585368a-052f-4ad4-a14c-42d855bc6df8">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>jakarta commons-dbcp
+
+C:/Users/tyf/Documents/GitHub/MonkeyDocs/MonkeyDocsStruts/src/main/resources/applicationContext.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://106.54.101.125:3306/MonkeyDocDB?autoReconnect=true&amp;autoReconnectForPools=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8</jdbc-url>
+    </data-source>
   </component>
 </project>
