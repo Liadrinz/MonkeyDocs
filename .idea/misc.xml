@@ -9,7 +9,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/MonkeyDocsWS/pom.xml" />
         <option value="$PROJECT_DIR$/MonkeyDocsStruts/pom.xml" />
       </list>
     </option>

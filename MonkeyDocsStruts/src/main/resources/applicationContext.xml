@@ -27,6 +27,14 @@
         <property name="sessionFactory" ref="sessionFactory"/>
         <property name="nestedTransactionAllowed" value="true"/>
     </bean>
+    <bean id="checkLogin" class="com.monkey.interceptors.UserLoginDetector"></bean>
+    <bean id="requestaction" class="com.monkey.interceptors.UserRequestInterceptor"></bean>
+    <bean id="userlogonaction" class="com.monkey.action.UserLogonController"></bean>
+    <bean id="rest" class="org.apache.struts2.rest.ContentTypeInterceptor"/>
+    <bean id="restWorkflow" class="org.apache.struts2.rest.RestWorkflowInterceptor"/>
+    <bean id="messages" class="org.apache.struts2.interceptor.MessageStoreInterceptor" />
+    <bean id="addressAction" class="com.monkey.action.UserRequestAction">
+    </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <context:component-scan base-package="com.monkey"/>
     <mvc:default-servlet-handler/>
