@@ -56,7 +56,7 @@
             <el-header class="top">
                 <el-row type="flex" align="middle">
                     <el-col :span="1">
-                        <el-button class="top_button" size="small" class="top_button" icon="el-icon-arrow-left">
+                        <el-button v-on:click="goback()" class="top_button" size="small"  icon="el-icon-arrow-left">
                         </el-button>
                     </el-col>
                     <el-col :span="10" offset="1">
@@ -69,6 +69,7 @@
             </el-header>
         </el-container>
     </div>
+
     <div id="edit_part">
         <div id="toolbar">
             <span class="ql-formats">
@@ -337,7 +338,7 @@
                         delta,
                         oldDelta
                     } = resp;
-                    if (resp.attributes.userId != vue.user_id) {
+                    if (delta.attributes.userId != vue.user_id) {
                         let historyDelta = quill.getContents();
                         Object.assign(delta, ot(historyDelta,new Delta(delta),new Delta(oldDelta)));
                         quill.updateContents(delta.ops, source = 'server');
@@ -367,7 +368,10 @@
                     console.error(e);
                     return delta;
                 }
-            }
+            },
+            goback(){
+                window.location.href='DocManager.html';
+            },
 
         },
 
