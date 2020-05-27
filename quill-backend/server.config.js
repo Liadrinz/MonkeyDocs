@@ -4,12 +4,12 @@ const serverConfig = {
         port: 8088
     },
     redis: {
-        host: '',
+        host: '175.24.45.175',
         port: 6379,
         auth: '123456'
     },
     biz: {
-        host: 'localhost:8089/MonkeyDocs'
+        host: 'monkeydoc.liadrinz.cn'
     }
 }
 
