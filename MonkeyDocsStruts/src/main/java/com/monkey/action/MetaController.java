@@ -9,7 +9,7 @@ import org.apache.struts2.convention.annotation.Results;
 
 import javax.annotation.Resource;
 
-@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/meta", "actionName", "${id}"}))
+@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/rest/meta", "actionName", "${id}"}))
 public class MetaController extends StrutsRestController<Meta> {
     public MetaController() {
         name = "meta";

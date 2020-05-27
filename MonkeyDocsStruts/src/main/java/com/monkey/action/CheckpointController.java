@@ -8,7 +8,7 @@ import org.apache.struts2.convention.annotation.Results;
 
 import javax.annotation.Resource;
 
-@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/checkpoint", "actionName", "${id}"}))
+@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/rest/checkpoint", "actionName", "${id}"}))
 public class CheckpointController extends StrutsRestController<Checkpoint> {
     public CheckpointController() {
         name = "checkpoint";

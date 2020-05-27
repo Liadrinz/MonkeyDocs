@@ -14,7 +14,7 @@ import org.apache.struts2.rest.HttpHeaders;
 import javax.annotation.Resource;
 
 @Action("metaToUser")
-@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/metaToUser", "actionName", "${id}"}))
+@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/rest/metaToUser", "actionName", "${id}"}))
 public class MetaToUserController extends StrutsRestController<MetaToUser> {
     public MetaToUserController() {
         name = "metaToUser";
