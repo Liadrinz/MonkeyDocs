@@ -391,7 +391,7 @@
                                 "mdId": this.doc_id,
                                 "userId": this.user_id
                             }
-                            var res1 =await axios.post(this.testurl+"mvc/visitdocs/joindoc",requestbody)
+                            var res1 =await axios.post(this.rooturl+"mvc/visitdocs/joindoc",requestbody)
                             quill.enable(true);
                             this.$message("欢迎加入本文档的协作小组");
                             return
@@ -401,7 +401,7 @@
                                 "mdId": this.doc_id,
                                 "visittoken": this.visittoken
                             }
-                            var res2 =await axios.post(this.testurl+"mvc/visitdocs/jugvisittoken",requestbody)
+                            var res2 =await axios.post(this.rooturl+"mvc/visitdocs/jugvisittoken",requestbody)
                             if(res2){
                                 quill.enable(false);
                                 this.$message("你只能看着")
@@ -417,7 +417,7 @@
                             "mdId": this.doc_id,
                             "visittoken": this.visittoken
                         }
-                        var res3 =await axios.post(this.testurl+"mvc/visitdocs/jugvisittoken",requestbody)
+                        var res3 =await axios.post(this.rooturl+"mvc/visitdocs/jugvisittoken",requestbody)
                         if(res3){
                             quill.enable(false);
                             this.$message("你只能看着")
