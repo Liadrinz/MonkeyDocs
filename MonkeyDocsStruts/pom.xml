@@ -160,6 +160,13 @@
             <artifactId>kotlin-stdlib-jdk8</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.docx4j</groupId>
+            <artifactId>docx4j</artifactId>
+            <version>6.1.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
