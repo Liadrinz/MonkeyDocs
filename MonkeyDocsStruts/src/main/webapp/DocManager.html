@@ -29,10 +29,17 @@
 
     .main {
         background-color: #F5F5F5;
+<<<<<<< HEAD
 
         border: 1px solid rgba(0, 0, 0, 0);
         border-left: 1px solid #cdcdcd;
 
+=======
+        height: 100%;
+        border-left: 1px solid #cdcdcd;
+        padding-top: 20px;
+        overflow: auto;
+>>>>>>> master
     }
 
     .el-header {
@@ -106,7 +113,10 @@
 
     .main-top {
         border: 1px solid #000000;
+<<<<<<< HEAD
         height: auto;
+=======
+>>>>>>> master
     }
 
     .btn-col {
@@ -114,7 +124,10 @@
     }
 
     .title-col {
+<<<<<<< HEAD
         margin-top: 20px;
+=======
+>>>>>>> master
         height: 30px;
     }
 
@@ -160,9 +173,14 @@
     }
 
     .main-col {
+<<<<<<< HEAD
         width: 100%;
         overflow: auto;
         height: 83%;
+=======
+
+        height: 90%;
+>>>>>>> master
     }
 
     .docitem {
@@ -241,9 +259,15 @@
     }
 
     .memberlist-item-name span {
+<<<<<<< HEAD
         color: #6D7275;
         font-size: 10px;
         font-weight: 500;
+=======
+        color: 6D7275;
+        font-size: 10px;
+        font: weight 500;
+>>>>>>> master
         margin-left: 60px;
     }
 
@@ -253,6 +277,7 @@
         font-weight: 800;
         margin-left: 0px;
     }
+<<<<<<< HEAD
 
     .main_root {
         overflow: hidden;
@@ -278,6 +303,8 @@
         background-color:#f8f8f8;
 
     }
+=======
+>>>>>>> master
 </style>
 
 <body>
@@ -295,7 +322,11 @@
                         <el-col :span="8" class="hidden-md-and-down">
                             <el-col :span="16">
                                 <div class="top-search">
+<<<<<<< HEAD
                                     <el-input placeholder="请输入内容" prefix-icon="el-icon-search" @input="searchDoc" v-model="searchDocinput" >
+=======
+                                    <el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="docsearchtext">
+>>>>>>> master
                                     </el-input>
                                 </div>
                             </el-col>
@@ -311,12 +342,17 @@
                                             </el-col>
                                             <el-col :span="16" style="height:auto;padding-top:30px">
 
+<<<<<<< HEAD
                                                 <span style="font-size:20px;color:#6D7275;font-weight:bold;">{{userinfo.username}}</span>
+=======
+                                                <span style="font-size:20px;color:#6D7275;font-weight:bold;">用户</span>
+>>>>>>> master
                                             </el-col>
 
                                         </el-row>
                                         <el-row>
                                             <el-col :span="24" style="height:auto;">
+<<<<<<< HEAD
                                                 <ul style="list-style-type: none;;padding-left:0px" class="userinfo_ul">
                                                     <li >
                                                          <span class ="userinfo_text">文档数量</span>
@@ -344,6 +380,13 @@
                                                         >注销<span>
                                                     </li>
                                                     
+=======
+                                                <ul style="list-style-type: none;border:1px solid #cdcdcd;">
+                                                    <li style="border:1px solid #cdcdcd;">dd</li>
+                                                    <li style="border:1px solid #cdcdcd;">dd</li>
+                                                    <li style="border:1px solid #cdcdcd;">dd</li>
+                                                    <li style="border:1px solid #cdcdcd;">dd</li>
+>>>>>>> master
                                                 </ul>
                                             </el-col>
                                         </el-row>
@@ -375,10 +418,17 @@
                         </ul>
                     </div>
                 </el-aside>
+<<<<<<< HEAD
                 <el-main class="main_root" :style="mainheight">
                     <transition mode="out-in">
                         <div v-if="leftchose == '1'">
                             <div class="main" :style="mainheight">
+=======
+                <el-main class="main_root">
+                    <transition mode="out-in">
+                        <div v-if="leftchose == '1'">
+                            <div class="main">
+>>>>>>> master
                                 <el-row class="title-col">
                                     <span>我的文档</span>
                                 </el-row>
@@ -396,6 +446,7 @@
                                 <el-row class="main-col">
                                     <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
                                         v-for="(docitem,index) in doclist">
+<<<<<<< HEAD
                                         <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
 
                                             <el-col :span="4" style="height:auto"
@@ -405,6 +456,15 @@
                                             </el-col>
                                             <el-col :span="19" style="height:auto"
                                                 @click.native="goEditpage(docitem.id)">
+=======
+                                        <el-card class="docitem-card" :body-style="cardstyle" shadow="hover" @click.native="goEditpage(docitem.id)">
+
+                                            <el-col :span="4" style="height:auto">
+                                                <el-image class="docimg">
+                                                </el-image>
+                                            </el-col>
+                                            <el-col :span="19" style="height:auto">
+>>>>>>> master
                                                 <el-col :span="24" class="card-docname">
                                                     <span>{{docitem.mdName}}</span>
                                                 </el-col>
@@ -437,11 +497,18 @@
                                         </el-card>
                                     </el-col>
                                 </el-row>
+<<<<<<< HEAD
 
                             </div>
                         </div>
                         <div v-if="leftchose == '2'">
                             <div class="main" :style="mainheight">
+=======
+                            </div>
+                        </div>
+                        <div v-if="leftchose == '2'">
+                            <div class="main">
+>>>>>>> master
                                 <el-row class="title-col">
                                     <span>通知</span>
                                 </el-row>
@@ -486,21 +553,33 @@
                             </div>
                         </div>
                         <div v-if="leftchose == '3'">
+<<<<<<< HEAD
                             <div class="main" :style="mainheight">
+=======
+                            <div class="main">
+>>>>>>> master
                                 <el-row class="title-col">
                                     <span>回收站</span>
                                 </el-row>
                                 <el-row class="btn-col">
 
                                     <el-col :span="3" style="padding: 0 10px;">
+<<<<<<< HEAD
                                         <el-button class="topbtn creatbtn" @click="clearRe">清空回收站</el-button>
+=======
+                                        <el-button class="topbtn creatbtn">清空回收站</el-button>
+>>>>>>> master
 
                                     </el-col>
                                     <el-col :span="17"></el-col>
                                 </el-row>
                                 <el-row class="main-col">
                                     <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
+<<<<<<< HEAD
                                         v-for="(redocitem,index) in recycleddoclist">
+=======
+                                        v-for="redocitem in recycleddoclist">
+>>>>>>> master
                                         <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
 
                                             <el-col :span="4" style="height:auto">
@@ -522,6 +601,7 @@
                                                     <el-dropdown-menu slot="dropdown">
                                                         <el-dropdown-item @click.native="reDoc(index)">还原
                                                         </el-dropdown-item>
+<<<<<<< HEAD
                                                         <el-dropdown-item divided style="color: red;" @click.native="actuallydelete(index)">彻底删除
                                                         </el-dropdown-item>
                                                     </el-dropdown-menu>
@@ -574,6 +654,9 @@
                                                         <el-dropdown-item divided style="color: red;"
                                                             @click.native="deleteDoc(index)">
                                                             删除
+=======
+                                                        <el-dropdown-item divided style="color: red;">彻底删除
+>>>>>>> master
                                                         </el-dropdown-item>
                                                     </el-dropdown-menu>
                                                 </el-dropdown>
@@ -584,7 +667,10 @@
                                         </el-card>
                                     </el-col>
                                 </el-row>
+<<<<<<< HEAD
                                 
+=======
+>>>>>>> master
                             </div>
                         </div>
                     </transition>
@@ -681,6 +767,7 @@
     var app = new Vue({
         el: '#managerpage_root',
         data: {
+<<<<<<< HEAD
             userinfo:{
                 userid:'9',
                 username:'',
@@ -693,6 +780,12 @@
             rooturl: 'http://monkeydoc.liadrinz.cn/',
             message: 'Hello Vue!',
             visible: false,
+=======
+            rooturl: 'http://monkeydoc.liadrinz.cn/',
+            message: 'Hello Vue!',
+            visible: false,
+            docsearchtext: '',
+>>>>>>> master
             leftName: [
                 {
                     iconclass: 'el-icon-tickets',
@@ -731,6 +824,7 @@
             renameDialogdata: {
                 docid: '',
                 newDocname: ''
+<<<<<<< HEAD
             },
             token: '',
             searchDocinput:'',
@@ -839,6 +933,53 @@
                 console.log(this.doclist)
                 console.log(this.recycleddoclist)
 
+=======
+            }
+        },
+        created: function () {
+            axios.get(this.rooturl + 'rest/meta.json?')
+                .then(res => {
+                    var meta = res.data
+                    for (var i = 0;i<meta.length-1;i++) {
+                        var key = i
+                        for (var j = Number(i + 1); j < meta.length; j++) {
+                            if (meta[j].updateTime >= meta[key].updateTime) {
+                                key = j
+                            }
+                        }
+                        if (key != i) {
+                            var x = meta[i]
+                            meta[i] = meta[key]
+                            meta[key] = x
+                        }
+                    }
+                    for (var i in meta) {
+                        if (!meta[i].recycled) {
+                            var crtime = new Date(meta[i].createTime)
+                            var uptime = new Date(meta[i].updateTime)
+                            meta[i].createTime = crtime.toLocaleString()
+                            meta[i].updateTime = uptime.toLocaleString()
+                            this.doclist.push(meta[i])
+                        } else if(meta[i].recycled) {
+                            var crtime = new Date(meta[i].createTime)
+                            var uptime = new Date(meta[i].updateTime)
+                            meta[i].createTime = crtime.toLocaleString()
+                            meta[i].updateTime = uptime.toLocaleString()
+                            this.recycleddoclist.push(meta[i])
+                        }
+
+                    }
+                    
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+        },
+        methods: {
+            getDoclist: function () {
+                console.log(this.doclist)
+                console.log(this.recycleddoclist)
+>>>>>>> master
             },
             docmanage(command) {
                 switch (command) {
@@ -888,6 +1029,7 @@
                     }
                 }
             },
+<<<<<<< HEAD
             searchDoc(e){
                 
                 this.$forceUpdate()
@@ -921,6 +1063,8 @@
                     })
                 })
             },
+=======
+>>>>>>> master
             deleteDoc(index) {
                 this.$confirm('是否删除该文件, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -948,9 +1092,15 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+<<<<<<< HEAD
                     axios.put(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id + '?recycled=false')
                         .then(res => {
                             console.log(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id + '?recycled=false');
+=======
+                    axios.put(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=false')
+                        .then(res => {
+                            console.log(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=false');
+>>>>>>> master
                             location.reload();
                         })
                         .catch(function (error) {
@@ -964,7 +1114,11 @@
                 })
             },
             reNamedoc() {
+<<<<<<< HEAD
                 axios.put(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' + this.renameDialogdata.newDocname)
+=======
+                axios.put(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' +this.renameDialogdata.newDocname)
+>>>>>>> master
                     .then(res => {
                         console.log(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' + this.renameDialogdata.newDocname);
                         location.reload();
@@ -974,6 +1128,7 @@
                     })
                 this.dialogrenameVisible = false
             },
+<<<<<<< HEAD
             goEditpage(index) {
                 window.location.href = 'DocEditPage.html?docid=' + index;
             },
@@ -997,6 +1152,10 @@
                    res = await axios.delete(this.rooturl + 'rest/meta/' + this.recycleddoclist[i].id )
                 }
                 location.reload();
+=======
+            goEditpage(index){
+                window.location.href='DocEditPage.html?docid='+index;
+>>>>>>> master
             },
             createDoc() {
                 var requestbody = {
