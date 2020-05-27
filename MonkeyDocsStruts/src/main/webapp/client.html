@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <el-form :inline="true" :model="specifier">
+            <el-form-item v-for="(val, key) in schema" :prop="key" :label="val">
+                <el-input v-model="specifier[key]" :placeholder="val" :disabled="connected">
+            </el-form-item>
+            <el-form-item>
+                <el-button @click="connect()" type="success" :disabled="connected">建立连接</el-button>
+                <el-button @click="disconnect()" type="danger" :disabled="!connected">断开连接</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+    <div id="editor"></div>
+</body>
+
+<script>
+    const Delta = Quill.import('delta');
+    var ws = null;
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+    quill.on('text-change', (delta, oldDelta, source) => {
+        if (source === 'user') {
+            delta.attributes = {
+                userId: vue.specifier.userId,
+                docId: vue.specifier.docId
+            };
+            var dataToSend = {
+                type: 'delta',
+                delta: delta,
+                oldDelta: oldDelta
+            }
+            if (ws !== null && ws.readyState != ws.CLOSED)
+                ws.send(JSON.stringify(dataToSend));
+        }
+    })
+    var vue = new Vue({
+        el: '#app',
+        data: () => {
+            return {
+                schema: {
+                    host: '主机名',
+                    port: '端口号',
+                    userId: '用户ID',
+                    docId: '文档ID'
+                },
+                specifier: {
+                    host: 'www.liadrinz.cn',
+                    port: '8080',
+                    userId: '',
+                    docId: ''
+                },
+                connected: false,
+                failed: false
+            }
+        },
+        methods: {
+            connect: function() {
+                try {
+                    ws = new WebSocket(`ws://${this.specifier.host}:${this.specifier.port}/${this.specifier.docId}/${this.specifier.userId}`);
+                } catch (e) {
+                    this.$message({
+                        message: '请填写主机名和端口号',
+                        type: 'error'
+                    })
+                    return;
+                }
+                ws.onopen = () => {
+                    this.connected = true;
+                    this.$message({
+                        message: '连接成功',
+                        type: 'success'
+                    })
+                    ws.send(JSON.stringify({
+                        type: 'req',
+                        delta: {
+                            ops: [],
+                            attributes: {
+                                docId: vue.specifier.docId,
+                                userId: vue.specifier.userId
+                            }
+                        }
+                    }));
+                }
+                ws.onclose = () => {
+                    this.connected = false;
+                    this.$message({
+                        message: '连接已中止',
+                        type: 'warning'
+                    })
+                }
+                ws.onmessage = (resp) => {
+                    var packet = JSON.parse(resp.data);
+                    if (packet.type === 'res') {
+                        quill.setText('', source = 'server');
+                        quill.updateContents(packet.delta.ops, source = 'server');
+                    } else if (packet.type === 'mod') {
+                        let {
+                            delta,
+                            oldDelta
+                        } = packet;
+                        if (delta.attributes.userId != vue.specifier.userId) {
+                            // 收到广播时需要做OT
+                            let historyDelta = quill.getContents();
+                            Object.assign(delta, ot(historyDelta, new Delta(delta), new Delta(oldDelta)));
+                            quill.updateContents(delta.ops, source = 'server');
+                        }
+                    }
+                }
+            },
+            disconnect: function() {
+                ws.close();
+            }
+        }
+    })
+
+    // 前端OT
+    // history是前端历史记录, 从quill获取
+    // delta是收到的广播里的delta
+    // oldDelta是收到的广播里的oldDelta, 即服务器的历史记录
+    function ot(history, delta, oldDelta) {
+        try {
+            history = new Delta().insert('\n').compose(history);
+            let diff = oldDelta.diff(history);
+            console.log(diff);
+            if (diff.ops.length > 0)
+                return diff.transform(delta, false);
+            return delta;
+        } catch (e) {
+            console.error(e);
+            return delta;
+        }
+    }
+</script>
+
+</html>

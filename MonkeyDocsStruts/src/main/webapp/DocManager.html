@@ -33,6 +33,9 @@
         border-left: 1px solid #cdcdcd;
         padding-top: 20px;
         overflow: auto;
+
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-left: 1px solid #cdcdcd;
     }
 
     .el-header {
@@ -106,6 +109,7 @@
 
     .main-top {
         border: 1px solid #000000;
+        height: auto;
     }
 
     .btn-col {
@@ -113,6 +117,7 @@
     }
 
     .title-col {
+        margin-top: 20px;
         height: 30px;
     }
 
@@ -160,6 +165,9 @@
     .main-col {
 
         height: 90%;
+        width: 100%;
+        overflow: auto;
+        height: 83%;
     }
 
     .docitem {
@@ -241,6 +249,9 @@
         color: 6D7275;
         font-size: 10px;
         font: weight 500;
+        color: #6D7275;
+        font-size: 10px;
+        font-weight: 500;
         margin-left: 60px;
     }
 
@@ -249,6 +260,30 @@
         font-size: 20px;
         font-weight: 800;
         margin-left: 0px;
+    }
+    .main_root {
+        overflow: hidden;
+    }
+    .userinfo_ul li{
+        margin-top:10px;
+  
+        border-bottom: 1px solid #cdcdcd;
+    }
+    .userinfo_text{
+        color: #6D7275;
+        font-weight: 800;
+        border-bottom: 1px solid #f8f8f8;
+    }
+    .logout_c{
+        padding:10px;
+        padding-left:130px;
+        border-bottom: 1px solid #ffffff;
+      
+
+    }
+    .logout_c:hover{
+        background-color:#f8f8f8;
+
     }
 </style>
 
@@ -268,6 +303,7 @@
                             <el-col :span="16">
                                 <div class="top-search">
                                     <el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="docsearchtext">
+                                    <el-input placeholder="请输入内容" prefix-icon="el-icon-search" @input="searchDoc" v-model="searchDocinput" >
                                     </el-input>
                                 </div>
                             </el-col>
@@ -284,6 +320,7 @@
                                             <el-col :span="16" style="height:auto;padding-top:30px">
 
                                                 <span style="font-size:20px;color:#6D7275;font-weight:bold;">用户</span>
+                                                <span style="font-size:20px;color:#6D7275;font-weight:bold;">{{userinfo.username}}</span>
                                             </el-col>
 
                                         </el-row>
@@ -294,6 +331,33 @@
                                                     <li style="border:1px solid #cdcdcd;">dd</li>
                                                     <li style="border:1px solid #cdcdcd;">dd</li>
                                                     <li style="border:1px solid #cdcdcd;">dd</li>
+                                                <ul style="list-style-type: none;;padding-left:0px" class="userinfo_ul">
+                                                    <li >
+                                                         <span class ="userinfo_text">文档数量</span>
+                                                         <el-progress :percentage="doclist.length/0.3" :format="format" style="padding:10px"></el-progress>  
+                                                    </li>
+                                                    <li >
+                                                        <span class ="userinfo_text">回收站文档数量:<span>
+                                                        <el-progress :percentage="recycleddoclist.length/0.5" :format="reformat" style="padding:10px"></el-progress>  
+                                                    </li>
+                                                
+                                                    <li >
+                                                       <span class ="userinfo_text">电话号码：<span>
+                                                       <p> {{userinfo.usertel}}</p>
+                                                    </li>
+                                                    <li >
+                                                        <span class ="userinfo_text">电子邮箱：<span><p>{{userinfo.useremail}}</p>
+                                                    </li>
+                                                    <li  class="logout_c" style="margin-top:0px;border-bottom: 0px solid #ffffff;" @click="logout">
+                                                    
+                                                        <span
+                                                        style="color:red;
+                                                        font-size: 20px;
+                                                        font-weight: 800;
+                                                        "
+                                                        >注销<span>
+                                                    </li>
+
                                                 </ul>
                                             </el-col>
                                         </el-row>
@@ -329,6 +393,10 @@
                     <transition mode="out-in">
                         <div v-if="leftchose == '1'">
                             <div class="main">
+                <el-main class="main_root" :style="mainheight">
+                    <transition mode="out-in">
+                        <div v-if="leftchose == '1'">
+                            <div class="main" :style="mainheight">
                                 <el-row class="title-col">
                                     <span>我的文档</span>
                                 </el-row>
@@ -353,6 +421,15 @@
                                                 </el-image>
                                             </el-col>
                                             <el-col :span="19" style="height:auto">
+                                        <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
+
+                                            <el-col :span="4" style="height:auto"
+                                                @click.native="goEditpage(docitem.id)">
+                                                <el-image class="docimg">
+                                                </el-image>
+                                            </el-col>
+                                            <el-col :span="19" style="height:auto"
+                                                @click.native="goEditpage(docitem.id)">
                                                 <el-col :span="24" class="card-docname">
                                                     <span>{{docitem.mdName}}</span>
                                                 </el-col>
@@ -389,6 +466,11 @@
                         </div>
                         <div v-if="leftchose == '2'">
                             <div class="main">
+
+                            </div>
+                        </div>
+                        <div v-if="leftchose == '2'">
+                            <div class="main" :style="mainheight">
                                 <el-row class="title-col">
                                     <span>通知</span>
                                 </el-row>
@@ -434,6 +516,7 @@
                         </div>
                         <div v-if="leftchose == '3'">
                             <div class="main">
+                            <div class="main" :style="mainheight">
                                 <el-row class="title-col">
                                     <span>回收站</span>
                                 </el-row>
@@ -441,6 +524,7 @@
 
                                     <el-col :span="3" style="padding: 0 10px;">
                                         <el-button class="topbtn creatbtn">清空回收站</el-button>
+                                        <el-button class="topbtn creatbtn" @click="clearRe">清空回收站</el-button>
 
                                     </el-col>
                                     <el-col :span="17"></el-col>
@@ -448,6 +532,7 @@
                                 <el-row class="main-col">
                                     <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
                                         v-for="redocitem in recycleddoclist">
+                                        v-for="(redocitem,index) in recycleddoclist">
                                         <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
 
                                             <el-col :span="4" style="height:auto">
@@ -470,6 +555,58 @@
                                                         <el-dropdown-item @click.native="reDoc(index)">还原
                                                         </el-dropdown-item>
                                                         <el-dropdown-item divided style="color: red;">彻底删除
+                                                        <el-dropdown-item divided style="color: red;" @click.native="actuallydelete(index)">彻底删除
+                                                        </el-dropdown-item>
+                                                    </el-dropdown-menu>
+                                                </el-dropdown>
+                                            </el-col>
+
+
+
+                                        </el-card>
+                                    </el-col>
+                                </el-row>
+                            </div>
+                        </div>
+                        <div v-if="leftchose == '4'">
+                            <div class="main" :style="mainheight">
+                                <el-row class="title-col">
+                                    <span>搜索结果</span>
+                                </el-row>
+                                <el-row class="main-col" style="margin-top:20px">
+                                    <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
+                                        v-for="(docitem,index) in serchedDoc">
+                                        <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
+
+                                            <el-col :span="4" style="height:auto"
+                                                @click.native="goEditpage(docitem.id)">
+                                                <el-image class="docimg">
+                                                </el-image>
+                                            </el-col>
+                                            <el-col :span="19" style="height:auto"
+                                                @click.native="goEditpage(docitem.id)">
+                                                <el-col :span="24" class="card-docname">
+                                                    <span>{{docitem.mdName}}</span>
+                                                </el-col>
+                                                <el-col :span="24" class="card-docinfo">
+                                                    <span>上次更新时间：{{docitem.updateTime}}</span>
+                                                </el-col>
+
+                                            </el-col>
+                                            <el-col :span="1" style="height:auto;">
+                                                <el-dropdown trigger="click" placement="bottom-end" size="medium"
+                                                    @command="docmanage">
+                                                    <i class="el-icon-more el-dropdown-link"></i>
+                                                    <el-dropdown-menu slot="dropdown">
+                                                        <el-dropdown-item
+                                                            @click.native="dialogrenameVisible = true;renameDialogdata.docid=doclist[index].id">
+                                                            重命名</el-dropdown-item>
+                                                        <el-dropdown-item @click.native="openMemberList(index)">权限管理
+                                                        </el-dropdown-item>
+                                                        <el-dropdown-item>导出</el-dropdown-item>
+                                                        <el-dropdown-item divided style="color: red;"
+                                                            @click.native="deleteDoc(index)">
+                                                            删除
                                                         </el-dropdown-item>
                                                     </el-dropdown-menu>
                                                 </el-dropdown>
@@ -580,6 +717,18 @@
             message: 'Hello Vue!',
             visible: false,
             docsearchtext: '',
+            userinfo:{
+                userid:'9',
+                username:'',
+                usertel:'',
+                useremail:''
+            },
+            mainheight: {
+                height: ''
+            },
+            rooturl: 'http://monkeydoc.liadrinz.cn/',
+            message: 'Hello Vue!',
+            visible: false,
             leftName: [
                 {
                     iconclass: 'el-icon-tickets',
@@ -664,6 +813,114 @@
                 console.log(this.doclist)
                 console.log(this.recycleddoclist)
             },
+            token: '',
+            searchDocinput:'',
+            serchedDoc:[]
+        },
+        created: function () {
+            // this.jugloginde();
+            this.mainheight.height = document.body.clientHeight - 60 + "px";
+            this.init();
+        },
+        mounted() {
+            const that = this
+            window.onresize = () => {
+                return (() => {
+                    this.mainheight.height = document.body.clientHeight - 60 + "px";
+                })()
+            }
+        },
+        methods: {
+            async init() {
+                var usrinfo = await axios.get(this.rooturl + 'rest/user/'+this.userinfo.userid)
+                console.log(usrinfo.data)
+                this.userinfo.username=usrinfo.data.userName
+                this.userinfo.usertel=usrinfo.data.tel
+                this.userinfo.useremail=usrinfo.data.email
+                var res = await axios.get(this.rooturl + 'rest/metaToUser.json?userId='+this.userinfo.userid)
+                var meta =[]
+                for(var i in  res.data){
+                    meta.push(res.data[i].refMeta)
+                }
+                for (var i = 0; i < meta.length - 1; i++) {
+                    var key = i
+                    for (var j = Number(i + 1); j < meta.length; j++) {
+                        if (meta[j].updateTime >= meta[key].updateTime) {
+                            key = j
+                        }
+                    }
+                    if (key != i) {
+                        var x = meta[i]
+                        meta[i] = meta[key]
+                        meta[key] = x
+                    }
+                }
+                for (var i in meta) {
+                    if (!meta[i].recycled) {
+                        var crtime = new Date(meta[i].createTime)
+                        var uptime = new Date(meta[i].updateTime)
+                        meta[i].createTime = crtime.toLocaleString()
+                        meta[i].updateTime = uptime.toLocaleString()
+                        this.doclist.push(meta[i])
+                    } else if (meta[i].recycled) {
+                        var crtime = new Date(meta[i].createTime)
+                        var uptime = new Date(meta[i].updateTime)
+                        meta[i].createTime = crtime.toLocaleString()
+                        meta[i].updateTime = uptime.toLocaleString()
+                        this.recycleddoclist.push(meta[i])
+                    }
+
+                }
+                this.getmetatouse()
+
+
+            },
+            async getmetatouse() {
+                for (var i in this.doclist) {
+                    var res = await axios.get(this.rooturl + 'rest/metaToUser.json?mdId=' + this.doclist[i].id)
+
+                    var mtoulist = res.data;
+                    var refUsers = [];
+                    for (var j in mtoulist) {
+
+                        var obj = {
+                            id: mtoulist[j].userId,
+                            userName: mtoulist[j].refUser.userName,
+                            tel: mtoulist[j].refUser.tel,
+                            email: mtoulist[j].refUser.email,
+                            role: mtoulist[j].role
+                        }
+                        refUsers.push(obj)
+                    }
+                    this.doclist[i].refUsers = refUsers
+                }
+            },
+            format() {
+       
+                    return this.doclist.length+"/30"
+    
+            },
+            reformat() {
+       
+                    return this.recycleddoclist.length+"/50"
+
+            },
+            jugloginde() {
+                if (window.localStorage.getItem("token") != null) {
+                    this.token = window.localStorage.getItem("token");
+                } else {
+                    window.location.href = 'login.jsp';
+                }
+            },
+            logout(){
+                window.localStorage.removeItem("token");
+                location.reload();
+            },
+            getDoclist: function () {
+                console.log(this.doclist)
+                console.log(this.recycleddoclist)
+
+            },
             docmanage(command) {
                 switch (command) {
                     case 'memberm': {
@@ -712,6 +969,39 @@
                     }
                 }
             },
+            searchDoc(e){
+                
+                this.$forceUpdate()
+                this.serchedDoc =[]
+                this.leftchose ='4'
+                for(var i in this.doclist){
+                    if(this.doclist[i].mdName.search(this.searchDocinput) !=-1){
+                        this.serchedDoc.push(this.doclist[i])
+                    }
+                }
+        
+            },
+            actuallydelete(index){
+                this.$confirm('是否彻底删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    axios.delete(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id )
+                        .then(res => {
+                            console.log(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id);
+                            location.reload();
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                        })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
+            },
             deleteDoc(index) {
                 this.$confirm('是否删除该文件, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -742,6 +1032,9 @@
                     axios.put(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=false')
                         .then(res => {
                             console.log(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=false');
+                    axios.put(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id + '?recycled=false')
+                        .then(res => {
+                            console.log(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id + '?recycled=false');
                             location.reload();
                         })
                         .catch(function (error) {
@@ -756,6 +1049,7 @@
             },
             reNamedoc() {
                 axios.put(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' +this.renameDialogdata.newDocname)
+                axios.put(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' + this.renameDialogdata.newDocname)
                     .then(res => {
                         console.log(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' + this.renameDialogdata.newDocname);
                         location.reload();
@@ -767,6 +1061,29 @@
             },
             goEditpage(index){
                 window.location.href='DocEditPage.html?docid='+index;
+            goEditpage(index) {
+                window.location.href = 'DocEditPage.html?docid=' + index;
+            },
+            clearRe(){
+                this.$confirm('正在清空回收站, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.clear()
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消清空'
+                    })
+                })
+                
+            },
+            async clear(){
+                for(var i in this.recycleddoclist){
+                   res = await axios.delete(this.rooturl + 'rest/meta/' + this.recycleddoclist[i].id )
+                }
+                location.reload();
             },
             createDoc() {
                 var requestbody = {

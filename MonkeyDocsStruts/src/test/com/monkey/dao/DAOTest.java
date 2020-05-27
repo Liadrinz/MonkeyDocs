@@ -85,10 +85,16 @@ public class DAOTest {
         metaDAO.deleteOne(meta.getId());
         assert metaDAO.findOne(meta.getId()) == null;
     }
-
+    @Autowired
+    private DeltaDAO deltaDAO;
     @Test
-    public void testCheckpointDAO() {
-
+    public void testDeltaDAO() {
+        Delta delta = new Delta();
+        delta.setRefUser(userDAO.findOne(9));
+        delta.setRefMeta(metaDAO.findOne(124));
+        delta.setContent("{}");
+        delta = deltaDAO.create(delta);
+        assert deltaDAO.findOne(delta.getId()) != null;
     }
     @Autowired
     private DocumentController documentController;

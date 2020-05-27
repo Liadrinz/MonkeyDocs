@@ -1,0 +1,86 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1723426",
+      "name": "75-中划线",
+      "font_class": "-zhonghuaxian",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "4890373",
+      "name": "粗体",
+      "font_class": "cuti",
+      "unicode": "e6e3",
+      "unicode_decimal": 59107
+    },
+    {
+      "icon_id": "4890398",
+      "name": "斜体",
+      "font_class": "xieti",
+      "unicode": "e6ef",
+      "unicode_decimal": 59119
+    },
+    {
+      "icon_id": "5203264",
+      "name": "居中对齐",
+      "font_class": "juzhongduiqi",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "5203278",
+      "name": "全局对齐",
+      "font_class": "quanjuduiqi",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "5203318",
+      "name": "右对齐",
+      "font_class": "youduiqi",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "5203330",
+      "name": "左对齐",
+      "font_class": "zuoduiqi",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "6077145",
+      "name": "下划线",
+      "font_class": "Underline",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "10047318",
+      "name": "文本颜色",
+      "font_class": "ziyuan",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "11177989",
+      "name": "撤销",
+      "font_class": "ziyuan1",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "11177990",
+      "name": "重做",
+      "font_class": "ziyuan2",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    }
+  ]
+}

@@ -22,6 +22,7 @@
     <!-- REST和非REST风格一起用， 就配置这个-->
     <constant name="struts.action.extension" value="xhtml,,xml,json,action"/>
     <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
     <!-- 以上可以不设，不论哪种，都要设定以下项目 -->
     <!-- XXXAction类后缀，可以是Controller，那么所有控制器后缀都设为Controller-->
     <constant name="struts.convention.action.suffix" value="Controller" />
@@ -35,7 +36,7 @@
             <interceptor name="userLoginDetector" class="checkLogin"></interceptor>
             <interceptor name="requestInterceptor" class="requestaction"></interceptor>
         </interceptors>
-        <action name="userLogin" class="addressAction" method="execute">
+        <action name="userLogin" class="addressAction" >
             <result name="success">/index.jsp</result>
             <interceptor-ref name="userLoginDetector"></interceptor-ref>
         </action>
@@ -78,15 +79,14 @@
                 <interceptor-ref name="checkbox"/>
                 <interceptor-ref name="staticParams"/>
                 <interceptor-ref name="params"/>
-                <!--以下注释rest-default-stack拦截器不支持AjaxPOST请求-->
-<!--                <interceptor-ref name="rest" />-->
-<!--                <interceptor-ref name="conversionError"/>-->
-<!--                <interceptor-ref name="validation">-->
-<!--                    <param name="excludeMethods">input,back,cancel,browse,index,show,edit,editNew</param>-->
-<!--                </interceptor-ref>-->
-<!--                <interceptor-ref name="restWorkflow">-->
-<!--                    <param name="excludeMethods">input,back,cancel,browse,index,show,edit,editNew</param>-->
-<!--                </interceptor-ref>-->
+                <interceptor-ref name="rest" />
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse,index,show,edit,editNew</param>
+                </interceptor-ref>
+                <interceptor-ref name="restWorkflow">
+                    <param name="excludeMethods">input,back,cancel,browse,index,show,edit,editNew</param>
+                </interceptor-ref>
                 <interceptor-ref name="requestInterceptor"/>
             </interceptor-stack>
         </interceptors>

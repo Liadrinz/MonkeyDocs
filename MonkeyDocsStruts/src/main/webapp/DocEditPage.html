@@ -56,7 +56,11 @@
             <el-header class="top">
                 <el-row type="flex" align="middle">
                     <el-col :span="1">
+<<<<<<< HEAD
                         <el-button class="top_button" size="small" class="top_button" icon="el-icon-arrow-left">
+=======
+                        <el-button v-on:click="goback()" class="top_button" size="small"  icon="el-icon-arrow-left">
+>>>>>>> 16dcd14edeb29a84078a9fd95828eb0eb4863406
                         </el-button>
                     </el-col>
                     <el-col :span="10" offset="1">
@@ -69,6 +73,10 @@
             </el-header>
         </el-container>
     </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 16dcd14edeb29a84078a9fd95828eb0eb4863406
     <div id="edit_part">
         <div id="toolbar">
             <span class="ql-formats">
@@ -265,6 +273,16 @@
                 }
             }
             if (websock !== null)
+            delta.attributes={
+                userId: vue.user_id,
+                docId: vue.doc_id
+            }
+            var change = {
+                type: "delta",
+                delta:delta,
+                oldDelta:oldDelta
+            }
+            if (websock !== null&&websock.readyState!=websock.CLOSED)
                 websock.send(JSON.stringify(change));
         }
 
@@ -312,6 +330,13 @@
                     payload: {
                         docid: vue.doc_id,
                         userid: vue.user_id
+                    delta: {
+                        ops: [],
+                        attributes: {
+                            docId: vue.doc_id,
+                            userId: vue.user_id
+                        }
+
                     }
 
                 }
@@ -333,6 +358,18 @@
                     if (resp.payload.userid != vue.user_id) {
                         var content = JSON.parse(resp.payload.content);
                         quill.updateContents(content.ops, source = 'server');
+                    quill.setText('', source = 'server');
+                    quill.updateContents(resp.delta.ops, source = 'server');
+                }
+                else if (resp.type === "mod") {
+                    let {
+                        delta,
+                        oldDelta
+                    } = resp;
+                    if (delta.attributes.userId != vue.user_id) {
+                        let historyDelta = quill.getContents();
+                        Object.assign(delta, ot(historyDelta,new Delta(delta),new Delta(oldDelta)));
+                        quill.updateContents(delta.ops, source = 'server');
                     }
 
                 }
@@ -347,6 +384,32 @@
             setDocid() {
                 this.doc_id = this.getQueryVariable("docid");
             }
+                websock.close();
+            },
+
+            setUrl() {
+                this.url = "ws://www.liadrinz.cn:8088/" + this.doc_id + "/" + this.user_id;
+            },
+            setDocid() {
+                this.doc_id = this.getQueryVariable("docid");
+            },
+            ot(history, delta, oldDelta) {
+                try {
+                    history = new Delta().insert('\n').compose(history);
+                    let diff = oldDelta.diff(history);
+                    console.log(diff);
+                    if (diff.ops.length > 0)
+                        return diff.transform(delta, false);
+                    return delta;
+                } catch (e) {
+                    console.error(e);
+                    return delta;
+                }
+            },
+            goback(){
+                window.location.href='DocManager.html';
+            },
+
         },
 
         created() {
