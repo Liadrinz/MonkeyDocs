@@ -276,12 +276,13 @@
         data() {
             return {
                 rooturl: 'http://monkeydoc.liadrinz.cn/',
+                testurl:'http://localhost:8083/mdss/',
                 initial_data: null,
                 visittoken:'',
                 websock: null,
                 url: "",
                 doc_id: '1',
-                user_id: '1',
+                user_id: '23',
                 user_name: "",
                 doc_name: "吼猴的文档  ",
                 circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
@@ -368,6 +369,7 @@
                     ifhavevisittoken = true
                 }else if( this.getQueryVariable("visittoken") != false){
                     this.visittoken = this.getQueryVariable("visittoken")
+                    window.localStorage.setItem("visittoken",this.getQueryVariable("visittoken"))
                     ifhavevisittoken = true
                 }
                 else {
@@ -380,7 +382,7 @@
                 }
                 if (window.localStorage.getItem("token") != null) {
                     this.setUserid()
-                    var res =await axios.get(this.rooturl+"rest/meta/metaToUser.json?mdId="+this.doc_id+"&userId="+this.user_id)
+                    var res =await axios.get(this.rooturl+"rest/metaToUser.json?mdId="+this.doc_id+"&userId="+this.user_id)
                     if(res.data.length >0) {
                         return
                     }else {
@@ -389,9 +391,9 @@
                                 "mdId": this.doc_id,
                                 "userId": this.user_id
                             }
-                            var res1 =await axios.post(this.rooturl+"mvc/visitdocs/joindoc",requestbody)
-                            this.quill.enable(true);
-                            this.$message("欢迎加入本文档的协作小组")
+                            var res1 =await axios.post(this.testurl+"mvc/visitdocs/joindoc",requestbody)
+                            quill.enable(true);
+                            this.$message("欢迎加入本文档的协作小组");
                             return
                         }
                         if(ifhavevisittoken){
@@ -399,12 +401,14 @@
                                 "mdId": this.doc_id,
                                 "visittoken": this.visittoken
                             }
-                            var res2 =await axios.post(this.rooturl+"mvc/visitdocs/jugvisittoken",requestbody)
+                            var res2 =await axios.post(this.testurl+"mvc/visitdocs/jugvisittoken",requestbody)
                             if(res2){
-                                this.quill.enable(false);
+                                quill.enable(false);
                                 this.$message("你只能看着")
                                 return
                             }
+                        }else {
+                            window.location.href = 'DocManager.html';
                         }
                     }
                 } else {
@@ -413,9 +417,9 @@
                             "mdId": this.doc_id,
                             "visittoken": this.visittoken
                         }
-                        var res3 =await axios.post(this.rooturl+"mvc/visitdocs/jugvisittoken",requestbody)
+                        var res3 =await axios.post(this.testurl+"mvc/visitdocs/jugvisittoken",requestbody)
                         if(res3){
-                            this.quill.enable(false);
+                            quill.enable(false);
                             this.$message("你只能看着")
                             return
                         }
