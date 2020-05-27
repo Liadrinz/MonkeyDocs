@@ -26,4 +26,12 @@ public class UserController extends StrutsRestController<User> {
         model.setPassword(Security.encryptPwd(model.getPassword()));
         return super.create();
     }
+
+    @Override
+    public HttpHeaders update() {
+        if (model.getPassword() != null && !model.getPassword().equals(super.dao.findOne(model.getId()).getPassword())) {
+            model.setPassword(Security.encryptPwd(model.getPassword()));
+        }
+        return super.update();
+    }
 }
