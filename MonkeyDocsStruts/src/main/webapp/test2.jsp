@@ -33,7 +33,7 @@
                 userName: '',
                 password: '',
                 password2:'',
-                token:readData("token"),
+                token:'',
                 tishi:'',
             }
         },
@@ -43,22 +43,6 @@
                     tel:"13120171889",
                     password:"78c8a34620020484ebcefa98c926c8ba1ed7b2621eee7c4f56e528b1c26fe30a",
                 };
-                // this.$http.jsonp("http://localhost:8080/MonkeyDocsStruts_war_exploded/rest/user.json",
-                //     {
-                //     params: {
-                //         ttel: this.userinfo.tel,
-                //         password: this.userinfo.password2
-                //     },
-                //     jsonp: "callback"
-                //     })
-                //     .then(res => {
-                //     if (res.data.g) {
-                //         this.result = res.data.g.map(x => x['q']);
-                //     } else {
-                //         this.result = [];
-                //     }
-                // });
-
                 axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userLogin.action",val,{headers:{token:this.userinfo.token}}).then(
                     res=>{
                         console.log(res)

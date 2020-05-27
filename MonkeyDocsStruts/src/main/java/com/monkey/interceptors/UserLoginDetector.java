@@ -40,7 +40,7 @@ public class UserLoginDetector extends AbstractInterceptor {
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn= DriverManager.getConnection("jdbc:mysql://106.54.101.125:3306/MonkeyDocDB","root","monkeydoc123");
         Statement st= conn.createStatement();
-        if(usrtoken==null) {
+        if(usrtoken==null||usrtoken.equals("")) {
             String tel = (String) map.get("tel");
             String sql1 = "select * from User where tel=";
             ResultSet re = st.executeQuery(sql1 + tel);
