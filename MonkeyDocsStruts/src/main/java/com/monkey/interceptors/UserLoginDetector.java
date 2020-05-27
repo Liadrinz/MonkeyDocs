@@ -21,7 +21,6 @@ public class UserLoginDetector extends AbstractInterceptor {
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response= ServletActionContext.getResponse();
         String method = request.getMethod();
-        System.out.println(method);
         if(method.equals("OPTIONS")){
             return actionInvocation.invoke();
         }
@@ -39,11 +38,25 @@ public class UserLoginDetector extends AbstractInterceptor {
         Map<String ,Object> map = gson.fromJson(responseStrBuilder.toString(),Map.class);
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn= DriverManager.getConnection("jdbc:mysql://106.54.101.125:3306/MonkeyDocDB","root","monkeydoc123");
-        Statement st= conn.createStatement();
         if(usrtoken==null||usrtoken.equals("")) {
-            String tel = (String) map.get("tel");
-            String sql1 = "select * from User where tel=";
-            ResultSet re = st.executeQuery(sql1 + tel);
+            Statement st= conn.createStatement();
+            String loginfor;
+            String resu;
+            if(map.get("tel").equals("")&&!map.get("email").equals("")) {
+                loginfor = (String) map.get("email");
+                resu="email";
+            }
+            else if(!map.get("tel").equals("")&&map.get("email").equals("")) {
+                loginfor = (String) map.get("tel");
+                resu="tel";
+            }
+            else {
+                response.setHeader("responsemsg","error");
+                return  null;
+            }
+            String sql1="select * from User where "+resu+"=";
+            System.out.println(sql1 + "\""+loginfor+"\"");
+            ResultSet re = st.executeQuery(sql1 + "\""+loginfor+"\"");
             if (!re.next()) {
                 response.setHeader("responsemsg", "User_does_not_exists");
                 return null;

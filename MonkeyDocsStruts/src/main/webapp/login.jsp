@@ -93,7 +93,7 @@
   <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
   <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
   <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
-  <script type="application/javascript" src="https://blog-static.cnblogs.com/files/7qin/md5.js"></script>
+  <script type="application/javascript" src="md5.js"></script>
 </head><body class=""><div id="root"><div class="StyledBackground-sc-1duRon lgVKQA">
   <div class="transparent LogoWrapper-sc-1duRon-1 dEKxIf"><a class="sc-1I1iYs-1 gXtlRg" href=#>
     <svg width="133" height="26" xmlns="http://www.w3.org/2000/svg">
@@ -119,7 +119,7 @@
                 <div class="upper" type="mobileOrEmail">
                   <label class="label">输入注册手机号或邮箱</label>
                   <div class="input">
-                    <input type="text" placeholder="" autofocus="" v-model="userinfo.tel" name="mobileOrEmail"></div></div>
+                    <input type="text" placeholder="" autofocus="" v-model="userinfo.account" name="mobileOrEmail"></div></div>
                 <div class="upper" type="password">
                   <label class="label">输入密码</label>
                   <div class="input">
@@ -154,14 +154,13 @@
     data:{
       userinfo:{
         getURL:'https://bird.ioliu.cn/v1?url=http://monkeydoc.liadrinz.cn/rest/user.json?tel=',
-        id: '',
         tel: '',
         email: '',
-        userName: '',
         password: '',
         password2:'',
-        token:readData("token"),
+        token:'',
         tishi:'',
+        account:'',
       }
     },
     mounted: function () {
@@ -191,8 +190,13 @@
     },
     methods:{
       post:function(){
+        if(this.userinfo.account.indexOf("@") == -1)
+          this.userinfo.tel=this.userinfo.account;
+        else
+          this.userinfo.email=this.userinfo.account;
         let val={
           tel:this.userinfo.tel,
+          email:this.userinfo.email,
           password:hex_md5(this.userinfo.password2),
         };
         console.log(hex_md5(this.userinfo.password2))
@@ -200,15 +204,17 @@
                 res=>{
                   console.log(res)
           if(res.headers.responsemsg=="User_does_not_exists")
-        this.userinfo.tishi='手机号格式有误或尚未注册';
+        this.userinfo.tishi='手机号(邮箱）格式有误或尚未注册';
       else if(res.headers.responsemsg=="usr_name_or_psw_wrong")
-          this.userinfo.tishi='用户名或密码输入错误';
+          this.userinfo.tishi='手机号(邮箱)或密码输入错误';
+      else  if(res.headers.responsemsg=="error")
+          alert("error");
         else {
           console.log('登陆成功');
           console.log(res.headers.responsemsg);
           saveData("token",res.headers.responsemsg)
             saveData("userid",res.headers.userid)
-          window.location.href='./DocManager.html';
+          //window.location.href='./DocManager.html';
         }
       }
       ).catch(
@@ -219,8 +225,8 @@
       },
       login(){
         console.log(this.userinfo.token);
-        if(this.userinfo.tel=='')
-        {this.userinfo.tishi='手机号不能为空';return;}
+        if(this.userinfo.account=='')
+        {this.userinfo.tishi='手机号(邮箱)不能为空';return;}
         if(this.userinfo.password2==''){this.userinfo.tishi='密码不能为空';return;}
         else
           this.post();
