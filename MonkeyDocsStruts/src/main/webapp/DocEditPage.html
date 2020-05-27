@@ -356,6 +356,9 @@
             setDocid() {
                 this.doc_id = this.getQueryVariable("docid");
             },
+            setUserid(){
+                this.user_id = JSON.parse(window.localStorage.getItem("userid"));
+            },
             ot(history, delta, oldDelta) {
                 try {
                     history = new Delta().insert('\n').compose(history);
@@ -378,6 +381,7 @@
         created() {
             let self = this;
             this.setDocid();
+            this.setUserid();
             this.setUrl();
             this.initWebSocket();
             console.log(this.doc_id);
