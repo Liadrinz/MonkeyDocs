@@ -8,7 +8,7 @@ import org.apache.struts2.convention.annotation.Results;
 
 import javax.annotation.Resource;
 
-@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/docvisittoken", "actionName", "${id}"}))
+@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/rest/docvisittoken", "actionName", "${id}"}))
 public class DocvisittokenController extends StrutsRestController<Docvisittoken> {
     public DocvisittokenController(){
         name="docvisittoken";
