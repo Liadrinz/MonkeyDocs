@@ -26,6 +26,7 @@
     <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
     <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
     <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <script type="application/javascript" src="https://blog-static.cnblogs.com/files/7qin/md5.js"></script>
 </head>
 <body>
 <div class="transparent LogoWrapper-sc-1duRon-1 dEKxIf"><a class="sc-1I1iYs-1 gXtlRg" href=#>
@@ -110,7 +111,7 @@
         methods:{
             // 封装注册发送请求方法
             thisAjax(){
-                const passwordData=this.userInfo.password1;
+                const passwordData=hex_md5(this.userInfo.password1);
                 const phoneData =this.userInfo.phonenum;
                 const usernameData=this.userInfo.username;
                 const idData=this.userInfo.idcard;

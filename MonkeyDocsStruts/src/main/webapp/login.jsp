@@ -93,6 +93,7 @@
   <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
   <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
   <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+  <script type="application/javascript" src="https://blog-static.cnblogs.com/files/7qin/md5.js"></script>
 </head><body class=""><div id="root"><div class="StyledBackground-sc-1duRon lgVKQA">
   <div class="transparent LogoWrapper-sc-1duRon-1 dEKxIf"><a class="sc-1I1iYs-1 gXtlRg" href=#>
     <svg width="133" height="26" xmlns="http://www.w3.org/2000/svg">
@@ -192,8 +193,9 @@
       post:function(){
         let val={
           tel:this.userinfo.tel,
-          password:this.userinfo.password2,
+          password:hex_md5(this.userinfo.password2),
         };
+        console.log(hex_md5(this.userinfo.password2))
         axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userLogin.action",val).then(
                 res=>{
                   console.log(res)
