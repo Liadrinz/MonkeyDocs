@@ -737,7 +737,7 @@
             serchedDoc:[]
         },
         created: function () {
-            // this.jugloginde();
+            this.jugloginde();
             this.mainheight.height = document.body.clientHeight - 60 + "px";
             this.init();
         },
@@ -826,6 +826,7 @@
             jugloginde() {
                 if (window.localStorage.getItem("token") != null) {
                     this.token = window.localStorage.getItem("token");
+                    this.user_id=window.localStorage.getItem("userId");
                 } else {
                     window.location.href = 'login.jsp';
                 }
