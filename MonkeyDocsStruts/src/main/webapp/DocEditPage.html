@@ -15,34 +15,33 @@
         fill: currentColor;
         overflow: hidden;
     }
-
+    
     body {
         margin: 0px;
         background-color: #F2F6FC;
     }
-
+    
     .top {
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         background-color: #FFFFFF;
     }
-
+    
     .top_button {
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
     }
-
+    
     #edit_part {
         margin-top: 10px;
         margin-left: auto;
         margin-right: auto;
         width: 1100px;
     }
-
-
+    
     .tool_button {
         background-color: transparent;
         border: transparent;
     }
-
+    
     #paper {
         background-color: #FFFFFF;
         height: 1000px;
@@ -56,7 +55,7 @@
             <el-header class="top">
                 <el-row type="flex" align="middle">
                     <el-col :span="1">
-                        <el-button v-on:click="goback()" class="top_button" size="small"  icon="el-icon-arrow-left">
+                        <el-button v-on:click="goback()" class="top_button" size="small" icon="el-icon-arrow-left">
                         </el-button>
                     </el-col>
                     <el-col :span="10" offset="1">
@@ -69,7 +68,6 @@
             </el-header>
         </el-container>
     </div>
-
     <div id="edit_part">
         <div id="toolbar">
             <span class="ql-formats">
@@ -248,25 +246,25 @@
         }
     });
     var undo = document.querySelector('#undo');
-    undo.addEventListener('click', function () {
+    undo.addEventListener('click', function() {
         quill.history.undo();
     });
     var redo = document.querySelector('#redo');
-    redo.addEventListener('click', function () {
+    redo.addEventListener('click', function() {
         quill.history.redo();
     });
-    quill.on('text-change', function (delta, oldDelta, source) {
+    quill.on('text-change', function(delta, oldDelta, source) {
         if (source === 'user') {
-            delta.attributes={
+            delta.attributes = {
                 userId: vue.user_id,
                 docId: vue.doc_id
             }
             var change = {
                 type: "delta",
-                delta:delta,
-                oldDelta:oldDelta
+                delta: delta,
+                oldDelta: oldDelta
             }
-            if (websock !== null&&websock.readyState!=websock.CLOSED)
+            if (websock !== null && websock.readyState != websock.CLOSED)
                 websock.send(JSON.stringify(change));
         }
 
@@ -276,9 +274,9 @@
         data() {
             return {
                 rooturl: 'http://monkeydoc.liadrinz.cn/',
-                testurl:'http://localhost:8083/mdss/',
+                testurl: 'http://localhost:8083/mdss/',
                 initial_data: null,
-                visittoken:'',
+                visittoken: '',
                 websock: null,
                 url: "",
                 doc_id: '1',
@@ -294,7 +292,9 @@
                 var vars = query.split("&");
                 for (var i = 0; i < vars.length; i++) {
                     var pair = vars[i].split("=");
-                    if (pair[0] == variable) { return pair[1]; }
+                    if (pair[0] == variable) {
+                        return pair[1];
+                    }
                 }
                 return (false);
             },
@@ -334,15 +334,14 @@
                 if (resp.type === "res") {
                     quill.setText('', source = 'server');
                     quill.updateContents(resp.delta.ops, source = 'server');
-                }
-                else if (resp.type === "mod") {
+                } else if (resp.type === "mod") {
                     let {
                         delta,
                         oldDelta
                     } = resp;
                     if (delta.attributes.userId != vue.user_id) {
                         let historyDelta = quill.getContents();
-                        Object.assign(delta, ot(historyDelta,new Delta(delta),new Delta(oldDelta)));
+                        Object.assign(delta, ot(historyDelta, new Delta(delta), new Delta(oldDelta)));
                         quill.updateContents(delta.ops, source = 'server');
                     }
 
@@ -358,73 +357,71 @@
             setDocid() {
                 this.doc_id = this.getQueryVariable("docid");
             },
-            setUserid(){
+            setUserid() {
                 this.user_id = JSON.parse(window.localStorage.getItem("userid"));
             },
-            async visitorjoin(){
-                var ifhavevisittoken =false;
-                var ifisjoin =false;
-                if(window.localStorage.getItem("visittoken") != null){
+            async visitorjoin() {
+                var ifhavevisittoken = false;
+                var ifisjoin = false;
+                if (window.localStorage.getItem("visittoken") != null) {
                     this.visittoken = window.localStorage.getItem("visittoken")
                     ifhavevisittoken = true
-                }else if( this.getQueryVariable("visittoken") != false){
+                } else if (this.getQueryVariable("visittoken") != false) {
                     this.visittoken = this.getQueryVariable("visittoken")
-                    window.localStorage.setItem("visittoken",this.getQueryVariable("visittoken"))
+                    window.localStorage.setItem("visittoken", this.getQueryVariable("visittoken"))
                     ifhavevisittoken = true
+                } else {
+                    ifhavevisittoken = false
                 }
-                else {
-                    ifhavevisittoken =false
-                }
-                if(this.getQueryVariable("action") == 'join'){
-                    ifisjoin =true;
-                }else {
-                    ifisjoin =false;
+                if (this.getQueryVariable("action") == 'join') {
+                    ifisjoin = true;
+                } else {
+                    ifisjoin = false;
                 }
                 if (window.localStorage.getItem("token") != null) {
                     this.setUserid()
-                    var res =await axios.get(this.rooturl+"rest/metaToUser.json?mdId="+this.doc_id+"&userId="+this.user_id)
-                    if(res.data.length >0) {
+                    var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
+                    if (res.data.length > 0) {
                         return
-                    }else {
-                        if(ifisjoin){
-                            var requestbody ={
+                    } else {
+                        if (ifisjoin) {
+                            var requestbody = {
                                 "mdId": this.doc_id,
                                 "userId": this.user_id
                             }
-                            var res1 =await axios.post(this.rooturl+"mvc/visitdocs/joindoc",requestbody)
+                            var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
                             quill.enable(true);
                             this.$message("欢迎加入本文档的协作小组");
                             return
                         }
-                        if(ifhavevisittoken){
-                            var requestbody ={
+                        if (ifhavevisittoken) {
+                            var requestbody = {
                                 "mdId": this.doc_id,
                                 "visittoken": this.visittoken
                             }
-                            var res2 =await axios.post(this.rooturl+"mvc/visitdocs/jugvisittoken",requestbody)
-                            if(res2){
+                            var res2 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                            if (res2) {
                                 quill.enable(false);
                                 this.$message("你只能看着")
                                 return
                             }
-                        }else {
+                        } else {
                             window.location.href = 'DocManager.html';
                         }
                     }
                 } else {
-                    if(ifhavevisittoken){
-                        var requestbody ={
+                    if (ifhavevisittoken) {
+                        var requestbody = {
                             "mdId": this.doc_id,
                             "visittoken": this.visittoken
                         }
-                        var res3 =await axios.post(this.rooturl+"mvc/visitdocs/jugvisittoken",requestbody)
-                        if(res3){
+                        var res3 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                        if (res3) {
                             quill.enable(false);
                             this.$message("你只能看着")
                             return
                         }
-                    }
-                    else {
+                    } else {
                         window.location.href = 'login.jsp';
                     }
                 }
@@ -448,8 +445,8 @@
                     return delta;
                 }
             },
-            goback(){
-                window.location.href='DocManager.html';
+            goback() {
+                window.location.href = 'DocManager.html';
             },
 
         },
@@ -471,13 +468,11 @@
                 })
 
         },
-        mounted() {
-        },
+        mounted() {},
         destroyed() {
             websocket.close();
         },
     });
-
 </script>
 
 </html>

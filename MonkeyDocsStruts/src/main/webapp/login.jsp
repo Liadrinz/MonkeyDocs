@@ -1,12 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: tyf
-  Date: 2020/4/22
-  Time: 22:46
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W4C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no"><meta name="google" content="notranslate"><meta name="renderer" content="webkit"><meta name="Pragma" content="no-cache"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="format-detection" content="telephone=no"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="applicable-device" content="pc,mobile"><title>Monkey Doc</title><meta name="keywords" content=""><style type="text/css" lizard-data-styled-components="gXtlRg kmwMDA bcuuIb dfsiVH sfCUt" data-styled-components-is-local="true">
 
@@ -101,6 +93,7 @@
   <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
   <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
   <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+  <script type="application/javascript" src="https://blog-static.cnblogs.com/files/7qin/md5.js"></script>
 </head><body class=""><div id="root"><div class="StyledBackground-sc-1duRon lgVKQA">
   <div class="transparent LogoWrapper-sc-1duRon-1 dEKxIf"><a class="sc-1I1iYs-1 gXtlRg" href=#>
     <svg width="133" height="26" xmlns="http://www.w3.org/2000/svg">
@@ -148,8 +141,8 @@
 </div>
 <script>
   function readData (key) {
-    if(!window.localStorage.getItem(key))
-    return JSON.parse(window.localStorage.getItem(key));
+    if(window.localStorage.getItem(key))
+      return JSON.parse(window.localStorage.getItem(key));
     else
       return '';
   }
@@ -162,32 +155,61 @@
       userinfo:{
         getURL:'https://bird.ioliu.cn/v1?url=http://monkeydoc.liadrinz.cn/rest/user.json?tel=',
         id: '',
-        tel: '123123',
+        tel: '',
         email: '',
         userName: '',
         password: '',
-        password2:'123',
+        password2:'',
         token:readData("token"),
         tishi:'',
+      }
+    },
+    mounted: function () {
+      console.log(this.userinfo.token)
+      if(this.userinfo.token=='')
+        return
+      else{
+        let val={
+          token:"this.userinfo.token",
+        }
+        axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userLogin.action",val,{headers:{token:this.userinfo.token}}).then(
+                res=>{
+                  console.log(res)
+                  if(res.headers.responsemsg=="login_succeed")
+                  {
+                    window.location.href='./DocManager.html';
+                  }
+                  else
+                    return;
+                }
+        ).catch(
+                err=>{
+                  console.log(err);
+                }
+        )
       }
     },
     methods:{
       post:function(){
         let val={
           tel:this.userinfo.tel,
-          password:this.userinfo.password2,
+          password:hex_md5(this.userinfo.password2),
         };
-        axios.post("business/userLogin.action",val).then(
+        console.log(hex_md5(this.userinfo.password2))
+        axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userLogin.action",val).then(
                 res=>{
+                  console.log(res)
           if(res.headers.responsemsg=="User_does_not_exists")
         this.userinfo.tishi='手机号格式有误或尚未注册';
       else if(res.headers.responsemsg=="usr_name_or_psw_wrong")
           this.userinfo.tishi='用户名或密码输入错误';
         else {
           console.log('登陆成功');
+          console.log(res.headers.responsemsg);
           saveData("token",res.headers.responsemsg)
+            saveData("userid",res.headers.userid)
+          window.location.href='./DocManager.html';
         }
-        console.log(res);
       }
       ).catch(
                 err=>{
@@ -204,7 +226,7 @@
           this.post();
       },
       logon(){
-        window.location.href='./logon.jsp';
+        window.location.href='logon.jsp';
       },
     }
   });
