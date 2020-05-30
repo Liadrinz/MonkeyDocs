@@ -15,7 +15,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/delta")
 public class QuickDeltaController {
-    private static Gson gson = new Gson();
+    @Autowired
+    private Gson gson;
     @Resource(name = "deltaDAO")
     private DeltaDAO deltaDAO;
 

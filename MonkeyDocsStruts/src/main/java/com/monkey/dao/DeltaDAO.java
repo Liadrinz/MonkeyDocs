@@ -15,7 +15,7 @@ import java.util.List;
 @Repository("deltaDAO")
 @Transactional
 public class DeltaDAO extends CrudDAO<Integer, Delta> {
-    private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+    private static final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
     public DeltaDAO() {
         super(Delta.class);
     }
