@@ -232,7 +232,7 @@
 
     .memberlist-item-name {
         margin-top: 15px;
-        padding-left: 20px;
+        padding-left: 15px;
     }
 
     .memberlist-item-name span {
@@ -418,14 +418,16 @@
                                                 <i class="el-icon-more el-dropdown-link"></i>
                                                 <el-dropdown-menu slot="dropdown">
                                                     <el-dropdown-item
-                                                            @click.native="dialogrenameVisible = true;renameDialogdata.docid=doclist[index].id">
+                                                            @click.native="dialogrenameVisible = true;renameDialogdata.docid=doclist[index].id"
+                                                            v-if="docitem.role=='creator'">
                                                         重命名
                                                     </el-dropdown-item>
                                                     <el-dropdown-item @click.native="openMemberList(index)">权限管理
                                                     </el-dropdown-item>
                                                     <el-dropdown-item>导出</el-dropdown-item>
                                                     <el-dropdown-item divided style="color: red;"
-                                                                      @click.native="deleteDoc(index)">
+                                                                      @click.native="deleteDoc(index)"
+                                                                      v-if="docitem.role=='creator'">
                                                         删除
                                                     </el-dropdown-item>
                                                 </el-dropdown-menu>
@@ -448,34 +450,6 @@
                                 <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
                                         v-for="docitem in doclist">
                                     <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
-
-                                        <el-col :span="4" style="height:auto">
-                                            <el-image class="docimg">
-                                            </el-image>
-                                        </el-col>
-                                        <el-col :span="19" style="height:auto">
-                                            <el-col :span="24" class="card-docname">
-                                                <span>{{docitem.docname}}</span>
-                                            </el-col>
-                                            <el-col :span="24" class="card-docinfo">
-                                                <span>{{docitem.docinfo}}</span>
-                                            </el-col>
-
-                                        </el-col>
-                                        <el-col :span="1" style="height:auto;">
-                                            <el-dropdown trigger="click" placement="bottom-end" size="medium"
-                                                         @command="docmanage">
-                                                <i class="el-icon-more el-dropdown-link"></i>
-                                                <el-dropdown-menu slot="dropdown">
-                                                    <el-dropdown-item>重命名</el-dropdown-item>
-                                                    <el-dropdown-item @click.native="openMemberList">权限管理
-                                                    </el-dropdown-item>
-                                                    <el-dropdown-item>导出</el-dropdown-item>
-                                                    <el-dropdown-item divided style="color: red;">删除
-                                                    </el-dropdown-item>
-                                                </el-dropdown-menu>
-                                            </el-dropdown>
-                                        </el-col>
 
 
                                     </el-card>
@@ -562,6 +536,7 @@
                                                 <i class="el-icon-more el-dropdown-link"></i>
                                                 <el-dropdown-menu slot="dropdown">
                                                     <el-dropdown-item
+                                                            v-if="docitem.role=='creator'"
                                                             @click.native="dialogrenameVisible = true;renameDialogdata.docid=serchedDoc[index].id">
                                                         重命名
                                                     </el-dropdown-item>
@@ -570,6 +545,7 @@
                                                     </el-dropdown-item>
                                                     <el-dropdown-item>导出</el-dropdown-item>
                                                     <el-dropdown-item divided style="color: red;"
+                                                                      v-if="docitem.role=='creator'"
                                                                       @click.native="deleteDoc(docitem.orginindex)">
                                                         删除
                                                     </el-dropdown-item>
@@ -613,14 +589,16 @@
                                     <div class="memberlist-item-name">
                                         <span> {{member.name}}</span>
                                         <span> {{member.tel}}</span>
+                                        <el-button class="topbtn memberaddbtn" @click="awayfromDoc(member.id)">删除</el-button>
                                     </div>
                                 </el-col>
                             </el-row>
                         </div>
                     </el-col>
-                    <el-col :span="24" style="height:auto;padding:0 200px;">
-                        <el-button class="topbtn creatbtn" style="line-height: 1;" @click="{{ifaddmember = true}}">
-                            添加协作人员
+                    <el-col :span="24" style="height:auto;padding:0 0px;">
+                        <p style="width: 100%;font-weight: bold;">{{joinurl}}</p>
+                        <el-button class="topbtn creatbtn" style="line-height: 1;" @click="createWriteurl">
+                            生成邀请链接
                         </el-button>
                     </el-col>
                 </div>
@@ -640,9 +618,9 @@
                                     <div class="memberlist-item-name">
                                         <span> {{member.name}}</span>
                                         <span> {{member.tel}}</span>
-                                        <span>{{member.email}}</span>
 
-                                        <el-button class="topbtn memberaddbtn">邀请</el-button>
+
+                                        <el-button class="topbtn memberaddbtn" @click="inviteIntoDoc(member.id)">邀请</el-button>
 
                                     </div>
                                 </el-col>
@@ -678,8 +656,9 @@
     var app = new Vue({
         el: '#managerpage_root',
         data: {
+            joinurl:'',
             userinfo: {
-                userid: '9',
+                userid: '10',
                 username: '',
                 usertel: '',
                 useremail: ''
@@ -688,6 +667,7 @@
                 height: ''
             },
             rooturl: 'http://monkeydoc.liadrinz.cn/',
+            testurl: 'http://localhost:8083/mdss/',
             message: 'Hello Vue!',
             visible: false,
             leftName: [{
@@ -731,7 +711,7 @@
             serchedDoc: []
         },
         created: function () {
-            this.jugloginde();
+            // this.jugloginde();
             this.mainheight.height = document.body.clientHeight - 60 + "px";
             this.init();
         },
@@ -752,8 +732,10 @@
                 var res = await axios.get(this.rooturl + 'rest/metaToUser.json?userId=' + this.userinfo.userid)
                 var meta = []
                 for (var i in res.data) {
+                    res.data[i].refMeta.role = res.data[i].role
                     meta.push(res.data[i].refMeta)
                 }
+                console.log(meta)
                 for (var i = 0; i < meta.length - 1; i++) {
                     var key = i
                     for (var j = Number(i + 1); j < meta.length; j++) {
@@ -818,15 +800,17 @@
 
             },
             jugloginde() {
-                if (window.localStorage.getItem("token") != null) {
+                if (window.localStorage.getItem("token") != null||window.localStorage.getItem("userid") != null) {
                     this.token = window.localStorage.getItem("token");
                     this.userinfo.userid = window.localStorage.getItem("userid");
                 } else {
                     window.location.href = 'login.html';
                 }
+                console.log(this.token)
+                console.log(this.userinfo.userid)
             },
             logout() {
-                window.localStorage.removeItem("token");
+                window.localStorage.clear();
                 window.location.href = 'login.html';
             },
             getDoclist: function () {
@@ -843,6 +827,7 @@
                 }
             },
             openMemberList(index) {
+                this.nowShowMemberDialogdata.mdid = this.doclist[index].id
                 this.nowShowMemberDialogdata.mdname = this.doclist[index].mdName
                 for (var i in this.doclist[index].refUsers) {
                     var member = {
@@ -862,6 +847,7 @@
                 this.nowShowMemberDialogdata.mdmemberlist = []
                 this.nowShowMemberDialogdata.mdid = ''
                 this.searchmember = []
+                this.joinurl =''
             },
             async searchMember(e) {
                 this.$forceUpdate()
@@ -990,15 +976,58 @@
                 })
 
             },
+            async createWriteurl(){
+                var res = await axios.get(this.rooturl+"mvc/visitdocs/creatWritetoken/"+this.nowShowMemberDialogdata.mdid);
+                this.joinurl =this.rooturl+"mvc/visitdocs/write/"+this.nowShowMemberDialogdata.mdid+"/"+res.data.token;
+            },
             async clear() {
                 for (var i in this.recycleddoclist) {
                     res = await axios.delete(this.rooturl + 'rest/meta/' + this.recycleddoclist[i].id)
                 }
                 location.reload();
             },
+            async inviteIntoDoc(userid){
+                var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.nowShowMemberDialogdata.mdid + "&userId=" + userid)
+                if(res.data.length>0){
+                    this.$message({
+                        message: '该用户已在协作小组内',
+                        type: 'warning'
+                    });
+                }else {
+                    var requestbody = {
+                        "mdId": this.nowShowMemberDialogdata.mdid,
+                        "userId": userid
+                    }
+                    var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
+                    this.$message("已邀请该用户加入该文档编辑小组");
+                    location.reload();
+                }
+            },
+            awayfromDoc(userid){
+                this.$confirm('是否确定将该用户移出协同小组?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.deetemember(userid);
+                    location.reload();
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消'
+                    })
+                })
+
+            },
+            async deetemember(userid){
+                console.log(userid)
+                var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.nowShowMemberDialogdata.mdid + "&userId=" + userid)
+                console.log(res.data)
+                var res2 = await axios.delete(this.rooturl + 'rest/metaToUser/' + res.data[0].id)
+            },
             createDoc() {
                 var requestbody = {
-                    "userId": 9,
+                    "userId": this.userinfo.userid,
                     "mdName": "新建文档"
                 }
                 axios.post(this.rooturl + 'mvc/document/createDoc', requestbody)

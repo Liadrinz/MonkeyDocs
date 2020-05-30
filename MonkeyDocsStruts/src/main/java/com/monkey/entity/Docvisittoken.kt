@@ -25,6 +25,10 @@ open class Docvisittoken : BaseEntity() {
     @get:Column(name = "token", nullable = false)
     var token: String? = null
 
+    @get:Basic
+    @get:Column(name = "tokentype", nullable = false)
+    var tokentype: String? = null
+
     @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "mdId", referencedColumnName = "id")
     var refMeta: Meta? = null
@@ -35,6 +39,7 @@ open class Docvisittoken : BaseEntity() {
                     "mdId = $mdId " +
                     "createtime = $createtime " +
                     "token = $token " +
+                    "tokentype= $tokentype"+
                     ")"
 
     // constant value returned to avoid entity inequality to itself before and after it's update/merge
@@ -49,7 +54,7 @@ open class Docvisittoken : BaseEntity() {
         if (mdId != other.mdId) return false
         if (createtime != other.createtime) return false
         if (token != other.token) return false
-
+        if (tokentype != other.tokentype) return false
         return true
     }
 }
