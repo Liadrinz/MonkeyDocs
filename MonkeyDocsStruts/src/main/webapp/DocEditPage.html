@@ -105,6 +105,7 @@
                 <button class="ql-italic"></button>
                 <button class="ql-underline"></button>
                 <button class="ql-strike"></button>
+                <button class="ql-image"></button>
             </span>
             <span class="ql-formats">
                 <button class="ql-script" value="sub"></button>
@@ -255,7 +256,24 @@
         quill.history.redo();
     });
     quill.on('text-change', function(delta, oldDelta, source) {
+        var image='';
         if (source === 'user') {
+            if(delta.ops[1]===undefined){
+                if(delta.ops[0].insert.image!==undefined){
+                    var base64 = delta.ops[0].insert.image;
+                    image=vue.uploadImage(base64);
+                    delta.ops[0].insert.image=image;
+                }
+            }
+            else{
+                if(delta.ops[1].insert.image!==undefined){
+                    var base64 = delta.ops[0].insert.image;
+                    image=vue.uploadImage(base64);
+                    delta.ops[1].insert.image=image;
+                }
+            }
+            
+            
             delta.attributes = {
                 userId: vue.user_id,
                 docId: vue.doc_id
@@ -274,6 +292,7 @@
         el: '#edit_page',
         data() {
             return {
+                imageurl:'monkeydoc.liadrinz.cn/static/image/upload',
                 rooturl: 'http://monkeydoc.liadrinz.cn/',
                 testurl: 'http://localhost:8083/mdss/',
                 initial_data: null,
@@ -433,7 +452,7 @@
                             return
                         }
                     } else {
-                        window.location.href = 'login.jsp';
+                        window.location.href = 'login.html';
                     }
                 }
 
@@ -459,6 +478,23 @@
             goback() {
                 window.location.href = 'DocManager.html';
             },
+            uploadImage(base64){
+                var image='';
+                $.ajax({
+                    type:'POST',
+                    async:false,
+                    url:this.imageurl,
+                    data:JSON.stringify({pic:base64}),
+                    success:function(data){
+                        if(data.msg=="success"){
+                            image = data.pic_url;
+                        }
+                        
+                    }
+                })
+
+                return image;
+            }
 
         },
 
