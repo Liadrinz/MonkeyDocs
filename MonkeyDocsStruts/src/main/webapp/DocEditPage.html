@@ -375,33 +375,43 @@
                     ifhavevisittoken = false
                 }
                 if (this.getQueryVariable("action") == 'join') {
+                    var writetoken = this.getQueryVariable("writetoken")
                     ifisjoin = true;
                 } else {
                     ifisjoin = false;
                 }
-                if (window.localStorage.getItem("token") != null) {
+                if (window.localStorage.getItem("token") != null ||window.localStorage.getItem("userid") != null) {
                     this.setUserid()
                     var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
                     if (res.data.length > 0) {
                         return
                     } else {
                         if (ifisjoin) {
-                            var requestbody = {
+                            var requestbody1 = {
                                 "mdId": this.doc_id,
-                                "userId": this.user_id
+                                "token": writetoken
                             }
-                            var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
-                            quill.enable(true);
-                            this.$message("欢迎加入本文档的协作小组");
-                            return
+                            var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
+                            if(ifrighttoken.data) {
+                                var requestbody = {
+                                    "mdId": this.doc_id,
+                                    "userId": this.user_id
+                                }
+                                var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
+                                quill.enable(true);
+                                this.$message("欢迎加入本文档的协作小组");
+                                return
+                            }else {
+                                window.location.href = 'DocManager.html';
+                            }
                         }
                         if (ifhavevisittoken) {
                             var requestbody = {
                                 "mdId": this.doc_id,
-                                "visittoken": this.visittoken
+                                "token": this.visittoken
                             }
                             var res2 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
-                            if (res2) {
+                            if (res2.data) {
                                 quill.enable(false);
                                 this.$message("你只能看着")
                                 return
@@ -414,10 +424,10 @@
                     if (ifhavevisittoken) {
                         var requestbody = {
                             "mdId": this.doc_id,
-                            "visittoken": this.visittoken
+                            "token": this.visittoken
                         }
                         var res3 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
-                        if (res3) {
+                        if (res3.data) {
                             quill.enable(false);
                             this.$message("你只能看着")
                             return
