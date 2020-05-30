@@ -3,6 +3,7 @@ package com.monkey.interceptors;
 import com.google.gson.Gson;
 import com.monkey.dao.UserDAO;
 import com.monkey.token.TokenProccessor;
+import com.monkey.util.Security;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import org.apache.struts2.ServletActionContext;
@@ -61,7 +62,7 @@ public class UserLoginDetector extends AbstractInterceptor {
                 response.setHeader("responsemsg", "User_does_not_exists");
                 return null;
             } else {
-                String psw= (String) map.get("password");
+                String psw= Security.encryptPwd((String) map.get("password"));
                 int userid=re.getInt(1);
                 String psww = re.getString(5);
                 String token = TokenProccessor.getInstance().makeToken();

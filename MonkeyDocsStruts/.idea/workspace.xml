@@ -26,12 +26,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/action/UserLogonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/action/UserLogonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/interceptors/UserLoginDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/interceptors/UserLoginDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/struts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/DocManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/DocManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/logon.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/logon.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +322,7 @@
       <workItem from="1590768685855" duration="1342000" />
       <workItem from="1590806596668" duration="351000" />
       <workItem from="1590806953808" duration="1972000" />
-      <workItem from="1590809086872" duration="1060000" />
+      <workItem from="1590809086872" duration="1106000" />
     </task>
     <servers />
   </component>
