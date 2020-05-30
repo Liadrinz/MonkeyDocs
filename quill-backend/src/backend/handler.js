@@ -1,7 +1,7 @@
 const dispatcher = require('./dispatcher');
-const clientManager = require('./clientManager');
 const redisClient = require('./redisClient');
-const Message = require('./Message');
+const Message = require('./format/Message');
+const PushMessage = require('./format/PushMessage');
 const ot = require('./ot');
 const Delta = require('../../dist/Delta');
 const DAO = require('./DAO');
@@ -50,6 +50,17 @@ const handler = {
     },
     handleSave(docId) {
 
+    },
+    handlePush(sender, receivers, text) {
+        try {
+            let msg = new PushMessage();
+            msg.sender = sender;
+            msg.text = text;
+            dispatcher.push(msg, receivers);
+
+        } catch (e) {
+            console.error(e);
+        }
     }
 }
 
