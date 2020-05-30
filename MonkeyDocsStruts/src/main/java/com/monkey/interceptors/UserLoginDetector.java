@@ -3,6 +3,7 @@ package com.monkey.interceptors;
 import com.google.gson.Gson;
 import com.monkey.dao.UserDAO;
 import com.monkey.token.TokenProccessor;
+import com.monkey.util.Security;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import org.apache.struts2.ServletActionContext;
