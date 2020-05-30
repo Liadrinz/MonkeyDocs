@@ -37,7 +37,6 @@ public class UserLogonController extends ActionSupport {
         String sql2="select * from User where tel=";
         String sql3="select * from User where email=";
         ResultSet res= st.executeQuery(sql2+tel);
-        System.out.println(sql2+"\""+email+"\"");
         ResultSet res2= st2.executeQuery(sql3+"\""+email+"\"");
         boolean flag1=false;
         boolean flag2=false;

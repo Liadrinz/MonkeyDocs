@@ -79,7 +79,7 @@
                 <interceptor-ref name="checkbox"/>
                 <interceptor-ref name="staticParams"/>
                 <interceptor-ref name="params"/>
-                <!--以下注释rest-default-stack拦截器不支持AjaxPOST请求-->
+                <!--以下注释rest-default-stack拦截器不支持Ajax JSON POST请求-->
 <!--                <interceptor-ref name="rest" />-->
 <!--                <interceptor-ref name="conversionError"/>-->
 <!--                <interceptor-ref name="validation">-->
