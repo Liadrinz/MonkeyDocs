@@ -801,12 +801,12 @@
                     this.token = window.localStorage.getItem("token");
                     this.user_id = window.localStorage.getItem("userid");
                 } else {
-                    window.location.href = 'login.jsp';
+                    window.location.href = 'login.html';
                 }
             },
             logout() {
                 window.localStorage.removeItem("token");
-                window.location.href = 'login.jsp';
+                window.location.href = 'login.html';
             },
             getDoclist: function() {
                 console.log(this.doclist)

@@ -110,7 +110,7 @@
         methods:{
             // 封装注册发送请求方法
             thisAjax(){
-                const passwordData=hex_md5(this.userInfo.password1);
+                const passwordData=this.userInfo.password1;
                 const phoneData =this.userInfo.phonenum;
                 const usernameData=this.userInfo.username;
                 const idData=this.userInfo.idcard;
