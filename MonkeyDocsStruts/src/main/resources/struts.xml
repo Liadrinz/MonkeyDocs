@@ -91,7 +91,7 @@
                 <interceptor-ref name="requestInterceptor"/>
             </interceptor-stack>
         </interceptors>
-        <default-interceptor-ref name="damnstruts"/>
+<!--        <default-interceptor-ref name="damnstruts"/>-->
         <default-class-ref class="org.apache.struts2.rest.RestActionSupport"/>
         <global-allowed-methods>execute,input,back,cancel,browse,save,delete,list,index,show,create,update,destroy,edit,editNew</global-allowed-methods>
 </package>

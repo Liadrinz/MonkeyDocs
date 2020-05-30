@@ -233,6 +233,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript">
+    const Delta = Quill.import('delta');
     var websock = null;
     var quill = new Quill('#paper', {
         theme: 'snow',
@@ -341,7 +342,7 @@
                     } = resp;
                     if (delta.attributes.userId != vue.user_id) {
                         let historyDelta = quill.getContents();
-                        Object.assign(delta, ot(historyDelta, new Delta(delta), new Delta(oldDelta)));
+                        Object.assign(delta, this.ot(historyDelta, new Delta(delta), new Delta(oldDelta)));
                         quill.updateContents(delta.ops, source = 'server');
                     }
 
