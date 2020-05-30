@@ -25,34 +25,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/test2.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lib/javax.annotation.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lib/javax.ejb.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lib/javax.jms.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lib/javax.resource.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lib/javax.servlet.jsp.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lib/javax.servlet.jsp.jstl.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/MonkeyDocs.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/artifacts/MonkeyDocsStruts_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MonkeyDocsStruts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MonkeyDocsStruts.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/action/UserLogonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/action/UserLogonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Docvisittoken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Docvisittoken.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/interceptors/UserLoginDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/interceptors/UserLoginDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/interceptors/UserRequestInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/interceptors/UserRequestInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/token/TokenProccessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/token/TokenProccessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/struts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/DocEditPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/DocEditPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/DocManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/DocManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/client.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/client.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/logon.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/logon.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/logon.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/logon.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -171,7 +171,7 @@
         let val={
           token:"this.userinfo.token",
         }
-        axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userLogin.action",val,{headers:{token:this.userinfo.token}}).then(
+        axios.post("http://monkeydoc.liadrinz.cn/business/userLogin.action",val,{headers:{token:this.userinfo.token}}).then(
                 res=>{
                   console.log(res)
                   if(res.headers.responsemsg=="login_succeed")
@@ -200,7 +200,7 @@
           password:hex_md5(this.userinfo.password2),
         };
         console.log(hex_md5(this.userinfo.password2))
-        axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userLogin.action",val).then(
+        axios.post("http://monkeydoc.liadrinz.cn/business/userLogin.action",val).then(
                 res=>{
                   console.log(res)
           if(res.headers.responsemsg=="User_does_not_exists")
