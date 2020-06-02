@@ -227,6 +227,7 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="./iconfont/iconfont.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -259,14 +260,14 @@
         var image='';
         if (source === 'user') {
             if(delta.ops[1]===undefined){
-                if(delta.ops[0].insert.image!==undefined){
+                if(delta.ops[0].hasOwnProperty("insert")&&delta.ops[0].insert.image!==undefined){
                     var base64 = delta.ops[0].insert.image;
                     image=vue.uploadImage(base64);
                     delta.ops[0].insert.image=image;
                 }
             }
             else{
-                if(delta.ops[1].insert.image!==undefined){
+                if(delta.ops[1].hasOwnProperty("insert")&&delta.ops[1].insert.image!==undefined){
                     var base64 = delta.ops[0].insert.image;
                     image=vue.uploadImage(base64);
                     delta.ops[1].insert.image=image;
