@@ -485,7 +485,7 @@
                     type:'POST',
                     async:false,
                     url:this.imageurl,
-                    data:JSON.stringify({pic:base64}),
+                    data:{pic:base64},
                     success:function(data){
                         if(data.msg=="success"){
                             image = data.pic_url;

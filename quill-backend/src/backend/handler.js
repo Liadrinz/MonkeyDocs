@@ -49,7 +49,11 @@ const handler = {
         }
     },
     handleSave(docId) {
-
+        try {
+            DAO.delta.makeCheckpoint(docId);
+        } catch (e) {
+            console.error(e);
+        }
     },
     handlePush(sender, receivers, text) {
         try {

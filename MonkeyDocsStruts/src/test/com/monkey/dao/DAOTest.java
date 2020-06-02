@@ -107,4 +107,13 @@ public class DAOTest {
         assert metaDAO.findOne(meta.getId()) != null;
         System.out.println(meta);
     }
+    @Autowired
+    private CheckpointDAO checkpointDAO;
+    @Test
+    public void testCheckpointDAO() {
+        Checkpoint ckpt = new Checkpoint();
+        ckpt.setDocid(124);
+        ckpt.setLastDelta(4254);
+        checkpointDAO.create(ckpt);
+    }
 } 
