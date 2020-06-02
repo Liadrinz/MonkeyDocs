@@ -55,10 +55,9 @@ const DAO = {
         makeCheckpoint(docId) {
             return this.getByDocId(docId).then((res) => {
                 let len = res.data.length;
-                return res.data[len - 1].id;
-            }).then((lastDelta) => {
-                return axios.post(prefix + 'rest/checkpoint', {
-                    docid: docId,
+                let lastDelta = res.data[len - 1].id;
+                return axios.post(prefix + 'mvc/checkpoint/create', {
+                    docId: docId,
                     lastDelta: lastDelta
                 })
             })
