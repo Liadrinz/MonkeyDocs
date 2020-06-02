@@ -495,7 +495,20 @@
                 })
 
                 return image;
+            },
+
+            beforeUnload(e){
+                var id = this.doc_id
+                var saveInfo ={
+                    type:"save",
+                    delta:{attributes:{docId:id}}
+                    
+                }
+                console.log("文件已保存")
+                websock.send(JSON.stringify(saveInfo));
             }
+
+
 
         },
 
@@ -516,9 +529,12 @@
                 })
 
         },
-        mounted() {},
+        mounted() {
+            window.addEventListener('beforeunload',e=>this.beforeUnload(e));
+        },
         destroyed() {
             websocket.close();
+            window.removeEventListener('beforeunload',e=>this.beforeUnload(e));  
         },
     });
 </script>
