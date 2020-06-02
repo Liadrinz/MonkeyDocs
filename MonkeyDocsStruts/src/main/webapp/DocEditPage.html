@@ -268,7 +268,7 @@
             }
             else{
                 if(delta.ops[1].hasOwnProperty("insert")&&delta.ops[1].insert.image!==undefined){
-                    var base64 = delta.ops[0].insert.image;
+                    var base64 = delta.ops[1].insert.image;
                     image=vue.uploadImage(base64);
                     delta.ops[1].insert.image=image;
                 }
@@ -293,7 +293,7 @@
         el: '#edit_page',
         data() {
             return {
-                imageurl:'monkeydoc.liadrinz.cn/static/image/upload',
+                imageurl:'http://monkeydoc.liadrinz.cn/static/image/upload',
                 rooturl: 'http://monkeydoc.liadrinz.cn/',
                 testurl: 'http://localhost:8083/mdss/',
                 initial_data: null,
