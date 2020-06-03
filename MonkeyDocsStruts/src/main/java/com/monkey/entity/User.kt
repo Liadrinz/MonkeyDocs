@@ -28,11 +28,11 @@ open class User : BaseEntity() {
     @get:Column(name = "password", nullable = false)
     var password: String? = null
 
-    @get:JsonBackReference
+    @get:JsonBackReference("refDeltas")
     @get:OneToMany(mappedBy = "refUser")
     var refDeltas: Set<Delta>? = null
 
-    @get:JsonBackReference
+    @get:JsonBackReference("refMetaToUsers")
     @get:OneToMany(mappedBy = "refUser")
     var refMetaToUsers: Set<MetaToUser>? = null
 

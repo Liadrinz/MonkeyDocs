@@ -1,0 +1,547 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>edit page</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+
+    .icon {
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
+    
+    body {
+        margin: 0px;
+        background-color: #F2F6FC;
+    }
+    
+    .top {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        background-color: #FFFFFF;
+    }
+    
+    .top_button {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+    }
+    
+    #edit_part {
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1100px;
+    }
+    
+    .tool_button {
+        background-color: transparent;
+        border: transparent;
+    }
+    
+    #paper {
+        background-color: #FFFFFF;
+        height: 1000px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+    }
+    .ql-editor::-webkit-scrollbar {display:none}
+</style>
+
+<body>
+    <div id="edit_page" v-cloak>
+        <el-container>
+            <el-header class="top">
+                <el-row type="flex" align="middle">
+                    <el-col :span="1">
+                        <el-button v-on:click="goback()" class="top_button" size="small" icon="el-icon-arrow-left">
+                        </el-button>
+                    </el-col>
+                    <el-col :span="10" offset="1">
+                        <h4>{{doc_name}}</h4>
+                    </el-col>
+                    <el-col :span="2" :offset="18">
+                        <el-avatar :size="35" :src="circleUrl"></el-avatar>
+                    </el-col>
+                </el-row>
+            </el-header>
+        </el-container>
+    </div>
+    <div id="edit_part">
+        <div id="toolbar">
+            <span class="ql-formats">
+                <!-- 添加undo、redo -->
+                <button id="undo" class="ql-undo">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-ziyuan1"></use>
+                    </svg>
+                </button>
+                <button id="redo" class="ql-redo">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-ziyuan2"></use>
+                    </svg>
+                </button>
+            </span>
+            <span class="ql-formats">
+                <select class="ql-size">
+                    <option value="small"></option>
+                    <option selected></option>
+                    <option value="large"></option>
+                    <option value="huge"></option>
+                </select>
+                <select class="ql-header">
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                    <option value="5"></option>
+                    <option value="6"></option>
+                    <option selected></option>
+                </select>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-bold"></button>
+                <button class="ql-italic"></button>
+                <button class="ql-underline"></button>
+                <button class="ql-strike"></button>
+                <button class="ql-image"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-script" value="sub"></button>
+                <button class="ql-script" value="super"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-blockquote"></button>
+                <button class="ql-code-block"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-header" value="1"></button>
+                <button class="ql-header" value="2"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-list" value="ordered"></button>
+                <button class="ql-list" value="bullet"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-indent" value="-1"></button>
+                <button class="ql-indent" value="+1"></button>
+            </span>
+            <span class="ql-formats">
+                <select class="ql-color">
+                    <option selected="selected"></option>
+                    <option value="#e60000"></option>
+                    <option value="#ff9900"></option>
+                    <option value="#ffff00"></option>
+                    <option value="#008a00"></option>
+                    <option value="#0066cc"></option>
+                    <option value="#9933ff"></option>
+                    <option value="#ffffff"></option>
+                    <option value="#facccc"></option>
+                    <option value="#ffebcc"></option>
+                    <option value="#ffffcc"></option>
+                    <option value="#cce8cc"></option>
+                    <option value="#cce0f5"></option>
+                    <option value="#ebd6ff"></option>
+                    <option value="#bbbbbb"></option>
+                    <option value="#f06666"></option>
+                    <option value="#ffc266"></option>
+                    <option value="#ffff66"></option>
+                    <option value="#66b966"></option>
+                    <option value="#66a3e0"></option>
+                    <option value="#c285ff"></option>
+                    <option value="#888888"></option>
+                    <option value="#a10000"></option>
+                    <option value="#b26b00"></option>
+                    <option value="#b2b200"></option>
+                    <option value="#006100"></option>
+                    <option value="#0047b2"></option>
+                    <option value="#6b24b2"></option>
+                    <option value="#444444"></option>
+                    <option value="#5c0000"></option>
+                    <option value="#663d00"></option>
+                    <option value="#666600"></option>
+                    <option value="#003700"></option>
+                    <option value="#002966"></option>
+                    <option value="#3d1466"></option>
+                </select>
+
+                <select class="ql-background">
+                    <option selected="selected"></option>
+                    <option value="#e60000"></option>
+                    <option value="#ff9900"></option>
+                    <option value="#ffff00"></option>
+                    <option value="#008a00"></option>
+                    <option value="#0066cc"></option>
+                    <option value="#9933ff"></option>
+                    <option value="#ffffff"></option>
+                    <option value="#facccc"></option>
+                    <option value="#ffebcc"></option>
+                    <option value="#ffffcc"></option>
+                    <option value="#cce8cc"></option>
+                    <option value="#cce0f5"></option>
+                    <option value="#ebd6ff"></option>
+                    <option value="#bbbbbb"></option>
+                    <option value="#f06666"></option>
+                    <option value="#ffc266"></option>
+                    <option value="#ffff66"></option>
+                    <option value="#66b966"></option>
+                    <option value="#66a3e0"></option>
+                    <option value="#c285ff"></option>
+                    <option value="#888888"></option>
+                    <option value="#a10000"></option>
+                    <option value="#b26b00"></option>
+                    <option value="#b2b200"></option>
+                    <option value="#006100"></option>
+                    <option value="#0047b2"></option>
+                    <option value="#6b24b2"></option>
+                    <option value="#444444"></option>
+                    <option value="#5c0000"></option>
+                    <option value="#663d00"></option>
+                    <option value="#666600"></option>
+                    <option value="#003700"></option>
+                    <option value="#002966"></option>
+                    <option value="#3d1466"></option>
+                </select>
+            </span>
+            <span class="ql-formats">
+                <select class="ql-font">
+                    <option selected="selected"></option>
+                    <option value="serif"></option>
+                    <option value="monospace"></option>
+                </select>
+            </span>
+            <span class="ql-formats">
+                <select class="ql-align">
+                    <option selected="selected"></option>
+                    <option value="center"></option>
+                    <option value="right"></option>
+                    <option value="justify"></option>
+                </select>
+            </span>
+        </div>
+        <div id="paper">
+
+        </div>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./iconfont/iconfont.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+    const Delta = Quill.import('delta');
+    var websock = null;
+    var quill = new Quill('#paper', {
+        theme: 'snow',
+        modules: {
+            history: {
+                delay: 1000,
+                maxStack: 400,
+                userOnly: true
+            },
+            toolbar: '#toolbar'
+        }
+    });
+    var undo = document.querySelector('#undo');
+    undo.addEventListener('click', function() {
+        quill.history.undo();
+    });
+    var redo = document.querySelector('#redo');
+    redo.addEventListener('click', function() {
+        quill.history.redo();
+    });
+    quill.on('text-change', function(delta, oldDelta, source) {
+        var image='';
+        if (source === 'user') {
+            if(delta.ops[1]===undefined){
+                if(delta.ops[0].hasOwnProperty("insert")&&delta.ops[0].insert.image!==undefined){
+                    var base64 = delta.ops[0].insert.image;
+                    image=vue.uploadImage(base64);
+                    delta.ops[0].insert.image=image;
+                }
+            }
+            else{
+                if(delta.ops[1].hasOwnProperty("insert")&&delta.ops[1].insert.image!==undefined){
+                    var base64 = delta.ops[1].insert.image;
+                    image=vue.uploadImage(base64);
+                    delta.ops[1].insert.image=image;
+                }
+            }
+            
+            
+            delta.attributes = {
+                userId: vue.user_id,
+                docId: vue.doc_id
+            }
+            var change = {
+                type: "delta",
+                delta: delta,
+                oldDelta: oldDelta
+            }
+            if (websock !== null && websock.readyState != websock.CLOSED)
+                websock.send(JSON.stringify(change));
+        }
+
+    });
+    var vue = new Vue({
+        el: '#edit_page',
+        data() {
+            return {
+                imageurl:'http://monkeydoc.liadrinz.cn/static/image/upload/base64',
+                rooturl: 'http://monkeydoc.liadrinz.cn/',
+                testurl: 'http://localhost:8083/mdss/',
+                initial_data: null,
+                visittoken: '',
+                websock: null,
+                url: "",
+                doc_id: '1',
+                user_id: '23',
+                user_name: "",
+                doc_name: "吼猴的文档  ",
+                circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            }
+        },
+        methods: {
+            getQueryVariable(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i = 0; i < vars.length; i++) {
+                    var pair = vars[i].split("=");
+                    if (pair[0] == variable) {
+                        return pair[1];
+                    }
+                }
+                return (false);
+            },
+            initWebSocket() {
+                try {
+                    websock = new WebSocket(this.url);
+                } catch (e) {
+                    console.log("connect error");
+                }
+                websock.onmessage = this.websocketonmessage;
+                websock.onopen = this.websocketonopen;
+                websock.onerror = this.websocketonerror;
+                websock.onclose = this.websocketclose;
+            },
+            websocketonopen() {
+                console.log("连接成功")
+                let actions = {
+                    type: "req",
+                    delta: {
+                        ops: [],
+                        attributes: {
+                            docId: vue.doc_id,
+                            userId: vue.user_id
+                        }
+
+                    }
+
+                }
+                websock.send(JSON.stringify(actions));
+            },
+            websocketonerror() {
+                console.log("connect error");
+                vue.initWebSocket();
+            },
+            websocketonmessage(e) {
+                var resp = JSON.parse(e.data);
+                if (resp.type === "res") {
+                    quill.setText('', source = 'server');
+                    quill.updateContents(resp.delta.ops, source = 'server');
+                } else if (resp.type === "mod") {
+                    let {
+                        delta,
+                        oldDelta
+                    } = resp;
+                    if (delta.attributes.userId != vue.user_id) {
+                        let historyDelta = quill.getContents();
+                        Object.assign(delta, this.ot(historyDelta, new Delta(delta), new Delta(oldDelta)));
+                        quill.updateContents(delta.ops, source = 'server');
+                    }
+
+                }
+            },
+            websocketclose(e) {
+                websock.close();
+            },
+
+            setUrl() {
+                this.url = "ws://www.liadrinz.cn:8088/collaborate/" + this.doc_id + "/" + this.user_id;
+            },
+            setDocid() {
+                this.doc_id = this.getQueryVariable("docid");
+            },
+            setUserid() {
+                this.user_id = JSON.parse(window.localStorage.getItem("userid"));
+            },
+            async visitorjoin() {
+                var ifhavevisittoken = false;
+                var ifisjoin = false;
+                if (window.localStorage.getItem("visittoken") != null) {
+                    this.visittoken = window.localStorage.getItem("visittoken")
+                    ifhavevisittoken = true
+                } else if (this.getQueryVariable("visittoken") != false) {
+                    this.visittoken = this.getQueryVariable("visittoken")
+                    window.localStorage.setItem("visittoken", this.getQueryVariable("visittoken"))
+                    ifhavevisittoken = true
+                } else {
+                    ifhavevisittoken = false
+                }
+                if (this.getQueryVariable("action") == 'join') {
+                    var writetoken = this.getQueryVariable("writetoken")
+                    ifisjoin = true;
+                } else {
+                    ifisjoin = false;
+                }
+                if (window.localStorage.getItem("token") != null ||window.localStorage.getItem("userid") != null) {
+                    this.setUserid()
+                    var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
+                    if (res.data.length > 0) {
+                        return
+                    } else {
+                        if (ifisjoin) {
+                            var requestbody1 = {
+                                "mdId": this.doc_id,
+                                "token": writetoken
+                            }
+                            var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
+                            if(ifrighttoken.data) {
+                                var requestbody = {
+                                    "mdId": this.doc_id,
+                                    "userId": this.user_id
+                                }
+                                var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
+                                quill.enable(true);
+                                this.$message("欢迎加入本文档的协作小组");
+                                return
+                            }else {
+                                window.location.href = 'DocManager.html';
+                            }
+                        }
+                        if (ifhavevisittoken) {
+                            var requestbody = {
+                                "mdId": this.doc_id,
+                                "token": this.visittoken
+                            }
+                            var res2 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                            if (res2.data) {
+                                quill.enable(false);
+                                this.$message("你只能看着")
+                                return
+                            }
+                        } else {
+                            window.location.href = 'DocManager.html';
+                        }
+                    }
+                } else {
+                    if (ifhavevisittoken) {
+                        var requestbody = {
+                            "mdId": this.doc_id,
+                            "token": this.visittoken
+                        }
+                        var res3 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                        if (res3.data) {
+                            quill.enable(false);
+                            this.$message("你只能看着")
+                            return
+                        }
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                }
+
+
+
+
+
+
+            },
+            ot(history, delta, oldDelta) {
+                try {
+                    history = new Delta().insert('\n').compose(history);
+                    let diff = oldDelta.diff(history);
+                    console.log(diff);
+                    if (diff.ops.length > 0)
+                        return diff.transform(delta, false);
+                    return delta;
+                } catch (e) {
+                    console.error(e);
+                    return delta;
+                }
+            },
+            goback() {
+                window.location.href = 'DocManager.html';
+            },
+            uploadImage(base64){
+                var image='';
+                $.ajax({
+                    type:'POST',
+                    async:false,
+                    url:this.imageurl,
+                    data:{pic:base64},
+                    success:function(data){
+                        if(data.msg=="success"){
+                            image = data.pic_url;
+                        }
+                        
+                    }
+                })
+
+                return image;
+            },
+
+            beforeUnload(e){
+                var id = this.doc_id
+                var saveInfo ={
+                    type:"save",
+                    delta:{attributes:{docId:id}}
+                    
+                }
+                console.log("文件已保存")
+                websock.send(JSON.stringify(saveInfo));
+            }
+
+
+
+        },
+
+        created() {
+            let self = this;
+            this.setDocid();
+            this.visitorjoin();
+            this.setUrl();
+            this.initWebSocket();
+            console.log(this.doc_id);
+            axios.get(this.rooturl + "rest/meta/" + this.doc_id)
+                .then(res => {
+                    var metainfo = res.data;
+                    self.doc_name = metainfo.mdName;
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+
+        },
+        mounted() {
+            window.addEventListener('beforeunload',e=>this.beforeUnload(e));
+        },
+        destroyed() {
+            websocket.close();
+            window.removeEventListener('beforeunload',e=>this.beforeUnload(e));  
+        },
+    });
+</script>
+
+</html>

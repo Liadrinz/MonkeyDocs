@@ -23,6 +23,8 @@ public class UserRequestInterceptor extends MethodFilterInterceptor {
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response= ServletActionContext.getResponse();
         response.setCharacterEncoding("UTF-8");
+        String method = request.getMethod();
+        System.out.println(method);
         BufferedReader streamReader = new BufferedReader( new InputStreamReader(request.getInputStream(), "UTF-8"));
         StringBuilder responseStrBuilder = new StringBuilder();
         String inputStr;
@@ -33,12 +35,9 @@ public class UserRequestInterceptor extends MethodFilterInterceptor {
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn= DriverManager.getConnection("jdbc:mysql://106.54.101.125:3306/MonkeyDocDB","root","monkeydoc123");
         Statement st= conn.createStatement();
-        String method = request.getMethod();
         if(map==null){
-            if(method.equals("GET")){
-                response.setHeader("requestmsg","accepted");
+            if(method.equals("GET"))
                 return invocation.invoke();
-            }
             else
                 return  null;
         }

@@ -1,10 +1,11 @@
 package com.monkey.entity
 
 import com.monkey.entity.base.BaseEntity
+import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name = "Checkpoint", schema = "MonkeyDocDB", catalog = "")
+@Table(name = "Checkpoint", schema = "MonkeyDocDB")
 open class Checkpoint : BaseEntity() {
     @get:Id
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +15,10 @@ open class Checkpoint : BaseEntity() {
     @get:Basic
     @get:Column(name = "docid", nullable = false, insertable = false, updatable = false)
     var docid: Int? = null
+
+    @get:Basic
+    @get:Column(name = "time")
+    var time: Date? = null
 
     @get:Basic
     @get:Column(name = "lastDelta", nullable = false, insertable = false, updatable = false)
@@ -32,6 +37,7 @@ open class Checkpoint : BaseEntity() {
                     "id = $id " +
                     "docid = $docid " +
                     "lastDelta = $lastDelta " +
+                    "time = $time " +
                     ")"
 
     // constant value returned to avoid entity inequality to itself before and after it's update/merge
@@ -45,7 +51,7 @@ open class Checkpoint : BaseEntity() {
         if (id != other.id) return false
         if (docid != other.docid) return false
         if (lastDelta != other.lastDelta) return false
-
+        if (time != other.time) return false
         return true
     }
 

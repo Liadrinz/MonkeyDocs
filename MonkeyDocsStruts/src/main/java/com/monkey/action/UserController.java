@@ -11,7 +11,7 @@ import org.apache.struts2.rest.HttpHeaders;
 
 import javax.annotation.Resource;
 
-@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/user", "actionName", "${id}"}))
+@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/rest/user", "actionName", "${id}"}))
 public class UserController extends StrutsRestController<User> {
     public UserController() {
         name = "user";
@@ -25,5 +25,13 @@ public class UserController extends StrutsRestController<User> {
     public HttpHeaders create() {
         model.setPassword(Security.encryptPwd(model.getPassword()));
         return super.create();
+    }
+
+    @Override
+    public HttpHeaders update() {
+        if (model.getPassword() != null && !model.getPassword().equals(super.dao.findOne(model.getId()).getPassword())) {
+            model.setPassword(Security.encryptPwd(model.getPassword()));
+        }
+        return super.update();
     }
 }

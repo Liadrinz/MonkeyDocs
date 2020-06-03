@@ -8,7 +8,7 @@ import org.apache.struts2.convention.annotation.Results;
 
 import javax.annotation.Resource;
 
-@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/delta", "actionName", "${id}"}))
+@Results(@Result(name = "success", type = "redirectAction", params = {"namespace", "/rest/delta", "actionName", "${id}"}))
 public class DeltaController extends StrutsRestController<Delta> {
     public DeltaController() {
         name = "delta";
@@ -18,4 +18,5 @@ public class DeltaController extends StrutsRestController<Delta> {
     private void setSuperDAO(DeltaDAO dao) {
         super.dao = dao;
     }
+
 }
