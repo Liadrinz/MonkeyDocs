@@ -1,7 +1,10 @@
 package com.monkey.dao;
 
+import com.google.gson.Gson;
 import com.monkey.entity.*;
 import com.monkey.mvc.DocumentController;
+import com.monkey.mvc.QuickCheckpointController;
+import com.monkey.mvc.QuickDeltaController;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -13,6 +16,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
@@ -20,6 +24,8 @@ import java.util.List;
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback=true)
 @Transactional
 public class DAOTest {
+    @Autowired
+    private Gson gson;
     @Resource
     private UserDAO userDAO;
     @Resource
@@ -115,5 +121,21 @@ public class DAOTest {
         ckpt.setDocid(124);
         ckpt.setLastDelta(4254);
         checkpointDAO.create(ckpt);
+    }
+
+    @Autowired
+    private QuickDeltaController quickDeltaController;
+    @Test
+    public void testQuickCheckpointController() {
+        QuickDeltaController.CreateAllParam param = new QuickDeltaController.CreateAllParam();
+        List<Delta> deltas = new ArrayList<>();
+        Delta delta = new Delta();
+        delta.setContent("");
+        delta.setDocid(124);
+        delta.setUserid(9);
+        delta.setContent("");
+        deltas.add(delta);
+        param.deltas = gson.toJson(deltas);
+        quickDeltaController.createAll(param);
     }
 } 
