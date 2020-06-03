@@ -65,8 +65,23 @@ const DAO = {
         // unload the document from redis
         unload(docId) {
             this.syncDoc(docId, true, () => {
-                console.log('history-' + docId);
                 redisClient.del('history-' + docId);
+            })
+        }
+    },
+    message: {
+        getByReceiverId(userId) {
+            return axios.get(prefix + 'rest/message.json?receiverId=' + userId);
+        },
+        createAll(sender, receivers, text) {
+            return axios.post(prefix + 'mvc/message/createAll', JSON.stringify({
+                sender: sender,
+                receivers: JSON.stringify(receivers),
+                text: text
+            }), {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
         }
     }
