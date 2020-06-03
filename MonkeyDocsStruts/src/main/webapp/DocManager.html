@@ -1231,7 +1231,8 @@
                     type: 'warning'
                 }).then(() => {
                     this.deetemember(userid);
-                    location.reload();
+                    this.membercheckifshow = false
+                    this.init();
                 }).catch(() => {
                     this.$message({
                         type: 'info',
