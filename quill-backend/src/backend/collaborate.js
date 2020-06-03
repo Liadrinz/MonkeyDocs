@@ -36,7 +36,6 @@ function initCollaborateService(conn, docId, userId) {
         try {
             clientManager.collaborate.clearInfo(docId, userId);
             if (clientManager.collaborate.getInfosByDocId(docId) == undefined) {
-                console.log(clientManager.collaborate.getInfosByDocId(docId))
                 DAO.delta.unload(docId);
             }
         } catch (e) {
@@ -44,7 +43,7 @@ function initCollaborateService(conn, docId, userId) {
         }
     })
     conn.on('error', function(e) {
-        console.log(e);
+        console.error(e);
     })
 }
 

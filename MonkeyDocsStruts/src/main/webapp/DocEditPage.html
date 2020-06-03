@@ -8,6 +8,10 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 </head>
 <style>
+    [v-cloak] {
+        display: none;
+    }
+
     .icon {
         width: 1em;
         height: 1em;
@@ -15,59 +19,105 @@
         fill: currentColor;
         overflow: hidden;
     }
-    
+
     body {
         margin: 0px;
         background-color: #F2F6FC;
     }
-    
+
     .top {
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         background-color: #FFFFFF;
     }
-    
+
     .top_button {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        background-image: linear-gradient(#fdfdfd, #f8f8f8);
+        border: 0px;
     }
-    
+
     #edit_part {
         margin-top: 10px;
         margin-left: auto;
         margin-right: auto;
         width: 1100px;
     }
-    
+
     .tool_button {
         background-color: transparent;
         border: transparent;
     }
-    
+
     #paper {
         background-color: #FFFFFF;
         height: 1000px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
     }
-    .ql-editor::-webkit-scrollbar {display:none}
+
+    .ql-editor::-webkit-scrollbar {
+        display: none
+    }
+
+    #historyB {
+        background-image: linear-gradient(#fdfdfd, #f8f8f8);
+        font-size: 20px;
+        border: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    }
 </style>
 
 <body>
-    <div id="edit_page">
+    <div id="edit_page" v-cloak>
         <el-container>
             <el-header class="top">
                 <el-row type="flex" align="middle">
-                    <el-col :span="1">
-                        <el-button v-on:click="goback()" class="top_button" size="small" icon="el-icon-arrow-left">
+                    <el-col :span="2">
+                        <el-button v-on:click="goback()" class="top_button" size="medium" icon="el-icon-arrow-left">
                         </el-button>
                     </el-col>
-                    <el-col :span="10" offset="1">
+                    <el-col :span="10">
                         <h4>{{doc_name}}</h4>
                     </el-col>
-                    <el-col :span="2" :offset="18">
+                    <el-col :span="1" :offset="9">
+                        <el-button @click="drawer = true" icon="el-icon-time" size="small" circle id="historyB">
+                        </el-button>
+                    </el-col>
+                    <el-col :span="2">
                         <el-avatar :size="35" :src="circleUrl"></el-avatar>
                     </el-col>
+
                 </el-row>
             </el-header>
+
         </el-container>
+        <div>
+            <!-- 历史记录抽屉 -->
+            <el-drawer title="历史记录" :with-header="false" modal="false" size='25%' :visible.sync="drawer">
+                <el-breadcrumb separator="/" style="margin-top:20px;margin-left:20px">
+                    <el-breadcrumb-item>文档编辑</el-breadcrumb-item>
+                    <el-breadcrumb-item>历史记录</el-breadcrumb-item>
+                </el-breadcrumb>
+                <el-divider style="width:80%"></el-divider>
+                <el-timeline :reverse="true">
+                    <el-timeline-item v-for="(checkpoint,index) in checkpoints" :key="index"
+                        :timestamp="timeStamptoDate(checkpoint.time).toDateString()" placement="top">
+                        <el-card style="width:80%">
+                            <p>{{checkpoint.refDelta.refUser.userName}} 保存于 {{(timeStamptoDate(checkpoint.time).toTimeString().split(" "))[0]}}</p>
+                            <el-row>
+                                <el-col :span="12">
+                                    <el-button type="primary" plain >查看</button>
+                                </el-col>
+                                <el-col :span="12">
+                                    <el-button type="success" plain>还原</button>
+                                </el-col> 
+                            </el-row>
+                            
+                        </el-card>
+                    </el-timeline-item>
+                </el-timeline>
+            </el-drawer>
+        </div>
+
     </div>
     <div id="edit_part">
         <div id="toolbar">
@@ -250,32 +300,32 @@
         }
     });
     var undo = document.querySelector('#undo');
-    undo.addEventListener('click', function() {
+    undo.addEventListener('click', function () {
         quill.history.undo();
     });
     var redo = document.querySelector('#redo');
-    redo.addEventListener('click', function() {
+    redo.addEventListener('click', function () {
         quill.history.redo();
     });
-    quill.on('text-change', function(delta, oldDelta, source) {
-        var image='';
+    quill.on('text-change', function (delta, oldDelta, source) {
+        var image = '';
         if (source === 'user') {
-            if(delta.ops[1]===undefined){
-                if(delta.ops[0].hasOwnProperty("insert")&&delta.ops[0].insert.image!==undefined){
+            if (delta.ops[1] === undefined) {
+                if (delta.ops[0].hasOwnProperty("insert") && delta.ops[0].insert.image !== undefined) {
                     var base64 = delta.ops[0].insert.image;
-                    image=vue.uploadImage(base64);
-                    delta.ops[0].insert.image=image;
+                    image = vue.uploadImage(base64);
+                    delta.ops[0].insert.image = image;
                 }
             }
-            else{
-                if(delta.ops[1].hasOwnProperty("insert")&&delta.ops[1].insert.image!==undefined){
+            else {
+                if (delta.ops[1].hasOwnProperty("insert") && delta.ops[1].insert.image !== undefined) {
                     var base64 = delta.ops[1].insert.image;
-                    image=vue.uploadImage(base64);
-                    delta.ops[1].insert.image=image;
+                    image = vue.uploadImage(base64);
+                    delta.ops[1].insert.image = image;
                 }
             }
-            
-            
+
+
             delta.attributes = {
                 userId: vue.user_id,
                 docId: vue.doc_id
@@ -294,7 +344,8 @@
         el: '#edit_page',
         data() {
             return {
-                imageurl:'http://monkeydoc.liadrinz.cn/static/image/upload/base64',
+                drawer: false,
+                imageurl: 'http://monkeydoc.liadrinz.cn/static/image/upload/base64',
                 rooturl: 'http://monkeydoc.liadrinz.cn/',
                 testurl: 'http://localhost:8083/mdss/',
                 initial_data: null,
@@ -305,7 +356,74 @@
                 user_id: '23',
                 user_name: "",
                 doc_name: "吼猴的文档  ",
-                circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+                circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+                checkpoints: [{
+                    "id": 4,
+                    "docid": 124,
+                    "time": 1591186492000,
+                    "lastDelta": 4254,
+                    "refMeta": {
+                        "id": 124,
+                        "mdName": "doc999",
+                        "recycled": false,
+                        "createTime": 1588096410000,
+                        "updateTime": 1588096410000
+                    },
+                    "refDelta": {
+                        "id": 4254,
+                        "content": "\"{\"ops\":[{\"retain\":21},{\"insert\":{\"image\":\"/static/image/6bb340d978084d09d05be9220211c224.png\"}}],\"attributes\":{\"userId\":10,\"docId\":\"124\"}}\"",
+                        "docid": 124,
+                        "userid": 10,
+                        "refMeta": {
+                            "id": 124,
+                            "mdName": "doc999",
+                            "recycled": false,
+                            "createTime": 1588096410000,
+                            "updateTime": 1588096410000
+                        },
+                        "refUser": {
+                            "id": 10,
+                            "tel": "15611009002",
+                            "email": "1114098654@qq.com",
+                            "userName": "StevenZ",
+                            "password": "78c8a34620020484ebcefa98c926c8ba1ed7b2621eee7c4f56e528b1c26fe30a"
+                        }
+                    }
+                },
+                {
+                    "id": 4,
+                    "docid": 124,
+                    "time": 1588096410000,
+                    "lastDelta": 4254,
+                    "refMeta": {
+                        "id": 124,
+                        "mdName": "doc999",
+                        "recycled": false,
+                        "createTime": 1588096410000,
+                        "updateTime": 1588096410000
+                    },
+                    "refDelta": {
+                        "id": 4254,
+                        "content": "\"{\"ops\":[{\"retain\":21},{\"insert\":{\"image\":\"/static/image/6bb340d978084d09d05be9220211c224.png\"}}],\"attributes\":{\"userId\":10,\"docId\":\"124\"}}\"",
+                        "docid": 124,
+                        "userid": 10,
+                        "refMeta": {
+                            "id": 124,
+                            "mdName": "doc999",
+                            "recycled": false,
+                            "createTime": 1588096410000,
+                            "updateTime": 1588096410000
+                        },
+                        "refUser": {
+                            "id": 10,
+                            "tel": "15611009002",
+                            "email": "1114098654@qq.com",
+                            "userName": "StevenZ",
+                            "password": "78c8a34620020484ebcefa98c926c8ba1ed7b2621eee7c4f56e528b1c26fe30a"
+                        }
+                    }
+                }
+                ]
             }
         },
         methods: {
@@ -383,80 +501,80 @@
                 this.user_id = JSON.parse(window.localStorage.getItem("userid"));
             },
             async visitorjoin() {
-                var ifhavevisittoken = false;
-                var ifisjoin = false;
-                if (window.localStorage.getItem("visittoken") != null) {
-                    this.visittoken = window.localStorage.getItem("visittoken")
-                    ifhavevisittoken = true
-                } else if (this.getQueryVariable("visittoken") != false) {
-                    this.visittoken = this.getQueryVariable("visittoken")
-                    window.localStorage.setItem("visittoken", this.getQueryVariable("visittoken"))
-                    ifhavevisittoken = true
-                } else {
-                    ifhavevisittoken = false
-                }
-                if (this.getQueryVariable("action") == 'join') {
-                    var writetoken = this.getQueryVariable("writetoken")
-                    ifisjoin = true;
-                } else {
-                    ifisjoin = false;
-                }
-                if (window.localStorage.getItem("token") != null ||window.localStorage.getItem("userid") != null) {
-                    this.setUserid()
-                    var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
-                    if (res.data.length > 0) {
-                        return
-                    } else {
-                        if (ifisjoin) {
-                            var requestbody1 = {
-                                "mdId": this.doc_id,
-                                "token": writetoken
-                            }
-                            var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
-                            if(ifrighttoken.data) {
-                                var requestbody = {
-                                    "mdId": this.doc_id,
-                                    "userId": this.user_id
-                                }
-                                var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
-                                quill.enable(true);
-                                this.$message("欢迎加入本文档的协作小组");
-                                return
-                            }else {
-                                window.location.href = 'DocManager.html';
-                            }
-                        }
-                        if (ifhavevisittoken) {
-                            var requestbody = {
-                                "mdId": this.doc_id,
-                                "token": this.visittoken
-                            }
-                            var res2 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
-                            if (res2.data) {
-                                quill.enable(false);
-                                this.$message("你只能看着")
-                                return
-                            }
-                        } else {
-                            window.location.href = 'DocManager.html';
-                        }
-                    }
-                } else {
-                    if (ifhavevisittoken) {
-                        var requestbody = {
-                            "mdId": this.doc_id,
-                            "token": this.visittoken
-                        }
-                        var res3 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
-                        if (res3.data) {
-                            quill.enable(false);
-                            this.$message("你只能看着")
-                            return
-                        }
-                    } else {
-                        window.location.href = 'login.html';
-                    }
-                }
+                // var ifhavevisittoken = false;
+                // var ifisjoin = false;
+                // if (window.localStorage.getItem("visittoken") != null) {
+                //     this.visittoken = window.localStorage.getItem("visittoken")
+                //     ifhavevisittoken = true
+                // } else if (this.getQueryVariable("visittoken") != false) {
+                //     this.visittoken = this.getQueryVariable("visittoken")
+                //     window.localStorage.setItem("visittoken", this.getQueryVariable("visittoken"))
+                //     ifhavevisittoken = true
+                // } else {
+                //     ifhavevisittoken = false
+                // }
+                // if (this.getQueryVariable("action") == 'join') {
+                //     var writetoken = this.getQueryVariable("writetoken")
+                //     ifisjoin = true;
+                // } else {
+                //     ifisjoin = false;
+                // }
+                // if (window.localStorage.getItem("token") != null || window.localStorage.getItem("userid") != null) {
+                //     this.setUserid()
+                //     var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
+                //     if (res.data.length > 0) {
+                //         return
+                //     } else {
+                //         if (ifisjoin) {
+                //             var requestbody1 = {
+                //                 "mdId": this.doc_id,
+                //                 "token": writetoken
+                //             }
+                //             var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
+                //             if (ifrighttoken.data) {
+                //                 var requestbody = {
+                //                     "mdId": this.doc_id,
+                //                     "userId": this.user_id
+                //                 }
+                //                 var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
+                //                 quill.enable(true);
+                //                 this.$message("欢迎加入本文档的协作小组");
+                //                 return
+                //             } else {
+                //                 window.location.href = 'DocManager.html';
+                //             }
+                //         }
+                //         if (ifhavevisittoken) {
+                //             var requestbody = {
+                //                 "mdId": this.doc_id,
+                //                 "token": this.visittoken
+                //             }
+                //             var res2 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                //             if (res2.data) {
+                //                 quill.enable(false);
+                //                 this.$message("你只能看着")
+                //                 return
+                //             }
+                //         } else {
+                //             window.location.href = 'DocManager.html';
+                //         }
+                //     }
+                // } else {
+                //     if (ifhavevisittoken) {
+                //         var requestbody = {
+                //             "mdId": this.doc_id,
+                //             "token": this.visittoken
+                //         }
+                //         var res3 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                //         if (res3.data) {
+                //             quill.enable(false);
+                //             this.$message("你只能看着")
+                //             return
+                //         }
+                //     } else {
+                //         window.location.href = 'login.html';
+                //     }
+                // }
 
 
 
@@ -480,30 +598,30 @@
             goback() {
                 window.location.href = 'DocManager.html';
             },
-            uploadImage(base64){
-                var image='';
+            uploadImage(base64) {
+                var image = '';
                 $.ajax({
-                    type:'POST',
-                    async:false,
-                    url:this.imageurl,
-                    data:{pic:base64},
-                    success:function(data){
-                        if(data.msg=="success"){
+                    type: 'POST',
+                    async: false,
+                    url: this.imageurl,
+                    data: { pic: base64 },
+                    success: function (data) {
+                        if (data.msg == "success") {
                             image = data.pic_url;
                         }
-                        
+
                     }
                 })
 
                 return image;
             },
 
-            beforeUnload(e){
+            beforeUnload(e) {
                 var id = this.doc_id
-                var saveInfo ={
-                    type:"save",
-                    delta:{attributes:{docId:id}}
-                    
+                var saveInfo = {
+                    type: "save",
+                    delta: { attributes: { docId: id } }
+
                 }
                 console.log("文件已保存")
                 websock.send(JSON.stringify(saveInfo));
@@ -548,11 +666,11 @@
 
         },
         mounted() {
-            window.addEventListener('beforeunload',e=>this.beforeUnload(e));
+            window.addEventListener('beforeunload', e => this.beforeUnload(e));
         },
         destroyed() {
             websocket.close();
-            window.removeEventListener('beforeunload',e=>this.beforeUnload(e));  
+            window.removeEventListener('beforeunload', e => this.beforeUnload(e));
         },
     });
 </script>

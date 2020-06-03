@@ -8,12 +8,10 @@ import com.monkey.entity.Checkpoint;
 import com.monkey.entity.Delta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("/checkpoint")
@@ -26,6 +24,13 @@ public class QuickCheckpointController {
     private MetaDAO metaDAO;
     @Resource(name = "deltaDAO")
     private DeltaDAO deltaDAO;
+
+    @RequestMapping(value = "/{id}/deltas")
+    @ResponseBody
+    public List<Delta> getDeltaBefore(@PathVariable Integer id) {
+        Checkpoint checkpoint = checkpointDAO.findOne(id);
+        return deltaDAO.findBefore(checkpoint.getDocid(), checkpoint.getLastDelta());
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
