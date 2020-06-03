@@ -396,6 +396,7 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="573" y="335" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1588093590973" />
+    <state x="716" y="423" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589183074194" />
     <state x="544" y="305" width="448" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1588088249186">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -562,6 +563,7 @@
         <watch expression="metaDAO.findAll().get(12).getRefMetaToUsers()" language="JAVA" />
         <watch expression="metaToUserDAO.findAll()" language="JAVA" />
         <watch expression="metaDAO.findOne(mdId)" language="JAVA" />
+        <watch expression="rows" />
       </configuration>
     </watches-manager>
   </component>
