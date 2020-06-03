@@ -19,8 +19,7 @@
         .sm-button{left:9px;font-size:14px;color:#666;font-weight:400;min-width:52px;width:52px;padding:0;box-sizing: border-box;display: inline-block;border-radius: 2px;border-style: solid;background-color: #fff;text-align: center;text-decoration: none;cursor: pointer;transition: opacity 0.3s,border-color 0.3s;  border-width: 0;background-image: linear-gradient(#fdfdfd,#f8f8f8);box-shadow: 0 1px 1px 0 rgba(0,0,0,0.11);position: relative;height: 30px;line-height: 28px;}
         .switch-tips {font-weight: 400;margin-right: 10px;margin: 0;padding: 0;outline: none;font-size: 14px;color: #494949;text-align: center;cursor: pointer;}
         #btd{color: #fff;border-color: #41464b;background-image: linear-gradient( #41464b,#2c3033 );width: 100%;height: 40px;font-weight: 500;font-size: 14px;margin-top: 10px;}
-        #successful{z-index:9999;width: 300px;height: 200px;border: 0px solid silver;position: fixed;left: 40%;bottom: 50%;background:#6DA0E3;display: none;}
-        #btn{width: 50px;height: 30px;display: inline-block;float: right;margin-right: 15px;}
+        #successful{z-index:9999;width: 300px;height: 200px;border: 0px solid silver;position: fixed;left: 40%;bottom: 50%;background:rgba(51, 66, 81, 0.5);display: none;}
     </style>
     <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
     <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
@@ -52,13 +51,13 @@
         <span class="tiShi">{{ tiShi.tishi1 }}</span><br>
         <label>设置密码</label><input type="password" placeholder="请设置登录密码" v-model="userInfo.password1"class="input" @blur="b"><br>
         <span class="tiShi">{{ tiShi.tishi2 }}</span><br>
-        <label>确认密码</label><input type="password" v-model="userInfo.password2"class="input" @blur="c"><br>
+        <label>确认密码</label><input type="password" placeholder="请保证密码的一致" v-model="userInfo.password2"class="input" @blur="c"><br>
         <span class="tiShi">{{ tiShi.tishi3}}</span><br>
-        <label>真实姓名</label><input type="text" v-model="userInfo.name"class="input" @blur="d"><br>
+        <label>真实姓名</label><input type="text" placeholder="请输入您的真实姓名" v-model="userInfo.name"class="input" @blur="d"><br>
         <span class="tiShi">{{ tiShi.tishi4}}</span><br>
-        <label>身份证号码</label><input type="text" v-model="userInfo.idcard"class="input" @blur="h"><br>
+        <label>身份证号</label><input type="text" placeholder="请输入您的有效证件号" v-model="userInfo.idcard"class="input" @blur="h"><br>
         <span class="tiShi">{{ tiShi.tishi8}}</span><br>
-        <label>电子邮箱</label><input type="text" v-model="userInfo.email"class="input" @blur="g"><br>
+        <label>电子邮箱</label><input type="text" placeholder="请设置电子邮箱" v-model="userInfo.email"class="input" @blur="g"><br>
         <span class="tiShi">{{ tiShi.tishi7}}</span><br>
         <label style=" position: relative;left:15px;height: 10px">性别</label>
         <input type="radio" id="male" value="male" v-model="userInfo.sex" style="margin-left:0px;">
@@ -68,10 +67,8 @@
         <span class="tiShi" style="top: -10px;position: relative">{{ tiShi.tishi9}}</span><br>
         <label>手机号</label><input type="text" placeholder="请输入手机号码"  v-model="userInfo.phonenum"class="input" @blur="e"><br>
         <span class="tiShi">{{ tiShi.tishi5}}</span><br>
-        <label>公司(学校)地址</label><textarea rows="5" cols="26"placeholder="请输入您的公司地址" v-model="userInfo.address" @blur="f"></textarea><br>
-        <span class="tiShi">{{ tiShi.tishi6}}</span><br>
-        <div class="checkbox"><input type="checkbox" style="margin-right: 10px;" v-model="userInfo.checkbox">阅读并接受<a href="" >《花果山普通用户协议(第零版)》</a></div>
-        <button id="btd" @click="flag" :disabled="btn">立即注册</button>
+        <div class="checkbox"><input type="checkbox" style="margin-right: 10px;" v-model="userInfo.checkbox">阅读并接受<a href="./agreement.html"  style="color: #00a0e9;">《花果山普通用户协议(第零版)》</a></div>
+        <button id="btd" @click="flag">立即注册</button>
     </div>
 </div>
 </body>
@@ -115,7 +112,7 @@
                 const usernameData=this.userInfo.username;
                 const idData=this.userInfo.idcard;
                 const emailData=this.userInfo.email;
-                axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userLogon.action",{userName:usernameData,password:passwordData,tel:phoneData,email:emailData}).then(
+                axios.post("http://monkeydoc.liadrinz.cn/business/userLogon.action",{userName:usernameData,password:passwordData,tel:phoneData,email:emailData}).then(
                     res=>
                 {
                     console.log(res);
@@ -205,11 +202,6 @@
                 }
                 else if (!n.test(this.userInfo.phonenum)) {this.tiShi.tishi5='手机号码格式不正确';this.isReturn = true;}
             },
-            f(){
-                this.tiShi.tishi6 = '';
-                this.isReturn = true;
-                if (!this.userInfo.address) {this.tiShi.tishi6='请输入您的公司或学校地址';this.isReturn = true;}
-            },
             g(){
                 this.tiShi.tishi7 = '';
                 this.isReturn = true;
@@ -276,8 +268,6 @@
                     this.isReturn = true;
                 }
                 else if (!n.test(this.userInfo.phonenum)) {this.tiShi.tishi5='手机号码格式不正确';this.isReturn = true;}
-                //家庭住址
-                if (!this.userInfo.address) {this.tiShi.tishi6='请输入您的公司地址';this.isReturn = true;}
                 if(!this.userInfo.idcard){this.tiShi.tishi8='身份证号码不能为空';this.isReturn = true;}
                 var r = /[\w]+@(\w)+\.[a-zA-Z]+/
                 //邮箱
