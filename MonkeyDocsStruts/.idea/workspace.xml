@@ -25,12 +25,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/monkey/mvc/QuickCheckpointController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/action/CheckpointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/action/CheckpointController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/com/monkey/dao/DAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/monkey/dao/DAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../quill-backend/src/backend/DAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../quill-backend/src/backend/DAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../quill-backend/src/backend/handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/../quill-backend/src/backend/handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/dao/DeltaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/dao/DeltaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Checkpoint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Checkpoint.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/mvc/QuickCheckpointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/mvc/QuickCheckpointController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +100,7 @@
       <recent name="D:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp\WEB-INF\content" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DAOTest.testCheckpointDAO">
+  <component name="RunManager" selected="Tomcat Server.Tomcat">
     <configuration name="DAOTest.testCheckpointDAO" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MonkeyDocsStruts" />
       <extension name="coverage">
