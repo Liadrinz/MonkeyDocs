@@ -55,10 +55,9 @@ const DAO = {
         makeCheckpoint(docId) {
             return this.getByDocId(docId).then((res) => {
                 let len = res.data.length;
-                return res.data[len - 1].id;
-            }).then((lastDelta) => {
-                return axios.post(prefix + 'rest/checkpoint', {
-                    docid: docId,
+                let lastDelta = res.data[len - 1].id;
+                return axios.post(prefix + 'mvc/checkpoint/create', {
+                    docId: docId,
                     lastDelta: lastDelta
                 })
             })
@@ -66,8 +65,23 @@ const DAO = {
         // unload the document from redis
         unload(docId) {
             this.syncDoc(docId, true, () => {
-                console.log('history-' + docId);
                 redisClient.del('history-' + docId);
+            })
+        }
+    },
+    message: {
+        getByReceiverId(userId) {
+            return axios.get(prefix + 'rest/message.json?receiverId=' + userId);
+        },
+        createAll(sender, receivers, text) {
+            return axios.post(prefix + 'mvc/message/createAll', JSON.stringify({
+                sender: sender,
+                receivers: JSON.stringify(receivers),
+                text: text
+            }), {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
         }
     }

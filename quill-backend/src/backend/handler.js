@@ -49,15 +49,17 @@ const handler = {
         }
     },
     handleSave(docId) {
-
+        try {
+            DAO.delta.makeCheckpoint(docId);
+        } catch (e) {
+            console.error(e);
+        }
     },
     handlePush(sender, receivers, text) {
         try {
-            let msg = new PushMessage();
-            msg.sender = sender;
-            msg.text = text;
-            dispatcher.push(msg, receivers);
-
+            DAO.message.createAll(sender, receivers, text).then(() => {
+                dispatcher.push(receivers);
+            })
         } catch (e) {
             console.error(e);
         }

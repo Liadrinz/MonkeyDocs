@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <style>
-    [v-cloak]{
-        display: none;
-    }
     body {
         margin: 0px;
         overflow: hidden;
@@ -150,6 +147,7 @@
     }
 
     .memberaddbtn {
+        margin-left: 50px;
         width: 100px;
     }
 
@@ -172,6 +170,7 @@
     .docimg {
         height: 60px;
         width: 60px;
+        border: 1px solid #F5F5F5;
     }
 
     .docitem-card {
@@ -180,8 +179,8 @@
     }
 
     .card-docname {
-        margin-bottom: 20px;
         padding: 0 15px;
+        margin-bottom: 20px;
         height: auto;
     }
 
@@ -200,26 +199,7 @@
         font-size: 10px;
         color: #cdcdcd;
     }
-    .card-noticename {
-        padding: 0 15px;
-        height: auto;
-    }
 
-    .card-noticename span {
-        font-size: 15px;
-        color: #6D7275;
-        font-weight: bold;
-    }
-    .card-noticeinfo {
-        margin-top: 20px;
-        height: auto;
-    }
-
-    .card-noticeinfo span {
-        padding: 0 15px;
-        font-size: 15px;
-        color: #6D7275;
-    }
     .root {
         margin: 0;
         padding: 0;
@@ -251,24 +231,22 @@
     }
 
     .memberlist-item-name {
-
-        height:100%;
-        padding: 13px;
+        margin-top: 15px;
+        padding-left: 15px;
     }
 
-    .memberlist-item-name-text  {
+    .memberlist-item-name span {
         color: #6D7275;
-        font-size: 15px;
+        font-size: 10px;
         font-weight: 500;
-
+        margin-left: 60px;
     }
 
-    .memberlist-item-name-name {
+    .memberlist-item-name span:first-child {
         color: #000;
-        font-size: 15px;
+        font-size: 20px;
         font-weight: 800;
-
-
+        margin-left: 0px;
     }
 
     .main_root {
@@ -298,7 +276,7 @@
 </style>
 
 <body>
-<div id="managerpage_root" v-cloak>
+<div id="managerpage_root">
     <el-container class="root">
         <el-header class="head_root">
             <div class="top">
@@ -322,9 +300,8 @@
                                 <el-popover placement="bottom" width="300" trigger="hover" v-model="visible">
                                     <el-row style="padding:10px; border-bottom:1px solid #cdcdcd">
                                         <el-col :span="8" style="height:auto">
-                                            <el-image
-                                                    style="height: 60px;width:60px;border:1px solid #cdcdcd;border-radius:30px;"
-                                                    src="./image/head.png">
+                                            <el-image src="res/user-icon.png"
+                                                    style="height: 60px;width:60px;border:1px solid #cdcdcd;border-radius:30px;">
                                             </el-image>
 
                                         </el-col>
@@ -343,18 +320,18 @@
                                                                  style="padding:10px"></el-progress>
                                                 </li>
                                                 <li>
-                                                        <span class="userinfo_text">回收站文档数量:<span>
+                                                        <span class="userinfo_text">回收站文档数量:</span>
                                                         <el-progress :percentage="recycleddoclist.length/0.5"
                                                                      :format="reformat"
                                                                      style="padding:10px"></el-progress>
                                                 </li>
 
                                                 <li>
-                                                       <span class="userinfo_text">电话号码：<span>
+                                                       <span class="userinfo_text">电话号码：</span>
                                                        <p> {{userinfo.usertel}}</p>
                                                 </li>
                                                 <li>
-                                                        <span class="userinfo_text">电子邮箱：<span><p>{{userinfo.useremail}}</p>
+                                                        <span class="userinfo_text">电子邮箱：</span><p>{{userinfo.useremail}}</p>
                                                 </li>
                                                 <li class="logout_c"
                                                     style="margin-top:0px;border-bottom: 0px solid #ffffff;"
@@ -365,14 +342,15 @@
                                                         font-size: 20px;
                                                         font-weight: 800;
                                                         "
-                                                        >注销<span>
+                                                        >注销</span>
                                                 </li>
 
                                             </ul>
                                         </el-col>
                                     </el-row>
-                                    <el-image slot="reference" @click="visible = !visible" src="./image/head.png"
-                                              style="height: 40px;width:40px;"></el-image>
+                                    <el-image slot="reference" @click="visible = !visible"
+                                              src="res/user-icon.png"
+                                              style="height: 40px;width:40px;border:1px solid #cdcdcd;"></el-image>
 
                                 </el-popover>
                             </div>
@@ -423,7 +401,7 @@
                                     <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
 
                                         <el-col :span="4" style="height:auto" @click.native="goEditpage(docitem.id)">
-                                            <el-image class="docimg" src="./image/doc.png">
+                                            <el-image src="res/document-icon.png" class="docimg">
                                             </el-image>
                                         </el-col>
                                         <el-col :span="19" style="height:auto" @click.native="goEditpage(docitem.id)">
@@ -441,8 +419,7 @@
                                                 <i class="el-icon-more el-dropdown-link"></i>
                                                 <el-dropdown-menu slot="dropdown">
                                                     <el-dropdown-item
-                                                            @click.native="dialogrenameVisible = true;renameDialogdata.docid=doclist[index].id
-                                                                            ;renameDialogdata.refUsers=doclist[index].refUsers;renameDialogdata.mdName=doclist[index].mdName"
+                                                            @click.native="dialogrenameVisible = true;renameDialogdata.docid=doclist[index].id"
                                                             v-if="docitem.role=='creator'">
                                                         重命名
                                                     </el-dropdown-item>
@@ -471,34 +448,11 @@
                                 <span>通知</span>
                             </el-row>
                             <el-row class="main-col">
-                                <el-col :xs="24" :sm="24" :md="24" :lg="20" :xl="20" class="docitem"
-                                        v-for="notice in noticeList">
-                                    <el-card class="docitem-card" :body-style="cardstyle" shadow="hover" @click.native="changeifread(notice.id)">
-                                        <el-col :span="2" style="height:auto" >
-                                            <el-image class="docimg" src="./image/notice.png" style="height:100px;width:100px">
-                                            </el-image>
-                                        </el-col>
-                                        <el-col :span="21" style="height:auto">
-                                            <el-col :span="24" style="height:auto;">
-                                                <el-col :span="8" class="card-noticename" >
-                                                    <span>{{notice.sender.userName}}</span>
-                                                    <el-image  src="./image/point.png" style="height:20px;width:20px">
-                                                    </el-image>
-                                                    <span>{{notice.receiver.userName}}</span>
-                                                </el-col>
-                                                <el-col :span="15" class="card-noticename " style="padding-top: 5px">
-                                                    <span>发送时间：{{notice.time}}</span>
-                                                </el-col>
+                                <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" class="docitem"
+                                        v-for="docitem in doclist">
+                                    <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
 
-                                            </el-col>
-                                            <el-col :span="24" class="card-noticeinfo" style="">
-                                                <span>{{notice.text}}</span>
-                                            </el-col>
-                                        </el-col>
-                                        <el-col :span="1"  style="height:auto;padding-top:10px;padding-left: 15px">
-                                            <span v-show="notice.read" style="color: #cdcdcd;font-weight: bold;font-size: 30px">已读</span>
-                                            <span v-show="!notice.read" style="color: red;font-weight: bold;font-size: 30px">未读</span>
-                                        </el-col>
+
                                     </el-card>
                                 </el-col>
                             </el-row>
@@ -523,7 +477,7 @@
                                     <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
 
                                         <el-col :span="4" style="height:auto">
-                                            <el-image class="docimg" src="./image/doc.png">
+                                            <el-image src="res/document-icon.png" class="docimg">
                                             </el-image>
                                         </el-col>
                                         <el-col :span="19" style="height:auto">
@@ -565,7 +519,7 @@
                                     <el-card class="docitem-card" :body-style="cardstyle" shadow="hover">
 
                                         <el-col :span="4" style="height:auto" @click.native="goEditpage(docitem.id)">
-                                            <el-image class="docimg" src="./image/doc.png">
+                                            <el-image src="res/user-icon.png" class="docimg">
                                             </el-image>
                                         </el-col>
                                         <el-col :span="19" style="height:auto" @click.native="goEditpage(docitem.id)">
@@ -627,41 +581,23 @@
                         <span class="memberlist-title">协作人员</span>
                         <div class="memberlist">
                             <el-row class="memberlist-item" v-for="member in nowShowMemberDialogdata.mdmemberlist">
-
-                                <el-col :span="24" style="height:auto;">
-                                    <el-card class="box-card">
-                                    <el-row>
-                                        <el-col :span="2" style="height:auto">
-                                            <el-image
-                                                    style="height: 50px;width:50px;border:1px solid #cdcdcd;border-radius:25px;">
-                                            </el-image>
-                                        </el-col>
-                                        <el-col :span="22" style="height:auto">
-                                                <el-row style="height: 50px;">
-                                                    <el-col :span="6" class="memberlist-item-name" >
-                                                         <span class="memberlist-item-name-name"> {{member.name}}</span>
-                                                    </el-col>
-                                                    <el-col :span="7" class="memberlist-item-name" >
-                                                    <span class="memberlist-item-name-text"> {{member.tel}}</span>
-                                                    </el-col>
-                                                    <el-col :span="6" class="memberlist-item-name" >
-                                                        <span class="memberlist-item-name-text"> {{member.role}}</span>
-                                                    </el-col>
-                                                    <el-col :span="5"  class="memberlist-item-name" style="padding: 0px;padding-top:5px">
-                                                    <el-button class="topbtn memberaddbtn" @click="awayfromDoc(member.id)">删除</el-button>
-                                                    </el-col>
-                                                </el-row>
-                                        </el-col>
-                                    </el-row>
-                                    </el-card>
+                                <el-col :span="2" style="height:auto">
+                                    <el-image src="res/user-icon.png"
+                                            style="height: 50px;width:50px;border:1px solid #cdcdcd;border-radius:25px;">
+                                    </el-image>
+                                </el-col>
+                                <el-col :span="20" style="height:auto">
+                                    <div class="memberlist-item-name">
+                                        <span> {{member.name}}</span>
+                                        <span> {{member.tel}}</span>
+                                        <el-button class="topbtn memberaddbtn" @click="awayfromDoc(member.id)">删除</el-button>
+                                    </div>
                                 </el-col>
                             </el-row>
                         </div>
                     </el-col>
-                    <el-col :span="24" style="height:auto;padding:0 0px;" >
-                        <el-card class="box-card" v-show="ifgetinviturl" style="margin: 5px">
-                            <span style="width: 100%;font-weight: bold;">{{joinurl}}</span>
-                        </el-card>
+                    <el-col :span="24" style="height:auto;padding:0 0px;">
+                        <p style="width: 100%;font-weight: bold;">{{joinurl}}</p>
                         <el-button class="topbtn creatbtn" style="line-height: 1;" @click="createWriteurl">
                             生成邀请链接
                         </el-button>
@@ -674,32 +610,20 @@
                         <span class="memberlist-title">搜索结果</span>
                         <div class="memberlist">
                             <el-row class="memberlist-item" v-for="member in searchmember">
-                                <el-col :span="24" style="height:auto;">
-                                    <el-card class="box-card">
-                                        <el-row>
-                                            <el-col :span="2" style="height:auto">
-                                                <el-image
-                                                        style="height: 50px;width:50px;border:1px solid #cdcdcd;border-radius:25px;">
-                                                </el-image>
-                                            </el-col>
-                                            <el-col :span="22" style="height:auto">
-                                                <el-row style="height: 50px;">
-                                                    <el-col :span="6" class="memberlist-item-name" >
-                                                        <span class="memberlist-item-name-name"> {{member.name}}</span>
-                                                    </el-col>
-                                                    <el-col :span="7" class="memberlist-item-name" >
-                                                        <span class="memberlist-item-name-text"> {{member.tel}}</span>
-                                                    </el-col>
-                                                    <el-col :span="6" class="memberlist-item-name" >
+                                <el-col :span="2" style="height:auto">
+                                    <el-image src="res/user-icon.png"
+                                            style="height: 50px;width:50px;border:1px solid #cdcdcd;border-radius:25px;">
+                                    </el-image>
+                                </el-col>
+                                <el-col :span="20" style="height:auto">
+                                    <div class="memberlist-item-name">
+                                        <span> {{member.name}}</span>
+                                        <span> {{member.tel}}</span>
 
-                                                    </el-col>
-                                                    <el-col :span="5"  class="memberlist-item-name" style="padding: 0px;padding-top:5px">
-                                                        <el-button class="topbtn memberaddbtn" @click="inviteIntoDoc(member.id)">邀请</el-button>
-                                                    </el-col>
-                                                </el-row>
-                                            </el-col>
-                                        </el-row>
-                                    </el-card>
+
+                                        <el-button class="topbtn memberaddbtn" @click="inviteIntoDoc(member.id)">邀请</el-button>
+
+                                    </div>
                                 </el-col>
                             </el-row>
                         </div>
@@ -731,10 +655,8 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     var app = new Vue({
-
         el: '#managerpage_root',
         data: {
-            ifgetinviturl:false,
             joinurl:'',
             userinfo: {
                 userid: '10',
@@ -745,7 +667,6 @@
             mainheight: {
                 height: ''
             },
-            noticeurl:'ws://www.liadrinz.cn:8088/push/',
             rooturl: 'http://monkeydoc.liadrinz.cn/',
             testurl: 'http://localhost:8083/mdss/',
             message: 'Hello Vue!',
@@ -784,22 +705,16 @@
             dialogrenameVisible: false,
             renameDialogdata: {
                 docid: '',
-                newDocname: '',
-                refUsers:'',
-                mdName: ''
+                newDocname: ''
             },
             token: '',
             searchDocinput: '',
-            serchedDoc: [],
-            noticeList:[
-            ],
-            websock:null
+            serchedDoc: []
         },
         created: function () {
-            // this.jugloginde();
+            this.jugloginde();
             this.mainheight.height = document.body.clientHeight - 60 + "px";
             this.init();
-            this.initWebSocket();
         },
         mounted() {
             const that = this
@@ -809,13 +724,8 @@
                 })()
             }
         },
-        destroyed() {
-            this.websocket.close();
-        },
         methods: {
             async init() {
-                this.doclist=[]
-                this.recycleddoclist=[]
                 var usrinfo = await axios.get(this.rooturl + 'rest/user/' + this.userinfo.userid)
                 this.userinfo.username = usrinfo.data.userName
                 this.userinfo.usertel = usrinfo.data.tel
@@ -857,92 +767,9 @@
 
                 }
                 this.getmetatouse()
-                this.getNotice()
 
 
             },
-            getNotice(){
-                axios.get(this.rooturl + 'rest/message.json?receiverId='+this.userinfo.userid)
-                    .then(res => {
-                        this.noticeList=[]
-                        var notice=res.data;
-                        for (var i = 0; i < notice.length - 1; i++) {
-                            var key = i
-                            for (var j = Number(i + 1); j < notice.length; j++) {
-                                if (notice[j].time >= notice[key].time) {
-                                    key = j
-                                }
-                            }
-                            if (key != i) {
-                                var x = notice[i]
-                                notice[i] = notice[key]
-                                notice[key] = x
-                            }
-                        }
-                        for(var j in notice){
-                            var time = new Date(notice[j].time)
-                            notice[j].time = time.toLocaleString();
-                            this.noticeList.push(notice[j])
-                        }
-
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
-            },
-            changeifread(id){
-                axios.put(this.rooturl + '/mvc/message/isRead?id='+id )
-                    .then(res => {
-
-                        for(var i in this.noticeList){
-                            if(this.noticeList[i].id==id&&!this.noticeList[i].read){
-                                this.$message({
-                                    type: 'info',
-                                    message: '已将该通知标记为已读'
-                                })
-                            }
-
-                        }
-                        this.getNotice();
-
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
-            },
-            initWebSocket() {
-                try {
-                    this.websock = new WebSocket(this.noticeurl+this.userinfo.userid);
-                } catch (e) {
-                    console.log("connect error");
-                }
-                this.websock.onmessage = this.websocketonmessage;
-                this.websock.onopen = this.websocketonopen;
-                this.websock.onerror = this.websocketonerror;
-                this.websock.onclose = this.websocketclose;
-            },
-            websocketonopen() {
-                console.log("连接成功")
-            },
-            websocketonerror() {
-                console.log("connect error");
-                this.initWebSocket();
-            },
-            websocketonmessage(e) {
-                var resp = JSON.parse(e.data);
-                this.getNotice();
-            },
-            websocketclose(e) {
-                this.websock.close();
-            },
-            sendmessage(receivers,messagetext){
-                var message = {
-                    receivers: receivers,
-                    text: messagetext
-                }
-                this.websock.send(JSON.stringify(message))
-            },
-
             async getmetatouse() {
                 for (var i in this.doclist) {
                     var res = await axios.get(this.rooturl + 'rest/metaToUser.json?mdId=' + this.doclist[i].id)
@@ -961,24 +788,6 @@
                         refUsers.push(obj)
                     }
                     this.doclist[i].refUsers = refUsers
-                }
-                for (var i in this.recycleddoclist) {
-                    var res = await axios.get(this.rooturl + 'rest/metaToUser.json?mdId=' + this.recycleddoclist[i].id)
-
-                    var mtoulist = res.data;
-                    var refUsers = [];
-                    for (var j in mtoulist) {
-
-                        var obj = {
-                            id: mtoulist[j].userId,
-                            userName: mtoulist[j].refUser.userName,
-                            tel: mtoulist[j].refUser.tel,
-                            email: mtoulist[j].refUser.email,
-                            role: mtoulist[j].role
-                        }
-                        refUsers.push(obj)
-                    }
-                    this.recycleddoclist[i].refUsers = refUsers
                 }
             },
             format() {
@@ -1021,13 +830,11 @@
             openMemberList(index) {
                 this.nowShowMemberDialogdata.mdid = this.doclist[index].id
                 this.nowShowMemberDialogdata.mdname = this.doclist[index].mdName
-                this.nowShowMemberDialogdata.refUsers = this.doclist[index].refUsers
                 for (var i in this.doclist[index].refUsers) {
                     var member = {
                         id: this.doclist[index].refUsers[i].id,
                         name: this.doclist[index].refUsers[i].userName,
-                        tel: this.doclist[index].refUsers[i].tel,
-                        role:this.doclist[index].refUsers[i].role
+                        tel: this.doclist[index].refUsers[i].tel
                     }
                     this.nowShowMemberDialogdata.mdmemberlist.push(member)
                 }
@@ -1042,7 +849,6 @@
                 this.nowShowMemberDialogdata.mdid = ''
                 this.searchmember = []
                 this.joinurl =''
-                this.ifgetinviturl=false
             },
             async searchMember(e) {
                 this.$forceUpdate()
@@ -1088,9 +894,7 @@
                     axios.delete(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id)
                         .then(res => {
                             console.log(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id);
-                            var message ="用户"+this.userinfo.username+"已将文档《"+this.recycleddoclist[index].mdName+"》彻底删除"
-                            this.sendmessage(this.getNoticemember(this.recycleddoclist[index]),message)
-                            this.init()
+                            location.reload();
                         })
                         .catch(function (error) {
                             console.log(error)
@@ -1102,17 +906,6 @@
                     })
                 })
             },
-            getNoticemember(doc){
-                var memberlistr=[]
-                for(var i in doc.refUsers){
-                    if(doc.refUsers[i].id !=this.userinfo.userid){
-                        memberlistr = memberlistr.concat([doc.refUsers[i].id ])
-                    }
-                }
-
-                return memberlistr
-
-            },
             deleteDoc(index) {
                 this.$confirm('是否删除该文件, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -1122,10 +915,7 @@
                     axios.put(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=true')
                         .then(res => {
                             console.log(this.rooturl + 'rest/meta/' + this.doclist[index].id + '?recycled=true');
-
-                            var message ="用户"+this.userinfo.username+"已将文档《"+this.doclist[index].mdName+"》移入回收站"
-                            this.sendmessage(this.getNoticemember(this.doclist[index]),message)
-                            this.init()
+                            location.reload();
                         })
                         .catch(function (error) {
                             console.log(error)
@@ -1146,9 +936,7 @@
                     axios.put(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id + '?recycled=false')
                         .then(res => {
                             console.log(this.rooturl + 'rest/meta/' + this.recycleddoclist[index].id + '?recycled=false');
-                            var message ="用户"+this.userinfo.username+"已将文档《"+this.recycleddoclist[index].mdName+"》从回收站移出"
-                            this.sendmessage(this.getNoticemember(this.recycleddoclist[index]),message)
-                            this.init()
+                            location.reload();
                         })
                         .catch(function (error) {
                             console.log(error)
@@ -1164,10 +952,7 @@
                 axios.put(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' + this.renameDialogdata.newDocname)
                     .then(res => {
                         console.log(this.rooturl + 'rest/meta/' + this.renameDialogdata.docid + '?mdName=' + this.renameDialogdata.newDocname);
-                        var message ="用户"+this.userinfo.username+"已将文档《"+this.renameDialogdata.mdName+"》更名为《"+this.renameDialogdata.newDocname+"》"
-                        console.log(this.renameDialogdata)
-                        this.sendmessage(this.getNoticemember(this.renameDialogdata),message)
-                        this.init()
+                        location.reload();
                     })
                     .catch(function (error) {
                         console.log(error)
@@ -1195,15 +980,12 @@
             async createWriteurl(){
                 var res = await axios.get(this.rooturl+"mvc/visitdocs/creatWritetoken/"+this.nowShowMemberDialogdata.mdid);
                 this.joinurl =this.rooturl+"mvc/visitdocs/write/"+this.nowShowMemberDialogdata.mdid+"/"+res.data.token;
-                this.ifgetinviturl =true;
             },
             async clear() {
                 for (var i in this.recycleddoclist) {
                     res = await axios.delete(this.rooturl + 'rest/meta/' + this.recycleddoclist[i].id)
-                    var message ="用户"+this.userinfo.username+"已将文档《"+this.recycleddoclist[i].mdName+"》彻底删除"
-                    this.sendmessage(this.getNoticemember(this.recycleddoclist[i]),message)
                 }
-                this.init()
+                location.reload();
             },
             async inviteIntoDoc(userid){
                 var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.nowShowMemberDialogdata.mdid + "&userId=" + userid)
@@ -1219,8 +1001,6 @@
                     }
                     var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
                     this.$message("已邀请该用户加入该文档编辑小组");
-                    var message ="用户"+this.userinfo.username+"已将你加入文档《"+this.nowShowMemberDialogdata.mdname+"》的协作小组"
-                    this.sendmessage([userid],message)
                     location.reload();
                 }
             },
@@ -1241,10 +1021,10 @@
 
             },
             async deetemember(userid){
+                console.log(userid)
                 var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.nowShowMemberDialogdata.mdid + "&userId=" + userid)
+                console.log(res.data)
                 var res2 = await axios.delete(this.rooturl + 'rest/metaToUser/' + res.data[0].id)
-                var message ="用户"+this.userinfo.username+"已将你移出文档《"+this.nowShowMemberDialogdata.mdname+"》的协作小组"
-                this.sendmessage([userid],message)
             },
             createDoc() {
                 var requestbody = {

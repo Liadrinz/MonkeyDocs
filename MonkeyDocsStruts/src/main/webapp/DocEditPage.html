@@ -8,6 +8,10 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 </head>
 <style>
+    [v-cloak] {
+        display: none;
+    }
+
     .icon {
         width: 1em;
         height: 1em;
@@ -47,10 +51,11 @@
         height: 1000px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
     }
+    .ql-editor::-webkit-scrollbar {display:none}
 </style>
 
 <body>
-    <div id="edit_page">
+    <div id="edit_page" v-cloak>
         <el-container>
             <el-header class="top">
                 <el-row type="flex" align="middle">
@@ -227,6 +232,7 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="./iconfont/iconfont.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -259,15 +265,15 @@
         var image='';
         if (source === 'user') {
             if(delta.ops[1]===undefined){
-                if(delta.ops[0].insert.image!==undefined){
+                if(delta.ops[0].hasOwnProperty("insert")&&delta.ops[0].insert.image!==undefined){
                     var base64 = delta.ops[0].insert.image;
                     image=vue.uploadImage(base64);
                     delta.ops[0].insert.image=image;
                 }
             }
             else{
-                if(delta.ops[1].insert.image!==undefined){
-                    var base64 = delta.ops[0].insert.image;
+                if(delta.ops[1].hasOwnProperty("insert")&&delta.ops[1].insert.image!==undefined){
+                    var base64 = delta.ops[1].insert.image;
                     image=vue.uploadImage(base64);
                     delta.ops[1].insert.image=image;
                 }
@@ -292,7 +298,7 @@
         el: '#edit_page',
         data() {
             return {
-                imageurl:'monkeydoc.liadrinz.cn/static/image/upload',
+                imageurl:'http://monkeydoc.liadrinz.cn/static/image/upload/base64',
                 rooturl: 'http://monkeydoc.liadrinz.cn/',
                 testurl: 'http://localhost:8083/mdss/',
                 initial_data: null,
@@ -484,7 +490,7 @@
                     type:'POST',
                     async:false,
                     url:this.imageurl,
-                    data:JSON.stringify({pic:base64}),
+                    data:{pic:base64},
                     success:function(data){
                         if(data.msg=="success"){
                             image = data.pic_url;
@@ -494,7 +500,20 @@
                 })
 
                 return image;
+            },
+
+            beforeUnload(e){
+                var id = this.doc_id
+                var saveInfo ={
+                    type:"save",
+                    delta:{attributes:{docId:id}}
+                    
+                }
+                console.log("文件已保存")
+                websock.send(JSON.stringify(saveInfo));
             }
+
+
 
         },
 
@@ -515,9 +534,12 @@
                 })
 
         },
-        mounted() {},
+        mounted() {
+            window.addEventListener('beforeunload',e=>this.beforeUnload(e));
+        },
         destroyed() {
             websocket.close();
+            window.removeEventListener('beforeunload',e=>this.beforeUnload(e));  
         },
     });
 </script>
