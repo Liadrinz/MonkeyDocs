@@ -466,7 +466,7 @@
                         </div>
                     </div>
                     <div v-if="leftchose == '2'">
-                        <div class="main" :style="mainheight">
+                        <div class="main" :style="mainheight">  
                             <el-row class="title-col">
                                 <span>通知</span>
                             </el-row>
@@ -796,7 +796,7 @@
             websock:null
         },
         created: function () {
-            // this.jugloginde();
+            this.jugloginde();
             this.mainheight.height = document.body.clientHeight - 60 + "px";
             this.init();
             this.initWebSocket();
