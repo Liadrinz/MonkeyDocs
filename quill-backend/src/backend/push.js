@@ -6,7 +6,7 @@ function initPushService(conn, userId) {
     conn.on('text', function(msg) {
         try {
             msg = JSON.parse(msg);
-            handler.handlePush(msg.sender, msg.receivers, msg.text);
+            handler.handlePush(userId, msg.receivers, msg.text);
         } catch (e) {
             console.error(e);
         }
@@ -19,7 +19,7 @@ function initPushService(conn, userId) {
         }
     })
     conn.on('error', function(e) {
-        console.log(e);
+        console.error(e);
     })
 }
 

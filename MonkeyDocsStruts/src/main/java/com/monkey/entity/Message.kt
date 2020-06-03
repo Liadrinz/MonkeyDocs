@@ -1,10 +1,11 @@
 package com.monkey.entity
 
 import com.monkey.entity.base.BaseEntity
+import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name = "Message", schema = "MonkeyDocDB", catalog = "")
+@Table(name = "Message", schema = "MonkeyDocDB")
 open class Message : BaseEntity() {
     @get:Id
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,14 @@ open class Message : BaseEntity() {
     @get:Column(name = "text", nullable = false)
     var text: String? = null
 
+    @get:Basic
+    @get:Column(name = "time", nullable = false)
+    var time: Date? = null
+
+    @get:Basic
+    @get:Column(name = "is_read", nullable = false)
+    var read: Boolean? = null
+
     @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "sender_id", referencedColumnName = "id")
     var sender: User? = null
@@ -37,6 +46,8 @@ open class Message : BaseEntity() {
                     "senderId = $senderId " +
                     "receiverId = $receiverId " +
                     "text = $text " +
+                    "time = $time " +
+                    "read = $read " +
                     ")"
 
     // constant value returned to avoid entity inequality to itself before and after it's update/merge
@@ -51,7 +62,8 @@ open class Message : BaseEntity() {
         if (senderId != other.senderId) return false
         if (receiverId != other.receiverId) return false
         if (text != other.text) return false
-
+        if (time != other.time) return false
+        if (read != other.read) return false
         return true
     }
 

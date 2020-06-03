@@ -8,6 +8,10 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 </head>
 <style>
+    [v-cloak] {
+        display: none;
+    }
+
     .icon {
         width: 1em;
         height: 1em;
@@ -63,7 +67,7 @@
 </style>
 
 <body>
-    <div id="edit_page">
+    <div id="edit_page" v-cloak>
         <el-container>
             <el-header class="top">
                 <el-row type="flex" align="middle">

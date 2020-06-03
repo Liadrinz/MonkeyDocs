@@ -32,4 +32,9 @@ public class DeltaDAO extends CrudDAO<Integer, Delta> {
         query.executeUpdate();
         return "success";
     }
+    public List<Delta> findBefore(int docId, int lastDelta) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createSQLQuery(String.format("select * from Delta where docid=%d and id < %d", docId, lastDelta));
+        return query.list();
+    }
 }

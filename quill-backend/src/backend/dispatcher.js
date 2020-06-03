@@ -18,14 +18,12 @@ const dispatcher = {
             console.error(e);
         }
     },
-    push(msg, receivers) {
+    push(receivers) {
         try {
-            console.log(clientManager.push.map)
             for (let recvId of receivers) {
                 let client = clientManager.push.getInfo(recvId);
-                console.log(client);
                 if (client)
-                    client.send(JSON.stringify(msg));
+                    client.send('null');
             }
         } catch (e) {
             console.error(e);
