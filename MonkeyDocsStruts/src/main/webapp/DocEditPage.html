@@ -507,6 +507,23 @@
                 }
                 console.log("文件已保存")
                 websock.send(JSON.stringify(saveInfo));
+            },
+            getCheckpoints() {
+                axios.get(this.rooturl + "rest/checkpoint?docid=" + this.doc_id)
+                    .then(res => {
+                        this.checkpoints = res;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            },
+            timeStamptoDate(timestamp){
+                var date = new Date(timestamp);
+                return date;
+            },
+
+            getOlderVersion(checkpoint_id){
+                
             }
 
 
