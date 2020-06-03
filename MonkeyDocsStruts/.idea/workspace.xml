@@ -25,10 +25,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/image/doc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/image/head.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/image/notice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/image/point.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Docvisittoken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/entity/Docvisittoken.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monkey/mvc/VisitdocsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monkey/mvc/VisitdocsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/DocEditPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/DocEditPage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/DocManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/DocManager.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +81,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SimpleHBaseUtil" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/image" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.32837528" />
@@ -89,6 +90,9 @@
   <component name="RecentsManager">
     <key name="DestinationChooserDialog.Package.RECENTS_KEY">
       <recent name="com.monkey.entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\github\MonkeyDocs\MonkeyDocsStruts\src\main\webapp\image" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.monkey.dao" />
@@ -327,6 +331,7 @@
       <workItem from="1590809086872" duration="3891000" />
       <workItem from="1590814216699" duration="1082000" />
       <workItem from="1590815357414" duration="12844000" />
+      <workItem from="1591180971640" duration="12366000" />
     </task>
     <servers />
   </component>
