@@ -105,10 +105,10 @@
                             <p>{{checkpoint.refDelta.refUser.userName}} 保存于 {{(timeStamptoDate(checkpoint.time).toTimeString().split(" "))[0]}}</p>
                             <el-row>
                                 <el-col :span="12">
-                                    <el-button type="primary" plain >查看</button>
+                                    <el-button type="primary" plain >查看</el-button>
                                 </el-col>
                                 <el-col :span="12">
-                                    <el-button type="success" plain>还原</button>
+                                    <el-button type="success" plain>还原</el-button>
                                 </el-col> 
                             </el-row>
                             
@@ -501,80 +501,80 @@
                 this.user_id = JSON.parse(window.localStorage.getItem("userid"));
             },
             async visitorjoin() {
-                // var ifhavevisittoken = false;
-                // var ifisjoin = false;
-                // if (window.localStorage.getItem("visittoken") != null) {
-                //     this.visittoken = window.localStorage.getItem("visittoken")
-                //     ifhavevisittoken = true
-                // } else if (this.getQueryVariable("visittoken") != false) {
-                //     this.visittoken = this.getQueryVariable("visittoken")
-                //     window.localStorage.setItem("visittoken", this.getQueryVariable("visittoken"))
-                //     ifhavevisittoken = true
-                // } else {
-                //     ifhavevisittoken = false
-                // }
-                // if (this.getQueryVariable("action") == 'join') {
-                //     var writetoken = this.getQueryVariable("writetoken")
-                //     ifisjoin = true;
-                // } else {
-                //     ifisjoin = false;
-                // }
-                // if (window.localStorage.getItem("token") != null || window.localStorage.getItem("userid") != null) {
-                //     this.setUserid()
-                //     var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
-                //     if (res.data.length > 0) {
-                //         return
-                //     } else {
-                //         if (ifisjoin) {
-                //             var requestbody1 = {
-                //                 "mdId": this.doc_id,
-                //                 "token": writetoken
-                //             }
-                //             var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
-                //             if (ifrighttoken.data) {
-                //                 var requestbody = {
-                //                     "mdId": this.doc_id,
-                //                     "userId": this.user_id
-                //                 }
-                //                 var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
-                //                 quill.enable(true);
-                //                 this.$message("欢迎加入本文档的协作小组");
-                //                 return
-                //             } else {
-                //                 window.location.href = 'DocManager.html';
-                //             }
-                //         }
-                //         if (ifhavevisittoken) {
-                //             var requestbody = {
-                //                 "mdId": this.doc_id,
-                //                 "token": this.visittoken
-                //             }
-                //             var res2 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
-                //             if (res2.data) {
-                //                 quill.enable(false);
-                //                 this.$message("你只能看着")
-                //                 return
-                //             }
-                //         } else {
-                //             window.location.href = 'DocManager.html';
-                //         }
-                //     }
-                // } else {
-                //     if (ifhavevisittoken) {
-                //         var requestbody = {
-                //             "mdId": this.doc_id,
-                //             "token": this.visittoken
-                //         }
-                //         var res3 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
-                //         if (res3.data) {
-                //             quill.enable(false);
-                //             this.$message("你只能看着")
-                //             return
-                //         }
-                //     } else {
-                //         window.location.href = 'login.html';
-                //     }
-                // }
+                var ifhavevisittoken = false;
+                var ifisjoin = false;
+                if (window.localStorage.getItem("visittoken") != null) {
+                    this.visittoken = window.localStorage.getItem("visittoken")
+                    ifhavevisittoken = true
+                } else if (this.getQueryVariable("visittoken") != false) {
+                    this.visittoken = this.getQueryVariable("visittoken")
+                    window.localStorage.setItem("visittoken", this.getQueryVariable("visittoken"))
+                    ifhavevisittoken = true
+                } else {
+                    ifhavevisittoken = false
+                }
+                if (this.getQueryVariable("action") == 'join') {
+                    var writetoken = this.getQueryVariable("writetoken")
+                    ifisjoin = true;
+                } else {
+                    ifisjoin = false;
+                }
+                if (window.localStorage.getItem("token") != null || window.localStorage.getItem("userid") != null) {
+                    this.setUserid()
+                    var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
+                    if (res.data.length > 0) {
+                        return
+                    } else {
+                        if (ifisjoin) {
+                            var requestbody1 = {
+                                "mdId": this.doc_id,
+                                "token": writetoken
+                            }
+                            var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
+                            if (ifrighttoken.data) {
+                                var requestbody = {
+                                    "mdId": this.doc_id,
+                                    "userId": this.user_id
+                                }
+                                var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
+                                quill.enable(true);
+                                this.$message("欢迎加入本文档的协作小组");
+                                return
+                            } else {
+                                window.location.href = 'DocManager.html';
+                            }
+                        }
+                        if (ifhavevisittoken) {
+                            var requestbody = {
+                                "mdId": this.doc_id,
+                                "token": this.visittoken
+                            }
+                            var res2 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                            if (res2.data) {
+                                quill.enable(false);
+                                this.$message("你只能看着")
+                                return
+                            }
+                        } else {
+                            window.location.href = 'DocManager.html';
+                        }
+                    }
+                } else {
+                    if (ifhavevisittoken) {
+                        var requestbody = {
+                            "mdId": this.doc_id,
+                            "token": this.visittoken
+                        }
+                        var res3 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                        if (res3.data) {
+                            quill.enable(false);
+                            this.$message("你只能看着")
+                            return
+                        }
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                }
 
 
 
@@ -635,6 +635,7 @@
                         console.error(err);
                     })
             },
+            
             timeStamptoDate(timestamp){
                 var date = new Date(timestamp);
                 return date;
