@@ -170,7 +170,7 @@ function add(arr,key)
     var total = 0;
     for(var keys in arr)
     {
-      if( parseInt(keys.substring(keys.indexOf("-")+1,keys.length)) <= parseInt(key.substring(key.indexOf("-")+1,key.length)) )
+      if( parseInt(keys.substring(keys.indexOf("-")+1,keys.length)) <= parseInt(key.substring(key.indexOf("-")+1,key.length)))
         total += arr[keys]
     }
     return total;

@@ -123,9 +123,6 @@ $("#searchUserByid").click(function(){
         
                 var $email = $("<td id=\'email"+tempNum+"\'></td>");
                 $email.html(obj.email);
-        
-                var $password = $("<td id=\'password"+tempNum+"\'></td>");
-                $password.html(obj.password);
 
                 var $createTime = $("<td id=\'createTime"+tempNum+"\'></td>");
                 $createTime.html(timestampToTime(obj.createTime));
@@ -135,7 +132,6 @@ $("#searchUserByid").click(function(){
                 $user.append($username);
                 $user.append($tel);
                 $user.append($email);
-                $user.append($password);
                 $user.append($createTime);
                 table.append($user);
         
@@ -225,8 +221,6 @@ function loadUser(data,table)
         var $email = $("<td id=\'email"+tempNum+"\'></td>");
         $email.html(obj.email);
 
-        var $password = $("<td id=\'password"+tempNum+"\'></td>");
-        $password.html(obj.password);
 
         var $createTime = $("<td id=\'createTime"+tempNum+"\'></td>");
         $createTime.html(timestampToTime(obj.createTime));
@@ -236,7 +230,6 @@ function loadUser(data,table)
         $user.append($username);
         $user.append($tel);
         $user.append($email);
-        $user.append($password);
         $user.append($createTime);
         table.append($user);
 
