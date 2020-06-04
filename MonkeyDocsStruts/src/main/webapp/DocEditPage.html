@@ -11,7 +11,7 @@
     [v-cloak] {
         display: none;
     }
-
+    
     .icon {
         width: 1em;
         height: 1em;
@@ -19,45 +19,45 @@
         fill: currentColor;
         overflow: hidden;
     }
-
+    
     body {
         margin: 0px;
         background-color: #F2F6FC;
     }
-
+    
     .top {
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         background-color: #FFFFFF;
     }
-
+    
     .top_button {
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
         background-image: linear-gradient(#fdfdfd, #f8f8f8);
         border: 0px;
     }
-
+    
     #edit_part {
         margin-top: 10px;
         margin-left: auto;
         margin-right: auto;
         width: 1100px;
     }
-
+    
     .tool_button {
         background-color: transparent;
         border: transparent;
     }
-
+    
     #paper {
         background-color: #FFFFFF;
         height: 1000px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
     }
-
+    
     .ql-editor::-webkit-scrollbar {
         display: none
     }
-
+    
     #historyB {
         background-image: linear-gradient(#fdfdfd, #f8f8f8);
         font-size: 20px;
@@ -99,19 +99,18 @@
                 </el-breadcrumb>
                 <el-divider style="width:80%"></el-divider>
                 <el-timeline :reverse="true">
-                    <el-timeline-item v-for="(checkpoint,index) in checkpoints" :key="index"
-                        :timestamp="timeStamptoDate(checkpoint.time).toDateString()" placement="top">
+                    <el-timeline-item v-for="(checkpoint,index) in checkpoints" :key="index" :timestamp="timeStamptoDate(checkpoint.time).toDateString()" placement="top">
                         <el-card style="width:80%">
                             <p>{{checkpoint.refDelta.refUser.userName}} 保存于 {{(timeStamptoDate(checkpoint.time).toTimeString().split(" "))[0]}}</p>
                             <el-row>
                                 <el-col :span="12">
-                                    <el-button type="primary" plain >查看</el-button>
+                                    <el-button type="primary" plain>查看</el-button>
                                 </el-col>
                                 <el-col :span="12">
                                     <el-button type="success" plain>还原</el-button>
-                                </el-col> 
+                                </el-col>
                             </el-row>
-                            
+
                         </el-card>
                     </el-timeline-item>
                 </el-timeline>
@@ -300,14 +299,14 @@
         }
     });
     var undo = document.querySelector('#undo');
-    undo.addEventListener('click', function () {
+    undo.addEventListener('click', function() {
         quill.history.undo();
     });
     var redo = document.querySelector('#redo');
-    redo.addEventListener('click', function () {
+    redo.addEventListener('click', function() {
         quill.history.redo();
     });
-    quill.on('text-change', function (delta, oldDelta, source) {
+    quill.on('text-change', function(delta, oldDelta, source) {
         var image = '';
         if (source === 'user') {
             if (delta.ops[1] === undefined) {
@@ -316,8 +315,7 @@
                     image = vue.uploadImage(base64);
                     delta.ops[0].insert.image = image;
                 }
-            }
-            else {
+            } else {
                 if (delta.ops[1].hasOwnProperty("insert") && delta.ops[1].insert.image !== undefined) {
                     var base64 = delta.ops[1].insert.image;
                     image = vue.uploadImage(base64);
@@ -389,8 +387,7 @@
                             "password": "78c8a34620020484ebcefa98c926c8ba1ed7b2621eee7c4f56e528b1c26fe30a"
                         }
                     }
-                },
-                {
+                }, {
                     "id": 4,
                     "docid": 124,
                     "time": 1588096410000,
@@ -422,8 +419,7 @@
                             "password": "78c8a34620020484ebcefa98c926c8ba1ed7b2621eee7c4f56e528b1c26fe30a"
                         }
                     }
-                }
-                ]
+                }]
             }
         },
         methods: {
@@ -598,8 +594,10 @@
                     type: 'POST',
                     async: false,
                     url: this.imageurl,
-                    data: { pic: base64 },
-                    success: function (data) {
+                    data: {
+                        pic: base64
+                    },
+                    success: function(data) {
                         if (data.msg == "success") {
                             image = data.pic_url;
                         }
@@ -614,7 +612,11 @@
                 var id = this.doc_id
                 var saveInfo = {
                     type: "save",
-                    delta: { attributes: { docId: id } }
+                    delta: {
+                        attributes: {
+                            docId: id
+                        }
+                    }
 
                 }
                 console.log("文件已保存")
@@ -630,7 +632,8 @@
                         console.error(err);
                     })
             },
-            timeStamptoDate(timestamp){
+
+            timeStamptoDate(timestamp) {
                 var date = new Date(timestamp);
                 return date;
             }
