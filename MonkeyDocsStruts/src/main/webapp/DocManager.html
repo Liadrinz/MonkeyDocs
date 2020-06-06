@@ -1014,23 +1014,22 @@
                 this.ifgetinviturl = false
             },
             async searchMember(e) {
-                this.$forceUpdate()
-                this.searchmember = []
+                this.searchmember.splice(0, this.searchmember.length);
                 var res1 = await axios.get(this.rooturl + 'rest/user.json?tel=' + this.searchinput)
                 var res2 = await axios.get(this.rooturl + 'rest/user.json?email=' + this.searchinput)
                 var res3 = await axios.get(this.rooturl + 'rest/user.json?userName=' + this.searchinput)
                 var userlist = [].concat(res1.data, res2.data, res3.data)
-                if (userlist.length != 0 && this.searchmember.length == 0) {
-                    for (var i in userlist) {
-                        var member = {
-                            id: userlist[i].id,
-                            name: userlist[i].userName,
-                            tel: userlist[i].tel,
-                            email: userlist[i].email
-                        }
-                        this.searchmember.push(member)
-                    }
-                }
+				var members = []
+				for (var i in userlist) {
+					var member = {
+						id: userlist[i].id,
+						name: userlist[i].userName,
+						tel: userlist[i].tel,
+						email: userlist[i].email
+					}
+					members.push(member)
+				}
+				this.searchmember = members;
             },
             searchDoc(e) {
 
