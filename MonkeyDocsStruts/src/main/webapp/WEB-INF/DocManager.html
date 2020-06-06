@@ -343,18 +343,18 @@
                                                                  style="padding:10px"></el-progress>
                                                 </li>
                                                 <li>
-                                                        <span class="userinfo_text">回收站文档数量:</span>
+                                                        <span class="userinfo_text">回收站文档数量:<span>
                                                         <el-progress :percentage="recycleddoclist.length/0.5"
                                                                      :format="reformat"
                                                                      style="padding:10px"></el-progress>
                                                 </li>
 
                                                 <li>
-                                                       <span class="userinfo_text">电话号码：</span>
+                                                       <span class="userinfo_text">电话号码：<span>
                                                        <p> {{userinfo.usertel}}</p>
                                                 </li>
                                                 <li>
-                                                        <span class="userinfo_text">电子邮箱：</span><p>{{userinfo.useremail}}</p>
+                                                        <span class="userinfo_text">电子邮箱：<span><p>{{userinfo.useremail}}</p>
                                                 </li>
                                                 <li class="logout_c"
                                                     style="margin-top:0px;border-bottom: 0px solid #ffffff;"
@@ -365,7 +365,7 @@
                                                         font-size: 20px;
                                                         font-weight: 800;
                                                         "
-                                                        >注销</span>
+                                                        >注销<span>
                                                 </li>
 
                                             </ul>
@@ -1046,12 +1046,12 @@
             },
             async searchMember(e) {
                 this.$forceUpdate()
-                this.searchmember.splice(0,this.searchmember.length)
+                this.searchmember = []
                 var res1 = await axios.get(this.rooturl + 'rest/user.json?tel=' + this.searchinput)
                 var res2 = await axios.get(this.rooturl + 'rest/user.json?email=' + this.searchinput)
                 var res3 = await axios.get(this.rooturl + 'rest/user.json?userName=' + this.searchinput)
-                let userlist = [].concat(res1.data, res2.data, res3.data)
-                if (userlist.length != 0 && this.searchmember.length==0) {
+                var userlist = [].concat(res1.data, res2.data, res3.data)
+                if (userlist.length != 0) {
                     for (var i in userlist) {
                         var member = {
                             id: userlist[i].id,
@@ -1059,7 +1059,7 @@
                             tel: userlist[i].tel,
                             email: userlist[i].email
                         }
-                        this.$set(this.searchmember,this.searchmember.length,member)
+                        this.searchmember.push(member)
                     }
                 }
             },
@@ -1231,8 +1231,7 @@
                     type: 'warning'
                 }).then(() => {
                     this.deetemember(userid);
-                    this.membercheckifshow = false
-                    this.init();
+                    location.reload();
                 }).catch(() => {
                     this.$message({
                         type: 'info',
