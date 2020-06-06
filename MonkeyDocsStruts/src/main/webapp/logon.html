@@ -47,9 +47,9 @@
     <div class ="now_login"><span class="switch-tips">已有账号？请</span>
         <button class="sm-button  sc-1n784rm-0 sfCUt" @click="login" type="default">登录</button></div>
     <div id="app1">
-        <label>用户名</label><input type="text" placeholder="请设置用户名"  v-model="userInfo.username" class="input" @blur="a"><br>
+        <label>用户名</label><input type="text" placeholder="请设置用户名"  v-model="userInfo.username" class="input"   @blur="a"><br>
         <span class="tiShi">{{ tiShi.tishi1 }}</span><br>
-        <label>设置密码</label><input type="password" placeholder="请设置登录密码" v-model="userInfo.password1"class="input" @blur="b"><br>
+        <label>设置密码</label><input type="password" placeholder="请设置登录密码" v-model="userInfo.password1" class="input" @blur="b"><br>
         <span class="tiShi">{{ tiShi.tishi2 }}</span><br>
         <label>确认密码</label><input type="password" placeholder="请保证密码的一致" v-model="userInfo.password2"class="input" @blur="c"><br>
         <span class="tiShi">{{ tiShi.tishi3}}</span><br>
@@ -79,7 +79,7 @@
             isReturn: false,
             btn:false,
             tiShi:{
-                tiShi1:'',
+                tishi1:'',
                 tishi2:'',
                 tishi3:'',
                 tishi4:'',
@@ -90,7 +90,6 @@
                 tishi9:'',
             },
             userInfo:{
-                username:'',
                 password1:'',
                 password2:'',
                 phonenum:'',
@@ -102,6 +101,7 @@
                 checkbox:true,
                 notcheck:true,
                 logon_res:false,
+                username:'',
             },
         },
         methods:{
@@ -148,18 +148,21 @@
             a(){
                 this.tiShi.tishi1 = '';
                 this.isReturn = true;
-                var a=/^(\w)+$/;//小写字母组成
-                if (!this.userInfo.username) this.tiShi.tishi1='用户名不能为空';
+                var a=/^(\w)+$/;
+                if (!this.userInfo.username) {
+                    this.isReturn = true;
+                    this.tiShi.tishi1 = '用户名不能为空';
+                }
                 else if(!a.test(this.userInfo.user)){
                     this.isReturn = true;
-                    this.tiShi.tishi1="由小写字母组成"
+                    this.tiShi.tishi1="用户名格式不正确"
                 }
             },
             //密码
             b (){
                 this.tiShi.tishi2 = '';
                 this.isReturn = true;
-                var p=/(\w)*(\d)+[a-zA-Z]+/;
+                var p=/(\w)*(([0-9]+[a-zA-Z]+)|([A-Za-z][0-9]))(\w)*/;
                 if (!this.userInfo.password1) {
                     this.isReturn = true;
                     this.tiShi.tishi2='密码不能为空';
@@ -238,7 +241,7 @@
                     this.isReturn = true;
                     this.tiShi.tishi1="由小写字母组成"
                 }
-                var p=/(\w)*(\d)+[a-zA-Z]+/;
+                var p=/(\w)*(([0-9]+[a-zA-Z]+)|([A-Za-z][0-9]))(\w)*/;
                 if (!this.userInfo.password1) {
                     this.isReturn = true;
                     this.tiShi.tishi2='密码不能为空';
