@@ -30,6 +30,7 @@
     <bean id="checkLogin" class="com.monkey.interceptors.UserLoginDetector"></bean>
     <bean id="requestaction" class="com.monkey.interceptors.UserRequestInterceptor"></bean>
     <bean id="userlogonaction" class="com.monkey.action.UserLogonController"></bean>
+    <bean id="userpswreset" class="com.monkey.action.UserPswModifyController"></bean>
     <bean id="rest" class="org.apache.struts2.rest.ContentTypeInterceptor"/>
     <bean id="restWorkflow" class="org.apache.struts2.rest.RestWorkflowInterceptor"/>
     <bean id="messages" class="org.apache.struts2.interceptor.MessageStoreInterceptor" />
