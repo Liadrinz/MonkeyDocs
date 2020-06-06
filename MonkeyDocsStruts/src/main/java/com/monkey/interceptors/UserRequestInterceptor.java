@@ -38,12 +38,6 @@ public class UserRequestInterceptor extends MethodFilterInterceptor {
         if(map==null){
             if(method.equals("GET"))
                 return invocation.invoke();
-        String method = request.getMethod();
-        if(map==null){
-            if(method.equals("GET")){
-                response.setHeader("requestmsg","accepted");
-                return invocation.invoke();
-            }
             else
                 return  null;
         }

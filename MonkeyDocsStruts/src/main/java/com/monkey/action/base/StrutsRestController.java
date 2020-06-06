@@ -14,7 +14,7 @@ public abstract class StrutsRestController<T extends BaseEntity>
         extends ActionSupport implements ModelDriven<Object> {
     protected String name;
     protected CrudDAO<Integer, T> dao;
-    private int id;
+    protected int id;
     protected T model;
     protected List<T> list;
     public String getName() {
@@ -40,17 +40,17 @@ public abstract class StrutsRestController<T extends BaseEntity>
     // POST /user
     public HttpHeaders create() {
         dao.create(model);
-        return new DefaultHttpHeaders("success");
+        return new DefaultHttpHeaders("show");
     }
     // PUT /user/1
     public HttpHeaders update() {
         dao.updateOne(id, model);
-        return new DefaultHttpHeaders("success");
+        return new DefaultHttpHeaders("show");
     }
     // DELETE /user/1
     public HttpHeaders destroy() {
         dao.deleteOne(id);
-        return new DefaultHttpHeaders("success");
+        return new DefaultHttpHeaders("show");
     }
     @Override
     public Object getModel()

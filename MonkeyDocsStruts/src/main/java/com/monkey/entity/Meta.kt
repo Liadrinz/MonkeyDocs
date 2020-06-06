@@ -29,15 +29,15 @@ open class Meta : BaseEntity() {
     @get:Column(name = "updateTime", nullable = false)
     var updateTime: Date? = null
 
-    @get:JsonBackReference
+    @get:JsonBackReference("refCheckpoints")
     @get:OneToMany(mappedBy = "refMeta")
     var refCheckpoints: Set<Checkpoint>? = null
 
-    @get:JsonBackReference
+    @get:JsonBackReference("refDeltas")
     @get:OneToMany(mappedBy = "refMeta")
     var refDeltas: Set<Delta>? = null
 
-    @get:JsonBackReference
+    @get:JsonBackReference("refMetaToUsers")
     @get:OneToMany(mappedBy = "refMeta")
     var refMetaToUsers: Set<MetaToUser>? = null
 

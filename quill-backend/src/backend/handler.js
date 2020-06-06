@@ -1,7 +1,7 @@
 const dispatcher = require('./dispatcher');
-const clientManager = require('./clientManager');
 const redisClient = require('./redisClient');
-const Message = require('./Message');
+const Message = require('./format/Message');
+const PushMessage = require('./format/PushMessage');
 const ot = require('./ot');
 const Delta = require('../../dist/Delta');
 const DAO = require('./DAO');
@@ -49,7 +49,20 @@ const handler = {
         }
     },
     handleSave(docId) {
-
+        try {
+            DAO.delta.makeCheckpoint(docId);
+        } catch (e) {
+            console.error(e);
+        }
+    },
+    handlePush(sender, receivers, text) {
+        try {
+            DAO.message.createAll(sender, receivers, text).then(() => {
+                dispatcher.push(receivers);
+            })
+        } catch (e) {
+            console.error(e);
+        }
     }
 }
 

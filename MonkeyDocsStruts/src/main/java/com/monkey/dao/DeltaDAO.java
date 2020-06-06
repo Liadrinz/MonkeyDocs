@@ -15,7 +15,7 @@ import java.util.List;
 @Repository("deltaDAO")
 @Transactional
 public class DeltaDAO extends CrudDAO<Integer, Delta> {
-    private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+    private static final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
     public DeltaDAO() {
         super(Delta.class);
     }
@@ -31,5 +31,10 @@ public class DeltaDAO extends CrudDAO<Integer, Delta> {
         Query query = session.createSQLQuery(sqlBuilder.toString());
         query.executeUpdate();
         return "success";
+    }
+    public List<Delta> findBefore(int docId, int lastDelta) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createSQLQuery(String.format("select * from Delta where docid=%d and id < %d", docId, lastDelta));
+        return query.list();
     }
 }

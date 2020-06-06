@@ -11,5 +11,5 @@
         if (paramNames.hasMoreElements())
             builder.append("&");
     }
-    response.sendRedirect(String.format("%d.json?%s", request.getAttribute("id"), builder.toString()));
+    response.sendRedirect(String.format("http://monkeydoc.liadrinz.cn/rest/%s/%d.json?%s", request.getAttribute("name"), request.getAttribute("id"), builder.toString()));
 %>

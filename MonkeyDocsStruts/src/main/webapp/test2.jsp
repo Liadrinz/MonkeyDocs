@@ -70,7 +70,7 @@
                     this.post();
             },
             logon(){
-                window.location.href='logon.jsp';
+                window.location.href='logon.html';
             },
         }
     });
