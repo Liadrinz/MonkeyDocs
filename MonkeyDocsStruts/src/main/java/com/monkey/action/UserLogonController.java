@@ -1,6 +1,7 @@
 package com.monkey.action;
 
 import com.google.gson.Gson;
+import com.monkey.util.Security;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 
@@ -33,7 +34,7 @@ public class UserLogonController extends ActionSupport {
         String tel= (String) map.get("tel");
         String email= (String) map.get("email");
         String userName= (String) map.get("userName");
-        String password= (String) map.get("password");
+        String password= Security.encryptPwd((String) map.get("password"));
         String sql1="INSERT INTO User (tel,email,userName,password) VALUES (?,?,?,?)";
         String sql2="select * from User where tel=";
         String sql3="select * from User where email=";
