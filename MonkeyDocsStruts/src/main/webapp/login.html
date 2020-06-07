@@ -147,7 +147,7 @@
       return '';
   }
   function saveData (key,data) {
-    window.localStorage.setItem(key, JSON.stringify(data))
+    window.localStorage.setItem(key, data)
   }
   var b=new Vue({
     el:"#app",
@@ -198,10 +198,10 @@
         let val={
           tel:this.userinfo.tel,
           email:this.userinfo.email,
-          password:hex_md5(this.userinfo.password2),
+          password:this.userinfo.password2,
         };
-        console.log(hex_md5(this.userinfo.password2))
-        axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userLogin.action",val).then(
+        // console.log(this.userinfo.password2)
+        axios.post("http://monkeydoc.liadrinz.cn/business/userLogin.action",val).then(
                 res=>{
                   console.log(res)
           if(res.headers.responsemsg=="User_does_not_exists")

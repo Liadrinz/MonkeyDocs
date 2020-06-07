@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MonkeyDoc 后台管理——用户管理</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="vendors/iconfonts/font-awesome/css/font-awesome.min.css" />
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="vendors/css/style.css">
+  <!-- endinject -->
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <a class="navbar-brand brand-logo" href="index.html">
+          <p style="color: black;font-size: medium;">MonkeyDoc 后台管理系统</p>
+        </a>
+      
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown d-none d-xl-inline-block">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <span class="profile-text">Hello, xxx!</span>
+              <img class="img-xs rounded-circle" src="image/pic-1.png" alt="Profile image">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <a class="dropdown-item">
+                Change Password
+              </a>
+              <a class="dropdown-item">
+                Sign Out
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" id="overview" href="index.html">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">总览</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="userManage" href="userManage.html">
+              <i class="menu-icon fa fa-user-o"></i>
+              <span class="menu-title">用户管理</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="docManage" href="docManage.html">
+              <i class="menu-icon fa fa-file-word-o"></i>
+              <span class="menu-title">文档管理</span>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- main-panel ends --><!-- main-panel ends --><!-- main-panel ends --><!-- main-panel ends --><!-- main-panel ends --><!-- main-panel ends --><!-- main-panel ends -->
+
+      <div class="main-panel" id="userManagePage">
+        <div class="content-wrapper">
+
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 grid-margin form-group">
+                    <label>Id</label>
+                    <input  class="form-control" id="SearchUserId" placeholder="Enter id">
+                </div>
+
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 grid-margin form-group">
+                    <button class="btn btn-dark btn-fw" style="margin-top: 10%;" id="searchUserByid" type="button">查询</button>
+                </div>
+
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 grid-margin form-group">
+                  <button class="btn btn-primary btn-fw" style="margin-top: 10%;" id="showAllUser" type="button">显示全部</button>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 grid-margin form-group">
+                  <button class="btn btn-primary btn-fw" style="margin-top: 10%;" id="addNewUser" type="button">添加用户</button>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 grid-margin form-group">
+                <label>UserName</label>
+                <input  class="form-control" id="SearchUserName" placeholder="Enter userName">
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 grid-margin form-group">
+                <label>Tel</label>
+                <input  class="form-control" id="SearchTel" placeholder="Enter Tel">
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 grid-margin form-group">
+                <label>Email</label>
+                <input class="form-control" id="SearchEmail" placeholder="Enter Email">
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 grid-margin form-group">
+                <button class="btn btn-dark btn-fw" style="margin-top: 6%;" id="searchUser" type="button">查询</button>
+              </div>
+            </div>
+
+          
+
+          <div class="col-lg-12  stretch-card row">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">User table</h4>
+                <div class="table-responsive" style="margin-top:1%">
+                  <table class="table table-bordered table-hover" id="userTable">
+                    <thead>
+                      <tr>
+                        <th>
+                          Id
+                        </th>
+                        <th>
+                          UserName
+                        </th>
+                        <th>
+                          Tel
+                        </th>
+                        <th>
+                          Email
+                        </th>
+                        <th>
+                          createTime
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- <tr id="user1">
+                        <td id="userId1">
+                          1
+                        </td>
+                        <td id="userName1">
+                          szc
+                        </td>
+                        <td id="tel1">
+                          12345678901
+                        </td>
+                        <td id="email1">
+                          123123123@qq.com
+                        </td>
+                        <td id="password1">
+                          123
+                        </td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020
+              <a>MonkeyDoc</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">szc love you
+              <i class="mdi mdi-heart text-danger"></i>
+            </span>
+          </div>
+        </footer>
+
+        
+      <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+        <div class="modal-dialog" data-backdrop="false">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" style="visibility: collapse;">
+              </button>
+              <h4 class="modal-title">
+                user message
+              </h4>
+            </div>
+
+            <div class="modal-body">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label>UserName</label>
+                      <input  class="form-control" id="InputUserName" placeholder="Enter userName">
+                    </div>
+                    <div class="form-group">
+                      <label>Tel</label>
+                      <input  class="form-control" id="InputTel" placeholder="Enter Tel">
+                    </div>
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" id="InputEmail" placeholder="Enter Email">
+                      </div>
+                      <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                关闭
+              </button>
+              <button type="button" id="deleteUser" class="btn btn-danger">
+                删除
+              </button>
+              <button type="button" id="submitUser" class="btn btn-primary">
+                提交
+              </button>
+            </div>
+
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+      </div>
+      </div>
+
+      <!-- 模态框（Modal） -->
+  <div class="modal fade" id="warnModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				  <h4 class="modal-title" id="myModalLabel">
+					警告
+				  </h4>
+			  </div>
+			  <div class="modal-body">
+				  确定要删除该用户吗?
+			  </div>
+			  <div class="modal-footer">
+				  <button type="button" class="btn btn-secondary btn-fw" data-dismiss="modal">取消
+				  </button>
+				  <button type="button" class="btn btn-danger btn-fw" id="confirmDeleteUser" >
+					  确定
+				  </button>
+			  </div>
+		  </div><!-- /.modal-content -->
+	  </div><!-- /.modal -->
+  </div>
+
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="vendors/js/off-canvas.js"></script>
+  <script src="vendors/js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="vendors/js/dashboard.js"></script>
+  <script src="vendors/js/chart.js"></script>
+  <script src="vendors/js/base.js"></script>
+  <script src="vendors/js/UserTable.js"></script>
+  <!-- End custom js for this page-->
+    </div>
+  </div>
+</body>
+
+</html>
