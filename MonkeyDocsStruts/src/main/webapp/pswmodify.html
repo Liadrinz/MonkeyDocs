@@ -57,7 +57,7 @@
                     this.tishi2='原密码不能为空';
                     this.isReturn = true;
                 }
-                var p=/(\w)*(\d)+[a-zA-Z]+/;
+                var p=/(\w)*(([0-9]+[a-zA-Z]+)|([A-Za-z][0-9]))(\w)*/;
                 if (!this.newpsw) {
                     this.tishi3='新密码不能为空';
                     this.isReturn = true;
