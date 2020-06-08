@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MonkeyDoc 后台管理——总览</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="vendors/iconfonts/font-awesome/css/font-awesome.min.css" />
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="vendors/css/style.css">
+  <!-- endinject -->
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <a class="navbar-brand brand-logo" href="index.html">
+          <p style="color: black;font-size: medium;">MonkeyDoc 后台管理系统</p>
+        </a>
+      
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown d-none d-xl-inline-block">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <span class="profile-text">Hello, xxx!</span>
+              <img class="img-xs rounded-circle" src="image/pic-1.png" alt="Profile image">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <a class="dropdown-item">
+                Change Password
+              </a>
+              <a class="dropdown-item">
+                Sign Out
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" id="overview" href="index.html">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">总览</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="userManage" href="userManage.html">
+              <i class="menu-icon fa fa-user-o"></i>
+              <span class="menu-title">用户管理</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="docManage" href="docManage.html">
+              <i class="menu-icon fa fa-file-word-o"></i>
+              <span class="menu-title">文档管理</span>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel" id="overviewPage">
+        <div class="content-wrapper">
+          
+          <div >
+
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7" style="float: left;">
+              <div  class="grid-margin stretch-card" style="height: 500px;">
+                <!--weather card-->
+                <div class="card card-weather">
+                  <div class="card-body">
+                    <div class="weather-date-location" style="margin-top: 10%;">
+                      <h3 id="week"></h3>
+                      <p class="text-gray" style="font-size: medium;">
+                        <span class="weather-date" id="date"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!--weather card ends-->
+              </div>
+            </div>
+            
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 grid-margin stretch-card"style="float: right;margin-right:4%;margin-top:5%" id="Docs">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi mdi-cube text-danger icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right">文档数量</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0" id="docNum"></h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0"  style="visibility: hidden;">
+                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 3% more than last day
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 grid-margin stretch-card" style="float: right;margin-right:4%" id="Users">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi mdi-account-location text-info icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right">用户数量</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0" id="userNum"></h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0" style="visibility: hidden;">
+                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true" ></i> 2% more than last day
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class ="row" style="height:100px;width:100px;"></div>
+
+
+          <div class ="row" style="margin-top: 3%">
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">用户数量变化</h4>
+                  <canvas id="areaChart1" style="height:250px"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">文档数量变化</h4>
+                  <canvas id="areaChart2" style="height:250px"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020
+              <a>MonkeyDoc</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">szc love you
+              <i class="mdi mdi-heart text-danger"></i>
+            </span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+
+
+
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="vendors/js/off-canvas.js"></script>
+  <script src="vendors/js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="vendors/js/chart.js"></script>
+  <script src="vendors/js/base.js"></script>
+  <!-- End custom js for this page-->
+    </div>
+  </div>
+</body>
+
+</html>

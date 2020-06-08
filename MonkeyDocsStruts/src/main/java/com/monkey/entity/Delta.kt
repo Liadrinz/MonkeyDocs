@@ -34,7 +34,6 @@ open class Delta : BaseEntity() {
     @get:JoinColumn(name = "docid", referencedColumnName = "id")
     var refMeta: Meta? = null
 
-    @get:JsonIgnore
     @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "userid", referencedColumnName = "id")
     var refUser: User? = null

@@ -36,6 +36,9 @@
             <interceptor name="userLoginDetector" class="checkLogin"></interceptor>
             <interceptor name="requestInterceptor" class="requestaction"></interceptor>
         </interceptors>
+        <action name="userReset" class="userpswreset" method="execute">
+            <result></result>
+        </action>
         <action name="userLogin" class="addressAction" method="execute">
 <!--            <result name="success">/index.jsp</result>-->
             <interceptor-ref name="userLoginDetector"></interceptor-ref>

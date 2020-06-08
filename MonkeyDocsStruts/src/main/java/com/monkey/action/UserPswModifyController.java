@@ -1,18 +1,15 @@
 package com.monkey.action;
 
 import com.google.gson.Gson;
-import com.monkey.util.Security;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.*;
 import java.util.Map;
-
-public class UserLogonController extends ActionSupport {
+public class UserPswModifyController extends ActionSupport {
     public String execute() throws Exception {
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response= ServletActionContext.getResponse();
@@ -30,43 +27,40 @@ public class UserLogonController extends ActionSupport {
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn= DriverManager.getConnection("jdbc:mysql://106.54.101.125:3306/MonkeyDocDB","root","monkeydoc123");
         Statement st= conn.createStatement();
-        Statement st2= conn.createStatement();
         String tel= (String) map.get("tel");
         String email= (String) map.get("email");
-        String userName= (String) map.get("userName");
-        String password= Security.encryptPwd((String) map.get("password"));
-        String sql1="INSERT INTO User (tel,email,userName,password) VALUES (?,?,?,?)";
-        String sql2="select * from User where tel=";
-        String sql3="select * from User where email=";
-        ResultSet res= st.executeQuery(sql2+tel);
-        ResultSet res2= st2.executeQuery(sql3+"\""+email+"\"");
-        boolean flag1=false;
-        boolean flag2=false;
-        if(!res.next())
-            flag1=true;
-        if(!res2.next())
-            flag2=true;
-        if(flag1&&flag2) {
-            PreparedStatement ps = conn.prepareStatement(sql1);
-            ps.setString(1, tel);
-            ps.setString(2, email);
-            ps.setString(3, userName);
-            ps.setString(4, password);
-            ps.execute();
-            response.setHeader("responsemsg", "logon_succeed");
-            return NONE;
+        String password= (String) map.get("password");
+        String newpassword= (String) map.get("newpassword");
+        String account;
+        String keyword;
+        if(tel=="")
+        {
+            account=email;
+            keyword="email";
         }
-        else if(flag1==true &&flag2==false){
-            response.setHeader("responsemsg", "email_has_been_logon");
-            return NONE;
+        else {
+            account=tel;
+            keyword="tel";
         }
-        else if(flag1==false&&flag2==true){
-            response.setHeader("responsemsg","phone_has_been_logon");
-            return NONE;
+        ResultSet res= st.executeQuery("select * from User where "+keyword+"="+account);
+        if(res.next()){
+            String userpsw=res.getString(5);
+            String userid=res.getString(1);
+            if(userpsw.equals(password)){
+                String sql1="UPDATE User SET password=? WHERE id=?";
+                PreparedStatement ps = conn.prepareStatement(sql1);
+                ps.setString(1, newpassword);
+                ps.setString(2, userid);
+                ps.execute();
+                response.setHeader("responsemsg","psw_reset_success");
+            }
+            else {
+                response.setHeader("responsemsg","psw_wrong");
+            }
         }
         else{
-            response.setHeader("responsemsg", "both_have_been_logon");
-            return NONE;
+            response.setHeader("responsemsg","user_does_not_exist");
         }
+        return NONE;
     }
 }

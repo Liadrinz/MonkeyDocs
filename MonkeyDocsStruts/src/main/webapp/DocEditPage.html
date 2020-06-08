@@ -11,7 +11,7 @@
     [v-cloak] {
         display: none;
     }
-
+    
     .icon {
         width: 1em;
         height: 1em;
@@ -19,50 +19,54 @@
         fill: currentColor;
         overflow: hidden;
     }
-
+    
     body {
         margin: 0px;
         background-color: #F2F6FC;
     }
-
+    
     .top {
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         background-color: #FFFFFF;
     }
-
+    
     .top_button {
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
         background-image: linear-gradient(#fdfdfd, #f8f8f8);
         border: 0px;
     }
-
+    
     #edit_part {
         margin-top: 10px;
         margin-left: auto;
         margin-right: auto;
         width: 1100px;
     }
-
+    
     .tool_button {
         background-color: transparent;
         border: transparent;
     }
-
+    
     #paper {
         background-color: #FFFFFF;
-        height: 1000px;
+        height: 80%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
     }
-
+    
     .ql-editor::-webkit-scrollbar {
         display: none
     }
-
+    
     #historyB {
         background-image: linear-gradient(#fdfdfd, #f8f8f8);
         font-size: 20px;
         border: 0;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    }
+
+    .el-drawer {
+        overflow: scroll;
     }
 </style>
 
@@ -79,7 +83,7 @@
                         <h4>{{doc_name}}</h4>
                     </el-col>
                     <el-col :span="1" :offset="9">
-                        <el-button @click="drawer = true" icon="el-icon-time" size="small" circle id="historyB">
+                        <el-button @click="getCheckpoints()" icon="el-icon-time" size="small" circle id="historyB">
                         </el-button>
                     </el-col>
                     <el-col :span="2">
@@ -99,19 +103,18 @@
                 </el-breadcrumb>
                 <el-divider style="width:80%"></el-divider>
                 <el-timeline :reverse="true">
-                    <el-timeline-item v-for="(checkpoint,index) in checkpoints" :key="index"
-                        :timestamp="timeStamptoDate(checkpoint.time).toDateString()" placement="top">
+                    <el-timeline-item v-for="(checkpoint,index) in checkpoints" :key="index" :timestamp="timeStamptoDate(checkpoint.time).toDateString()" placement="top">
                         <el-card style="width:80%">
                             <p>{{checkpoint.refDelta.refUser.userName}} 保存于 {{(timeStamptoDate(checkpoint.time).toTimeString().split(" "))[0]}}</p>
                             <el-row>
                                 <el-col :span="12">
-                                    <el-button type="primary" plain >查看</button>
+                                    <el-button type="primary" plain>查看</el-button>
                                 </el-col>
                                 <el-col :span="12">
-                                    <el-button type="success" plain>还原</button>
-                                </el-col> 
+                                    <el-button type="success" plain>还原</el-button>
+                                </el-col>
                             </el-row>
-                            
+
                         </el-card>
                     </el-timeline-item>
                 </el-timeline>
@@ -300,14 +303,14 @@
         }
     });
     var undo = document.querySelector('#undo');
-    undo.addEventListener('click', function () {
+    undo.addEventListener('click', function() {
         quill.history.undo();
     });
     var redo = document.querySelector('#redo');
-    redo.addEventListener('click', function () {
+    redo.addEventListener('click', function() {
         quill.history.redo();
     });
-    quill.on('text-change', function (delta, oldDelta, source) {
+    quill.on('text-change', function(delta, oldDelta, source) {
         var image = '';
         if (source === 'user') {
             if (delta.ops[1] === undefined) {
@@ -316,8 +319,7 @@
                     image = vue.uploadImage(base64);
                     delta.ops[0].insert.image = image;
                 }
-            }
-            else {
+            } else {
                 if (delta.ops[1].hasOwnProperty("insert") && delta.ops[1].insert.image !== undefined) {
                     var base64 = delta.ops[1].insert.image;
                     image = vue.uploadImage(base64);
@@ -352,8 +354,8 @@
                 visittoken: '',
                 websock: null,
                 url: "",
-                doc_id: '1',
-                user_id: '23',
+                doc_id: '',
+                user_id: '',
                 user_name: "",
                 doc_name: "吼猴的文档  ",
                 circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
@@ -389,8 +391,7 @@
                             "password": "78c8a34620020484ebcefa98c926c8ba1ed7b2621eee7c4f56e528b1c26fe30a"
                         }
                     }
-                },
-                {
+                }, {
                     "id": 4,
                     "docid": 124,
                     "time": 1588096410000,
@@ -422,8 +423,7 @@
                             "password": "78c8a34620020484ebcefa98c926c8ba1ed7b2621eee7c4f56e528b1c26fe30a"
                         }
                     }
-                }
-                ]
+                }]
             }
         },
         methods: {
@@ -501,86 +501,80 @@
                 this.user_id = JSON.parse(window.localStorage.getItem("userid"));
             },
             async visitorjoin() {
-                // var ifhavevisittoken = false;
-                // var ifisjoin = false;
-                // if (window.localStorage.getItem("visittoken") != null) {
-                //     this.visittoken = window.localStorage.getItem("visittoken")
-                //     ifhavevisittoken = true
-                // } else if (this.getQueryVariable("visittoken") != false) {
-                //     this.visittoken = this.getQueryVariable("visittoken")
-                //     window.localStorage.setItem("visittoken", this.getQueryVariable("visittoken"))
-                //     ifhavevisittoken = true
-                // } else {
-                //     ifhavevisittoken = false
-                // }
-                // if (this.getQueryVariable("action") == 'join') {
-                //     var writetoken = this.getQueryVariable("writetoken")
-                //     ifisjoin = true;
-                // } else {
-                //     ifisjoin = false;
-                // }
-                // if (window.localStorage.getItem("token") != null || window.localStorage.getItem("userid") != null) {
-                //     this.setUserid()
-                //     var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
-                //     if (res.data.length > 0) {
-                //         return
-                //     } else {
-                //         if (ifisjoin) {
-                //             var requestbody1 = {
-                //                 "mdId": this.doc_id,
-                //                 "token": writetoken
-                //             }
-                //             var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
-                //             if (ifrighttoken.data) {
-                //                 var requestbody = {
-                //                     "mdId": this.doc_id,
-                //                     "userId": this.user_id
-                //                 }
-                //                 var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
-                //                 quill.enable(true);
-                //                 this.$message("欢迎加入本文档的协作小组");
-                //                 return
-                //             } else {
-                //                 window.location.href = 'DocManager.html';
-                //             }
-                //         }
-                //         if (ifhavevisittoken) {
-                //             var requestbody = {
-                //                 "mdId": this.doc_id,
-                //                 "token": this.visittoken
-                //             }
-                //             var res2 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
-                //             if (res2.data) {
-                //                 quill.enable(false);
-                //                 this.$message("你只能看着")
-                //                 return
-                //             }
-                //         } else {
-                //             window.location.href = 'DocManager.html';
-                //         }
-                //     }
-                // } else {
-                //     if (ifhavevisittoken) {
-                //         var requestbody = {
-                //             "mdId": this.doc_id,
-                //             "token": this.visittoken
-                //         }
-                //         var res3 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
-                //         if (res3.data) {
-                //             quill.enable(false);
-                //             this.$message("你只能看着")
-                //             return
-                //         }
-                //     } else {
-                //         window.location.href = 'login.html';
-                //     }
-                // }
-
-
-
-
-
-
+                var ifhavevisittoken = false;
+                var ifisjoin = false;
+                if (window.localStorage.getItem("visittoken") != null) {
+                    this.visittoken = window.localStorage.getItem("visittoken")
+                    ifhavevisittoken = true
+                } else if (this.getQueryVariable("visittoken") != false) {
+                    this.visittoken = this.getQueryVariable("visittoken")
+                    window.localStorage.setItem("visittoken", this.getQueryVariable("visittoken"))
+                    ifhavevisittoken = true
+                } else {
+                    ifhavevisittoken = false
+                }
+                if (this.getQueryVariable("action") == 'join') {
+                    var writetoken = this.getQueryVariable("writetoken")
+                    ifisjoin = true;
+                } else {
+                    ifisjoin = false;
+                }
+                if (window.localStorage.getItem("token") != null || window.localStorage.getItem("userid") != null) {
+                    this.setUserid()
+                    var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
+                    if (res.data.length > 0) {
+                        return
+                    } else {
+                        if (ifisjoin) {
+                            var requestbody1 = {
+                                "mdId": this.doc_id,
+                                "token": writetoken
+                            }
+                            var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
+                            if (ifrighttoken.data) {
+                                var requestbody = {
+                                    "mdId": this.doc_id,
+                                    "userId": this.user_id
+                                }
+                                var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
+                                quill.enable(true);
+                                this.$message("欢迎加入本文档的协作小组");
+                                return
+                            } else {
+                                window.location.href = 'DocManager.html';
+                            }
+                        }
+                        if (ifhavevisittoken) {
+                            var requestbody = {
+                                "mdId": this.doc_id,
+                                "token": this.visittoken
+                            }
+                            var res2 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                            if (res2.data) {
+                                quill.enable(false);
+                                this.$message("你只能看着")
+                                return
+                            }
+                        } else {
+                            window.location.href = 'DocManager.html';
+                        }
+                    }
+                } else {
+                    if (ifhavevisittoken) {
+                        var requestbody = {
+                            "mdId": this.doc_id,
+                            "token": this.visittoken
+                        }
+                        var res3 = await axios.post(this.rooturl + "mvc/visitdocs/jugvisittoken", requestbody)
+                        if (res3.data) {
+                            quill.enable(false);
+                            this.$message("你只能看着")
+                            return
+                        }
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                }
             },
             ot(history, delta, oldDelta) {
                 try {
@@ -604,8 +598,10 @@
                     type: 'POST',
                     async: false,
                     url: this.imageurl,
-                    data: { pic: base64 },
-                    success: function (data) {
+                    data: {
+                        pic: base64
+                    },
+                    success: function(data) {
                         if (data.msg == "success") {
                             image = data.pic_url;
                         }
@@ -620,7 +616,11 @@
                 var id = this.doc_id
                 var saveInfo = {
                     type: "save",
-                    delta: { attributes: { docId: id } }
+                    delta: {
+                        attributes: {
+                            docId: id
+                        }
+                    }
 
                 }
                 console.log("文件已保存")
@@ -629,13 +629,15 @@
             getCheckpoints() {
                 axios.get(this.rooturl + "rest/checkpoint?docid=" + this.doc_id)
                     .then(res => {
-                        this.checkpoints = res;
+                        this.checkpoints = res.data;
+                        this.drawer = true;
                     })
                     .catch(err => {
                         console.error(err);
                     })
             },
-            timeStamptoDate(timestamp){
+
+            timeStamptoDate(timestamp) {
                 var date = new Date(timestamp);
                 return date;
             },

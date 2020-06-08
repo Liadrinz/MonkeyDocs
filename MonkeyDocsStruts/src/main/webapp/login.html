@@ -125,7 +125,7 @@
                   <div class="input">
                     <input type="password" placeholder="" v-model="userinfo.password2" name="password">
                     <span class="tiShi">{{ userinfo.tishi}}</span>
-                    <div class="forgetPass tag-blue">忘记密码？</div></div></div>
+                    <div class="forgetPass tag-blue"><a href="pswmodify.html" style="text-decoration:none;">修改密码</a> </div></div></div>
                 <button class="sm-button submit sc-1n784rm-0 lower" type="black" @click="login">立即登录</button></div>
               <div class="bottom">
               </div></div></div></div></div></div></div>
@@ -169,7 +169,7 @@
         return
       else{
         let val={
-          token:"this.userinfo.token",
+          token:this.userinfo.token,
         }
         axios.post("http://monkeydoc.liadrinz.cn/business/userLogin.action",val,{headers:{token:this.userinfo.token}}).then(
                 res=>{
