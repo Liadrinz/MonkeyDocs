@@ -11,7 +11,7 @@
     [v-cloak] {
         display: none;
     }
-    
+
     .icon {
         width: 1em;
         height: 1em;
@@ -19,45 +19,45 @@
         fill: currentColor;
         overflow: hidden;
     }
-    
+
     body {
         margin: 0px;
         background-color: #F2F6FC;
     }
-    
+
     .top {
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         background-color: #FFFFFF;
     }
-    
+
     .top_button {
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
         background-image: linear-gradient(#fdfdfd, #f8f8f8);
         border: 0px;
     }
-    
+
     #edit_part {
         margin-top: 10px;
         margin-left: auto;
         margin-right: auto;
         width: 1100px;
     }
-    
+
     .tool_button {
         background-color: transparent;
         border: transparent;
     }
-    
+
     #paper {
         background-color: #FFFFFF;
         height: 80%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
     }
-    
+
     .ql-editor::-webkit-scrollbar {
         display: none
     }
-    
+
     #historyB {
         background-image: linear-gradient(#fdfdfd, #f8f8f8);
         font-size: 20px;
@@ -103,15 +103,18 @@
                 </el-breadcrumb>
                 <el-divider style="width:80%"></el-divider>
                 <el-timeline :reverse="true">
-                    <el-timeline-item v-for="(checkpoint,index) in checkpoints" :key="index" :timestamp="timeStamptoDate(checkpoint.time).toDateString()" placement="top">
+                    <el-timeline-item v-for="(checkpoint,index) in checkpoints" :key="index"
+                        :timestamp="timeStamptoDate(checkpoint.time).toDateString()" placement="top">
                         <el-card style="width:80%">
-                            <p>{{checkpoint.refDelta.refUser.userName}} 保存于 {{(timeStamptoDate(checkpoint.time).toTimeString().split(" "))[0]}}</p>
+                            <p>{{checkpoint.refDelta.refUser.userName}} 保存于
+                                {{(timeStamptoDate(checkpoint.time).toTimeString().split(" "))[0]}}</p>
                             <el-row>
                                 <el-col :span="12">
-                                    <el-button type="primary" plain>查看</el-button>
+                                    <el-button type="primary" v-on:click="getOlderVersion(checkpoint.id)" plain>查看
+                                    </el-button>
                                 </el-col>
                                 <el-col :span="12">
-                                    <el-button type="success" plain>还原</el-button>
+                                    <el-button type="success" v-on:click="initWebSocket()" plain>还原</el-button>
                                 </el-col>
                             </el-row>
 
@@ -303,14 +306,14 @@
         }
     });
     var undo = document.querySelector('#undo');
-    undo.addEventListener('click', function() {
+    undo.addEventListener('click', function () {
         quill.history.undo();
     });
     var redo = document.querySelector('#redo');
-    redo.addEventListener('click', function() {
+    redo.addEventListener('click', function () {
         quill.history.redo();
     });
-    quill.on('text-change', function(delta, oldDelta, source) {
+    quill.on('text-change', function (delta, oldDelta, source) {
         var image = '';
         if (source === 'user') {
             if (delta.ops[1] === undefined) {
@@ -359,71 +362,8 @@
                 user_name: "",
                 doc_name: "吼猴的文档  ",
                 circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
-                checkpoints: [{
-                    "id": 4,
-                    "docid": 124,
-                    "time": 1591186492000,
-                    "lastDelta": 4254,
-                    "refMeta": {
-                        "id": 124,
-                        "mdName": "doc999",
-                        "recycled": false,
-                        "createTime": 1588096410000,
-                        "updateTime": 1588096410000
-                    },
-                    "refDelta": {
-                        "id": 4254,
-                        "content": "\"{\"ops\":[{\"retain\":21},{\"insert\":{\"image\":\"/static/image/6bb340d978084d09d05be9220211c224.png\"}}],\"attributes\":{\"userId\":10,\"docId\":\"124\"}}\"",
-                        "docid": 124,
-                        "userid": 10,
-                        "refMeta": {
-                            "id": 124,
-                            "mdName": "doc999",
-                            "recycled": false,
-                            "createTime": 1588096410000,
-                            "updateTime": 1588096410000
-                        },
-                        "refUser": {
-                            "id": 10,
-                            "tel": "15611009002",
-                            "email": "1114098654@qq.com",
-                            "userName": "StevenZ",
-                            "password": "78c8a34620020484ebcefa98c926c8ba1ed7b2621eee7c4f56e528b1c26fe30a"
-                        }
-                    }
-                }, {
-                    "id": 4,
-                    "docid": 124,
-                    "time": 1588096410000,
-                    "lastDelta": 4254,
-                    "refMeta": {
-                        "id": 124,
-                        "mdName": "doc999",
-                        "recycled": false,
-                        "createTime": 1588096410000,
-                        "updateTime": 1588096410000
-                    },
-                    "refDelta": {
-                        "id": 4254,
-                        "content": "\"{\"ops\":[{\"retain\":21},{\"insert\":{\"image\":\"/static/image/6bb340d978084d09d05be9220211c224.png\"}}],\"attributes\":{\"userId\":10,\"docId\":\"124\"}}\"",
-                        "docid": 124,
-                        "userid": 10,
-                        "refMeta": {
-                            "id": 124,
-                            "mdName": "doc999",
-                            "recycled": false,
-                            "createTime": 1588096410000,
-                            "updateTime": 1588096410000
-                        },
-                        "refUser": {
-                            "id": 10,
-                            "tel": "15611009002",
-                            "email": "1114098654@qq.com",
-                            "userName": "StevenZ",
-                            "password": "78c8a34620020484ebcefa98c926c8ba1ed7b2621eee7c4f56e528b1c26fe30a"
-                        }
-                    }
-                }]
+                historyDeltas: [],
+                checkpoints: []
             }
         },
         methods: {
@@ -488,7 +428,18 @@
                 }
             },
             websocketclose(e) {
-                websock.close();
+                var id = this.doc_id
+                var saveInfo = {
+                    type: "save",
+                    delta: {
+                        attributes: {
+                            docId: id
+                        }
+                    }
+
+                }
+                console.log("文件已保存")
+                websock.send(JSON.stringify(saveInfo));
             },
 
             setUrl() {
@@ -601,7 +552,7 @@
                     data: {
                         pic: base64
                     },
-                    success: function(data) {
+                    success: function (data) {
                         if (data.msg == "success") {
                             image = data.pic_url;
                         }
@@ -642,8 +593,23 @@
                 return date;
             },
 
-            getOlderVersion(checkpoint_id){
-                
+            getOlderVersion(checkpoint_id) {
+                axios.get(this.rooturl + "/mvc/checkpoint/" + id + "/deltas")
+                    .then(res => {
+                        this.historyDeltas = res.data;
+                        for (x in this.historyDeltas) {
+                            tmp = this.historyDeltas[x][1]
+                            tmp = tmp.substring(1, tmp.length - 1)
+                            var s = $.parseJSON(tmp);
+                            websock.close()
+                            if (x == 0) {
+                                quill.setContents(s.ops, source = "history")
+                            }
+                            else {
+                                quill.updateContents(s.ops, source = "history")
+                            }
+                        }
+                    })
             }
 
 
@@ -671,8 +637,9 @@
             window.addEventListener('beforeunload', e => this.beforeUnload(e));
         },
         destroyed() {
-            websocket.close();
+            websock.close();
             window.removeEventListener('beforeunload', e => this.beforeUnload(e));
+
         },
     });
 </script>
