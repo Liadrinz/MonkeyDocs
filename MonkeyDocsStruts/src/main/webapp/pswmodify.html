@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <style>
+        label{display: inline-block;width:80px;height: 38px;text-align: center;}
+        #app{width: 360px;margin:100px auto;}
+        body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",Helvetica,Tahoma,Arial,"Microsoft YaHei",微软雅黑,黑体,Heiti,sans-serif,SimSun,宋体,serif;background-color:#F7F7F7;}
+        .tiShi{font-size: 12px;color:red;margin:0 0 10px 85px;left: 20px;}
+        #btd{color: #fff;border-color: #41464b;background-image: linear-gradient( #41464b,#2c3033 );width: 100%;height: 40px;font-weight: 500;font-size: 14px;margin-top: 10px;}
+        .input{border: none;width:75%;padding: 11px 10px;color: #41464b;font-size: 12px;vertical-align: top;height: 38px;line-height: 38px;position: relative;background: #fff;height: 30px;box-shadow: inset 0 1px 3px 0 #e5e5e5;box-sizing: border-box;border-radius: 2px;border: 1px solid #e5e5e5;left: 5px;}
+        .agr_title{text-align: center;width: 100%;font-size: 25px;padding: 40px 0;margin-top: 20px; color: #222;}
+        #successful{z-index:9999;width: 300px;height: 200px;border: 0px solid silver;position: fixed;left: 40%;bottom: 50%;background:rgba(51, 66, 81, 0.5);display: none;}
+    </style>
+</head>
+<body>
+<div id="successful">
+    <h3 style="text-align: center;margin-top: 80px;margin-bottom: 40px;">注册成功，快去登录吧!</h3>
+</div>
+<div class="top" id="app">
+    <div class="agr_title">密码修改</div>
+    <label style="position: relative;right:7px ">登录凭证</label><input type="text" placeholder="请输入您的电子邮箱或手机号"  v-model="account" class="input" ><br>
+    <span class="tiShi">{{tishi1}}</span><br>
+    <label>原登录密码</label><input type="password" placeholder="请输入原登录密码" v-model="oldpsw"class="input"><br>
+    <span class="tiShi">{{ tishi2 }}</span><br>
+    <label>新登录密码</label><input type="password" placeholder="请输入新密码" v-model="newpsw" class="input"><br>
+    <span class="tiShi">{{ tishi3}}</span><br>
+    <button id="btd"  @click="post">确认修改密码</button>
+</div>
+</body>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            isReturn:false,
+            oldpsw:'',
+            newpsw:'',
+            tel:'',
+            email:'',
+            account: '',
+            tishi1:'',
+            tishi2:'',
+            tishi3:'',
+        },
+        methods:{
+            post:function(){
+                if (!this.account)
+                {
+                    this.tishi1='用户凭证不能为空';
+                    this.isReturn = true;
+                }
+                if (!this.oldpsw) {
+                    this.tishi2='原密码不能为空';
+                    this.isReturn = true;
+                }
+                var p=/(\w)*(([0-9]+[a-zA-Z]+)|([A-Za-z][0-9]))(\w)*/;
+                if (!this.newpsw) {
+                    this.tishi3='新密码不能为空';
+                    this.isReturn = true;
+                }
+                else if(!p.test(this.newpsw)){
+                    this.isReturn = true;
+                    this.tishi3="密码应至少包含1位数字,1位字母,且长度不小于5"
+                }
+                if(this.isReturn)
+                    return;
+                if(this.account.indexOf("@") == -1)
+                    this.tel=this.account;
+                else
+                    this.email=this.account;
+                let val={
+                    tel:this.tel,
+                    password:this.oldpsw,
+                    newpassword:this.newpsw,
+                    email:this.email,
+                };
+                axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userReset.action",val).then(
+                    res=>{
+                        if(res.headers.responsemsg=="user_does_not_exist")
+                            this.tishi1="用户不存在";
+                        else if(res.headers.responsemsg=="psw_wrong")
+                            this.tishi2="用户名或密码输入错误";
+                        else if(res.headers.responsemsg=="psw_reset_success"){
+                            var box = document.getElementById("successful");
+                            box.style.display = 'block';
+                            this.timer = setTimeout(()=>{   //设置延迟执行
+                                console.log('ok');
+                                window.location.href='login.html';
+                            },2000);
+                        }
+                    }
+                ).catch(
+                    err=>{
+                        console.log(err);
+                    }
+                )
+            },
+        },
+    });
+</script>
+</html>
