@@ -19,39 +19,55 @@
         fill: currentColor;
         overflow: hidden;
     }
-    
+
     body {
         margin: 0px;
         background-color: #F2F6FC;
     }
-    
+
     .top {
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         background-color: #FFFFFF;
     }
-    
+
     .top_button {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        background-image: linear-gradient(#fdfdfd, #f8f8f8);
+        border: 0px;
     }
-    
+
     #edit_part {
         margin-top: 10px;
         margin-left: auto;
         margin-right: auto;
         width: 1100px;
     }
-    
+
     .tool_button {
         background-color: transparent;
         border: transparent;
     }
-    
+
     #paper {
         background-color: #FFFFFF;
-        height: 1000px;
+        height: 80%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
     }
-    .ql-editor::-webkit-scrollbar {display:none}
+
+    .ql-editor::-webkit-scrollbar {
+        display: none
+    }
+
+    #historyB {
+        background-image: linear-gradient(#fdfdfd, #f8f8f8);
+        font-size: 20px;
+        border: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    }
+
+    .el-drawer {
+        overflow: scroll;
+    }
 </style>
 
 <body>
@@ -59,19 +75,55 @@
         <el-container>
             <el-header class="top">
                 <el-row type="flex" align="middle">
-                    <el-col :span="1">
-                        <el-button v-on:click="goback()" class="top_button" size="small" icon="el-icon-arrow-left">
+                    <el-col :span="2">
+                        <el-button v-on:click="goback()" class="top_button" size="medium" icon="el-icon-arrow-left">
                         </el-button>
                     </el-col>
-                    <el-col :span="10" offset="1">
+                    <el-col :span="10">
                         <h4>{{doc_name}}</h4>
                     </el-col>
-                    <el-col :span="2" :offset="18">
+                    <el-col :span="1" :offset="9">
+                        <el-button @click="getCheckpoints()" icon="el-icon-time" size="small" circle id="historyB">
+                        </el-button>
+                    </el-col>
+                    <el-col :span="2">
                         <el-avatar :size="35" :src="circleUrl"></el-avatar>
                     </el-col>
+
                 </el-row>
             </el-header>
+
         </el-container>
+        <div>
+            <!-- 历史记录抽屉 -->
+            <el-drawer title="历史记录" :with-header="false" modal="false" size='25%' :visible.sync="drawer">
+                <el-breadcrumb separator="/" style="margin-top:20px;margin-left:20px">
+                    <el-breadcrumb-item>文档编辑</el-breadcrumb-item>
+                    <el-breadcrumb-item>历史记录</el-breadcrumb-item>
+                </el-breadcrumb>
+                <el-divider style="width:80%"></el-divider>
+                <el-timeline :reverse="true">
+                    <el-timeline-item v-for="(checkpoint,index) in checkpoints" :key="index"
+                        :timestamp="timeStamptoDate(checkpoint.time).toDateString()" placement="top">
+                        <el-card style="width:80%">
+                            <p>{{checkpoint.refDelta.refUser.userName}} 保存于
+                                {{(timeStamptoDate(checkpoint.time).toTimeString().split(" "))[0]}}</p>
+                            <el-row>
+                                <el-col :span="12">
+                                    <el-button type="primary" v-on:click="getOlderVersion(checkpoint.id)" plain>查看
+                                    </el-button>
+                                </el-col>
+                                <el-col :span="12">
+                                    <el-button type="success" v-on:click="initWebSocket()" plain>还原</el-button>
+                                </el-col>
+                            </el-row>
+
+                        </el-card>
+                    </el-timeline-item>
+                </el-timeline>
+            </el-drawer>
+        </div>
+
     </div>
     <div id="edit_part">
         <div id="toolbar">
@@ -254,32 +306,31 @@
         }
     });
     var undo = document.querySelector('#undo');
-    undo.addEventListener('click', function() {
+    undo.addEventListener('click', function () {
         quill.history.undo();
     });
     var redo = document.querySelector('#redo');
-    redo.addEventListener('click', function() {
+    redo.addEventListener('click', function () {
         quill.history.redo();
     });
-    quill.on('text-change', function(delta, oldDelta, source) {
-        var image='';
+    quill.on('text-change', function (delta, oldDelta, source) {
+        var image = '';
         if (source === 'user') {
-            if(delta.ops[1]===undefined){
-                if(delta.ops[0].hasOwnProperty("insert")&&delta.ops[0].insert.image!==undefined){
+            if (delta.ops[1] === undefined) {
+                if (delta.ops[0].hasOwnProperty("insert") && delta.ops[0].insert.image !== undefined) {
                     var base64 = delta.ops[0].insert.image;
-                    image=vue.uploadImage(base64);
-                    delta.ops[0].insert.image=image;
+                    image = vue.uploadImage(base64);
+                    delta.ops[0].insert.image = image;
                 }
-            }
-            else{
-                if(delta.ops[1].hasOwnProperty("insert")&&delta.ops[1].insert.image!==undefined){
+            } else {
+                if (delta.ops[1].hasOwnProperty("insert") && delta.ops[1].insert.image !== undefined) {
                     var base64 = delta.ops[1].insert.image;
-                    image=vue.uploadImage(base64);
-                    delta.ops[1].insert.image=image;
+                    image = vue.uploadImage(base64);
+                    delta.ops[1].insert.image = image;
                 }
             }
-            
-            
+
+
             delta.attributes = {
                 userId: vue.user_id,
                 docId: vue.doc_id
@@ -298,18 +349,21 @@
         el: '#edit_page',
         data() {
             return {
-                imageurl:'http://monkeydoc.liadrinz.cn/static/image/upload/base64',
+                drawer: false,
+                imageurl: 'http://monkeydoc.liadrinz.cn/static/image/upload/base64',
                 rooturl: 'http://monkeydoc.liadrinz.cn/',
                 testurl: 'http://localhost:8083/mdss/',
                 initial_data: null,
                 visittoken: '',
                 websock: null,
                 url: "",
-                doc_id: '1',
-                user_id: '23',
+                doc_id: '',
+                user_id: '',
                 user_name: "",
                 doc_name: "吼猴的文档  ",
-                circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+                circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+                historyDeltas: [],
+                checkpoints: []
             }
         },
         methods: {
@@ -374,7 +428,18 @@
                 }
             },
             websocketclose(e) {
-                websock.close();
+                var id = this.doc_id
+                var saveInfo = {
+                    type: "save",
+                    delta: {
+                        attributes: {
+                            docId: id
+                        }
+                    }
+
+                }
+                console.log("文件已保存")
+                websock.send(JSON.stringify(saveInfo));
             },
 
             setUrl() {
@@ -405,7 +470,7 @@
                 } else {
                     ifisjoin = false;
                 }
-                if (window.localStorage.getItem("token") != null ||window.localStorage.getItem("userid") != null) {
+                if (window.localStorage.getItem("token") != null || window.localStorage.getItem("userid") != null) {
                     this.setUserid()
                     var res = await axios.get(this.rooturl + "rest/metaToUser.json?mdId=" + this.doc_id + "&userId=" + this.user_id)
                     if (res.data.length > 0) {
@@ -417,7 +482,7 @@
                                 "token": writetoken
                             }
                             var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
-                            if(ifrighttoken.data) {
+                            if (ifrighttoken.data) {
                                 var requestbody = {
                                     "mdId": this.doc_id,
                                     "userId": this.user_id
@@ -426,7 +491,7 @@
                                 quill.enable(true);
                                 this.$message("欢迎加入本文档的协作小组");
                                 return
-                            }else {
+                            } else {
                                 window.location.href = 'DocManager.html';
                             }
                         }
@@ -461,12 +526,6 @@
                         window.location.href = 'login.html';
                     }
                 }
-
-
-
-
-
-
             },
             ot(history, delta, oldDelta) {
                 try {
@@ -484,33 +543,73 @@
             goback() {
                 window.location.href = 'DocManager.html';
             },
-            uploadImage(base64){
-                var image='';
+            uploadImage(base64) {
+                var image = '';
                 $.ajax({
-                    type:'POST',
-                    async:false,
-                    url:this.imageurl,
-                    data:{pic:base64},
-                    success:function(data){
-                        if(data.msg=="success"){
+                    type: 'POST',
+                    async: false,
+                    url: this.imageurl,
+                    data: {
+                        pic: base64
+                    },
+                    success: function (data) {
+                        if (data.msg == "success") {
                             image = data.pic_url;
                         }
-                        
+
                     }
                 })
 
                 return image;
             },
 
-            beforeUnload(e){
+            beforeUnload(e) {
                 var id = this.doc_id
-                var saveInfo ={
-                    type:"save",
-                    delta:{attributes:{docId:id}}
-                    
+                var saveInfo = {
+                    type: "save",
+                    delta: {
+                        attributes: {
+                            docId: id
+                        }
+                    }
+
                 }
                 console.log("文件已保存")
                 websock.send(JSON.stringify(saveInfo));
+            },
+            getCheckpoints() {
+                axios.get(this.rooturl + "rest/checkpoint?docid=" + this.doc_id)
+                    .then(res => {
+                        this.checkpoints = res.data;
+                        this.drawer = true;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            },
+
+            timeStamptoDate(timestamp) {
+                var date = new Date(timestamp);
+                return date;
+            },
+
+            getOlderVersion(checkpoint_id) {
+                axios.get(this.rooturl + "/mvc/checkpoint/" + id + "/deltas")
+                    .then(res => {
+                        this.historyDeltas = res.data;
+                        for (x in this.historyDeltas) {
+                            tmp = this.historyDeltas[x][1]
+                            tmp = tmp.substring(1, tmp.length - 1)
+                            var s = $.parseJSON(tmp);
+                            websock.close()
+                            if (x == 0) {
+                                quill.setContents(s.ops, source = "history")
+                            }
+                            else {
+                                quill.updateContents(s.ops, source = "history")
+                            }
+                        }
+                    })
             }
 
 
@@ -535,11 +634,12 @@
 
         },
         mounted() {
-            window.addEventListener('beforeunload',e=>this.beforeUnload(e));
+            window.addEventListener('beforeunload', e => this.beforeUnload(e));
         },
         destroyed() {
-            websocket.close();
-            window.removeEventListener('beforeunload',e=>this.beforeUnload(e));  
+            websock.close();
+            window.removeEventListener('beforeunload', e => this.beforeUnload(e));
+
         },
     });
 </script>
