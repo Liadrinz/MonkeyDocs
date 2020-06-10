@@ -617,8 +617,8 @@
                                                         <el-col :span="6" class="memberlist-item-name">
                                                             <span class="memberlist-item-name-text"> {{member.role}}</span>
                                                         </el-col>
-                                                        <el-col :span="5" class="memberlist-item-name" style="padding: 0px;padding-top:5px">
-                                                            <el-button class="topbtn memberaddbtn" @click="awayfromDoc(member.id)">删除</el-button>
+                                                        <el-col :span="5" class="memberlist-item-name" style="padding: 0px;padding-top:5px" >
+                                                            <el-button v-if="member.role != 'creator' && member.id!=userinfo.userid" class="topbtn memberaddbtn" @click="awayfromDoc(member.id)">删除</el-button>
                                                         </el-col>
                                                     </el-row>
                                                 </el-col>

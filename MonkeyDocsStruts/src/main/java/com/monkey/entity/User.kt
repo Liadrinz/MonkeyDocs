@@ -2,7 +2,6 @@ package com.monkey.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.monkey.entity.base.BaseEntity
-import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -28,10 +27,6 @@ open class User : BaseEntity() {
     @get:Basic
     @get:Column(name = "password", nullable = false)
     var password: String? = null
-
-    @get:Basic
-    @get:Column(name = "create_time")
-    var createTime: Date? = null
 
     @get:JsonBackReference("refDeltas")
     @get:OneToMany(mappedBy = "refUser")
