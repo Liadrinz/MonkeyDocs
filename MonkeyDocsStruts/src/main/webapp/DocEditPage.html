@@ -399,6 +399,8 @@
                 return (false);
             },
             initWebSocket() {
+                document.getElementById("loading").style.display="inline"
+                this.loading = true
                 try {
                     websock = new WebSocket(this.url);
                 } catch (e) {
@@ -432,8 +434,6 @@
             websocketonmessage(e) {
                 var resp = JSON.parse(e.data);
                 if (resp.type === "res") {
-                    document.getElementById("loading").style.display="inline"
-                    this.loading = true
                     quill.setText('', source = 'server');
                     quill.updateContents(resp.delta.ops, source = 'server');
                     this.loading = false
@@ -609,10 +609,11 @@
             },
 
             getOlderVersion(checkpoint_id) {
+                document.getElementById("loading").style.display="inline"
+                this.loading = true
                 axios.get(this.rooturl + "/mvc/checkpoint/" + checkpoint_id + "/deltas")
                     .then(res => {
-                        document.getElementById("loading").style.display="inline"
-                        this.loading = true
+                        
                         this.historyDeltas = res.data;
                         for (x in this.historyDeltas) {
                             tmp = this.historyDeltas[x][1]
