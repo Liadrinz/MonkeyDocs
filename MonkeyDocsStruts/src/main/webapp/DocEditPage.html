@@ -594,7 +594,7 @@
             },
 
             getOlderVersion(checkpoint_id) {
-                axios.get(this.rooturl + "/mvc/checkpoint/" + id + "/deltas")
+                axios.get(this.rooturl + "/mvc/checkpoint/" + checkpoint_id + "/deltas")
                     .then(res => {
                         this.historyDeltas = res.data;
                         for (x in this.historyDeltas) {
