@@ -618,7 +618,7 @@
                                                             <span class="memberlist-item-name-text"> {{member.role}}</span>
                                                         </el-col>
                                                         <el-col :span="5" class="memberlist-item-name" style="padding: 0px;padding-top:5px">
-                                                            <el-button class="topbtn memberaddbtn" @click="awayfromDoc(member.id)">删除</el-button>
+                                                            <el-button class="topbtn memberaddbtn" @click="awayfromDoc(member.id)" v-if="nowShowMemberDialogdata.role=='creator' && member.role!='creator'">删除</el-button>
                                                         </el-col>
                                                     </el-row>
                                                 </el-col>
@@ -991,6 +991,7 @@
                 this.nowShowMemberDialogdata.mdid = this.doclist[index].id
                 this.nowShowMemberDialogdata.mdname = this.doclist[index].mdName
                 this.nowShowMemberDialogdata.refUsers = this.doclist[index].refUsers
+                this.nowShowMemberDialogdata.role =this.doclist[index].role;
                 for (var i in this.doclist[index].refUsers) {
                     var member = {
                         id: this.doclist[index].refUsers[i].id,
