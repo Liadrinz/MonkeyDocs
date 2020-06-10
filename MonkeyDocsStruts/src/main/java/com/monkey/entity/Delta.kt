@@ -1,6 +1,7 @@
 package com.monkey.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.monkey.entity.base.BaseEntity
 import javax.persistence.*
 
@@ -24,10 +25,11 @@ open class Delta : BaseEntity() {
     @get:Column(name = "userid", nullable = false, insertable = false, updatable = false)
     var userid: Int? = null
 
-    @get:JsonBackReference
+    @get:JsonIgnore
     @get:OneToMany(mappedBy = "refDelta")
     var refCheckpoints: Set<Checkpoint>? = null
 
+    @get:JsonIgnore
     @get:ManyToOne(fetch = FetchType.EAGER)
     @get:JoinColumn(name = "docid", referencedColumnName = "id")
     var refMeta: Meta? = null
