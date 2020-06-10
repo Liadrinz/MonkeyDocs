@@ -292,6 +292,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript">
+
     const Delta = Quill.import('delta');
     var websock = null;
     var quill = new Quill('#paper', {
@@ -313,9 +314,13 @@
     redo.addEventListener('click', function () {
         quill.history.redo();
     });
+    var flag = true
+    $('#paper').on('compositionstart',function(){flag = false;});
+    $('#paper').on('compositionend',function(){flag = true;});
+
     quill.on('text-change', function (delta, oldDelta, source) {
         var image = '';
-        if (source === 'user') {
+        if (source === 'user'&& flag ===true) {
             if (delta.ops[1] === undefined) {
                 if (delta.ops[0].hasOwnProperty("insert") && delta.ops[0].insert.image !== undefined) {
                     var base64 = delta.ops[0].insert.image;
