@@ -477,12 +477,6 @@
                         return
                     } else {
                         if (ifisjoin) {
-                            var requestbody1 = {
-                                "mdId": this.doc_id,
-                                "token": writetoken
-                            }
-                            var ifrighttoken = await axios.post(this.rooturl + "mvc/visitdocs/jugwritetoken", requestbody1)
-                            if (ifrighttoken.data) {
                                 var requestbody = {
                                     "mdId": this.doc_id,
                                     "userId": this.user_id
@@ -491,9 +485,6 @@
                                 quill.enable(true);
                                 this.$message("欢迎加入本文档的协作小组");
                                 return
-                            } else {
-                                window.location.href = 'DocManager.html';
-                            }
                         }
                         if (ifhavevisittoken) {
                             var requestbody = {
