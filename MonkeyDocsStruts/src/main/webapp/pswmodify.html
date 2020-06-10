@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="successful">
-    <h3 style="text-align: center;margin-top: 80px;margin-bottom: 40px;">注册成功，快去登录吧!</h3>
+    <h3 style="text-align: center;margin-top: 80px;margin-bottom: 40px;">密码修改成功，快去登录吧!</h3>
 </div>
 <div class="top" id="app">
     <div class="agr_title">密码修改</div>
@@ -36,12 +36,11 @@
     var app=new Vue({
         el:'#app',
         data:{
-            isReturn:false,
             oldpsw:'',
             newpsw:'',
             tel:'',
             email:'',
-            account: '',
+            account:'',
             tishi1:'',
             tishi2:'',
             tishi3:'',
@@ -51,23 +50,21 @@
                 if (!this.account)
                 {
                     this.tishi1='用户凭证不能为空';
-                    this.isReturn = true;
+                    return;
                 }
                 if (!this.oldpsw) {
                     this.tishi2='原密码不能为空';
-                    this.isReturn = true;
+                    return;
                 }
                 var p=/(\w)*(([0-9]+[a-zA-Z]+)|([A-Za-z][0-9]))(\w)*/;
                 if (!this.newpsw) {
                     this.tishi3='新密码不能为空';
-                    this.isReturn = true;
+                    return;
                 }
                 else if(!p.test(this.newpsw)){
-                    this.isReturn = true;
-                    this.tishi3="密码应至少包含1位数字,1位字母,且长度不小于5"
-                }
-                if(this.isReturn)
+                    this.tishi3="密码应至少包含1位数字,1位字母,且长度不小于5";
                     return;
+                }
                 if(this.account.indexOf("@") == -1)
                     this.tel=this.account;
                 else
@@ -78,13 +75,16 @@
                     newpassword:this.newpsw,
                     email:this.email,
                 };
-                axios.post("http://localhost:8080/MonkeyDocsStruts_war_exploded/business/userReset.action",val).then(
+                axios.post("http://monkeydoc.liadrinz.cn/business/userReset.action",val).then(
                     res=>{
                         if(res.headers.responsemsg=="user_does_not_exist")
                             this.tishi1="用户不存在";
                         else if(res.headers.responsemsg=="psw_wrong")
-                            this.tishi2="用户名或密码输入错误";
+                            this.tishi2="用户凭证或密码输入错误";
                         else if(res.headers.responsemsg=="psw_reset_success"){
+                            this.tishi1='';
+                            this.tishi2='';
+                            this.tishi3='';
                             var box = document.getElementById("successful");
                             box.style.display = 'block';
                             this.timer = setTimeout(()=>{   //设置延迟执行

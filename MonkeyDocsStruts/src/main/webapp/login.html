@@ -142,7 +142,7 @@
 <script>
   function readData (key) {
     if(window.localStorage.getItem(key))
-      return JSON.parse(window.localStorage.getItem(key));
+      return window.localStorage.getItem(key);
     else
       return '';
   }
@@ -179,8 +179,10 @@
                     saveData("userid",res.headers.userid)
                     window.location.href='./DocManager.html';
                   }
-                  else
+                  else{
+                    window.localStorage.clear();
                     return;
+                  }
                 }
         ).catch(
                 err=>{
@@ -200,14 +202,19 @@
           email:this.userinfo.email,
           password:this.userinfo.password2,
         };
-        // console.log(this.userinfo.password2)
         axios.post("http://monkeydoc.liadrinz.cn/business/userLogin.action",val).then(
                 res=>{
                   console.log(res)
-          if(res.headers.responsemsg=="User_does_not_exists")
-        this.userinfo.tishi='手机号(邮箱）格式有误或尚未注册';
-      else if(res.headers.responsemsg=="usr_name_or_psw_wrong")
-          this.userinfo.tishi='手机号(邮箱)或密码输入错误';
+          if(res.headers.responsemsg=="User_does_not_exists") {
+            this.userinfo.tishi = '手机号(邮箱）格式有误或尚未注册';
+            this.userinfo.tel='';
+            this.userinfo.email='';
+          }
+      else if(res.headers.responsemsg=="usr_name_or_psw_wrong") {
+            this.userinfo.tishi = '手机号(邮箱)或密码输入错误';
+            this.userinfo.tel='';
+            this.userinfo.email='';
+          }
       else  if(res.headers.responsemsg=="error")
           alert("error");
         else {
@@ -227,8 +234,15 @@
       login(){
         console.log(this.userinfo.token);
         if(this.userinfo.account=='')
-        {this.userinfo.tishi='手机号(邮箱)不能为空';return;}
-        if(this.userinfo.password2==''){this.userinfo.tishi='密码不能为空';return;}
+        {
+          this.userinfo.tishi='手机号(邮箱)不能为空';
+          return;
+        }
+        if(this.userinfo.password2=='')
+        {
+          this.userinfo.tishi='密码不能为空';
+          return;
+        }
         else
           this.post();
       },

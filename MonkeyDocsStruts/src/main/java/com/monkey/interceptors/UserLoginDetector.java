@@ -30,7 +30,6 @@ public class UserLoginDetector extends AbstractInterceptor {
         response.setCharacterEncoding("UTF-8");
         BufferedReader streamReader = new BufferedReader( new InputStreamReader(request.getInputStream(), "UTF-8"));
         StringBuilder responseStrBuilder = new StringBuilder();
-        Enumeration<String> reqHeadInfos = request.getHeaderNames();
         String inputStr;
         String usrtoken = request.getHeader("token");
         while ((inputStr = streamReader.readLine()) != null)
@@ -61,7 +60,8 @@ public class UserLoginDetector extends AbstractInterceptor {
             if (!re.next()) {
                 response.setHeader("responsemsg", "User_does_not_exists");
                 return null;
-            } else {
+            }
+            else {
                 String psw= Security.encryptPwd((String) map.get("password"));
                 int userid=re.getInt(1);
                 String psww = re.getString(5);
@@ -87,11 +87,14 @@ public class UserLoginDetector extends AbstractInterceptor {
                         ps.execute();
                         response.setHeader("responsemsg", token);
                         response.setHeader("userid",String.valueOf(userid));
+                        return null;
                     }
                 }
                 else
+                {
                     response.setHeader("responsemsg","usr_name_or_psw_wrong");
-                return actionInvocation.invoke();
+                    return null;
+                }
             }
         }
         else{
@@ -121,5 +124,6 @@ public class UserLoginDetector extends AbstractInterceptor {
             }
             else return null;
         }
+        return null;
     }
 }
