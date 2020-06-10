@@ -315,39 +315,42 @@
         quill.history.redo();
     });
     var flag = true
-    $('#paper').on('compositionstart',function(){flag = false;});
-    $('#paper').on('compositionend',function(){flag = true;});
+    $('#paper').on('compositionstart', function () { flag = false; });
+    $('#paper').on('compositionend', function () { flag = true;});
 
     quill.on('text-change', function (delta, oldDelta, source) {
-        var image = '';
-        if (source === 'user'&& flag ===true) {
-            if (delta.ops[1] === undefined) {
-                if (delta.ops[0].hasOwnProperty("insert") && delta.ops[0].insert.image !== undefined) {
-                    var base64 = delta.ops[0].insert.image;
-                    image = vue.uploadImage(base64);
-                    delta.ops[0].insert.image = image;
+        setTimeout(function () {
+            var image = '';
+            if (source === 'user' && flag === true) {
+                if (delta.ops[1] === undefined) {
+                    if (delta.ops[0].hasOwnProperty("insert") && delta.ops[0].insert.image !== undefined) {
+                        var base64 = delta.ops[0].insert.image;
+                        image = vue.uploadImage(base64);
+                        delta.ops[0].insert.image = image;
+                    }
+                } else {
+                    if (delta.ops[1].hasOwnProperty("insert") && delta.ops[1].insert.image !== undefined) {
+                        var base64 = delta.ops[1].insert.image;
+                        image = vue.uploadImage(base64);
+                        delta.ops[1].insert.image = image;
+                    }
                 }
-            } else {
-                if (delta.ops[1].hasOwnProperty("insert") && delta.ops[1].insert.image !== undefined) {
-                    var base64 = delta.ops[1].insert.image;
-                    image = vue.uploadImage(base64);
-                    delta.ops[1].insert.image = image;
-                }
-            }
 
 
-            delta.attributes = {
-                userId: vue.user_id,
-                docId: vue.doc_id
+                delta.attributes = {
+                    userId: vue.user_id,
+                    docId: vue.doc_id
+                }
+                var change = {
+                    type: "delta",
+                    delta: delta,
+                    oldDelta: oldDelta
+                }
+                if (websock !== null && websock.readyState != websock.CLOSED)
+                    websock.send(JSON.stringify(change));
             }
-            var change = {
-                type: "delta",
-                delta: delta,
-                oldDelta: oldDelta
-            }
-            if (websock !== null && websock.readyState != websock.CLOSED)
-                websock.send(JSON.stringify(change));
-        }
+        }, 0)
+
 
     });
     var vue = new Vue({
@@ -482,14 +485,14 @@
                         return
                     } else {
                         if (ifisjoin) {
-                                var requestbody = {
-                                    "mdId": this.doc_id,
-                                    "userId": this.user_id
-                                }
-                                var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
-                                quill.enable(true);
-                                this.$message("欢迎加入本文档的协作小组");
-                                return
+                            var requestbody = {
+                                "mdId": this.doc_id,
+                                "userId": this.user_id
+                            }
+                            var res1 = await axios.post(this.rooturl + "mvc/visitdocs/joindoc", requestbody)
+                            quill.enable(true);
+                            this.$message("欢迎加入本文档的协作小组");
+                            return
                         }
                         if (ifhavevisittoken) {
                             var requestbody = {
