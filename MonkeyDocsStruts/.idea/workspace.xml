@@ -26,35 +26,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b74a47b8-735c-425a-b99a-7ab61aeed863" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/action/CheckpointController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/action/DeltaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/action/MetaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/action/MetaToUserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/action/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/action/base/StrutsRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/dao/CheckpointDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/dao/DeltaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/dao/MetaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/dao/MetaToUserDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/dao/UserDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/dao/base/CrudDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/dao/base/ManyToManyDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/entity/Checkpoint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/entity/Delta.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/entity/Meta.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/entity/MetaToUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/entity/base/BaseEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/mvc/HelloController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/service/CheckpointService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/service/DeltaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/service/MetaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/service/MetaToUserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/service/base/CrdService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/service/base/RestService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/util/FormField.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/DAO/com/monkey/util/Security.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

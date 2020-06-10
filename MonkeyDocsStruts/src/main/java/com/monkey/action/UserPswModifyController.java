@@ -1,6 +1,7 @@
 package com.monkey.action;
 
 import com.google.gson.Gson;
+import com.monkey.util.Security;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 import javax.servlet.http.HttpServletRequest;
@@ -29,11 +30,11 @@ public class UserPswModifyController extends ActionSupport {
         Statement st= conn.createStatement();
         String tel= (String) map.get("tel");
         String email= (String) map.get("email");
-        String password= (String) map.get("password");
-        String newpassword= (String) map.get("newpassword");
+        String password= Security.encryptPwd((String) map.get("password"));
+        String newpassword= Security.encryptPwd((String) map.get("newpassword"));
         String account;
         String keyword;
-        if(tel=="")
+        if(tel.equals(""))
         {
             account=email;
             keyword="email";
@@ -42,7 +43,7 @@ public class UserPswModifyController extends ActionSupport {
             account=tel;
             keyword="tel";
         }
-        ResultSet res= st.executeQuery("select * from User where "+keyword+"="+account);
+        ResultSet res= st.executeQuery("select * from User where "+keyword+"="+"\""+account+"\"");
         if(res.next()){
             String userpsw=res.getString(5);
             String userid=res.getString(1);
